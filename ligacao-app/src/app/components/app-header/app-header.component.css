@@ -1,0 +1,12 @@
+.access-button {
+  padding-left: 70%;
+}
+
+.main-menu {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-spacer {
+  margin: .8em;
+}
