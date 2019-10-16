@@ -40,7 +40,6 @@ jpaserver_derby_files
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 *.class
