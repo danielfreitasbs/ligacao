@@ -13,6 +13,8 @@ import com.google.cloud.firestore.Firestore;
 import br.com.ligacao.persistence.connection.Connection;
 
 public class Database {  
+    
+    static Firestore db = Connection.getConnection();
         
     public static void cadastraPromotor(String nomePromotor,
                             String categoriaAcao,
@@ -26,7 +28,7 @@ public class Database {
                             String usuario,
                             String senha) throws IOException, InterruptedException, ExecutionException {
         
-        Firestore db = Connection.getConnection();
+        Firestore db = Database.db;
         
         DocumentReference referenciaPromotor = db.collection("promotor de acao").document(nomePromotor);
         // Add document data using a hashmap
@@ -57,7 +59,7 @@ public class Database {
             String horaInicio,
             String horaFim) throws IOException, InterruptedException, ExecutionException {
 
-        Firestore db = Connection.getConnection();
+        Firestore db = Database.db;
         
         DocumentReference referenciaAcao = db.collection("promotor de acao").document(nomePromotor)
                                                .collection("acoes").document(nomeAcao);
@@ -80,7 +82,7 @@ public class Database {
     }
     
     public static void consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
-        Firestore db = Connection.getConnection();
+        Firestore db = Database.db;
         
         DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor);
         // asynchronously retrieve the document
@@ -98,7 +100,7 @@ public class Database {
           System.out.println("No such document!");
         }
         
-        System.out.println(promotor.getRedeSocial());
+        //System.out.println(promotor.getRedeSocial());
         
         // future.get() blocks on response
         DocumentSnapshot document = null;

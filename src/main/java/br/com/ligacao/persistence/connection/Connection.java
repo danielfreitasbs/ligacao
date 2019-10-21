@@ -15,7 +15,7 @@ public class Connection {
     public static Firestore getConnection() {
         FileInputStream serviceAccount = null;
         try {
-            serviceAccount = new FileInputStream("./settings/ligacao-2121b-firebase-adminsdk-cpw8e-af2c81b80b.json");
+            serviceAccount = new FileInputStream("./.settings/ligacao-2121b-firebase-adminsdk-cpw8e-af2c81b80b.json");
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
