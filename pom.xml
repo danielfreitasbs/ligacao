@@ -5,4 +5,20 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>LigacaoApp</name>
+
+<dependencies>
+
+    <dependency>
+         <groupId>com.google.firebase</groupId>
+        <artifactId>firebase-admin</artifactId>
+        <version>6.9.0</version>
+    </dependency>
+
+    <dependency>
+	    <groupId>com.google.cloud</groupId>
+	    <artifactId>google-cloud-firestore</artifactId>
+	    <version>1.9.0</version>
+    </dependency>
+
+</dependencies>
 </project>
