@@ -119,6 +119,44 @@ public class Database {
             System.out.println("No such document!");
         }
     }
+    
+    public static void consultaAcao(String nomePromotor, String nomeAcao) throws InterruptedException, ExecutionException {
+        Firestore db = Database.db;
+        
+        DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor)
+                                    .collection("acoes").document(nomeAcao);
+        // asynchronously retrieve the document
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        // ...
+        
+        DocumentSnapshot document1 = future.get();
+
+        Acao acao = null;
+        if (document1.exists()) {
+          // convert document to POJO
+          acao = document1.toObject(Acao.class);
+          System.out.println(acao);
+        } else {
+          System.out.println("No such document!");
+        }
+        
+        // future.get() blocks on response
+        DocumentSnapshot document = null;
+        try {
+            document = future.get();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if (document.exists()) {
+            System.out.println("Document data: " + document.getData());
+        } else {
+            System.out.println("No such document!");
+        }
+    }
 
 }
 
