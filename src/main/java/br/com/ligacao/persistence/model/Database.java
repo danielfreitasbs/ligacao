@@ -12,10 +12,34 @@ import com.google.cloud.firestore.Firestore;
 
 import br.com.ligacao.persistence.connection.Connection;
 
+/**
+ * Classe responsável por gerenciar os dados com o banco Firestore.
+ */
 public class Database {  
     
+    /**
+     * Conexão com o banco Firestore
+     */
     static Firestore db = Connection.getConnection();
         
+    /**
+     * Método responsável por cadastrar ou atualizar um novo 
+     * promotor de ação no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     * 
+     * @param nomePromotor Nome do promotor de ação.
+     * @param categoriaAcao Categoria em que se enquadra a ONG.
+     * @param cpfResponsavel Cpf do responsável pela ONG.
+     * @param dataFundacao Data de fundação da ONG.
+     * @param descricao Descrição das atividades da ONG.
+     * @param email Endereço eletrônico da ONG.
+     * @param imagem Imagem/logo que identifica a ONG.
+     * @param redeSocial Link para rede social da ONG.
+     * @param telefone Número de telefone da ONG.
+     * @param usuario Nome de usuário de login da ONG.
+     * @param senha Senha de login da ONG.
+     */
     public static void cadastraPromotor(String nomePromotor,
                             String categoriaAcao,
                             String cpfResponsavel,
@@ -51,6 +75,20 @@ public class Database {
         System.out.println("Update time : " + resultPromotor.get().getUpdateTime());
     }
 
+    /**
+     * Método responsável por cadastrar ou atualizar uma nova 
+     * ação de um promotor de ação no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome que identifica a ação que será realizada.
+     * @param categoriaAcao Categoria que se enquada a ação.
+     * @param dataRealizacao Data de realização prevista da ação.
+     * @param descricao Descrição das atividades que serão exercidas na ação.
+     * @param horaInicio Horário de início previsto da ação.
+     * @param horaFim Horário de encerramento previsto da ação.
+     */
     public static void cadastraAcao(String nomePromotor,
             String nomeAcao,
             String categoriaAcao,
