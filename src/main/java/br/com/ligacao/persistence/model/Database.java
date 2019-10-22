@@ -119,7 +119,7 @@ public class Database {
         
     }
     
-    public static void consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
+    public static Promotor consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
         Firestore db = Database.db;
         
         DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor);
@@ -156,9 +156,11 @@ public class Database {
         } else {
             System.out.println("No such document!");
         }
+        
+        return promotor;
     }
     
-    public static void consultaAcao(String nomePromotor, String nomeAcao) throws InterruptedException, ExecutionException {
+    public static Acao consultaAcao(String nomePromotor, String nomeAcao) throws InterruptedException, ExecutionException {
         Firestore db = Database.db;
         
         DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor)
@@ -194,6 +196,8 @@ public class Database {
         } else {
             System.out.println("No such document!");
         }
+        
+        return acao;
     }
 
 }
