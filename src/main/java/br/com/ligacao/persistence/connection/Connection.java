@@ -10,8 +10,16 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
 
+/**
+ * Classe responsável pela conexão com o Firestore.
+ */
 public class Connection {
-
+    
+    /**
+     * Método que retorna uma conexão com o banco Firestore
+     *
+     * @return objeto Firestore de conexão.
+     */
     public static Firestore getConnection() {
         FileInputStream serviceAccount = null;
         try {
@@ -37,5 +45,4 @@ public class Connection {
 
         return db; 
     }
-    
 }

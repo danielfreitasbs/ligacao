@@ -12,10 +12,34 @@ import com.google.cloud.firestore.Firestore;
 
 import br.com.ligacao.persistence.connection.Connection;
 
+/**
+ * Classe responsável por gerenciar os dados com o banco Firestore.
+ */
 public class Database {  
     
+    /**
+     * Conexão com o banco Firestore
+     */
     static Firestore db = Connection.getConnection();
         
+    /**
+     * Método responsável por cadastrar ou atualizar um novo 
+     * promotor de ação no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     * 
+     * @param nomePromotor Nome do promotor de ação.
+     * @param categoriaAcao Categoria em que se enquadra a ONG.
+     * @param cpfResponsavel Cpf do responsável pela ONG.
+     * @param dataFundacao Data de fundação da ONG.
+     * @param descricao Descrição das atividades da ONG.
+     * @param email Endereço eletrônico da ONG.
+     * @param imagem Imagem/logo que identifica a ONG.
+     * @param redeSocial Link para rede social da ONG.
+     * @param telefone Número de telefone da ONG.
+     * @param usuario Nome de usuário de login da ONG.
+     * @param senha Senha de login da ONG.
+     */
     public static void cadastraPromotor(String nomePromotor,
                             String categoriaAcao,
                             String cpfResponsavel,
@@ -42,15 +66,40 @@ public class Database {
         promotorAcao.put("imagem", imagem);
         promotorAcao.put("redeSocial", redeSocial);
         promotorAcao.put("telefone", telefone);
-        promotorAcao.put("usuario", usuario);
-        promotorAcao.put("senha", senha);
         //asynchronously write data
         ApiFuture<com.google.cloud.firestore.WriteResult> resultPromotor = referenciaPromotor.set(promotorAcao);
      // ...
         // result.get() blocks on response
         System.out.println("Update time : " + resultPromotor.get().getUpdateTime());
+        
+        DocumentReference referenciaLogin = db.collection("promotor de acao").document(nomePromotor)
+                .collection("login").document("dados");
+        
+        // Add document data using a hashmap
+        Map<String, Object> login = new HashMap<>();
+        login.put("usuario", usuario);
+        login.put("senha", senha);
+        
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultLogin = referenciaLogin.set(login);
+        // ...
+           // result.get() blocks on response
+           System.out.println("Update time : " + resultLogin.get().getUpdateTime());
     }
 
+    /**
+     * Método responsável por cadastrar ou atualizar uma nova 
+     * ação de um promotor de ação no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome que identifica a ação que será realizada.
+     * @param categoriaAcao Categoria que se enquada a ação.
+     * @param dataRealizacao Data de realização prevista da ação.
+     * @param descricao Descrição das atividades que serão exercidas na ação.
+     * @param horaInicio Horário de início previsto da ação.
+     * @param horaFim Horário de encerramento previsto da ação.
+     */
     public static void cadastraAcao(String nomePromotor,
             String nomeAcao,
             String categoriaAcao,
@@ -81,7 +130,7 @@ public class Database {
         
     }
     
-    public static void consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
+    public static Promotor consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
         Firestore db = Database.db;
         
         DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor);
@@ -118,9 +167,11 @@ public class Database {
         } else {
             System.out.println("No such document!");
         }
+        
+        return promotor;
     }
     
-    public static void consultaAcao(String nomePromotor, String nomeAcao) throws InterruptedException, ExecutionException {
+    public static Acao consultaAcao(String nomePromotor, String nomeAcao) throws InterruptedException, ExecutionException {
         Firestore db = Database.db;
         
         DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor)
@@ -155,6 +206,62 @@ public class Database {
             System.out.println("Document data: " + document.getData());
         } else {
             System.out.println("No such document!");
+        }
+        
+        return acao;
+    }
+    
+    public static String consultaUsuario(String nomePromotor) {
+        Firestore db = Database.db;
+        
+        DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor)
+                                        .collection("login").document("dados");
+        // asynchronously retrieve the document
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        // ...
+        
+        // future.get() blocks on response
+        String document = null;
+        try {
+            document = future.get().getString("usuario");
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if (document != null) {
+            return document;
+        } else {
+            return null;
+        }
+    }
+    
+    public static String consultaSenha(String nomePromotor) {
+        Firestore db = Database.db;
+        
+        DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor)
+                                        .collection("login").document("dados");
+        // asynchronously retrieve the document
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        // ...
+                
+        // future.get() blocks on response
+        String document = null;
+        try {
+            document = future.get().getString("senha");
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if (document != null) {
+            return document;
+        } else {
+            return null;
         }
     }
 

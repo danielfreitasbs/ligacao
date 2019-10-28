@@ -12,8 +12,6 @@ public class Promotor {
     private  String imagem;
     private String redeSocial;
     private  String telefone;
-    private   String usuario;
-    private  String senha;
     
     public Promotor() {
         
@@ -21,8 +19,7 @@ public class Promotor {
     
     public Promotor(String nomePromotor, String categoriaAcao,
             String cpfResponsavel, String dataFundacao, String descricao,
-            String email, String imagem, String redeSocial, String telefone,
-            String usuario, String senha) {
+            String email, String imagem, String redeSocial, String telefone) {
         super();
         this.nomePromotor = nomePromotor;
         this.categoriaAcao = categoriaAcao;
@@ -33,8 +30,6 @@ public class Promotor {
         this.imagem = imagem;
         this.redeSocial = redeSocial;
         this.telefone = telefone;
-        this.usuario = usuario;
-        this.senha = senha;
     }
     public String getNomePromotor() {
         return nomePromotor;
@@ -90,18 +85,6 @@ public class Promotor {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public String getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-    public String getSenha() {
-        return senha;
-    }
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
     
     @Override
     public int hashCode() {
@@ -113,8 +96,6 @@ public class Promotor {
                email,
                imagem,
                redeSocial,
-               telefone,
-               usuario,
-               senha);
+               telefone);
   }
 }
