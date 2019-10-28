@@ -18,6 +18,8 @@ Database.cadastraAcao("Vida Lata", "Campanha de adocao", "apoio animais", "12/10
         "Precisamos de voluntários para auxiliar nas tarefas doaçoes de animais", "12PM", "18PM");
 
 Database.consultaPromotor("Vida Lata"); 
+        
+      //  System.out.println(Database.consultaSenha("Vida Lata"));
 
     }
 

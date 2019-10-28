@@ -66,13 +66,24 @@ public class Database {
         promotorAcao.put("imagem", imagem);
         promotorAcao.put("redeSocial", redeSocial);
         promotorAcao.put("telefone", telefone);
-        promotorAcao.put("usuario", usuario);
-        promotorAcao.put("senha", senha);
         //asynchronously write data
         ApiFuture<com.google.cloud.firestore.WriteResult> resultPromotor = referenciaPromotor.set(promotorAcao);
      // ...
         // result.get() blocks on response
         System.out.println("Update time : " + resultPromotor.get().getUpdateTime());
+        
+        DocumentReference referenciaLogin = db.collection("promotor de acao").document(nomePromotor)
+                .collection("login").document("dados");
+        
+        // Add document data using a hashmap
+        Map<String, Object> login = new HashMap<>();
+        login.put("usuario", usuario);
+        login.put("senha", senha);
+        
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultLogin = referenciaLogin.set(login);
+        // ...
+           // result.get() blocks on response
+           System.out.println("Update time : " + resultLogin.get().getUpdateTime());
     }
 
     /**
@@ -203,7 +214,8 @@ public class Database {
     public static String consultaUsuario(String nomePromotor) {
         Firestore db = Database.db;
         
-        DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor);
+        DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor)
+                                        .collection("login").document("dados");
         // asynchronously retrieve the document
         ApiFuture<DocumentSnapshot> future = docRef.get();
         // ...
@@ -229,7 +241,8 @@ public class Database {
     public static String consultaSenha(String nomePromotor) {
         Firestore db = Database.db;
         
-        DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor);
+        DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor)
+                                        .collection("login").document("dados");
         // asynchronously retrieve the document
         ApiFuture<DocumentSnapshot> future = docRef.get();
         // ...
