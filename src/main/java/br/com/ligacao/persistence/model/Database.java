@@ -199,6 +199,58 @@ public class Database {
         
         return acao;
     }
+    
+    public static String consultaUsuario(String nomePromotor) {
+        Firestore db = Database.db;
+        
+        DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor);
+        // asynchronously retrieve the document
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        // ...
+        
+        // future.get() blocks on response
+        String document = null;
+        try {
+            document = future.get().getString("usuario");
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if (document != null) {
+            return document;
+        } else {
+            return null;
+        }
+    }
+    
+    public static String consultaSenha(String nomePromotor) {
+        Firestore db = Database.db;
+        
+        DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor);
+        // asynchronously retrieve the document
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        // ...
+                
+        // future.get() blocks on response
+        String document = null;
+        try {
+            document = future.get().getString("senha");
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if (document != null) {
+            return document;
+        } else {
+            return null;
+        }
+    }
 
 }
 
