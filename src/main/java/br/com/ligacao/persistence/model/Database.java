@@ -130,6 +130,14 @@ public class Database {
         
     }
     
+    /**
+     * Método responsável por consultar dados cadastrados
+     * de um promotor de ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * 
+     * @returns Retorna uma classe Promotor com os dados consultados.
+     */
     public static Promotor consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
         Firestore db = Database.db;
         
@@ -171,6 +179,15 @@ public class Database {
         return promotor;
     }
     
+    /**
+     * Método responsável por consultar dados cadastrados
+     * de uma ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação.
+     * 
+     * @returns Retorna uma classe Acao com os dados consultados.
+     */
     public static Acao consultaAcao(String nomePromotor, String nomeAcao) throws InterruptedException, ExecutionException {
         Firestore db = Database.db;
         
@@ -211,6 +228,14 @@ public class Database {
         return acao;
     }
     
+    /**
+     * Método responsável por consultar nome de usuário
+     * do login de um promotor de ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * 
+     * @returns Retorna uma String com o nome de usuário.
+     */
     public static String consultaUsuario(String nomePromotor) {
         Firestore db = Database.db;
         
@@ -238,6 +263,14 @@ public class Database {
         }
     }
     
+    /**
+     * Método responsável por consultar senha
+     * do login de um promotor de ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * 
+     * @returns Retorna uma String com a senha de usuário.
+     */
     public static String consultaSenha(String nomePromotor) {
         Firestore db = Database.db;
         
