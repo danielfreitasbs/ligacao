@@ -37,7 +37,7 @@ public class Main {
 		case 1:
 			break;
 		case 2:
-			int retorno = PromotorApp.cadastro();
+			PromotorApp.cadastro();
 			scanner.close();
 			break;
 		default:
