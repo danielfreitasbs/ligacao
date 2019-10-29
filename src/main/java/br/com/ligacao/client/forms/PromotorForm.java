@@ -11,8 +11,8 @@ public class PromotorForm {
 		return promotor;
 	}
 
-	public static Promotor preencherFormAlterado() {
-		Promotor promotor = new Promotor("Joãozinho do Trenó com Nó", "Ações Etílicas", "700.000.231-00", "02-02-2002",
+	public static Promotor preencherFormAlterado(String cpf) {
+		Promotor promotor = new Promotor("Joãozinho do Trenó com Nó", "Ações Etílicas", cpf, "02-02-2002",
 				"Teste de Descrição Geral", "trenotunado@email.com", "imagem1.jpg", "instagram.com/meprocuraqueacha",
 				"6299999999");
 		return promotor;

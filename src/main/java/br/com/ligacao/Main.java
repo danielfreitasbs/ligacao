@@ -43,7 +43,7 @@ public class Main {
 			InscreverApp.main(args);
 			break;
 		case 2:
-			PromotorApp.cadastro();
+			PromotorApp.simuladorInterface();
 			scanner.close();
 			break;
 		default:
