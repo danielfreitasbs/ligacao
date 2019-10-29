@@ -269,7 +269,7 @@ public class Database {
      * 
      * @param nomePromotor Nome do promotor da ação.
      * 
-     * @returns Retorna uma String com a senha de usuário.
+     * @return Retorna uma String com a senha de usuário.
      */
     public static String consultaSenha(String nomePromotor) {
         Firestore db = Database.db;
