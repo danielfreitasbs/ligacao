@@ -297,6 +297,31 @@ public class Database {
             return null;
         }
     }
+    
+    /**
+     * Método responsável por alterar senha
+     * do login de um promotor de ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param senha Senha do usuário do promotor da ação.
+     */
+    public static void alteraSenha(String nomePromotor,
+                            String senha) throws IOException, InterruptedException, ExecutionException {
+        
+        Firestore db = Database.db;
+        
+       DocumentReference referenciaLogin = db.collection("promotor de acao").document(nomePromotor)
+                .collection("login").document("dados");
+        
+        // Add document data using a hashmap
+        Map<String, Object> login = new HashMap<>();
+        login.put("senha", senha);
+        
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultLogin = referenciaLogin.set(login);
+        // ...
+           // result.get() blocks on response
+           System.out.println("Update time : " + resultLogin.get().getUpdateTime());
+    }
 
 }
 
