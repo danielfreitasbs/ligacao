@@ -1,5 +1,6 @@
 package br.com.ligacao.persistence.model;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Acao {
@@ -10,7 +11,7 @@ public class Acao {
     private String descricao;
     private String horaInicio;
     private String horaFim;
-    
+    private ArrayList<String> emails = new ArrayList<String>();
     
     private Acao() {
         
@@ -70,8 +71,14 @@ public class Acao {
     public void setHoraFim(String horaFim) {
         this.horaFim = horaFim;
     }
-    
-    @Override
+    public ArrayList<String> getEmails() {
+		return emails;
+	}
+	public void setEmails(ArrayList<String> emails) {
+		this.emails = emails;
+	}
+
+	@Override
     public int hashCode() {
       return Objects.hash(nomePromotor,
               nomeAcao,
@@ -79,7 +86,8 @@ public class Acao {
               dataRealizacao,
               descricao,
               horaInicio,
-              horaFim);
+              horaFim,
+              emails);
   }
 
 }
