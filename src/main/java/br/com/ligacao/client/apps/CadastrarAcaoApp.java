@@ -47,7 +47,6 @@ public class CadastrarAcaoApp {
         System.out.println("Horário de fim: ");
         String horaFim = scanner.nextLine();
 
-
         System.out.println("\nDigite 1 para confirmar o cadastro da acao ou 0" +
                 " para sair sem cadastrar.\n");
         int opcao = scanner.nextInt();

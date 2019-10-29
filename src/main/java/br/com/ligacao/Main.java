@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutionException;
 
 import br.com.ligacao.client.InscreverApp;
 import br.com.ligacao.client.PromotorApp;
+import br.com.ligacao.client.apps.CadastrarAcaoApp;
 import br.com.ligacao.persistence.connection.Connection;
 import br.com.ligacao.persistence.model.Database;
 
@@ -34,6 +35,8 @@ public class Main {
 
 		switch (opcao) {
 		case 0:
+			scanner.close();
+			CadastrarAcaoApp.main(args);
 			break;
 		case 1:
 			scanner.close();
