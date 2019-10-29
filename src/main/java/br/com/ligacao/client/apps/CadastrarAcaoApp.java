@@ -1,6 +1,7 @@
 package br.com.ligacao.client.apps;
 
 import br.com.ligacao.persistence.model.Database;
+import br.com.ligacao.persistence.model.Promotor;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -17,6 +18,16 @@ public class CadastrarAcaoApp {
         System.out.println("----- CADASTRO DE AÇÃO -----");
         System.out.println("Nome do promotor: ");
         String nomePromotor = scanner.nextLine();
+
+        Promotor promotor = new Promotor();
+        promotor = Database.consultaPromotor(nomePromotor);
+        if( promotor == null) {
+            System.out.println("Promotor não está registrado no banco de " +
+                    "dados. Fazer registro de Promotor antes de registrar " +
+                    "ação.");
+            scanner.close();
+            System.exit(0);
+        }
 
         System.out.println("Nome da ação: ");
         String nomeAcao = scanner.nextLine();
