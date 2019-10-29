@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
+import br.com.ligacao.client.InscreverApp;
 import br.com.ligacao.client.PromotorApp;
 import br.com.ligacao.persistence.connection.Connection;
 import br.com.ligacao.persistence.model.Database;
@@ -26,8 +27,8 @@ public class Main {
 //        
 		// System.out.println(Database.consultaSenha("Vida Lata"));
 
-		System.out.println("O que deseja realizar?\n" + "0 - Cadastrar uma ação\n" + "1 - Inscrição de Voluntario\n"
-				+ "2 - Cadastrar Promotor de Ação\n");
+		System.out.println("O que deseja realizar?\n" + "0 - Cadastrar uma aï¿½ï¿½o\n" + "1 - Inscrever em aÃ§Ã£o\n"
+				+ "2 - Cadastrar Promotor de Aï¿½ï¿½o\n");
 
 		opcao = scanner.nextInt();
 
@@ -35,6 +36,8 @@ public class Main {
 		case 0:
 			break;
 		case 1:
+			scanner.close();
+			InscreverApp.main(args);
 			break;
 		case 2:
 			PromotorApp.cadastro();
