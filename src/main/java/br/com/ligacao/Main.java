@@ -33,11 +33,11 @@ public class Main {
 
 		switch (opcao) {
 		case 0:
-			break;
+			return;
 		case 1:
-			break;
+			return;
 		case 2:
-			PromotorApp.cadastro();
+			PromotorApp.simuladorInterface();
 			scanner.close();
 			break;
 		default:
