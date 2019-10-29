@@ -136,7 +136,7 @@ public class Database {
      * 
      * @param nomePromotor Nome do promotor da ação.
      * 
-     * @returns Retorna uma classe Promotor com os dados consultados.
+     * @return Retorna uma classe Promotor com os dados consultados.
      */
     public static Promotor consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
         Firestore db = Database.db;
@@ -186,7 +186,7 @@ public class Database {
      * @param nomePromotor Nome do promotor da ação.
      * @param nomeAcao Nome da ação.
      * 
-     * @returns Retorna uma classe Acao com os dados consultados.
+     * @return Retorna uma classe Acao com os dados consultados.
      */
     public static Acao consultaAcao(String nomePromotor, String nomeAcao) throws InterruptedException, ExecutionException {
         Firestore db = Database.db;
@@ -234,7 +234,7 @@ public class Database {
      * 
      * @param nomePromotor Nome do promotor da ação.
      * 
-     * @returns Retorna uma String com o nome de usuário.
+     * @return Retorna uma String com o nome de usuário.
      */
     public static String consultaUsuario(String nomePromotor) {
         Firestore db = Database.db;
