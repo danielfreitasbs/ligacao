@@ -10,7 +10,8 @@ public class CadastrarAcaoApp {
 
     private static Scanner scanner;
 
-    public static void main(String[] args) throws InterruptedException, ExecutionException, IOException {
+    public static void main(String[] args) throws InterruptedException,
+            ExecutionException, IOException {
         scanner = new Scanner(System.in);
 
         System.out.println("----- CADASTRO DE AÇÃO -----");
@@ -35,8 +36,20 @@ public class CadastrarAcaoApp {
         System.out.println("Horário de fim: ");
         String horaFim = scanner.nextLine();
 
-        Database.cadastraAcao(nomePromotor, nomeAcao, categoria, data,
-                descricao, horaInicio, horaFim);
+
+        System.out.println("\nDigite 1 para confirmar o cadastro da acao ou 0" +
+                " para sair sem cadastrar.\n");
+        int opcao = scanner.nextInt();
+
+        if (opcao == 1) {
+            scanner.close();
+            Database.cadastraAcao(nomePromotor, nomeAcao, categoria, data,
+                    descricao, horaInicio, horaFim);
+            System.exit(0);
+        } else {
+            scanner.close();
+            System.exit(0);
+        }
 
     }
 
