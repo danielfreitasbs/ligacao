@@ -40,17 +40,20 @@ public class Database {
      * @param usuario Nome de usuário de login da ONG.
      * @param senha Senha de login da ONG.
      */
-    public static void cadastraPromotor(String nomePromotor,
-                            String categoriaAcao,
-                            String cpfResponsavel,
-                            String dataFundacao,
-                            String descricao,
-                            String email,
-                            String imagem,
-                            String redeSocial,
-                            String telefone,
-                            String usuario,
-                            String senha) throws IOException, InterruptedException, ExecutionException {
+    public static void cadastraPromotor(Promotor promotor, Login loginUsuario) 
+            throws IOException, InterruptedException, ExecutionException {
+        
+        String nomePromotor = promotor.getNomePromotor();
+        String categoriaAcao = promotor.getCategoriaAcao();
+        String cpfResponsavel = promotor.getCpfResponsavel();
+        String dataFundacao = promotor.getDataFundacao();
+        String descricao = promotor.getDescricao();
+        String email = promotor.getEmail();
+        String imagem = promotor.getImagem();
+        String redeSocial = promotor.getRedeSocial();
+        String telefone = promotor.getTelefone();
+        String usuario = loginUsuario.getUsuario();
+        String senha = loginUsuario.getSenha();
         
         Firestore db = Database.db;
         

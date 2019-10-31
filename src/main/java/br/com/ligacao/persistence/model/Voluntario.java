@@ -15,16 +15,16 @@ public class Voluntario {
         this.nome = nome;
         this.email = email;
     }
-    public String getNomePromotor() {
+    public String getNome() {
         return nome;
     }
-    public void setNomePromotor(String nomePromotor) {
+    public void setNome(String nomePromotor) {
         this.nome = nomePromotor;
     }
-    public String getCategoriaAcao() {
+    public String getEmail() {
         return email;
     }
-    public void setCategoriaAcao(String categoriaAcao) {
+    public void setEmail(String categoriaAcao) {
         this.email = categoriaAcao;
     }
    
