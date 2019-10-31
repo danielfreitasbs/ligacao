@@ -110,7 +110,6 @@ public class Database {
         promotorAcao.put("nomeAcao", nomeAcao);
         promotorAcao.put("categoriaAcao", categoriaAcao);
         promotorAcao.put("dataRealizacao", dataRealizacao);
-        promotorAcao.put("dataRealizacao", dataRealizacao);
         promotorAcao.put("descricao", descricao);
         promotorAcao.put("horaInicio", horaInicio);
         promotorAcao.put("horaFim", horaFim);
