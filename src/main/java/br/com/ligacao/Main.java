@@ -12,6 +12,7 @@ import br.com.ligacao.persistence.model.Database;
 
 public class Main {
 
+
 	private static Scanner scanner = new Scanner(System.in);
 	private static int opcao;
 
