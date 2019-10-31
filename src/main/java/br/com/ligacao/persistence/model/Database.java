@@ -131,18 +131,15 @@ public class Database {
     }
     
     /**
-     * Método responsável por cadastrar ou atualizar uma nova 
-     * ação de um promotor de ação no banco de dados Firebase.
+     * Método responsável por cadastrar ou atualizar voluntários
+     * em ações cadastradas no banco de dados Firebase.
      * Caso o registro não exista, um novo documento será criado,
      * caso já exista, as informações enviadas serão atualizadas.
      * 
      * @param nomePromotor Nome do promotor da ação.
      * @param nomeAcao Nome que identifica a ação que será realizada.
-     * @param categoriaAcao Categoria que se enquada a ação.
-     * @param dataRealizacao Data de realização prevista da ação.
-     * @param descricao Descrição das atividades que serão exercidas na ação.
-     * @param horaInicio Horário de início previsto da ação.
-     * @param horaFim Horário de encerramento previsto da ação.
+     * @param nomeVoluntario Nome do voluntário.
+     * @param emailVoluntario Endereço de e-mail do voluntário.
      */
     public static void cadastraVoluntario(String nomePromotor,
             String nomeAcao,
