@@ -131,6 +131,43 @@ public class Database {
     }
     
     /**
+     * Método responsável por cadastrar ou atualizar uma nova 
+     * ação de um promotor de ação no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome que identifica a ação que será realizada.
+     * @param categoriaAcao Categoria que se enquada a ação.
+     * @param dataRealizacao Data de realização prevista da ação.
+     * @param descricao Descrição das atividades que serão exercidas na ação.
+     * @param horaInicio Horário de início previsto da ação.
+     * @param horaFim Horário de encerramento previsto da ação.
+     */
+    public static void cadastraVoluntario(String nomePromotor,
+            String nomeAcao,
+            String nomeVoluntario,
+            String emailVoluntario) throws IOException, InterruptedException, ExecutionException {
+
+        Firestore db = Database.db;
+        
+        DocumentReference referenciaVoluntario = db.collection("promotor de acao").document(nomePromotor)
+                                               .collection("acoes").document(nomeAcao)
+                                               .collection("voluntarios").document(nomeVoluntario);
+        
+        // Add document data using a hashmap
+        Map<String, Object> voluntario = new HashMap<>();
+        voluntario.put("nome", nomeVoluntario);
+        voluntario.put("email", emailVoluntario);
+        //asynchronously write data
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultVoluntario = referenciaVoluntario.set(voluntario);
+        // ...
+        // result.get() blocks on response
+        System.out.println("Update time : " + resultVoluntario.get().getUpdateTime());
+        
+    }
+    
+    /**
      * Método responsável por consultar dados cadastrados
      * de um promotor de ação.
      * 
@@ -138,7 +175,7 @@ public class Database {
      * 
      * @return Retorna uma classe Promotor com os dados consultados.
      */
-    public static Promotor consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
+    public static Voluntario consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
         Firestore db = Database.db;
         
         DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor);
@@ -148,10 +185,10 @@ public class Database {
         
         DocumentSnapshot document1 = future.get();
 
-        Promotor promotor = null;
+        Voluntario promotor = null;
         if (document1.exists()) {
           // convert document to POJO
-          promotor = document1.toObject(Promotor.class);
+          promotor = document1.toObject(Voluntario.class);
           System.out.println(promotor);
         } else {
           System.out.println("No such document!");
