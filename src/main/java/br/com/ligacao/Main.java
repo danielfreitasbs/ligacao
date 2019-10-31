@@ -19,7 +19,7 @@ Database.cadastraAcao("Vida Lata", "Campanha de adocao", "apoio animais", "12/10
 
 Database.consultaPromotor("Vida Lata"); 
 */
-        Database.cadastraVoluntario("Vida Lata", "Campanha de adocao", "otto", "otto@gmail.com");
+      //  Database.cadastraVoluntario(promotor, acao, voluntario);;
         
       //  System.out.println(Database.consultaSenha("Vida Lata"));
 

@@ -28,17 +28,8 @@ public class Database {
      * Caso o registro não exista, um novo documento será criado,
      * caso já exista, as informações enviadas serão atualizadas.
      * 
-     * @param nomePromotor Nome do promotor de ação.
-     * @param categoriaAcao Categoria em que se enquadra a ONG.
-     * @param cpfResponsavel Cpf do responsável pela ONG.
-     * @param dataFundacao Data de fundação da ONG.
-     * @param descricao Descrição das atividades da ONG.
-     * @param email Endereço eletrônico da ONG.
-     * @param imagem Imagem/logo que identifica a ONG.
-     * @param redeSocial Link para rede social da ONG.
-     * @param telefone Número de telefone da ONG.
-     * @param usuario Nome de usuário de login da ONG.
-     * @param senha Senha de login da ONG.
+     * @param promotor Objeto promotor de ação.
+     * @param loginUsuario Objeto login do usuário.
      */
     public static void cadastraPromotor(Promotor promotor, Login loginUsuario) 
             throws IOException, InterruptedException, ExecutionException {
@@ -95,22 +86,20 @@ public class Database {
      * Caso o registro não exista, um novo documento será criado,
      * caso já exista, as informações enviadas serão atualizadas.
      * 
-     * @param nomePromotor Nome do promotor da ação.
-     * @param nomeAcao Nome que identifica a ação que será realizada.
-     * @param categoriaAcao Categoria que se enquada a ação.
-     * @param dataRealizacao Data de realização prevista da ação.
-     * @param descricao Descrição das atividades que serão exercidas na ação.
-     * @param horaInicio Horário de início previsto da ação.
-     * @param horaFim Horário de encerramento previsto da ação.
+     * @param promotor Objeto promotor de ação.
+     * @param acao Objeto ação.
      */
-    public static void cadastraAcao(String nomePromotor,
-            String nomeAcao,
-            String categoriaAcao,
-            String dataRealizacao,
-            String descricao,
-            String horaInicio,
-            String horaFim) throws IOException, InterruptedException, ExecutionException {
+    public static void cadastraAcao(Promotor promotor, Acao acao)
+            throws IOException, InterruptedException, ExecutionException {
 
+        String nomePromotor = promotor.getNomePromotor();
+        String nomeAcao = acao.getNomeAcao();
+        String categoriaAcao = acao.getCategoriaAcao();
+        String dataRealizacao = acao.getDataRealizacao();
+        String descricao = acao.getDescricao();
+        String horaInicio = acao.getHoraInicio();
+        String horaFim = acao.getHoraFim();
+        
         Firestore db = Database.db;
         
         DocumentReference referenciaAcao = db.collection("promotor de acao").document(nomePromotor)
@@ -139,15 +128,18 @@ public class Database {
      * Caso o registro não exista, um novo documento será criado,
      * caso já exista, as informações enviadas serão atualizadas.
      * 
-     * @param nomePromotor Nome do promotor da ação.
-     * @param nomeAcao Nome que identifica a ação que será realizada.
-     * @param nomeVoluntario Nome do voluntário.
-     * @param emailVoluntario Endereço de e-mail do voluntário.
+     * @param promotor Objeto promotor de ação.
+     * @param acao Objeto ação.
+     * @param voluntario Objeto voluntario.
      */
-    public static void cadastraVoluntario(String nomePromotor,
-            String nomeAcao,
-            String nomeVoluntario,
-            String emailVoluntario) throws IOException, InterruptedException, ExecutionException {
+    public static void cadastraVoluntario(Promotor promotor, 
+            Acao acao, Voluntario voluntario) 
+                    throws IOException, InterruptedException, ExecutionException {
+        
+        String nomePromotor = promotor.getNomePromotor();
+        String nomeAcao = acao.getNomeAcao();
+        String nomeVoluntario = voluntario.getNome();
+        String emailVoluntario = voluntario.getEmail();
 
         Firestore db = Database.db;
         
@@ -156,11 +148,11 @@ public class Database {
                                                .collection("voluntarios").document(nomeVoluntario);
         
         // Add document data using a hashmap
-        Map<String, Object> voluntario = new HashMap<>();
-        voluntario.put("nome", nomeVoluntario);
-        voluntario.put("email", emailVoluntario);
+        Map<String, Object> voluntarios = new HashMap<>();
+        voluntarios.put("nome", nomeVoluntario);
+        voluntarios.put("email", emailVoluntario);
         //asynchronously write data
-        ApiFuture<com.google.cloud.firestore.WriteResult> resultVoluntario = referenciaVoluntario.set(voluntario);
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultVoluntario = referenciaVoluntario.set(voluntarios);
         // ...
         // result.get() blocks on response
         System.out.println("Update time : " + resultVoluntario.get().getUpdateTime());
@@ -342,8 +334,11 @@ public class Database {
      * @param nomePromotor Nome do promotor da ação.
      * @param senha Senha do usuário do promotor da ação.
      */
-    public static void alteraSenha(String nomePromotor,
-                            String senha) throws IOException, InterruptedException, ExecutionException {
+    public static void alteraSenha(Promotor promotor,
+                            Login login) throws IOException, InterruptedException, ExecutionException {
+        
+        String nomePromotor = promotor.getNomePromotor();
+        String senha = login.getSenha();
         
         Firestore db = Database.db;
         
@@ -351,10 +346,10 @@ public class Database {
                 .collection("login").document("dados");
         
         // Add document data using a hashmap
-        Map<String, Object> login = new HashMap<>();
-        login.put("senha", senha);
+        Map<String, Object> loginMap = new HashMap<>();
+        loginMap.put("senha", senha);
         
-        ApiFuture<com.google.cloud.firestore.WriteResult> resultLogin = referenciaLogin.set(login);
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultLogin = referenciaLogin.set(loginMap);
         // ...
            // result.get() blocks on response
            System.out.println("Update time : " + resultLogin.get().getUpdateTime());
