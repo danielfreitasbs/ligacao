@@ -4,7 +4,7 @@ Projeto para a disciplina de Domínios de Software - [INF/UFG](http://www.inf.uf
 
 ## Identificação dos componentes do grupo
 
-Desenvolvido pelos alunos: [@alicefrancener](https://github.com/alicefrancener/), [@caiobas](https://github.com/caiobas), [@danielfreitasbs](https://github.com/caiobas) e [@ottoleggio](https://github.com/ottoleggio).
+Desenvolvido pelos alunos: [@alicefrancener](https://github.com/alicefrancener/), [@caiobas](https://github.com/caiobas), [@danielfreitasbs](https://github.com/danielfreitasbs) e [@ottoleggio](https://github.com/ottoleggio).
 
 ## Problema
 
