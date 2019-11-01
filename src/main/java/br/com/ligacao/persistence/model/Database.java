@@ -1,14 +1,19 @@
 package br.com.ligacao.persistence.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 
 import br.com.ligacao.persistence.connection.Connection;
 
@@ -159,6 +164,37 @@ public class Database {
     }
     
     /**
+     * Método responsável por consultar voluntarios cadastrados
+     * em uma ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação.
+     * 
+     * @return Retorna uma lista de objetos Voluntario.
+     */
+    public static List<Voluntario> consultaVoluntarios(String nomePromotor, 
+            String nomeAcao) throws InterruptedException, ExecutionException {
+                
+        Firestore db = Database.db;
+        
+        CollectionReference referenciaVoluntarios = db.collection("promotor de acao").document(nomePromotor)
+                .collection("acoes").document(nomeAcao)
+                .collection("voluntarios");
+        
+      //asynchronously retrieve multiple documents
+        ApiFuture<QuerySnapshot> future = referenciaVoluntarios.get();
+        // future.get() blocks on response
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<Voluntario> voluntarios = new ArrayList<Voluntario>();
+        for (DocumentSnapshot document : documents) {
+          //System.out.println(document.getId() + " adicionado");
+          voluntarios.add(document.toObject(Voluntario.class));
+        }
+        return voluntarios;        
+    }
+  
+    
+    /**
      * Método responsável por consultar dados cadastrados
      * de um promotor de ação.
      * 
@@ -176,11 +212,11 @@ public class Database {
         
         DocumentSnapshot document1 = future.get();
 
-        Voluntario promotor = null;
+        Voluntario voluntario = null;
         if (document1.exists()) {
           // convert document to POJO
-          promotor = document1.toObject(Voluntario.class);
-          System.out.println(promotor);
+          voluntario = document1.toObject(Voluntario.class);
+          System.out.println(voluntario);
         } else {
           System.out.println("No such document!");
         }
@@ -204,7 +240,7 @@ public class Database {
             System.out.println("No such document!");
         }
         
-        return promotor;
+        return voluntario;
     }
     
     /**
