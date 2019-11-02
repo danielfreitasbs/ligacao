@@ -1,14 +1,19 @@
 package br.com.ligacao.persistence.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 
 import br.com.ligacao.persistence.connection.Connection;
@@ -238,5 +243,30 @@ public class PromotorDAO {
         // ...
            // result.get() blocks on response
            System.out.println("Update time : " + resultLogin.get().getUpdateTime());
+    }
+    
+    /**
+     * Método responsável por consultar promotores cadastrados
+     * em uma ação.
+     *  
+     * @return Retorna uma lista de objetos Promotor.
+     */
+    public static List<Promotor> consultaPromotores()
+            throws InterruptedException, ExecutionException {
+                
+        Firestore db = Connection.db;
+        
+        CollectionReference referenciaPromotores = db.collection("promotor de acao");
+        
+      //asynchronously retrieve multiple documents
+        ApiFuture<QuerySnapshot> future = referenciaPromotores.get();
+        // future.get() blocks on response
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<Promotor> promotores = new ArrayList<Promotor>();
+        for (DocumentSnapshot document : documents) {
+          //System.out.println(document.getId() + " adicionado");
+          promotores.add(document.toObject(Promotor.class));
+        }
+        return promotores;        
     }
 }

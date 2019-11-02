@@ -72,7 +72,7 @@ public class AcaoDAO {
      * 
      * @return Retorna uma lista de objetos Acao.
      */
-    public static List<Voluntario> consultaAcoes(String nomePromotor)
+    public static List<Acao> consultaAcoes(String nomePromotor)
             throws InterruptedException, ExecutionException {
                 
         Firestore db = Connection.db;
@@ -84,10 +84,10 @@ public class AcaoDAO {
         ApiFuture<QuerySnapshot> future = referenciaAcoes.get();
         // future.get() blocks on response
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
-        List<Voluntario> acoes = new ArrayList<Voluntario>();
+        List<Acao> acoes = new ArrayList<Acao>();
         for (DocumentSnapshot document : documents) {
           //System.out.println(document.getId() + " adicionado");
-          acoes.add(document.toObject(Voluntario.class));
+          acoes.add(document.toObject(Acao.class));
         }
         return acoes;        
     }
@@ -159,5 +159,40 @@ public class AcaoDAO {
         }
         
         return acao;
+    }
+    
+    /**
+     * Método responsável por consultar dados cadastrados
+     * de uma ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação.
+     * 
+     * @return Retorna uma classe Acao com os dados consultados.
+     */
+    public static List<Acao> consultaTodasAcoes()
+            throws InterruptedException, ExecutionException {
+                
+        Firestore db = Connection.db;
+        
+        List<Promotor> promotores = new ArrayList<Promotor>();
+        List<Acao> acoes = new ArrayList<Acao>();
+        promotores = PromotorDAO.consultaPromotores();
+        
+        for (Promotor documentoPromotor : promotores) {
+        
+            CollectionReference referenciaAcoes = db.collection("promotor de acao").document(documentoPromotor.getNomePromotor())
+                    .collection("acoes");
+            
+          //asynchronously retrieve multiple documents
+            ApiFuture<QuerySnapshot> future = referenciaAcoes.get();
+            // future.get() blocks on response
+            List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+            for (DocumentSnapshot document : documents) {
+              //System.out.println(document.getId() + " adicionado");
+              acoes.add(document.toObject(Acao.class));
+            }
+        }
+        return acoes;        
     }
 }
