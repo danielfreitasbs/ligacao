@@ -214,11 +214,10 @@ public class Database {
     }
     
     /**
-     * Método responsável por excluir um voluntário de uma ação.
+     * Método responsável por excluir uma ação.
      * 
      * @param nomePromotor Nome do promotor da ação.
-     * @param nomeAcao Nome da ação.
-     * @param voluntario Voluntario a ser excluído
+     * @param nomeAcao Nome da ação a ser excluída.
      */
     public static void excluiAcao(String nomePromotor, 
             String nomeAcao) throws InterruptedException, ExecutionException {
