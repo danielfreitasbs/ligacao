@@ -14,6 +14,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 
 import br.com.ligacao.persistence.connection.Connection;
 
@@ -191,6 +192,25 @@ public class Database {
           voluntarios.add(document.toObject(Voluntario.class));
         }
         return voluntarios;        
+    }
+    
+    /**
+     * Método responsável por excluir um voluntário de uma ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação.
+     * @param voluntario Voluntario a ser excluído
+     */
+    public static void excluiVoluntario(String nomePromotor, 
+            String nomeAcao, String voluntario) throws InterruptedException, ExecutionException {
+        DocumentReference referenciaVoluntario = db.collection("promotor de acao").document(nomePromotor)
+                .collection("acoes").document(nomeAcao)
+                .collection("voluntarios").document(voluntario);
+        
+     // asynchronously delete a document
+        ApiFuture<WriteResult> writeResult = referenciaVoluntario.delete();
+        // ...
+        System.out.println("Update time : " + writeResult.get().getUpdateTime());
     }
   
     
