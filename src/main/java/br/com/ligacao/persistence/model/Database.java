@@ -195,6 +195,34 @@ public class Database {
     }
     
     /**
+     * Método responsável por consultar ações cadastradas
+     * em um promotor de ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * 
+     * @return Retorna uma lista de objetos Acao.
+     */
+    public static List<Voluntario> consultaAcoes(String nomePromotor)
+            throws InterruptedException, ExecutionException {
+                
+        Firestore db = Database.db;
+        
+        CollectionReference referenciaAcoes = db.collection("promotor de acao").document(nomePromotor)
+                .collection("acoes");
+        
+      //asynchronously retrieve multiple documents
+        ApiFuture<QuerySnapshot> future = referenciaAcoes.get();
+        // future.get() blocks on response
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<Voluntario> acoes = new ArrayList<Voluntario>();
+        for (DocumentSnapshot document : documents) {
+          //System.out.println(document.getId() + " adicionado");
+          acoes.add(document.toObject(Voluntario.class));
+        }
+        return acoes;        
+    }
+    
+    /**
      * Método responsável por excluir um voluntário de uma ação.
      * 
      * @param nomePromotor Nome do promotor da ação.
