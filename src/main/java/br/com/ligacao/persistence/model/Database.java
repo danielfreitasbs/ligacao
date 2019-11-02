@@ -14,6 +14,7 @@ import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 
 import br.com.ligacao.persistence.connection.Connection;
 
@@ -192,7 +193,84 @@ public class Database {
         }
         return voluntarios;        
     }
+    
+    /**
+     * Método responsável por consultar ações cadastradas
+     * em um promotor de ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * 
+     * @return Retorna uma lista de objetos Acao.
+     */
+    public static List<Voluntario> consultaAcoes(String nomePromotor)
+            throws InterruptedException, ExecutionException {
+                
+        Firestore db = Database.db;
+        
+        CollectionReference referenciaAcoes = db.collection("promotor de acao").document(nomePromotor)
+                .collection("acoes");
+        
+      //asynchronously retrieve multiple documents
+        ApiFuture<QuerySnapshot> future = referenciaAcoes.get();
+        // future.get() blocks on response
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<Voluntario> acoes = new ArrayList<Voluntario>();
+        for (DocumentSnapshot document : documents) {
+          //System.out.println(document.getId() + " adicionado");
+          acoes.add(document.toObject(Voluntario.class));
+        }
+        return acoes;        
+    }
+    
+    /**
+     * Método responsável por excluir um voluntário de uma ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação.
+     * @param voluntario Voluntario a ser excluído
+     */
+    public static void excluiVoluntario(String nomePromotor, 
+            String nomeAcao, String voluntario) throws InterruptedException, ExecutionException {
+        DocumentReference referenciaVoluntario = db.collection("promotor de acao").document(nomePromotor)
+                .collection("acoes").document(nomeAcao)
+                .collection("voluntarios").document(voluntario);
+        
+     // asynchronously delete a document
+        ApiFuture<WriteResult> writeResult = referenciaVoluntario.delete();
+        // ...
+        System.out.println("Update time : " + writeResult.get().getUpdateTime());
+    }
+    
+    /**
+     * Método responsável por excluir uma ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação a ser excluída.
+     */
+    public static void excluiAcao(String nomePromotor, 
+            String nomeAcao) throws InterruptedException, ExecutionException {
+        DocumentReference referenciaAcao = db.collection("promotor de acao").document(nomePromotor)
+                .collection("acoes").document(nomeAcao);
+        
+     // asynchronously delete a document
+        ApiFuture<WriteResult> writeResult = referenciaAcao.delete();
+        // ...
+        System.out.println("Update time : " + writeResult.get().getUpdateTime());
+    }
   
+    /**
+     * Método responsável por excluir um promotor de ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     */
+    public static void excluiPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
+        DocumentReference referenciaAcao = db.collection("promotor de acao").document(nomePromotor);
+        
+     // asynchronously delete a document
+        ApiFuture<WriteResult> writeResult = referenciaAcao.delete();
+        // ...
+        System.out.println("Update time : " + writeResult.get().getUpdateTime());
+    }
     
     /**
      * Método responsável por consultar dados cadastrados
