@@ -49,9 +49,9 @@ Legislação pertinente ao domínio:
 | - | - | -
 Voluntários e promotores de ações | Questionário-online | O questionário nos permite atingir várias pessoas usando somente uma técnica
 Voluntários e promotores de ações |  Entrevistas | Com entrevistas, podemos ter maior compreensão das reais necessidades de ações dos usuários, validar e refinar requisitos
-Promotores de ações <sup>1</sup>| Observação direta de divulgação de ações na internet | Ao analisar como as ações são divulgadas atualmente poderemos compreender melhor de que forma nosso sistema pode ajudar, que lacuna poderia preencher
+Promotores de ações<sup>1</sup>| Observação direta de divulgação de ações na internet | Ao analisar como as ações são divulgadas atualmente poderemos compreender melhor de que forma nosso sistema pode ajudar, que lacuna poderia preencher
 Sistemas existentes que conectam voluntários à instituições<sup>2</sup> | Análise de concorrência | A observação de sistemas que já existem dentro do domínio nos permite analisar principais funções existentes e se atendem necessidades dos usuários
-Sistemas para divulgar eventos <sup>3</sup> | Análise de concorrência | Ações voluntárias têm características similares à eventos gerais (congressos, palestras, workshops). Dessa forma, observar sistemas que servem para divulgar eventos nos permite obter as funcionalidades gerais necessárias para promoção de eventos e inscrição de pessoas.
+Sistemas para divulgar eventos<sup>3</sup> | Análise de concorrência | Ações voluntárias têm características similares à eventos gerais (congressos, palestras, workshops). Dessa forma, observar sistemas que servem para divulgar eventos nos permite obter as funcionalidades gerais necessárias para promoção de eventos e inscrição de pessoas.
 
 <sup>1</sup> Lista de promotores de ações: [Projeto Solidarie](https://www.instagram.com/projetosolidaire/), [Ensinando Abraçar](https://www.instagram.com/ensinandoabracar), [Goiânia Invisível](https://www.instagram.com/invisivelgo/), [Pão com Amor](https://www.instagram.com/paocomamor), [Grupo Miau AuAu](https://www.instagram.com/grupomiauauau/), [Nós + Árvores](https://www.instagram.com/nosmaisarvores/), [EcomAmor](https://www.instagram.com/ecomamor/), Banho do Bem, Vida Lata  
 <sup>2</sup> Lista de sistemas que conectam voluntários à instituições: [Sistema Voluntário](https://sistemavoluntario.v2v.net/pt-BR/aggregators/2442604a-22ec-410a-84a1-7c9e9e8d6d65), [Ação Voluntária](https://www.acaovoluntaria.org.br/), [Voluntários](https://voluntarios.com.br/), [Parceiros Voluntários](http://www.parceirosvoluntarios.org.br/), [Volunteer Match](https://www.volunteermatch.org), [GiveGab](https://www.givegab.com/)  
@@ -61,32 +61,41 @@ Sistemas para divulgar eventos <sup>3</sup> | Análise de concorrência | Açõe
 
 __RF__ _<número único do requisito funcional>_: __como__ _<ator/(sub)sistema>_ , __desejo__ _<ação/objetivo/meta>_ , __para que__ _<razão/benefício>_.
 
-__RF1__: __como__ Promotor de ações, __desejo__ cadastrar uma nova ação, __para que__ possa recrutar novos candidatos. São os dados que comporão o perfil da ação: nome do Promotor da ação, categoria da ação, nome da ação, local, data, horário início, horário fim, descrição e imagem descritiva da ação (opcional). As categorias de ações serão: Projeto Social, Ambiental, Animal, Educação, Esportes, Arte e Cultura.
+__RF01__: __como__ Promotor de ações, __desejo__ cadastrar uma nova ação, __para que__ possa recrutar novos candidatos. São os dados que comporão o perfil da ação: nome do Promotor da ação, categoria da ação, nome da ação, local, data, horário início, horário fim, descrição e imagem descritiva da ação (opcional). As categorias de ações serão: Projeto Social, Ambiental, Animal, Educação, Esportes, Arte e Cultura.
 
-__RF2__: __como__ Promotor de ações, __desejo__ alterar dados (categoria da ação, nome da ação, descrição e imagem descritiva da ação) de uma ação existente, __para que__ possa adequá-la a
+__RF02__: __como__ Promotor de ações, __desejo__ alterar dados (categoria da ação, nome da ação, descrição e imagem descritiva da ação) de uma ação existente, __para que__ possa adequá-la a
 algum imprevisto.
 
-__RF3__: __como__ Promotor de ações, __desejo__ cancelar uma ação existente com opção de adicionar uma justificativa, __para que__ possa ajustá-la a algum imprevisto que a impossibilite de acontecer.
+__RF03__: __como__ Promotor de ações, __desejo__ cancelar uma ação existente com opção de adicionar uma justificativa, __para que__ possa ajustá-la a algum imprevisto que a impossibilite de acontecer.
 
-__RF4__: __como__ Promotor de ações, __desejo__ poder filtrar os candidatos de acordo com os atributos de seus perfis, __para que__ eu possa selecionar as pessoas que se encaixam ao trabalho. Alguns atributos dos candidatos que poderão ser filtrados serão: idade, cidade, profissão, categorias de interesse do candidato, ações realizadas e avaliação do voluntário.
+__RF04__: __como__ Promotor de ações, __desejo__ poder filtrar os candidatos de acordo com os atributos de seus perfis, __para que__ eu possa selecionar as pessoas que se encaixam ao trabalho. Alguns atributos dos candidatos que poderão ser filtrados serão: idade, cidade, profissão, categorias de interesse do candidato, ações realizadas e avaliação do voluntário.
 
-__RF5__: __como__ Promotor de ações, __desejo__ poder convidar os candidatos para minhas ações de acordo com os atributos de seus perfis, __para que__ eu possa aumentar as chances de ter pessoas que mais se encaixam ao trabalho.
+__RF05__: __como__ Promotor de ações, __desejo__ poder convidar os candidatos para minhas ações de acordo com os atributos de seus perfis, __para que__ eu possa aumentar as chances de ter pessoas que mais se encaixam ao trabalho.
 
-__RF6__: __como__ Promotor de ações, __desejo__ poder avaliar os voluntários através de uma pontuação de 0 a 5 em critérios (dedicação, pontualidade), para que no futuro aquele candidato possa ser selecionado de acordo com seu histórico.
+__RF06__: __como__ Promotor de ações, __desejo__ poder avaliar os voluntários através de uma pontuação de 0 a 5 em critérios (dedicação, pontualidade), para que no futuro aquele candidato possa ser selecionado de acordo com seu histórico.
 
-__RF7__: __como__ Voluntário, __desejo__ filtrar ações disponíveis de acordo com seus atributos, __para que__
+__RF07__: __como__ Voluntário, __desejo__ filtrar ações disponíveis de acordo com seus atributos, __para que__
 possa selecionar uma que mais me agrada. Alguns atributos das ações que poderão ser filtrados serão: cidade, categoria da ação, nome do promotor de ações.
 
-__RF8__: __como__ Voluntário, __desejo__ poder me inscrever em ações, __para que__ possa participar como voluntário. Para se inscrever será necessário nome e e-mail do voluntário.
+__RF08__: __como__ Voluntário, __desejo__ poder me inscrever em ações, __para que__ possa participar como voluntário. Para se inscrever será necessário nome e e-mail do voluntário.
 
-__RF9__: __como__ Voluntário, __desejo__ poder avaliar as organizações após a realização da ação, __para que__ no futuro aquela organização possa ser selecionada de acordo com seu histórico.
+__RF09__: __como__ Voluntário, __desejo__ poder avaliar as organizações após a realização da ação, __para que__ no futuro aquela organização possa ser selecionada de acordo com seu histórico.
 
-__RF10__: __como__ Promotor de ações, __desejo__ criar/ler/atualizar/excluir (CRUD) meu perfil no sistema LigAção, __para que__ possa utilizar todas as funcionalidades do sistema. O promotor de ações poderá se cadastrado como pessoa física ou jurídica. Seguem os dados que comporão o perfil do promotor de ações: nome de pessoa física responsável, CPF do responsável, nome do promotor de ações, tipo de promotor (pessoa física ou jurídica), CNPJ do promotor (obrigatório somente se for pessoa jurídica), razão social (obrigatório somente se for pessoa jurídica), data da fundação, foto de perfil, links para redes sociais e site (opcionais), categorias das ações realizadas, descrição geral, telefone, endereço, nome de usuário, e-mail e senha.
+__RF10__: __como__ Promotor de ações, __desejo__ criar (_create_) meu perfil no sistema LigAção, __para que__ possa utilizar todas as funcionalidades do sistema. O promotor de ações poderá se cadastrado como pessoa física ou jurídica. Seguem os dados que comporão o perfil do promotor de ações: nome de pessoa física responsável, CPF do responsável, nome do promotor de ações, tipo de promotor (pessoa física ou jurídica), CNPJ do promotor (obrigatório somente se for pessoa jurídica), razão social (obrigatório somente se for pessoa jurídica), data da fundação, foto de perfil, links para redes sociais e site (opcionais), categorias das ações realizadas, descrição geral, telefone, endereço, nome de usuário, e-mail e senha.
 
-__RF11__: __como__ voluntário, __desejo__ criar/ler/atualizar/excluir (CRUD) meu perfil no sistema LigAção, __para que__ possa utilizar todas as funcionalidades do sistema. Seguem os dados que
-comporão o perfil do potencial voluntário ou voluntário: nome, foto de perfil, links para redes sociais e site (opcionais), endereço (cidade e estado), profissão/área de atuação, categorias de ações de interesse, nome de usuário, e-mail e senha.
+__RF11__: __como__ Promotor de ações, __desejo__ ler (_read_) meu perfil no sistema LigAção, __para que__ possa listar meus dados e verificar se estão corretos. Os dados retornados serão os mesmos citados no RF10.
 
-## Requisitos não-funcionais
+__RF12__: __como__ Promotor de ações, __desejo__ atualizar (_update_) meu perfil no sistema LigAção, __para que__ possa corrigir e manter atualizados meus dados. Os dados que poderão ser atualizados serão os mesmos citados no RF10.
+
+__RF13__: __como__ Promotor de ações, __desejo__ excluir (_delete_) meu perfil no sistema LigAção, __para que__ possa sair do sistema e não deixar os meus dados pessoais disponíveis. Ao excluir o perfil, todas as ações relacionadas ao Promotor serão excluídas também.
+
+__RF14__: __como__ Voluntário, __desejo__ criar (_create_) meu perfil no sistema LigAção, __para que__ possa utilizar todas as funcionalidades do sistema. Seguem os dados que comporão o perfil voluntário: nome, foto de perfil, links para redes sociais e site (opcionais), endereço (cidade e estado), profissão/área de atuação, categorias de ações de interesse, nome de usuário, e-mail e senha.
+
+__RF15__: __como__ Voluntário, __desejo__ ler (_read_) meu perfil no sistema LigAção, __para que__ possa listar meus dados e verificar se estão corretos. Os dados retornados serão os mesmos citados no RF14.
+
+__RF16__: __como__ Voluntário, __desejo__ atualizar (_update_) meu perfil no sistema LigAção, __para que__ possa corrigir e manter atualizados meus dados. Os dados que poderão ser atualizados serão os mesmos citados no RF14.
+
+__RF17__: __como__ Voluntário, __desejo__ excluir (_delete_) meu perfil no sistema LigAção, __para que__ possa sair do sistema e não deixar os meus dados pessoais disponíveis.
 
 ## Diagrama de casos de uso
 
