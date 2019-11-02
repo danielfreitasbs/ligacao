@@ -1,8 +1,7 @@
 package br.com.ligacao.client.apps;
 
-import br.com.ligacao.persistence.model.Database;
 import br.com.ligacao.persistence.model.Promotor;
-
+br.com.ligacao.persistence.model
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;

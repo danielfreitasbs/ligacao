@@ -51,7 +51,7 @@ public class PromotorDAO {
         
         DocumentReference referenciaPromotor = db.collection("promotor de acao").document(nomePromotor);
         // Add document data using a hashmap
-        Map<String, Object> promotorAcao = new HashMap<>();
+        Map<String, Object> promotorAcao = new HashMap<String, Object>();
         promotorAcao.put("nomePromotor", nomePromotor);
         promotorAcao.put("categoriaAcao", categoriaAcao);
         promotorAcao.put("cpfResponsavel", cpfResponsavel);
@@ -71,7 +71,7 @@ public class PromotorDAO {
                 .collection("login").document("dados");
         
         // Add document data using a hashmap
-        Map<String, Object> login = new HashMap<>();
+        Map<String, Object> login = new HashMap<String, Object>();
         login.put("usuario", usuario);
         login.put("senha", senha);
         
@@ -106,7 +106,7 @@ public class PromotorDAO {
      * 
      * @return Retorna uma classe Promotor com os dados consultados.
      */
-    public static Voluntario consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
+    public static Promotor consultaPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
         Firestore db = Connection.db;
         
         DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor);
@@ -116,10 +116,10 @@ public class PromotorDAO {
         
         DocumentSnapshot document1 = future.get();
 
-        Voluntario promotor = null;
+        Promotor promotor = null;
         if (document1.exists()) {
           // convert document to POJO
-          promotor = document1.toObject(Voluntario.class);
+          promotor = document1.toObject(Promotor.class);
           System.out.println(promotor);
         } else {
           System.out.println("No such document!");
@@ -236,7 +236,7 @@ public class PromotorDAO {
                 .collection("login").document("dados");
         
         // Add document data using a hashmap
-        Map<String, Object> loginMap = new HashMap<>();
+        Map<String, Object> loginMap = new HashMap<String, Object>();
         loginMap.put("senha", senha);
         
         ApiFuture<com.google.cloud.firestore.WriteResult> resultLogin = referenciaLogin.set(loginMap);
