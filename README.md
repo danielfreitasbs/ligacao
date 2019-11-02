@@ -2,6 +2,21 @@
 
 Projeto para a disciplina de Domínios de Software - 2019/02 - do curso de Engenharia de Software ([INF/UFG](http://www.inf.ufg.br/)).
 
+## Índice
+
+- [Identificação dos componentes do grupo](#identificação-dos-componentes-do-grupo)
+- [Problema](#problema)
+- [Objetivo](#objetivo)
+- [Identificação dos componentes do sistema](#identificação-dos-componentes-do-sistema)
+- [Identificação dos usuários finais](#identificação-dos-usuários-finais)
+- [Fontes de requisitos](#fontes-de-requisitos)
+- [Requisitos funcionais](#requisitos-funcionais)
+- [Diagrama de casos de uso](#diagrama-de-casos-de-uso)
+- [Casos de uso detalhados](#casos-de-uso-detalhados)
+- [Programação das entregas dos requisitos](#programação-das-entregas-dos-requisitos)
+
+
+
 ## Identificação dos componentes do grupo
 
 Desenvolvido pelos alunos: [@alicefrancener](https://github.com/alicefrancener/), [@caiobas](https://github.com/caiobas), [@danielfreitasbs](https://github.com/danielfreitasbs) e [@ottoleggio](https://github.com/ottoleggio).
