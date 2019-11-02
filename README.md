@@ -85,7 +85,7 @@ __RF10__: __como__ Promotor de ações, __desejo__ criar (_create_) meu perfil n
 
 __RF11__: __como__ Promotor de ações, __desejo__ ler (_read_) meu perfil no sistema LigAção, __para que__ possa listar meus dados e verificar se estão corretos. Os dados retornados serão os mesmos citados no RF10.
 
-__RF12__: __como__ Promotor de ações, __desejo__ atualizar (_update_) meu perfil no sistema LigAção, __para que__ possa corrigir e manter atualizados meus dados. Os dados que poderão ser atualizados serão os mesmos citados no RF10.
+__RF12__: __como__ Promotor de ações, __desejo__ editar (_update_) meu perfil no sistema LigAção, __para que__ possa corrigir e manter atualizados meus dados. Os dados que poderão ser atualizados serão os mesmos citados no RF10.
 
 __RF13__: __como__ Promotor de ações, __desejo__ excluir (_delete_) meu perfil no sistema LigAção, __para que__ possa sair do sistema e não deixar os meus dados pessoais disponíveis. Ao excluir o perfil, todas as ações relacionadas ao Promotor serão excluídas também.
 
@@ -93,12 +93,47 @@ __RF14__: __como__ Voluntário, __desejo__ criar (_create_) meu perfil no sistem
 
 __RF15__: __como__ Voluntário, __desejo__ ler (_read_) meu perfil no sistema LigAção, __para que__ possa listar meus dados e verificar se estão corretos. Os dados retornados serão os mesmos citados no RF14.
 
-__RF16__: __como__ Voluntário, __desejo__ atualizar (_update_) meu perfil no sistema LigAção, __para que__ possa corrigir e manter atualizados meus dados. Os dados que poderão ser atualizados serão os mesmos citados no RF14.
+__RF16__: __como__ Voluntário, __desejo__ editar (_update_) meu perfil no sistema LigAção, __para que__ possa corrigir e manter atualizados meus dados. Os dados que poderão ser atualizados serão os mesmos citados no RF14.
 
 __RF17__: __como__ Voluntário, __desejo__ excluir (_delete_) meu perfil no sistema LigAção, __para que__ possa sair do sistema e não deixar os meus dados pessoais disponíveis.
 
 ## Diagrama de casos de uso
 
+Os atores do diagrama abaixo se resumem aos promotores de ações (instituições, movimentos, ONGs e grupos de voluntários que desejam criar ações na plataforma) e aos Voluntários que são pessoas que desejam ter conhecimento e possivelmente se inscrever em ações voluntárias.
+
+O promotor de ações deverá criar um perfil no sistema (cadastro) para poder publicar ações. Esse perfil poderá ser editado e excluído pelo promotor de ações. Além disso, ele poderá também filtrar voluntários (por características do perfil) e convidá-los para ações. As ações publicadas no sistema poderão ser alteradas ou canceladas. E os voluntários que participarem das ações poderão ser avaliados ao final da ação pelo promotor da ação.
+
+Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo quando quiserem. Poderão também pesquisar por ações de acordo com características (tipo de ação, data de realização, local) e se inscrever. Também poderão avaliar os promotores de ação após participarem de alguma ação.
+
+![Diagrama de casos de uso](docs/diagrama-casos-de-uso.png)
+
 ## Casos de uso detalhados
 
+### RF01: Cadastrar ação
+
+**Ator**: Promotor de ação  
+**Pré-condições**: Promotor de ação cadastrado e logado no sistema  
+**Pós-condições**: A ação foi cadastrada  
+**Fluxo principal**:  
+
+1. O promotor de ação solicita a criação de uma nova ação
+2. O sistema exibe um formulário com os atributos de ações a serem preenchidos: nome do Promotor da ação, nome da ação, local, data, horário início, horário fim, descrição, imagem descritiva da ação (opcional), categoria da ação (opções: projeto social, ambiental, animal, educação, esportes, arte e cultura)
+3. O promotor de ação preenche e submete os dados da ação
+4. O sistema envia mensagem solicitando confirmação da criação da ação
+5. O sistema registra as informações e envia mensagem ao promotor de ação indicando que a ação foi registrada com sucesso
+
+**Fluxos alternativos**:
+
+- No passo 1 do fluxo principal, caso o promotor de ação ainda não possua um perfil, o sistema retornará uma mensagem indicando a realização do cadastro como promotor de ação
+- No passo 3 do fluxo principal, caso o promotor não preencha algum dado obrigatório o sistema retornará uma mensagem indicando o(s) campo(s) ausente(s)
+- No passo 4 do fluxo principal, se o promotor de ação desistir de cadastrar a ação será direcionado para a página inicial
+
 ## Programação das entregas dos requisitos
+
+| Identificador | Assunto | Iteração | Fonte do requisito | Última atualização
+| - | - | - | - | -
+| RF01 | Cadastrar ação (Promotor) | #1 | Motivação inicial | 02/11/2019
+| RF02 | Editar ação (Promotor) | #1 | Motivação inicial | 02/11/2019
+| RF08 | Inscrever em ação (Voluntário) | #1 | Resultados da entrevista | 02/11/2019
+| RF10 | Criar perfil (Promotor) | #1 | Resultados da entrevista | 02/11/2019
+| RF12 | Editar perfil (Promotor)| #1 | Resultados da entrevista | 02/11/2019
