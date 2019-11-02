@@ -13,11 +13,11 @@ public class Acao {
     private String horaFim;
     private ArrayList<String> emails = new ArrayList<String>();
     
-    private Acao() {
+    public Acao() {
         
     }
-    
-    private Acao(String nomePromotor, String nomeAcao, String categoriaAcao,
+
+    public Acao(String nomePromotor, String nomeAcao, String categoriaAcao,
             String dataRealizacao, String descricao, String horaInicio,
             String horaFim) {
         super();
