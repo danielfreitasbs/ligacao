@@ -212,6 +212,25 @@ public class Database {
         // ...
         System.out.println("Update time : " + writeResult.get().getUpdateTime());
     }
+    
+    /**
+     * Método responsável por excluir um voluntário de uma ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação.
+     * @param voluntario Voluntario a ser excluído
+     */
+    public static void excluiAcao(String nomePromotor, 
+            String nomeAcao) throws InterruptedException, ExecutionException {
+        DocumentReference referenciaAcao = db.collection("promotor de acao").document(nomePromotor)
+                .collection("acoes").document(nomeAcao);
+        
+     // asynchronously delete a document
+        ApiFuture<WriteResult> writeResult = referenciaAcao.delete();
+        // ...
+        System.out.println("Update time : " + writeResult.get().getUpdateTime());
+    }
+  
   
     
     /**
