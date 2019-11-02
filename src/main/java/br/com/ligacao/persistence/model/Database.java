@@ -230,7 +230,19 @@ public class Database {
         System.out.println("Update time : " + writeResult.get().getUpdateTime());
     }
   
-  
+    /**
+     * Método responsável por excluir um promotor de ação.
+     * 
+     * @param nomePromotor Nome do promotor da ação.
+     */
+    public static void excluiPromotor(String nomePromotor) throws InterruptedException, ExecutionException {
+        DocumentReference referenciaAcao = db.collection("promotor de acao").document(nomePromotor);
+        
+     // asynchronously delete a document
+        ApiFuture<WriteResult> writeResult = referenciaAcao.delete();
+        // ...
+        System.out.println("Update time : " + writeResult.get().getUpdateTime());
+    }
     
     /**
      * Método responsável por consultar dados cadastrados
