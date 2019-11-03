@@ -1,18 +1,20 @@
 package br.com.ligacao.client;
 
-import java.io.IOException;
+import java.io.IOException;	
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 import br.com.ligacao.client.forms.PromotorForm;
-import br.com.ligacao.persistence.model.Database;
+import br.com.ligacao.persistence.model.Login;
 import br.com.ligacao.persistence.model.Promotor;
+import br.com.ligacao.persistence.model.PromotorDAO;
 
 public class PromotorApp {
 
 	private static Promotor promotor = new Promotor();
 	private static Scanner scanner = new Scanner(System.in);
 	private static StringBuilder sb = new StringBuilder();
+	private static Login login = new Login("mandala", "oxulele");
 
 	public static void simuladorInterface() throws IOException, InterruptedException, ExecutionException {
 		sb = new StringBuilder();
@@ -68,12 +70,10 @@ public class PromotorApp {
 		System.out.println("Digite 1 para confirmar o cadastro ou 0 para não proceder.\n");
 		int opcao = scanner.nextInt();
 
+		
 		if (opcao == 1) {
 			scanner.close();
-			Database.cadastraPromotor(promotor.getNomePromotor(), promotor.getCategoriaAcao(),
-					promotor.getCpfResponsavel(), promotor.getDataFundacao(), promotor.getDataFundacao(),
-					promotor.getEmail(), promotor.getImagem(), promotor.getRedeSocial(), promotor.getTelefone(),
-					"vidalata", "teste");
+			PromotorDAO.cadastraPromotor(promotor, login);
 		} else {
 			scanner.close();
 			System.exit(0);
@@ -95,7 +95,7 @@ public class PromotorApp {
 
 		String entrada = scanner.nextLine();
 
-		promotor = Database.consultaPromotor("Joãozinho do Trenó");
+		promotor = PromotorDAO.consultaPromotor("Joãozinho do Trenó");
 
 		/**
 		 * Exibindo os dados na tela para confirmação.
@@ -132,10 +132,7 @@ public class PromotorApp {
 		int opcao = scanner.nextInt();
 
 		if (opcao == 0) {
-			Database.cadastraPromotor(promotor.getNomePromotor(), promotor.getCategoriaAcao(),
-					promotor.getCpfResponsavel(), promotor.getDataFundacao(), promotor.getDataFundacao(),
-					promotor.getEmail(), promotor.getImagem(), promotor.getRedeSocial(), promotor.getTelefone(),
-					"vidalata", "teste");
+			PromotorDAO.cadastraPromotor(promotor, login);
 			System.out.println("Dados alterados com sucesso.");
 			scanner.close();
 			System.exit(0);
