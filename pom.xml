@@ -14,6 +14,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.mainClass>java.br.com.ligacao.Main</project.mainClass>
+        <tools.dir>${project.basedir}/tools</tools.dir>
     </properties>
 
     <dependencies>
@@ -102,6 +103,52 @@
                     <mainClass>${project.mainClass}</mainClass>
                 </configuration>
             </plugin>
+
+            <!-- mvn checkstyle:checkstyle -->
+            <!-- mvn checkstyle:check      -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <configLocation>${tools.dir}/checkstyle.xml</configLocation>
+                    <suppressionsLocation>${tools.dir}/checkstyle-suppressions.xml</suppressionsLocation>
+                    <maxAllowedViolations>0</maxAllowedViolations>
+                </configuration>
+            </plugin>
+
+
+            <!-- PMD                  -->
+            <!-- mvn pmd:pmd          -->
+            <!-- mvn pmd:check        -->
+            <!-- target/site/pmd.html -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.12.0</version>
+                <configuration>
+                    <linkXRef>true</linkXRef>
+                    <sourceEncoding>utf-8</sourceEncoding>
+                    <minimumTokens>10</minimumTokens>
+                    <targetJdk>1.8</targetJdk>
+                    <excludes>
+                        <exclude>**/*Bean.java</exclude>
+                        <exclude>**/generated/*.java</exclude>
+                        <exclude>**/*Application.java</exclude>
+                    </excludes>
+                    <excludeRoots>
+                        <excludeRoot>target/generated-sources/stubs
+                        </excludeRoot>
+                    </excludeRoots>
+                    <rulesets>
+                        <ruleset>category/java/multithreading.xml</ruleset>
+                        <ruleset>category/java/performance.xml</ruleset>
+                        <ruleset>category/java/security.xml</ruleset>
+                        <ruleset>${tools.dir}/pmd.xml</ruleset>
+                    </rulesets>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
