@@ -10,8 +10,19 @@ import java.util.Scanner;
  */
 public class AcaoApp {
 
+    /**
+     * Promotor ligado a acao.
+     */
     private static Promotor promotor = new Promotor();
+
+    /**
+     * Acao a ser criada/editada/lida/excluida.
+     */
     private static Acao acao = new Acao();
+
+    /**
+     * Scanner para obter dados do usuario.
+     */
     private static Scanner scanner = new Scanner(System.in);;
 
     public static void simuladorInterface(){
@@ -35,11 +46,11 @@ public class AcaoApp {
         }
     }
 
-    private static void editar() {
+    public static void cadastrar() {
         //TODO
     }
 
-    private static void cadastrar() {
+    public static void editar() {
         //TODO
     }
 }
