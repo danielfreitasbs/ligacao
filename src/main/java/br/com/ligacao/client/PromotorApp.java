@@ -1,22 +1,24 @@
 package br.com.ligacao.client;
 
-import java.io.IOException;
+import java.io.IOException;	
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 import br.com.ligacao.client.forms.PromotorForm;
-import br.com.ligacao.persistence.model.Database;
+import br.com.ligacao.persistence.model.Login;
 import br.com.ligacao.persistence.model.Promotor;
+import br.com.ligacao.persistence.model.PromotorDAO;
 
 public class PromotorApp {
 
 	private static Promotor promotor = new Promotor();
 	private static Scanner scanner = new Scanner(System.in);
 	private static StringBuilder sb = new StringBuilder();
+	private static Login login = new Login("mandala", "oxulele");
 
 	public static void simuladorInterface() throws IOException, InterruptedException, ExecutionException {
 		sb = new StringBuilder();
-		sb.append("Qual ação deseja executar?\n").append("0 - Cadastrar Promotor\n")
+		sb.append("Qual aï¿½ï¿½o deseja executar?\n").append("0 - Cadastrar Promotor\n")
 				.append("1 - Editar Perfil de Promotor\n");
 		System.out.println(sb.toString());
 		int opcao = scanner.nextInt();
@@ -36,10 +38,10 @@ public class PromotorApp {
 	public static void cadastro() throws IOException, InterruptedException, ExecutionException {
 
 		/**
-		 * Realiza a solicitação dos dados para cadastro.
+		 * Realiza a solicitaï¿½ï¿½o dos dados para cadastro.
 		 */
 		System.out.println("Para cadastrar um Promotor, informe os seguintes dados: \n" + "Nome do Promotor: \n"
-				+ "Categoria Ação: \n" + "CPF do Responsável: \n" + "Data de Fundacao: \n" + "Descrição: \n"
+				+ "Categoria Aï¿½ï¿½o: \n" + "CPF do Responsï¿½vel: \n" + "Data de Fundacao: \n" + "Descriï¿½ï¿½o: \n"
 				+ "Email: \n" + "Imagem: \n" + "Rede Social: \n" + "Telefone: \n");
 
 		/**
@@ -50,11 +52,11 @@ public class PromotorApp {
 		System.out.println("Finalizando o preenchimento do form...");
 
 		/**
-		 * Exibindo os dados na tela para confirmação.
+		 * Exibindo os dados na tela para confirmaï¿½ï¿½o.
 		 */
 		sb = new StringBuilder();
 		sb.append("Confirme os dados. \n").append("Nome do Promotor: ").append(promotor.getNomePromotor())
-				.append("\nCategoria Ação: ").append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
+				.append("\nCategoria Aï¿½ï¿½o: ").append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
 				.append(promotor.getCpfResponsavel()).append("\nData de Fundacao: ").append(promotor.getDataFundacao())
 				.append("\nDescricao: ").append(promotor.getDescricao()).append("\nEmail: ").append(promotor.getEmail())
 				.append("\nRede Social: ").append(promotor.getRedeSocial()).append("\nTelefone: ")
@@ -63,17 +65,15 @@ public class PromotorApp {
 		System.out.println(sb.toString());
 
 		/**
-		 * 4º passo do caso de uso 10;
+		 * 4ï¿½ passo do caso de uso 10;
 		 */
-		System.out.println("Digite 1 para confirmar o cadastro ou 0 para não proceder.\n");
+		System.out.println("Digite 1 para confirmar o cadastro ou 0 para nï¿½o proceder.\n");
 		int opcao = scanner.nextInt();
 
+		
 		if (opcao == 1) {
 			scanner.close();
-			Database.cadastraPromotor(promotor.getNomePromotor(), promotor.getCategoriaAcao(),
-					promotor.getCpfResponsavel(), promotor.getDataFundacao(), promotor.getDataFundacao(),
-					promotor.getEmail(), promotor.getImagem(), promotor.getRedeSocial(), promotor.getTelefone(),
-					"vidalata", "teste");
+			PromotorDAO.cadastraPromotor(promotor, login);
 		} else {
 			scanner.close();
 			System.exit(0);
@@ -88,21 +88,21 @@ public class PromotorApp {
 		promotor = new Promotor();
 
 		/**
-		 * Solicitação de Dados para busca do promotor.
+		 * Solicitaï¿½ï¿½o de Dados para busca do promotor.
 		 */
 		sb.append("Confirme seu nome: ");
 		System.out.println(sb.toString());
 
 		String entrada = scanner.nextLine();
 
-		promotor = Database.consultaPromotor("Joãozinho do Trenó");
+		promotor = PromotorDAO.consultaPromotor("JoÃ£ozinho do TrenÃ³");
 
 		/**
-		 * Exibindo os dados na tela para confirmação.
+		 * Exibindo os dados na tela para confirmaï¿½ï¿½o.
 		 */
 		sb = new StringBuilder();
 		sb.append("----- Dados do Promotor ----- \n").append("Nome do Promotor: ").append(promotor.getNomePromotor())
-				.append("\nCategoria Ação: ").append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
+				.append("\nCategoria Aï¿½ï¿½o: ").append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
 				.append(promotor.getCpfResponsavel()).append("\nData de Fundacao: ").append(promotor.getDataFundacao())
 				.append("\nDescricao: ").append(promotor.getDescricao()).append("\nEmail: ").append(promotor.getEmail())
 				.append("Rede Social: ").append(promotor.getRedeSocial()).append("\nTelefone: ")
@@ -114,28 +114,25 @@ public class PromotorApp {
 		String cpf = scanner.nextLine();
 
 		/**
-		 * Simulando alteração de dados com form automatico para fins de teste.
+		 * Simulando alteraï¿½ï¿½o de dados com form automatico para fins de teste.
 		 */
 		sb = new StringBuilder();
 		promotor = PromotorForm.preencherFormAlterado(cpf);
-		System.out.println("---- Confirmar alteração de Dados do Promotor ----\n");
-		sb.append("Nome do Promotor: ").append(promotor.getNomePromotor()).append("\nCategoria Ação: ")
+		System.out.println("---- Confirmar alteraï¿½ï¿½o de Dados do Promotor ----\n");
+		sb.append("Nome do Promotor: ").append(promotor.getNomePromotor()).append("\nCategoria Aï¿½ï¿½o: ")
 				.append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
 				.append(promotor.getCpfResponsavel()).append("\nData de Fundacao: ").append(promotor.getDataFundacao())
 				.append("\nDescricao: ").append(promotor.getDescricao()).append("\nEmail: ").append(promotor.getEmail())
 				.append("Rede Social: ").append(promotor.getRedeSocial()).append("\nTelefone: ")
 				.append(promotor.getTelefone())
-				.append("\n0 - para confirmar a alteração\n 1 - para cancelar a alteração:\n");
+				.append("\n0 - para confirmar a alteraï¿½ï¿½o\n 1 - para cancelar a alteraï¿½ï¿½o:\n");
 
 		System.out.println(sb.toString());
 
 		int opcao = scanner.nextInt();
 
 		if (opcao == 0) {
-			Database.cadastraPromotor(promotor.getNomePromotor(), promotor.getCategoriaAcao(),
-					promotor.getCpfResponsavel(), promotor.getDataFundacao(), promotor.getDataFundacao(),
-					promotor.getEmail(), promotor.getImagem(), promotor.getRedeSocial(), promotor.getTelefone(),
-					"vidalata", "teste");
+			PromotorDAO.cadastraPromotor(promotor, login);
 			System.out.println("Dados alterados com sucesso.");
 			scanner.close();
 			System.exit(0);
