@@ -195,12 +195,6 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 - No passo 7, caso o ator tenha acionado a ação de **confirmar** o cadastro no passo 6, será entregue uma mensagem de sucesso.
 - No passo 7, caso o ator tenha acionado a ação de **cancelar** o cadastro no passo 6, será entregue uma mensagem de sucesso na ação de cancelamento.
 
-**Fluxos alternativos**:
-
-- No passo 1 do fluxo principal, caso o promotor de ação ainda não possua um perfil, o sistema retornará uma mensagem indicando a realização do cadastro como promotor de ação
-- No passo 3 do fluxo principal, caso o promotor não preencha algum dado obrigatório o sistema retornará uma mensagem indicando o(s) campo(s) ausente(s)
-- No passo 4 do fluxo principal, se o promotor de ação desistir de cadastrar a ação será direcionado para a página inicial
-
 
 ## Programação das entregas dos requisitos
 
