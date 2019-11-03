@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
-import br.com.ligacao.client.InscreverApp;
+import br.com.ligacao.client.apps.InscreverApp;
 import br.com.ligacao.client.PromotorApp;
 import br.com.ligacao.client.apps.AcaoApp;
 import br.com.ligacao.client.apps.LoginApp;

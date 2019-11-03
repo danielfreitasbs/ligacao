@@ -39,8 +39,8 @@ public class VoluntarioDAO {
         
         String nomePromotor = promotor.getNomePromotor();
         String nomeAcao = acao.getNomeAcao();
-        String nomeVoluntario = voluntario.getNome();
-        String emailVoluntario = voluntario.getEmail();
+        String nomeVoluntario = voluntario.getNomeVoluntario();
+        String emailVoluntario = voluntario.getEmailVoluntario();
 
         Firestore db = Connection.db;
         
