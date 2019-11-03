@@ -16,7 +16,7 @@ public class PromotorApp {
 
 	public static void simuladorInterface() throws IOException, InterruptedException, ExecutionException {
 		sb = new StringBuilder();
-		sb.append("Qual aÁ„o deseja executar?\n").append("0 - Cadastrar Promotor\n")
+		sb.append("Qual a√ß√£o deseja executar?\n").append("0 - Cadastrar Promotor\n")
 				.append("1 - Editar Perfil de Promotor\n");
 		System.out.println(sb.toString());
 		int opcao = scanner.nextInt();
@@ -36,10 +36,10 @@ public class PromotorApp {
 	public static void cadastro() throws IOException, InterruptedException, ExecutionException {
 
 		/**
-		 * Realiza a solicitaÁ„o dos dados para cadastro.
+		 * Realiza a solicita√ß√£o dos dados para cadastro.
 		 */
 		System.out.println("Para cadastrar um Promotor, informe os seguintes dados: \n" + "Nome do Promotor: \n"
-				+ "Categoria AÁ„o: \n" + "CPF do Respons·vel: \n" + "Data de Fundacao: \n" + "DescriÁ„o: \n"
+				+ "Categoria A√ß√£o: \n" + "CPF do Respons√°vel: \n" + "Data de Fundacao: \n" + "Descri√ß√£o: \n"
 				+ "Email: \n" + "Imagem: \n" + "Rede Social: \n" + "Telefone: \n");
 
 		/**
@@ -50,11 +50,11 @@ public class PromotorApp {
 		System.out.println("Finalizando o preenchimento do form...");
 
 		/**
-		 * Exibindo os dados na tela para confirmaÁ„o.
+		 * Exibindo os dados na tela para confirma√ß√£o.
 		 */
 		sb = new StringBuilder();
 		sb.append("Confirme os dados. \n").append("Nome do Promotor: ").append(promotor.getNomePromotor())
-				.append("\nCategoria AÁ„o: ").append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
+				.append("\nCategoria A√ß√£o: ").append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
 				.append(promotor.getCpfResponsavel()).append("\nData de Fundacao: ").append(promotor.getDataFundacao())
 				.append("\nDescricao: ").append(promotor.getDescricao()).append("\nEmail: ").append(promotor.getEmail())
 				.append("\nRede Social: ").append(promotor.getRedeSocial()).append("\nTelefone: ")
@@ -63,9 +63,9 @@ public class PromotorApp {
 		System.out.println(sb.toString());
 
 		/**
-		 * 4∫ passo do caso de uso 10;
+		 * 4ÔøΩ passo do caso de uso 10;
 		 */
-		System.out.println("Digite 1 para confirmar o cadastro ou 0 para n„o proceder.\n");
+		System.out.println("Digite 1 para confirmar o cadastro ou 0 para n√£o proceder.\n");
 		int opcao = scanner.nextInt();
 
 		if (opcao == 1) {
@@ -88,21 +88,21 @@ public class PromotorApp {
 		promotor = new Promotor();
 
 		/**
-		 * SolicitaÁ„o de Dados para busca do promotor.
+		 * Solicita√ß√£o de Dados para busca do promotor.
 		 */
 		sb.append("Confirme seu nome: ");
 		System.out.println(sb.toString());
 
 		String entrada = scanner.nextLine();
 
-		promotor = Database.consultaPromotor("Jo„ozinho do TrenÛ");
+		promotor = Database.consultaPromotor("Jo√£ozinho do Tren√≥");
 
 		/**
-		 * Exibindo os dados na tela para confirmaÁ„o.
+		 * Exibindo os dados na tela para confirma√ß√£o.
 		 */
 		sb = new StringBuilder();
 		sb.append("----- Dados do Promotor ----- \n").append("Nome do Promotor: ").append(promotor.getNomePromotor())
-				.append("\nCategoria AÁ„o: ").append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
+				.append("\nCategoria A√ß√£o: ").append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
 				.append(promotor.getCpfResponsavel()).append("\nData de Fundacao: ").append(promotor.getDataFundacao())
 				.append("\nDescricao: ").append(promotor.getDescricao()).append("\nEmail: ").append(promotor.getEmail())
 				.append("Rede Social: ").append(promotor.getRedeSocial()).append("\nTelefone: ")
@@ -114,18 +114,18 @@ public class PromotorApp {
 		String cpf = scanner.nextLine();
 
 		/**
-		 * Simulando alteraÁ„o de dados com form automatico para fins de teste.
+		 * Simulando altera√ß√£o de dados com form automatico para fins de teste.
 		 */
 		sb = new StringBuilder();
 		promotor = PromotorForm.preencherFormAlterado(cpf);
-		System.out.println("---- Confirmar alteraÁ„o de Dados do Promotor ----\n");
-		sb.append("Nome do Promotor: ").append(promotor.getNomePromotor()).append("\nCategoria AÁ„o: ")
+		System.out.println("---- Confirmar altera√ß√£o de Dados do Promotor ----\n");
+		sb.append("Nome do Promotor: ").append(promotor.getNomePromotor()).append("\nCategoria A√ß√£o: ")
 				.append(promotor.getCategoriaAcao()).append("\nCPF do Responsavel: ")
 				.append(promotor.getCpfResponsavel()).append("\nData de Fundacao: ").append(promotor.getDataFundacao())
 				.append("\nDescricao: ").append(promotor.getDescricao()).append("\nEmail: ").append(promotor.getEmail())
 				.append("Rede Social: ").append(promotor.getRedeSocial()).append("\nTelefone: ")
 				.append(promotor.getTelefone())
-				.append("\n0 - para confirmar a alteraÁ„o\n 1 - para cancelar a alteraÁ„o:\n");
+				.append("\n0 - para confirmar a altera√ß√£o\n 1 - para cancelar a altera√ß√£o:\n");
 
 		System.out.println(sb.toString());
 

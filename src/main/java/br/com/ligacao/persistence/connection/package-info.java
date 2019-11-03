@@ -1,5 +1,5 @@
 package br.com.ligacao.persistence.connection;
 
 /*
- * Este package È respons·vel pela agregaÁ„o das classes de f·brica de conex„o com o banco de dados.
+ * Este package √© respons√°vel pela agrega√ß√£o das classes de f√°brica de conex√£o com o banco de dados.
  * */
