@@ -28,6 +28,7 @@ public class PromotorApp {
 			selecionaTipoPromotor();
 			break;
 		case 1:
+			selecionaTipoPromotorEditar();
 //			editarPerfil();
 			break;
 		default:
@@ -35,6 +36,61 @@ public class PromotorApp {
 		}
 	}
 
+	private static void selecionaTipoPromotorEditar() throws IOException, InterruptedException, ExecutionException {
+		sb = new StringBuilder();
+		sb.append("\n---- Formulário de Cadastro de Promotor ----\n");
+		sb.append("Selecione o tipo de pessoa: \n");
+		sb.append("0 - Pessoa Física \n1 - Pessoa Juridica");
+		System.out.println(sb.toString());
+		int option = scanner.nextInt();
+
+		switch (option) {
+		case 0:
+			editarPromotorFisico();
+			break;
+		case 1:
+			editarPromotorJuridico();
+			break;
+
+		default:
+			break;
+		}
+	}
+	
+	static void editarPromotorFisico() {
+		sb = new StringBuilder();
+		sb.append("\n ---- Acesso ao Sistema ---- \n");
+		sb.append("Informe o nome de usuário: \n");
+		System.out.println(sb.toString());
+		
+		String user = scanner.nextLine();
+		
+		sb = new StringBuilder();
+		sb.append("\n ---- Acesso ao Sistema ---- \n");
+		sb.append("Informe a senha: \n");
+		System.out.println(sb.toString());
+		
+		String password = scanner.nextLine();
+		
+		promotorFisico = new PromotorFisico();
+//		promotorFisico = PromotorFisicoDAO.fazerLogin(user, password);
+		
+		if(promotorFisico == null) {
+			sb = new StringBuilder();
+			sb.append("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
+			return;
+		}else {
+			promotorFisico = FormulariosSolicitacao.formDadosAlteracao(promotorFisico);
+			System.out.println("\n ---- Alteração de Cadastro Finalizada ---- \n");
+		}
+		
+	}
+	
+	static void editarPromotorJuridico() {
+		
+	}
+	
+	
 	private static void selecionaTipoPromotor() throws IOException, InterruptedException, ExecutionException {
 		sb = new StringBuilder();
 		sb.append("\n---- Formulário de Cadastro de Promotor ----\n");

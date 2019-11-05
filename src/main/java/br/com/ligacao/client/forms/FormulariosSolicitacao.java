@@ -159,7 +159,7 @@ public final class FormulariosSolicitacao {
 		
 		sb = new StringBuilder();
 		sb.append("\n----- Informacoes de Acesso -----\n")
-		.append("\nLogin: \n");
+		.append("\nUsuario: \n");
 		System.out.println(sb.toString());
 		promotorJuridico.setUsuario(input.nextLine());
 		
@@ -169,5 +169,73 @@ public final class FormulariosSolicitacao {
 		promotorJuridico.setSenha(input.nextLine());
 		
 		return promotorJuridico;
+	}
+	
+	public static PromotorFisico formDadosAlteracao(PromotorFisico promotor) {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("-----  Perfil de Promotor Pessoa Física -----\n")
+		.append("Nome da Pessoa: ").append(promotor.getNomePessoa()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		int option = input.nextInt();
+		promotor.setNomePessoa(option == 1 ? promotor.getNomePessoa() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nCPF do Responsável: ").append(promotor.getCpf()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setCpf(option == 1 ? promotor.getCpf() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nData de Nascimento (DDMMYYYY): ").append(promotor.getDataNascimento()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setDataNascimento(option == 1 ? promotor.getDataNascimento() : lerTeclado());
+		promotor.setFotoPerfil("");
+		
+		sb = new StringBuilder();
+		sb.append("\nCategorias de Ações: ").append(promotor.getCategoriasAcoes()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setCategoriasAcoes(option == 1 ? promotor.getDataNascimento() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nDescricao Geral: ").append(promotor.getDescricaoGeral()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		promotor.setDescricaoGeral(option == 1 ? promotor.getDescricaoGeral() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nTelefone: ").append(promotor.getTelefone()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		promotor.setTelefone(option == 1 ? promotor.getTelefone() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nEndereco: ").append(promotor.getEndereco()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		promotor.setEndereco(option == 1 ? promotor.getCpf() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nEmail: ").append(promotor.getEmail()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		promotor.setEmail(option == 1 ? promotor.getCpf() : lerTeclado());
+		
+		return promotor;
+		
+	}
+	
+	static String lerTeclado() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\n Informe o valor do campo \n");
+		
+		return input.nextLine();
 	}
 }
