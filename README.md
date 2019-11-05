@@ -143,7 +143,7 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 - No passo 3 do fluxo principal, caso o promotor não preencha algum dado obrigatório o sistema retornará uma mensagem indicando o(s) campo(s) ausente(s)
 - No passo 4 do fluxo principal, se o promotor de ação desistir de cadastrar a ação será direcionado para a página inicial
 
-### RF10: Criar perfil
+### RF10: Criar perfil de Promotor de Ação
 
 **Ator**: Organização ou pessoa física  
 **Pré-condições**: ator promotor de ação com acesso ao cadastro de perfil  
@@ -195,6 +195,28 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 - No passo 7, caso o ator tenha acionado a ação de **confirmar** o cadastro no passo 6, será entregue uma mensagem de sucesso.
 - No passo 7, caso o ator tenha acionado a ação de **cancelar** o cadastro no passo 6, será entregue uma mensagem de sucesso na ação de cancelamento.
 
+### RF12: Editar perfil de Promotor de Ação
+
+**Ator**: Promotor de Acao
+**Pré-condições**: Perfil de promotor de acao com registro realizado
+**Pós-condições**: ator com perfil de __Promotor de Ação__ com os dados alterados
+**Fluxo principal**:  
+
+1. Ator aciona solicitacao de alteracao de perfil;
+2. Exibicao de formulario para abrir sessao no sistema. Formulario contem atributos usuario e senha;
+3. Ator informa usuario e senha;
+4. Validacao de registro de perfil.
+5. Exibicao de formulario com atributos que compõe o perfil do __Promotor de Acao__;
+6. Exibicao de solicitacao para alteracao de cada atributo que compõe o perfil. Texto solicita a confirmacao se o ator deseja alterar determinado atributo;
+7. Exibicao de texto solicitando encerramento da edicao de perfil;
+
+**Fluxos alternativos**:
+
+- No passo 4, caso o usuario ou senha esteja incorreto será retornada uma mensagem de finalizacao da operacao e a rotina se encerrará;
+- No passo 6, caso o ator opte pela *nao alteracao* do atributo, os dados não seram alterados;
+- NO passo 6, caso o ator opte pela *alteracao* do atributo. O mesmo deverá entrar com o novo dado e este substituir o anterior;
+- No passo 7, caso o ator opte pelo *cancelamento* da edicao do perfil nenhum dado será alterado;
+- No passo 7, caso o ator opte pela *confirmacao* da edicao do perfil, todos os dados que foram alterados deverão ser registrados.
 
 ## Programação das entregas dos requisitos
 
