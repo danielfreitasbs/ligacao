@@ -26,7 +26,7 @@ public class Main {
 		switch (opcao) {
 		case 0:
 			LoginApp.simuladorInterface(args);
-			AcaoApp.simuladorInterface();
+			AcaoApp.simuladorInterface(args);
 			scanner.close();
 			break;
 		case 1:
