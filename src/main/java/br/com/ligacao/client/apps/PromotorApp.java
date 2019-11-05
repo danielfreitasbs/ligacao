@@ -6,10 +6,13 @@ import java.util.concurrent.ExecutionException;
 
 import br.com.ligacao.client.forms.FormulariosSolicitacao;
 import br.com.ligacao.persistence.model.PromotorFisico;
+import br.com.ligacao.persistence.model.PromotorJuridico;
 
 public class PromotorApp {
 
 	private static PromotorFisico promotorFisico = new PromotorFisico();
+	private static PromotorJuridico promotorJuridico = new PromotorJuridico();
+	
 	private static Scanner scanner = new Scanner(System.in);
 	private static StringBuilder sb = new StringBuilder();
 
@@ -38,34 +41,47 @@ public class PromotorApp {
 		sb.append("Selecione o tipo de pessoa: \n");
 		sb.append("0 - Pessoa Física \n1 - Pessoa Juridica");
 		int option = scanner.nextInt();
-		
+
 		switch (option) {
 		case 0:
 			cadastroPromotorFisico();
+			break;
+		case 1:
+			cadastroPromotorJuridico();
 			break;
 
 		default:
 			break;
 		}
 	}
-	
+
+	public static void cadastroPromotorJuridico() {
+		
+		/**
+		 * Realiza a solicitação dos dados para cadastro.
+		 */
+		promotorFisico = FormulariosSolicitacao.solCadPromotorFisico();
+		
+		sb = new StringBuilder();
+		sb.append("\nPara confirmar o cadastro digite 0, para cancelar digite 1: \n");
+		System.out.println(sb.toString());
+		int opcao = scanner.nextInt();
+		
+		if (opcao == 1) {
+			scanner.close();
+			// PromotorDAO.cadastraPromotor(promotorFisico);
+		} else {
+			scanner.close();
+			System.exit(0);
+		}
+	}
 
 	public static void cadastroPromotorFisico() throws IOException, InterruptedException, ExecutionException {
 
 		/**
 		 * Realiza a solicitação dos dados para cadastro.
 		 */
-/*		System.out.println("Para cadastrar um Promotor, informe os seguintes dados: \n" + "Nome do Promotor: \n"
-				+ "Categoria Ação: \n" + "CPF do Responsável: \n" + "Data de Fundacao: \n" + "Descrição: \n"
-				+ "Email: \n" + "Imagem: \n" + "Rede Social: \n" + "Telefone: \n");
 
-		/**
-		 * Preenchedor automatico do form de cadastro para fins de teste.
-		 */
-	/*	System.out.println("Preenchendo o form...");
-		promotor = FormulariosSolicitacao.preencherForm();
-		System.out.println("Finalizando o preenchimento do form...");*/
-		
 		promotorFisico = FormulariosSolicitacao.solCadPromotorFisico();
 
 		sb = new StringBuilder();
@@ -73,10 +89,9 @@ public class PromotorApp {
 		System.out.println(sb.toString());
 		int opcao = scanner.nextInt();
 
-		
 		if (opcao == 1) {
 			scanner.close();
-			//PromotorDAO.cadastraPromotor(promotorFisico);
+			// PromotorDAO.cadastraPromotor(promotorFisico);
 		} else {
 			scanner.close();
 			System.exit(0);

@@ -21,22 +21,7 @@ public class PromotorJuridico extends Login {
 	private String endereco;
 	private String email;
 
-	public PromotorJuridico(String usuario, String senha, String nomePessoaResponsavel, String cpfResponsavel,
-			String cnpj, String razaoSocial, String dataFundacao, String fotoPerfil, String redesSociais,
-			String categoriasAcoes, String descricaoGeral, String telefone, String endereco, String email) {
-		super(usuario, senha);
-		this.nomePessoaResponsavel = nomePessoaResponsavel;
-		this.cpfResponsavel = cpfResponsavel;
-		this.cnpj = cnpj;
-		this.razaoSocial = razaoSocial;
-		this.dataFundacao = dataFundacao;
-		this.fotoPerfil = fotoPerfil;
-		this.redesSociais = redesSociais;
-		this.categoriasAcoes = categoriasAcoes;
-		this.descricaoGeral = descricaoGeral;
-		this.telefone = telefone;
-		this.endereco = endereco;
-		this.email = email;
+	public PromotorJuridico() {
 	}
 
 	public String getNomePessoaResponsavel() {

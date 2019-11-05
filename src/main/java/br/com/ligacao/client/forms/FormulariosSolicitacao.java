@@ -2,10 +2,9 @@ package br.com.ligacao.client.forms;
 
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
 import br.com.ligacao.persistence.model.Promotor;
 import br.com.ligacao.persistence.model.PromotorFisico;
+import br.com.ligacao.persistence.model.PromotorJuridico;
 
 /**
  * Esta é uma classe utilitaria, usada para representação dos atributos de um
@@ -96,5 +95,79 @@ public final class FormulariosSolicitacao {
 		
 		
 		return promotorFisico;
+	}
+	
+	public PromotorJuridico solCadPromotorJuridico() {
+		PromotorJuridico promotorJuridico = new PromotorJuridico();
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("----- Cadastro de Promotor do tipo Pessoa Física -----\n")
+		.append("Nome da Pessoa Física Responsável: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setCpfResponsavel(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nCPF da Pessoa Física Responsável: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setCpfResponsavel(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nCNPJ: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setCnpj(input.nextLine());;
+		promotorJuridico.setFotoPerfil("");
+		
+		sb = new StringBuilder();
+		sb.append("\nRazao Social: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setRazaoSocial(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nData de Fundação: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setDataFundacao(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nRedes Sociais: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setRedesSociais(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nCategorias de Ações: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setCategoriasAcoes(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nDescricao Geral: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setDescricaoGeral(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nTelefone: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setTelefone(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nEndereco: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setEndereco(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nEmail: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setEmail(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\n----- Informacoes de Acesso -----\n")
+		.append("\nLogin: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setUsuario(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nSenha: \n");
+		System.out.println(sb.toString());
+		promotorJuridico.setSenha(input.nextLine());
+		
+		return promotorJuridico;
 	}
 }
