@@ -91,7 +91,7 @@ public class PromotorDAO {
      * @param promotor Objeto promotor de ação.
      * @param loginUsuario Objeto login do usuário.
      */
-    public static void cadastraPromotorFisico(PromotorFisico promotor, Login loginUsuario) 
+    public static void cadastraPromotorFisico(PromotorFisico promotor) 
             throws IOException, InterruptedException, ExecutionException {
         
         String nomePessoa = promotor.getNomePessoa();
@@ -105,8 +105,8 @@ public class PromotorDAO {
         String endereco = promotor.getEndereco();
         String email = promotor.getEmail();
         
-        String usuario = loginUsuario.getUsuario();
-        String senha = loginUsuario.getSenha();
+        String usuario = promotor.getUsuario();
+        String senha = promotor.getSenha();
         
         Firestore db = Connection.db;
         
@@ -153,7 +153,7 @@ public class PromotorDAO {
      * @param promotor Objeto promotor de ação.
      * @param loginUsuario Objeto login do usuário.
      */
-    public static void cadastraPromotorJuridico(PromotorJuridico promotor, Login loginUsuario) 
+    public static void cadastraPromotorJuridico(PromotorJuridico promotor) 
             throws IOException, InterruptedException, ExecutionException {
         
         String nomePessoaResponsavel = promotor.getNomePessoaResponsavel();
@@ -169,12 +169,12 @@ public class PromotorDAO {
         String endereco = promotor.getEndereco();
         String email = promotor.getEmail();
         
-        String usuario = loginUsuario.getUsuario();
-        String senha = loginUsuario.getSenha();
+        String usuario = promotor.getUsuario();
+        String senha = promotor.getSenha();
         
         Firestore db = Connection.db;
         
-        DocumentReference referenciaPromotor = db.collection("promotor de acao").document(nomePessoaResponsavel);
+        DocumentReference referenciaPromotor = db.collection("promotor de acao").document(razaoSocial);
         // Add document data using a hashmap
         Map<String, Object> promotorAcao = new HashMap<String, Object>();
         promotorAcao.put("tipoPessoa", "juridica");
@@ -196,7 +196,7 @@ public class PromotorDAO {
         // result.get() blocks on response
         System.out.println("Update time : " + resultPromotor.get().getUpdateTime());
         
-        DocumentReference referenciaLogin = db.collection("promotor de acao").document(nomePessoaResponsavel)
+        DocumentReference referenciaLogin = db.collection("promotor de acao").document(razaoSocial)
                 .collection("login").document("dados");
         
         // Add document data using a hashmap
@@ -448,7 +448,7 @@ public class PromotorDAO {
         CollectionReference referenciaPromotores = db.collection("promotor de acao");
         
      // Create a query against the collection.
-        Query query = referenciaPromotores.whereEqualTo("tipoPessoa", "fisica");
+        Query query = referenciaPromotores.whereEqualTo("tipoPessoa", "juridica");
         
       //asynchronously retrieve multiple documents
         ApiFuture<QuerySnapshot> querySnapshot = query.get();
