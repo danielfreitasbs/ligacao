@@ -9,6 +9,10 @@ import br.com.ligacao.services.PromotorJuridicoService;
 
 public class PromotorApp {
 
+	static String CABECALHO_FORM_CAD = "\n---- Formulário de Cadastro de Promotor ----\n";
+	static String CABECALHO_FORM_EDIT = "\n---- Formulário de Cadastro de Promotor ----\n";
+	static String CABECALHO_FORM_DEL = "\n---- Formulário de Cadastro de Promotor ----\n";
+
 	private static Scanner scanner = new Scanner(System.in);
 	private static StringBuilder sb = new StringBuilder();
 
@@ -21,25 +25,25 @@ public class PromotorApp {
 
 		switch (opcao) {
 		case 0:
-			selecionaTipoPromotor();
+			promotorCadastro();
 			break;
 		case 1:
-			selecionaTipoPromotorEditar();
+			promotorEditar();
 			break;
 		case 2:
-
+			promotorExcluir();
+			break;
 		default:
 			break;
 		}
 	}
 
-	private static void selecionaTipoPromotorEditar() throws IOException, InterruptedException, ExecutionException {
-		sb = new StringBuilder();
-		sb.append("\n---- Formulário de Cadastro de Promotor ----\n");
-		sb.append("Selecione o tipo de pessoa: \n");
-		sb.append("0 - Pessoa Física \n1 - Pessoa Juridica");
-		System.out.println(sb.toString());
-		int option = scanner.nextInt();
+	private static void promotorExcluir() {
+		int option = selecionaTipoPromotor(CABECALHO_FORM_DEL);
+	}
+
+	private static void promotorEditar() throws IOException, InterruptedException, ExecutionException {
+		int option = selecionaTipoPromotor(CABECALHO_FORM_EDIT);
 
 		switch (option) {
 		case 0:
@@ -54,12 +58,8 @@ public class PromotorApp {
 		}
 	}
 
-	private static void selecionaTipoPromotor() throws IOException, InterruptedException, ExecutionException {
-		sb = new StringBuilder();
-		sb.append("\n---- Formulário de Cadastro de Promotor ----\n");
-		sb.append("Selecione o tipo de pessoa: \n");
-		sb.append("0 - Pessoa Física \n1 - Pessoa Juridica");
-		int option = scanner.nextInt();
+	private static void promotorCadastro() throws IOException, InterruptedException, ExecutionException {
+		int option = selecionaTipoPromotor(CABECALHO_FORM_CAD);
 
 		switch (option) {
 		case 0:
@@ -72,6 +72,16 @@ public class PromotorApp {
 		default:
 			break;
 		}
+	}
+
+	static int selecionaTipoPromotor(String cabecalho) {
+		sb = new StringBuilder();
+		sb.append(cabecalho);
+		sb.append("Selecione o tipo de pessoa: \n");
+		sb.append("0 - Pessoa Física \n1 - Pessoa Juridica");
+
+		int option = scanner.nextInt();
+		return option;
 	}
 
 }
