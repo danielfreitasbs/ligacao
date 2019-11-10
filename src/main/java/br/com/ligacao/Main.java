@@ -19,7 +19,7 @@ public class Main {
 		System.out.println("O que deseja realizar?\n"
 				+ "0 - Cadastrar/Editar uma ação\n"
 				+ "1 - Inscrever em ação\n"
-				+ "2 - Cadastrar Promotor de Ação\n");
+				+ "2 - Acoes em Promotor de Ação\n");
 
 		opcao = scanner.nextInt();
 

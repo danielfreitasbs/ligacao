@@ -5,14 +5,19 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 import br.com.ligacao.client.forms.FormulariosSolicitacao;
+import br.com.ligacao.persistence.interfaces.PromotorJuridicoDAO;
+import br.com.ligacao.persistence.model.Login;
 import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.PromotorJuridico;
 
 public class PromotorApp {
 
+	static int PROMOTOR_FISICO = 0;
+	static int PROMOTOR_JURIDICO = 1;
+
 	private static PromotorFisico promotorFisico = new PromotorFisico();
 	private static PromotorJuridico promotorJuridico = new PromotorJuridico();
-	
+
 	private static Scanner scanner = new Scanner(System.in);
 	private static StringBuilder sb = new StringBuilder();
 
@@ -56,41 +61,63 @@ public class PromotorApp {
 			break;
 		}
 	}
-	
+
 	static void editarPromotorFisico() {
 		sb = new StringBuilder();
 		sb.append("\n ---- Acesso ao Sistema ---- \n");
 		sb.append("Informe o nome de usuário: \n");
 		System.out.println(sb.toString());
-		
+
 		String user = scanner.nextLine();
-		
+
 		sb = new StringBuilder();
 		sb.append("\n ---- Acesso ao Sistema ---- \n");
 		sb.append("Informe a senha: \n");
 		System.out.println(sb.toString());
-		
+
 		String password = scanner.nextLine();
-		
+
 		promotorFisico = new PromotorFisico();
 //		promotorFisico = PromotorFisicoDAO.fazerLogin(user, password);
-		
-		if(promotorFisico == null) {
+
+		if (promotorFisico == null) {
 			sb = new StringBuilder();
 			sb.append("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
 			return;
-		}else {
+		} else {
 			promotorFisico = FormulariosSolicitacao.formDadosAlteracao(promotorFisico);
 			System.out.println("\n ---- Alteração de Cadastro Finalizada ---- \n");
 		}
-		
+
 	}
-	
+
 	static void editarPromotorJuridico() {
-		
+		sb = new StringBuilder();
+		sb.append("\n ---- Acesso ao Sistema ---- \n");
+		sb.append("Informe o nome de usuário: \n");
+		System.out.println(sb.toString());
+
+		String user = scanner.nextLine();
+
+		sb = new StringBuilder();
+		sb.append("\n ---- Acesso ao Sistema ---- \n");
+		sb.append("Informe a senha: \n");
+		System.out.println(sb.toString());
+
+		String password = scanner.nextLine();
+
+		promotorJuridico = PromotorJuridicoDAO.login(user, password);
+
+		if (promotorJuridico == null) {
+			sb = new StringBuilder();
+			sb.append("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
+			return;
+		} else {
+			promotorJuridico = FormulariosSolicitacao.formDadosAlteracaoPJ(promotorJuridico);
+			System.out.println("\n ---- Alteração de Cadastro Finalizada ---- \n");
+		}
 	}
-	
-	
+
 	private static void selecionaTipoPromotor() throws IOException, InterruptedException, ExecutionException {
 		sb = new StringBuilder();
 		sb.append("\n---- Formulário de Cadastro de Promotor ----\n");
@@ -112,17 +139,17 @@ public class PromotorApp {
 	}
 
 	public static void cadastroPromotorJuridico() {
-		
+
 		/**
 		 * Realiza a solicitação dos dados para cadastro.
 		 */
 		promotorFisico = FormulariosSolicitacao.solCadPromotorFisico();
-		
+
 		sb = new StringBuilder();
 		sb.append("\nPara confirmar o cadastro digite 0, para cancelar digite 1: \n");
 		System.out.println(sb.toString());
 		int opcao = scanner.nextInt();
-		
+
 		if (opcao == 1) {
 			scanner.close();
 			// PromotorDAO.cadastraPromotor(promotorFisico);

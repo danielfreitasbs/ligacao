@@ -232,6 +232,98 @@ public final class FormulariosSolicitacao {
 		
 	}
 	
+	public static PromotorJuridico formDadosAlteracaoPJ(PromotorJuridico promotor) {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("-----  Perfil de Promotor Pessoa Jurídica -----\n")
+		.append("Nome da Pessoa Fisica Responsável: ").append(promotor.getNomePessoaResponsavel()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		int option = input.nextInt();
+		promotor.setNomePessoaResponsavel(option == 1 ? promotor.getNomePessoaResponsavel() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nCPF do Responsável: ").append(promotor.getCpfResponsavel()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setCpfResponsavel(option == 1 ? promotor.getCpfResponsavel() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nCNPJ: ").append(promotor.getCnpj()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setCnpj(option == 1 ? promotor.getCnpj() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nRazão Social: ").append(promotor.getRazaoSocial()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setRazaoSocial(option == 1 ? promotor.getRazaoSocial() : lerTeclado());
+
+		sb = new StringBuilder();
+		sb.append("\nData de Fundacao: ").append(promotor.getDataFundacao()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setDataFundacao(option == 1 ? promotor.getDataFundacao() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nFoto de Perfil: ").append(promotor.getFotoPerfil()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setFotoPerfil(option == 1 ? promotor.getFotoPerfil() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nRede Social: ").append(promotor.getRedesSociais()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setRedesSociais(option == 1 ? promotor.getRedesSociais() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nCategoria de Acoes: ").append(promotor.getCategoriasAcoes()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setCategoriasAcoes(option == 1 ? promotor.getCategoriasAcoes() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nDescricao Geral: ").append(promotor.getDescricaoGeral()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setDescricaoGeral(option == 1 ? promotor.getDescricaoGeral() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nTelefone: ").append(promotor.getTelefone()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setTelefone(option == 1 ? promotor.getTelefone() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nEndereco: ").append(promotor.getEndereco()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setEndereco(option == 1 ? promotor.getEndereco() : lerTeclado());
+		
+		sb = new StringBuilder();
+		sb.append("\nEmail: ").append(promotor.getEmail()).append("\n")
+		.append("0 - para alterar este dado \n1 - para não alterar");
+		System.out.println(sb.toString());
+		option = input.nextInt();
+		promotor.setEmail(option == 1 ? promotor.getEmail() : lerTeclado());
+		
+		return promotor;
+		
+	}
+	
 	static String lerTeclado() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n Informe o valor do campo \n");
