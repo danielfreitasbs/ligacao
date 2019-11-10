@@ -40,6 +40,17 @@ public class PromotorApp {
 
 	private static void promotorExcluir() {
 		int option = selecionaTipoPromotor(CABECALHO_FORM_DEL);
+		
+		switch (option) {
+		case 0:
+			PromotorFisicoService.excluirPromotor();
+			break;
+		case 1:
+//			PromotorFisicoService.excluirPromotor();
+			break;
+		default:
+			break;
+		}
 	}
 
 	private static void promotorEditar() throws IOException, InterruptedException, ExecutionException {
