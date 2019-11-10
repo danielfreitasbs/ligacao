@@ -59,6 +59,8 @@ public class VoluntarioDAO {
      * em ações cadastradas no banco de dados Firebase.
      * Caso o registro não exista, um novo documento será criado,
      * caso já exista, as informações enviadas serão atualizadas.
+     * Caso o voluntario não tenha cadastro, um novo cadastro será
+     * criado automaticamente.
      * 
      * @param promotor String com o nome do promotor de ação.
      * @param String com o nome do Objeto ação.
