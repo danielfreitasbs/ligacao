@@ -35,6 +35,8 @@ public class VoluntarioDAO {
         
         String nomeVoluntario = voluntario.getNomeVoluntario();
         String emailVoluntario = voluntario.getEmailVoluntario();
+        String usuario = voluntario.getUsuario();
+        String senha = voluntario.getSenha();
 
         Firestore db = Connection.db;
         
@@ -49,6 +51,19 @@ public class VoluntarioDAO {
         // ...
         // result.get() blocks on response
         System.out.println("Update time : " + resultVoluntario.get().getUpdateTime());
+        
+     // Add document data using a hashmap
+        Map<String, Object> login = new HashMap<String, Object>();
+        login.put("usuario", usuario);
+        login.put("senha", senha);
+        
+        DocumentReference referenciaLogin = db.collection("voluntario").document(nomeVoluntario)
+                .collection("login").document("dados");
+        
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultLogin = referenciaLogin.set(login);
+        // ...
+           // result.get() blocks on response
+           System.out.println("Update time : " + resultLogin.get().getUpdateTime());
         
         return referenciaVoluntario;
         
