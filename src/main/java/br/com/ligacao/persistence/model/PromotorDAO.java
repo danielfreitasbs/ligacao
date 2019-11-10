@@ -26,64 +26,6 @@ public class PromotorDAO {
     
     /**
      * Método responsável por cadastrar ou atualizar um novo 
-     * promotor de ação no banco de dados Firebase.
-     * Caso o registro não exista, um novo documento será criado,
-     * caso já exista, as informações enviadas serão atualizadas.
-     * 
-     * @param promotor Objeto promotor de ação.
-     * @param loginUsuario Objeto login do usuário.
-     */
-    public static void cadastraPromotor(Promotor promotor, Login loginUsuario) 
-            throws IOException, InterruptedException, ExecutionException {
-        
-        String nomePromotor = promotor.getNomePromotor();
-        String categoriaAcao = promotor.getCategoriaAcao();
-        String cpfResponsavel = promotor.getCpfResponsavel();
-        String dataFundacao = promotor.getDataFundacao();
-        String descricao = promotor.getDescricao();
-        String email = promotor.getEmail();
-        String imagem = promotor.getImagem();
-        String redeSocial = promotor.getRedeSocial();
-        String telefone = promotor.getTelefone();
-        String usuario = loginUsuario.getUsuario();
-        String senha = loginUsuario.getSenha();
-        
-        Firestore db = Connection.db;
-        
-        DocumentReference referenciaPromotor = db.collection("promotor de acao").document(nomePromotor);
-        // Add document data using a hashmap
-        Map<String, Object> promotorAcao = new HashMap<String, Object>();
-        promotorAcao.put("nomePromotor", nomePromotor);
-        promotorAcao.put("categoriaAcao", categoriaAcao);
-        promotorAcao.put("cpfResponsavel", cpfResponsavel);
-        promotorAcao.put("dataFundacao", dataFundacao);
-        promotorAcao.put("descricao", descricao);
-        promotorAcao.put("email", email);
-        promotorAcao.put("imagem", imagem);
-        promotorAcao.put("redeSocial", redeSocial);
-        promotorAcao.put("telefone", telefone);
-        //asynchronously write data
-        ApiFuture<com.google.cloud.firestore.WriteResult> resultPromotor = referenciaPromotor.set(promotorAcao);
-     // ...
-        // result.get() blocks on response
-        System.out.println("Update time : " + resultPromotor.get().getUpdateTime());
-        
-        DocumentReference referenciaLogin = db.collection("promotor de acao").document(nomePromotor)
-                .collection("login").document("dados");
-        
-        // Add document data using a hashmap
-        Map<String, Object> login = new HashMap<String, Object>();
-        login.put("usuario", usuario);
-        login.put("senha", senha);
-        
-        ApiFuture<com.google.cloud.firestore.WriteResult> resultLogin = referenciaLogin.set(login);
-        // ...
-           // result.get() blocks on response
-           System.out.println("Update time : " + resultLogin.get().getUpdateTime());
-    }
-    
-    /**
-     * Método responsável por cadastrar ou atualizar um novo 
      * promotor fisico de ação no banco de dados Firebase.
      * Caso o registro não exista, um novo documento será criado,
      * caso já exista, as informações enviadas serão atualizadas.
