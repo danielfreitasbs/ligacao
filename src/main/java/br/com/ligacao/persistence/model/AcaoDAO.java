@@ -162,26 +162,41 @@ public class AcaoDAO {
     }
     
     /**
-     * Método responsável por consultar dados cadastrados
-     * de uma ação.
-     * 
-     * @param nomePromotor Nome do promotor da ação.
-     * @param nomeAcao Nome da ação.
-     * 
-     * @return Retorna uma classe Acao com os dados consultados.
+     * Método responsável por consultar todas as ações existentes.
+     *  
+     * @return Retorna uma list de Acao com todas as ações.
      */
     public static List<Acao> consultaTodasAcoes()
             throws InterruptedException, ExecutionException {
                 
         Firestore db = Connection.db;
         
-        List<Promotor> promotores = new ArrayList<Promotor>();
         List<Acao> acoes = new ArrayList<Acao>();
-        promotores = PromotorDAO.consultaPromotores();
         
-        for (Promotor documentoPromotor : promotores) {
+        List<PromotorFisico> promotoresF = new ArrayList<PromotorFisico>();
+        promotoresF = PromotorDAO.consultaPromotoresFisicos();
         
-            CollectionReference referenciaAcoes = db.collection("promotor de acao").document(documentoPromotor.getNomePromotor())
+        for (PromotorFisico documentoPromotor : promotoresF) {
+        
+            CollectionReference referenciaAcoes = db.collection("promotor de acao").document(documentoPromotor.getNomePessoa())
+                    .collection("acoes");
+            
+          //asynchronously retrieve multiple documents
+            ApiFuture<QuerySnapshot> future = referenciaAcoes.get();
+            // future.get() blocks on response
+            List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+            for (DocumentSnapshot document : documents) {
+              //System.out.println(document.getId() + " adicionado");
+              acoes.add(document.toObject(Acao.class));
+            }
+        }
+        
+        List<PromotorJuridico> promotoresJ = new ArrayList<PromotorJuridico>();
+        promotoresJ = PromotorDAO.consultaPromotoresJuridicos();
+        
+        for (PromotorJuridico documentoPromotor : promotoresJ) {
+        
+            CollectionReference referenciaAcoes = db.collection("promotor de acao").document(documentoPromotor.getRazaoSocial())
                     .collection("acoes");
             
           //asynchronously retrieve multiple documents

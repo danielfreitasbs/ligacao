@@ -2,7 +2,7 @@ package br.com.ligacao.persistence.model;
 
 import java.util.Objects;
 
-public class Voluntario {
+public class Voluntario extends Login  {
     private String nomeVoluntario;
     private String emailVoluntario;
     
@@ -10,8 +10,8 @@ public class Voluntario {
         
     }
     
-    public Voluntario(String nomeVoluntario, String emailVoluntario) {
-        super();
+    public Voluntario(String usuario, String senha, String nomeVoluntario, String emailVoluntario) {
+        super(usuario, senha);
         this.nomeVoluntario = nomeVoluntario;
         this.emailVoluntario = emailVoluntario;
     }
