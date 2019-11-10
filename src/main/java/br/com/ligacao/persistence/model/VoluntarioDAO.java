@@ -25,28 +25,22 @@ public class VoluntarioDAO {
     
     /**
      * Método responsável por cadastrar ou atualizar voluntários
-     * em ações cadastradas no banco de dados Firebase.
-     * Caso o registro não exista, um novo documento será criado,
-     * caso já exista, as informações enviadas serão atualizadas.
-     * 
+     *
      * @param promotor Objeto promotor de ação.
      * @param acao Objeto ação.
      * @param voluntario Objeto voluntario.
+     * @return 
      */
-    public static void cadastraVoluntario(Promotor promotor, 
-            Acao acao, Voluntario voluntario) 
+    public static DocumentReference cadastraVoluntario(Voluntario voluntario) 
                     throws IOException, InterruptedException, ExecutionException {
         
-        String nomePromotor = promotor.getNomePromotor();
-        String nomeAcao = acao.getNomeAcao();
+        
         String nomeVoluntario = voluntario.getNomeVoluntario();
         String emailVoluntario = voluntario.getEmailVoluntario();
 
         Firestore db = Connection.db;
         
-        DocumentReference referenciaVoluntario = db.collection("promotor de acao").document(nomePromotor)
-                                               .collection("acoes").document(nomeAcao)
-                                               .collection("voluntarios").document(nomeVoluntario);
+        DocumentReference referenciaVoluntario = db.collection("voluntario").document(nomeVoluntario);
         
         // Add document data using a hashmap
         Map<String, Object> voluntarios = new HashMap<>();
@@ -57,6 +51,52 @@ public class VoluntarioDAO {
         // ...
         // result.get() blocks on response
         System.out.println("Update time : " + resultVoluntario.get().getUpdateTime());
+        
+        return referenciaVoluntario;
+        
+    }
+    
+    /**
+     * Método responsável por cadastrar ou atualizar voluntários
+     * em ações cadastradas no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     * 
+     * @param promotor Objeto promotor de ação.
+     * @param acao Objeto ação.
+     * @param voluntario Objeto voluntario.
+     */
+    public static void cadastraVoluntarioEmAcao(String promotor, String acao, Voluntario voluntario) 
+                    throws IOException, InterruptedException, ExecutionException {
+        
+        Firestore db = Connection.db;
+        
+        DocumentReference referenciaVoluntario = cadastraVoluntario(voluntario);
+        
+        DocumentReference referenciaVoluntarioAcao = db.collection("promotor de acao").document(promotor)
+                                               .collection("acoes").document(acao)
+                                               .collection("voluntarios").document(voluntario.getNomeVoluntario());
+        
+        DocumentReference referenciaAcaoVoluntario = db.collection("voluntario").document(voluntario.getNomeVoluntario()).
+                                                collection("acoes").document(acao);
+                
+        // Add document data using a hashmap
+        Map<String, Object> voluntarios = new HashMap<>();
+        voluntarios.put("referencia", referenciaVoluntario);
+        //asynchronously write data
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultVoluntario = referenciaVoluntarioAcao.set(voluntarios);
+        // ...
+        // result.get() blocks on response
+        System.out.println("Update time : " + resultVoluntario.get().getUpdateTime());
+        
+     // Add document data using a hashmap
+        Map<String, Object> acaoReg = new HashMap<>();
+        acaoReg.put(acao, referenciaVoluntarioAcao);
+        //asynchronously write data
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultAcaoVoluntario = referenciaAcaoVoluntario.set(acaoReg);
+        // ...
+        // result.get() blocks on response
+        System.out.println("Update time : " + resultAcaoVoluntario.get().getUpdateTime());
         
     }
     
