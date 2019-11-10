@@ -67,10 +67,10 @@ public class PromotorFisicoService {
 			switch (option) {
 			case 0:
 				IPromotorFisicoDAO.excluirPromotor(promotorFisico);
-				System.out.println("\nExclusão de perfil do Promotor " + promotorFisico.getNomePessoa() + " executada com sucesso.");
+				System.out.println("\nExclusão de perfil do Promotor Fisico " + promotorFisico.getNomePessoa() + " executada com sucesso.");
 				return;
 			case 1:
-				System.out.println("\nExclusão de perfil do Promotor " + promotorFisico.getNomePessoa() + " cancelada.");
+				System.out.println("\nExclusão de perfil do Promotor Fisico " + promotorFisico.getNomePessoa() + " cancelada.");
 				return;
 			default:
 				System.out.println("ERRO");

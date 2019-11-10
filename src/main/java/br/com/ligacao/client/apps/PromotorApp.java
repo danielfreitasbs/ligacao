@@ -46,7 +46,7 @@ public class PromotorApp {
 			PromotorFisicoService.excluirPromotor();
 			break;
 		case 1:
-//			PromotorFisicoService.excluirPromotor();
+			PromotorJuridicoService.excluirPromotor();
 			break;
 		default:
 			break;
