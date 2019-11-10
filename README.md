@@ -218,6 +218,27 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 - No passo 7, caso o ator opte pelo *cancelamento* da edicao do perfil nenhum dado será alterado;
 - No passo 7, caso o ator opte pela *confirmacao* da edicao do perfil, todos os dados que foram alterados deverão ser registrados.
 
+### RF13: Excluir perfil de Promotor de Ação
+
+**Ator**: Promotor de Acao
+**Pré-condições**: Ator ter registro em base de dados
+**Pós-condições**: ator com perfil de __Promotor de Ação__ com os dados excluidos da base de dados e assim também suas ações
+**Fluxo principal**:  
+
+1. Ator aciona a alternativa de exclusao do perfil;
+2. Exibicao de mensagem para selecao de tipo de perfil do promotor da acao;
+3. Ator seleciona a alternativa do tipo de perfil que deseja excluir;
+4. Exibicao de formulario para abrir sessao no sistema. Formulario contem atributos usuario e senha;
+5. Ator informa usuario e senha;
+6. Exibicao de mensagem solicitando confirmacao da acao de exclusao;
+7. Realizada a busca e exclusao de dados do promotor da base de dados;
+8. Exibicao de mensagem de status da acao;
+
+**Fluxos alternativos**:
+
+- No passo 5, caso o usuario ou senha esteja incorreto será retornada uma mensagem de finalizacao da operacao e a rotina se encerrará;
+- No passo 6, caso o ator opte pela **nao exclusao** do perfil, os dados não seram alterados e a rotina se encerrará;
+
 ## Programação das entregas dos requisitos
 
 | Identificador | Assunto | Iteração | Fonte do requisito | Última atualização
