@@ -97,7 +97,7 @@ public final class FormulariosSolicitacao {
 		return promotorFisico;
 	}
 	
-	public PromotorJuridico solCadPromotorJuridico() {
+	public static PromotorJuridico solCadPromotorJuridico() {
 		PromotorJuridico promotorJuridico = new PromotorJuridico();
 		
 		StringBuilder sb = new StringBuilder();

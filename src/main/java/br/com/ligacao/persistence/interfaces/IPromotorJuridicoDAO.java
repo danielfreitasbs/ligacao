@@ -2,7 +2,7 @@ package br.com.ligacao.persistence.interfaces;
 
 import br.com.ligacao.persistence.model.PromotorJuridico;
 
-public interface PromotorJuridicoDAO {
+public interface IPromotorJuridicoDAO {
 
 	/**
 	 * Realiza as busca dos dados do PromotorJuridico através de um usuario e senha
@@ -17,6 +17,16 @@ public interface PromotorJuridicoDAO {
 	 */
 	static PromotorJuridico login(String user, String password) {
 		return null;
+	}
+
+	/**
+	 * Realiza a persistencia dos dados do promotor juridico.
+	 * 
+	 * @param promotorFisico instancia de PromotorJuridico.
+	 */
+	static void cadastrarPromotor(PromotorJuridico promotorJuridico) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
