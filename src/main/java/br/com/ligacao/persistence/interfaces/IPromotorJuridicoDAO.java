@@ -29,4 +29,14 @@ public interface IPromotorJuridicoDAO {
 		
 	}
 
+	/**
+	 * Realiza a exclusão dos dados da instancia de PromotorJuridico, além de todas
+	 * acoes vinculadas a esse promotor.
+	 * 
+	 * @param promotorJuridico instancia de promotorJuridico;
+	 */
+	static void excluirPromotor(PromotorJuridico promotorJuridico) {
+		
+	}
+
 }

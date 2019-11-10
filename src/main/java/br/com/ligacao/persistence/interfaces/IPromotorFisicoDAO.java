@@ -28,4 +28,15 @@ public interface IPromotorFisicoDAO {
 		return null;
 	}
 
+	/**
+	 * Realiza a exclusão dos dados da instancia de PromotorFisico, além de todas
+	 * acoes vinculadas a esse promotor.
+	 * 
+	 * @param promotorFisico instancia de promotorFisico;
+	 */
+	static void excluirPromotor(PromotorFisico promotorFisico) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
