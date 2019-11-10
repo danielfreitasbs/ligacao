@@ -26,8 +26,6 @@ public class VoluntarioDAO {
     /**
      * Método responsável por cadastrar ou atualizar voluntários
      *
-     * @param promotor Objeto promotor de ação.
-     * @param acao Objeto ação.
      * @param voluntario Objeto voluntario.
      * @return 
      */
@@ -62,8 +60,8 @@ public class VoluntarioDAO {
      * Caso o registro não exista, um novo documento será criado,
      * caso já exista, as informações enviadas serão atualizadas.
      * 
-     * @param promotor Objeto promotor de ação.
-     * @param acao Objeto ação.
+     * @param promotor String com o nome do promotor de ação.
+     * @param String com o nome do Objeto ação.
      * @param voluntario Objeto voluntario.
      */
     public static void cadastraVoluntarioEmAcao(String promotor, String acao, Voluntario voluntario) 
