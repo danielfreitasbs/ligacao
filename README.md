@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/danielfreitasbs/ligacao.svg?branch=master)](https://travis-ci.com/danielfreitasbs/ligacao)
+
 # Projeto LigAção
 
 Projeto para a disciplina de Domínios de Software - 2019/02 - do curso de Engenharia de Software ([INF/UFG](http://www.inf.ufg.br/)).
