@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/danielfreitasbs/ligacao.svg?branch=master)](https://travis-ci.com/danielfreitasbs/ligacao)
+[![Build Status](https://travis-ci.org/danielfreitasbs/ligacao.svg?branch=master)](https://travis-ci.org/danielfreitasbs/ligacao)
 
 # Projeto LigAção
 
