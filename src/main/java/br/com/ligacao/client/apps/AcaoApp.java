@@ -79,7 +79,9 @@ public class AcaoApp {
         System.out.println("Nome do promotor: ");
         String nomePromotor = scanner.nextLine();
 
+        /*
         promotor = PromotorDAO.consultaPromotor(nomePromotor);
+
         if (promotor != null) {
             System.out.println("Nome da ação: ");
             acao.setNomeAcao(scanner.nextLine());
@@ -129,7 +131,7 @@ public class AcaoApp {
             } else {
                 System.out.println("Cadastro da Ação cancelado!");
             }
-        }
+        }*/
     }
 
     /**
@@ -144,12 +146,12 @@ public class AcaoApp {
 
         System.out.println("Nome do promotor:");
         String nomePromotor = scanner.nextLine();
-        promotor = PromotorDAO.consultaPromotor(nomePromotor);
+        /*promotor = PromotorDAO.consultaPromotor(nomePromotor);
         if (promotor == null) {
             System.out.println("Esse promotor não existe.");
             simuladorInterface(null);
         }
-
+*/
         List<Acao> acoes = AcaoDAO.consultaAcoes(nomePromotor);
         if (acoes.size() == 0) {
             System.out.println("Esse promotor não possui ações cadastradas.");
