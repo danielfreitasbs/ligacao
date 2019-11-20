@@ -17,8 +17,6 @@ Projeto para a disciplina de Domínios de Software - 2019/02 - do curso de Engen
 - [Casos de uso detalhados](#casos-de-uso-detalhados)
 - [Programação das entregas dos requisitos](#programação-das-entregas-dos-requisitos)
 
-
-
 ## Identificação dos componentes do grupo
 
 Desenvolvido pelos alunos: [@alicefrancener](https://github.com/alicefrancener/), [@caiobas](https://github.com/caiobas), [@danielfreitasbs](https://github.com/danielfreitasbs) e [@ottoleggio](https://github.com/ottoleggio).
@@ -285,8 +283,13 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 
 | Identificador | Assunto | Iteração | Fonte do requisito | Última atualização
 | - | - | - | - | -
-| RF01 | Cadastrar ação (Promotor) | #1 | Motivação inicial | 02/11/2019
-| RF02 | Editar ação (Promotor) | #1 | Motivação inicial | 02/11/2019
+| RF01 | Cadastrar ação (Promotor) | #1 | Resultados da entrevista | 02/11/2019
+| RF02 | Editar ação (Promotor) | #1 | Resultados da entrevista | 02/11/2019
 | RF08 | Inscrever em ação (Voluntário) | #1 | Resultados da entrevista | 02/11/2019
 | RF10 | Criar perfil (Promotor) | #1 | Resultados da entrevista | 02/11/2019
 | RF12 | Editar perfil (Promotor)| #1 | Resultados da entrevista | 02/11/2019
+| RF03 | Excluir ação (Promotor)| #2 | Resultados da entrevista | -
+| RF06 | Avaliar voluntários (Promotor)| #2 | Resultados da entrevista | -
+| RF13 | Excluir perfil (Promotor)| #2 | Resultados da entrevista | -
+| RF14 | Criar perfil (Voluntário)| #2 | Resultados da entrevista | -
+| RF17 | Editar perfil (Voluntário)| #2 | Resultados da entrevista | -
