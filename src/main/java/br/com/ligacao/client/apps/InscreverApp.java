@@ -41,8 +41,12 @@ public class InscreverApp {
 		scanner.nextLine();
 		
 		acao = acoes.get(option);
-		Promotor promotor = PromotorDAO.consultaPromotor(acao.getNomePromotor());
-		
+		/*
+		 * Comentei aqui pois estava dando erro
+		 * Promotor promotor =	PromotorDAO.consultaPromotor(acao.getNomePromotor());
+		 *
+		 */
+
 		System.out.println("\nDigite seu nome:");
 		
 		String nomeVoluntario = scanner.nextLine();
@@ -55,15 +59,20 @@ public class InscreverApp {
 			System.out.println("\nEmail inválido. Digite um email válido:");
 			emailVoluntario = scanner.nextLine();
 		}
-		
-		Voluntario voluntario = new Voluntario(nomeVoluntario, emailVoluntario);
+
+		/*
+		 * Voluntario voluntario = new Voluntario(nomeVoluntario,
+		 * emailVoluntario);
+		 */
+
 		
 		StringBuilder sb = new StringBuilder();
+		/*
 		sb.append("\nConfirme os dados. \n").append("Seu nome: ").append(voluntario.getNomeVoluntario())
 					.append("\nSeu email: ").append(voluntario.getEmailVoluntario())
 					.append("\nNome da ação: ").append(acao.getNomeAcao())
 					.append("\nNome do promotor: ").append(promotor.getNomePromotor());
-
+		*/
 		System.out.println(sb.toString());
 		
 		System.out.println("\nDigite 1 para confirmar o cadastro ou 0 para não proceder.");
@@ -71,7 +80,8 @@ public class InscreverApp {
 
 		if (opcao == 1) {
 			scanner.close();
-			VoluntarioDAO.cadastraVoluntario(promotor, acao, voluntario);
+			/*VoluntarioDAO.cadastraVoluntario(promotor, acao, voluntario);
+			 */
 			System.exit(0);
 		} else {
 			scanner.close();
