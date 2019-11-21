@@ -97,6 +97,6 @@ public class PromotorFisicoService {
 
 		String password = scanner.nextLine();
 
-		return IPromotorFisicoDAO.fazerLogin(user, password);
+		return IPromotorFisicoDAO.login(user, password);
 	}
 }

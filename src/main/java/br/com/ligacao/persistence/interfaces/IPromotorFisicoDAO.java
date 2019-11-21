@@ -23,7 +23,7 @@ public interface IPromotorFisicoDAO {
 	 *             informados irá retornar uma instancia da classe com os atributos
 	 *             preenchidos. Caso contrario, deverá retornar NULL.
 	 */
-	static PromotorFisico fazerLogin(String user, String password) {
+	static PromotorFisico login(String user, String password) {
 		// TODO Auto-generated method stub
 		return null;
 	}
