@@ -32,10 +32,9 @@ public class AcaoDAO {
      * @param promotor Objeto promotor de ação.
      * @param acao Objeto ação.
      */
-    public static void cadastraAcao(Promotor promotor, Acao acao)
+    public static void cadastraAcao(String nomePromotor, Acao acao)
             throws IOException, InterruptedException, ExecutionException {
 
-        String nomePromotor = promotor.getNomePromotor();
         String nomeAcao = acao.getNomeAcao();
         String categoriaAcao = acao.getCategoriaAcao();
         String dataRealizacao = acao.getDataRealizacao();
@@ -49,15 +48,15 @@ public class AcaoDAO {
                                                .collection("acoes").document(nomeAcao);
         
         // Add document data using a hashmap
-        Map<String, Object> promotorAcao = new HashMap<>();
-        promotorAcao.put("nomeAcao", nomeAcao);
-        promotorAcao.put("categoriaAcao", categoriaAcao);
-        promotorAcao.put("dataRealizacao", dataRealizacao);
-        promotorAcao.put("descricao", descricao);
-        promotorAcao.put("horaInicio", horaInicio);
-        promotorAcao.put("horaFim", horaFim);
+        Map<String, Object> cadastroAcao = new HashMap<>();
+        cadastroAcao.put("nomeAcao", nomeAcao);
+        cadastroAcao.put("categoriaAcao", categoriaAcao);
+        cadastroAcao.put("dataRealizacao", dataRealizacao);
+        cadastroAcao.put("descricao", descricao);
+        cadastroAcao.put("horaInicio", horaInicio);
+        cadastroAcao.put("horaFim", horaFim);
         //asynchronously write data
-        ApiFuture<com.google.cloud.firestore.WriteResult> resultAcao = referenciaAcao.set(promotorAcao);
+        ApiFuture<com.google.cloud.firestore.WriteResult> resultAcao = referenciaAcao.set(cadastroAcao);
         // ...
         // result.get() blocks on response
         System.out.println("Update time : " + resultAcao.get().getUpdateTime());
