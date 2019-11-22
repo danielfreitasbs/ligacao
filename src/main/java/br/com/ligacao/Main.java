@@ -11,36 +11,37 @@ import br.com.ligacao.client.apps.PromotorApp;
 
 public class Main {
 
-	private static Scanner scanner = new Scanner(System.in);
-	private static int opcao;
+    private static Scanner scanner = new Scanner(System.in);
+    private static int opcao;
 
-	public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
+    public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
 
-		System.out.println("O que deseja realizar?\n"
-				+ "0 - Cadastrar/Editar uma ação\n"
-				+ "1 - Inscrever em ação\n"
-				+ "2 - Acoes em Promotor de Ação\n");
+        System.out.println("O que deseja realizar?\n"
+                + "0 - Cadastrar/Editar uma ação\n"
+                + "1 - Inscrever em ação\n"
+                + "2 - Acoes em Promotor de Ação\n"
+                + "4 - Sair do sistema");
 
-		opcao = scanner.nextInt();
+        opcao = scanner.nextInt();
 
-		switch (opcao) {
-		case 0:
-			AcaoApp.simuladorInterface(args);
-			scanner.close();
-			break;
-		case 1:
-			InscreverApp.main(args);
-			scanner.close();
-			break;
-		case 2:
-			PromotorApp.simuladorInterface();
-			scanner.close();
-			break;
-		default:
-			scanner.close();
-			break;
-		}
+        switch (opcao) {
+            case 0:
+                AcaoApp.simuladorInterface(args);
+                scanner.close();
+                break;
+            case 1:
+                InscreverApp.main(args);
+                scanner.close();
+                break;
+            case 2:
+                PromotorApp.simuladorInterface();
+                scanner.close();
+                break;
+            default:
+                scanner.close();
+                System.exit(0);
+        }
 
-	}
+    }
 
 }
