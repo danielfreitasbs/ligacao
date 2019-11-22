@@ -43,13 +43,10 @@ public class AcaoService {
     /**
      * Cadastrar nova acao de um promotor existente.
      *
-     * @param tipoPromotor
      */
-    public static void cadastrar(int tipoPromotor) throws ExecutionException, InterruptedException {
-        TIPO_PROMOTOR = tipoPromotor;
+    public static void cadastrar() throws ExecutionException, InterruptedException {
         if (login()) {
             System.out.println("---CADASTRAR DE AÇÃO---");
-            scanner = new Scanner(System.in);
 
             System.out.println("Nome da ação: ");
             acao.setNomeAcao(scanner.nextLine());
@@ -89,10 +86,8 @@ public class AcaoService {
     /**
      * Editar acao de um promotor existente.
      *
-     * @param tipoPromotor
      */
-    public static void editar(int tipoPromotor) throws ExecutionException, InterruptedException {
-        TIPO_PROMOTOR = tipoPromotor;
+    public static void editar() throws ExecutionException, InterruptedException {
         if (login()) {
             System.out.println("---EDITAR AÇÃO---");
             Scanner scanner = new Scanner(System.in);
@@ -183,11 +178,14 @@ public class AcaoService {
 
     }
 
-    public static void excluir(int tipoPromotor) {
+    public static void excluir() {
         //TODO
     }
 
     private static boolean login() {
+        scanner = new Scanner(System.in);
+        TIPO_PROMOTOR = selecionaTipoPromotor();
+
         if (TIPO_PROMOTOR == 0) {
             promotorFisico = PromotorFisicoService.login();
         } else {
@@ -202,5 +200,13 @@ public class AcaoService {
         }
         return isLogado;
     }
+
+    private static int selecionaTipoPromotor() {
+        System.out.println("Selecione o tipo de pessoa: \n"
+                + "0 - Pessoa Física\n1 - Pessoa Juridica");
+        int option = scanner.nextInt();
+        return option;
+    }
+
 
 }
