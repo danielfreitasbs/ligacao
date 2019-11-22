@@ -1,14 +1,15 @@
 package br.com.ligacao.persistence.connection;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
+import com.google.common.collect.Lists;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.cloud.FirestoreClient;
+
 
 /**
  * Classe responsável pela conexão com o Firestore.
@@ -18,28 +19,32 @@ public class Connection {
     public static Firestore db = Connection.getConnection();
     
     /**
-     * Método que retorna uma conexão com o banco Firestore
+     * Método que retorna uma conexão com o banco Firestore.
+     * Caso não haja json no caminho especificado, o método
+     * busca a chave na variavel de ambiente GOOGLE_APPLICATION_CREDENTIALS
      *
      * @return objeto Firestore de conexão.
+     * @throws IOException 
      */
     public static Firestore getConnection() {
-        FileInputStream serviceAccount = null;
+        GoogleCredentials credentials = null;
         try {
-            serviceAccount = new FileInputStream("./.settings/ligacao-2121b-firebase-adminsdk-cpw8e-af2c81b80b.json");
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            credentials = GoogleCredentials
+                    .fromStream(new FileInputStream("./.settings/ligacao-2121b-firebase-adminsdk-cpw8e-af2c81b80b.json"))
+                    .createScoped(Lists.newArrayList("https://www.googleapis.com/auth/cloud-platform"));
+        } catch (IOException e) {
+            try {
+                credentials = GoogleCredentials.getApplicationDefault();
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         }
         
         FirebaseOptions options = null;
-        try {
-            options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .build();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        options = new FirebaseOptions.Builder()
+                .setCredentials(credentials)
+                .build();
      // Initialize the default app
         FirebaseApp defaultApp = FirebaseApp.initializeApp(options);
         Firestore db = FirestoreClient.getFirestore(); 
