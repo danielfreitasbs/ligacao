@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Classe responsavel por oferecer serviços relacionados a acoes.
  */
-public class AcaoService {
+public final class AcaoService {
 
     /**
      * Construtor privado para evitar instanciação da classe.
