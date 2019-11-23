@@ -52,6 +52,7 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
+
         <dependency>
             <groupId>com.github.stefanbirkner</groupId>
             <artifactId>system-rules</artifactId>
@@ -70,23 +71,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
-            </plugin>
-
-            <plugin>
-                <!-- Para executar o JAR gerado-->
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.2.1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <mainClass>${project.mainClass}</mainClass>
-                </configuration>
             </plugin>
 
             <!-- spotbugs -->
@@ -187,21 +171,6 @@
                     </additionalOptions>
                 </configuration>
             </plugin>
-
-            <!-- JavaNCSS -->
-            <!-- Verifica complexidade ciclomática (limite)  -->
-            <!-- Verifica número de sentenças (código fonte) -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>javancss-maven-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <failOnViolation>true</failOnViolation>
-                    <ccnLimit>11</ccnLimit>
-                    <ncssLimit>20</ncssLimit>
-                </configuration>
-            </plugin>
-
         </plugins>
     </build>
 
@@ -262,42 +231,6 @@
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
-                <artifactId>javancss-maven-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <failOnViolation>true</failOnViolation>
-                    <ccnLimit>11</ccnLimit>
-                    <ncssLimit>20</ncssLimit>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.12.0</version>
-                <configuration>
-                    <linkXRef>true</linkXRef>
-                    <sourceEncoding>utf-8</sourceEncoding>
-                    <minimumTokens>100</minimumTokens>
-                    <excludes>
-                        <exclude>**/*Bean.java</exclude>
-                        <exclude>**/generated/*.java</exclude>
-                    </excludes>
-                    <excludeRoots>
-                        <excludeRoot>target/generated-sources/stubs
-                        </excludeRoot>
-                    </excludeRoots>
-                    <rulesets>
-                        <ruleset>category/java/multithreading.xml</ruleset>
-                        <ruleset>category/java/performance.xml</ruleset>
-                        <ruleset>category/java/security.xml</ruleset>
-                        <ruleset>${tools.dir}/pmd.xml</ruleset>
-                    </rulesets>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jdepend-maven-plugin</artifactId>
                 <version>2.0</version>
             </plugin>
@@ -313,7 +246,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle.plugin.versao}</version>
+                <version>3.1.0</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -349,169 +282,6 @@
     </reporting>
 
     <profiles>
-
-        <!-- mvn exec:java -P start-h2 -->
-        <!-- Inicia servidor na porta 9092 e cliente na porta 8082 -->
-        <!-- CLIENTE   : http://localhost:8082/              -->
-        <!-- SERVER    : http://localhost:9092               -->
-        <!-- DIRETORIO : target                              -->
-        <!-- JDBC URL  : jdbc:h2:tcp://localhost:9092/./banco -->
-        <!-- Cria 'banco.h2.db' no diretório target          -->
-        <profile>
-            <id>start-h2</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.h2database</groupId>
-                    <artifactId>h2</artifactId>
-                    <version>1.4.200</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.2.1</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>java</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <mainClass>org.h2.tools.Server</mainClass>
-                            <arguments>
-                                <!-- Start also UI -->
-                                <argument>-web</argument>
-                                <!-- db is available via tcp -->
-                                <argument>-tcp</argument>
-                                <!-- local file is present in project-->
-                                <argument>-baseDir</argument>
-                                <argument>target</argument>
-                                <!-- Other computers can connect to this db -->
-                                <!-- <argument>-webAllowOthers</argument> -->
-                                <argument>-webPort</argument>
-                                <argument>8082</argument>
-                                <!-- uncomment if you want to open h2 UI automatically -->
-                                <argument>-browser</argument>
-                            </arguments>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- mvn exec:java -P start-shell-h2 -->
-        <!-- Inicia shell do H2 (por exemplo, para criar um db -->
-        <!-- DIRETORIO QUE SERA USADO : target                 -->
-        <!-- JDBC URL  : jdbc:h2:tcp://localhost:9092/./banco -->
-        <!-- Cria 'banco.h2.db' no diretório target          -->
-        <profile>
-            <id>start-shell-h2</id>
-            <dependencies>
-                <dependency>
-                    <groupId>com.h2database</groupId>
-                    <artifactId>h2</artifactId>
-                    <version>1.4.200</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.2.1</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>java</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <mainClass>org.h2.tools.Shell</mainClass>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>api</id>
-            <build>
-                <finalName>api</finalName>
-                <plugins>
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>mutantes</id>
-            <build>
-                <plugins>
-                    <!-- mvn org.pitest:pitest-maven:muatationCoverage -->
-                    <!-- Relatório em: target/pit-reports/YYYYMMDDHHMM -->
-                    <plugin>
-                        <groupId>org.pitest</groupId>
-                        <artifactId>pitest</artifactId>
-                        <version>1.4.9</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.pitest</groupId>
-                                <artifactId>pitest-junit5-plugin</artifactId>
-                                <version>0.9</version>
-                            </dependency>
-                        </dependencies>
-                        <configuration>
-                            <targetClasses>
-                                <param>
-                                    com.github.kyriosdata.exemplo.domain.Calendario
-                                </param>
-                            </targetClasses>
-                            <targetTests>
-                                <param>com.github.kyriosdata.exemplo.*</param>
-                            </targetTests>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- DOCKER -->
-        <profile>
-            <id>docker</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.spotify</groupId>
-                        <artifactId>dockerfile-maven-plugin</artifactId>
-                        <version>1.4.12</version>
-                        <executions>
-                            <execution>
-                                <id>default</id>
-                                <goals>
-                                    <goal>build</goal>
-                                    <goal>push</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <repository>spotify/foobar</repository>
-                            <tag>${project.version}</tag>
-                            <buildArgs>
-                                <JAR_FILE>target/exemplo-unico.jar</JAR_FILE>
-                            </buildArgs>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
         <!-- OWASP vulnerabilidades              -->
         <!-- mvn verify -P owasp                 -->
         <!-- target/dependency-check-report.html -->
@@ -567,43 +337,6 @@
             </build>
         </profile>
 
-        <!-- executavel-unico -->
-        <!-- Jar file gerado é suficiente -->
-        <profile>
-            <id>executavel-unico</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <version>3.1.1</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                                <configuration>
-                                    <finalName>exemplo-unico</finalName>
-                                    <archive>
-                                        <manifest>
-                                            <mainClass>${project.mainClass}
-                                            </mainClass>
-                                        </manifest>
-                                    </archive>
-                                    <descriptorRefs>
-                                        <descriptorRef>jar-with-dependencies
-                                        </descriptorRef>
-                                    </descriptorRefs>
-                                    <appendAssemblyId>false</appendAssemblyId>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
         <!-- cobertura                     -->
         <!-- mvn package -P cobertura      -->
         <!-- target/site/jacoco/index.html -->
@@ -652,139 +385,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <!-- PROFILE: release -->
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.8.1</version>
-                        <configuration>
-                            <source>1.8</source>
-                            <target>1.8</target>
-                            <!-- OMITE INFORMACAO DE DEBUGGING -->
-                            <compilerArgs>
-                                <arg>-g:none</arg>
-                            </compilerArgs>
-                        </configuration>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <executions>
-                            <execution>
-                                <id>package-sources</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.1.1</version>
-                        <executions>
-                            <execution>
-                                <id>package-javadoc</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                </plugins>
-            </build>
-
-        </profile>
-
-        <!-- deploy (Maven Central) -->
-        <!-- mvn deploy -P deploy   -->
-        <profile>
-            <id>deploy</id>
-            <build>
-                <plugins>
-
-                    <!-- Gerar documentação (javadoc) -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.1.1</version>
-                        <configuration>
-                            <show>public</show>
-                            <additionalOptions>
-                                <additionalOption>-html5</additionalOption>
-                            </additionalOptions>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>package-javadoc</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- Agrega sources em jar -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <executions>
-                            <execution>
-                                <id>package-sources</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- Acesso para deploy no OSSRH Nexus Repository Manager -->
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.8</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
-
-                    <!-- Assinar arquivos -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
                 </plugins>
             </build>
         </profile>
