@@ -80,12 +80,12 @@ public final class AcaoService {
             int opcaoConfirmar = scanner.nextInt();
 
             if (opcaoConfirmar == 0) {
+                String nomePromotor = TIPO_PROMOTOR == 0
+                        ? promotorFisico.getNomePessoa()
+                        : promotorJuridico.getRazaoSocial();
                 try {
-                    if (TIPO_PROMOTOR == 0) {
-                        AcaoDAO.cadastraAcao(promotorFisico.getNomePessoa(), acao);
-                    } else {
-                        AcaoDAO.cadastraAcao(promotorJuridico.getRazaoSocial(), acao);
-                    }
+                    AcaoDAO.cadastraAcao(nomePromotor, acao);
+
                 } catch (IOException e) {
                     System.out.println("Erro ao cadastrar Acao\n");
                 }
@@ -181,11 +181,7 @@ public final class AcaoService {
                         }
 
                         try {
-                            if (TIPO_PROMOTOR == 0) {
-                                AcaoDAO.cadastraAcao(nomePromotor, acao);
-                            } else {
-                                AcaoDAO.cadastraAcao(nomePromotor, acao);
-                            }
+                            AcaoDAO.cadastraAcao(nomePromotor, acao);
                         } catch (IOException e) {
                             e.printStackTrace();
                             System.out.println("Problema ao editar ação!");
@@ -264,8 +260,7 @@ public final class AcaoService {
     private static int selecionaTipoPromotor() {
         System.out.println("Selecione o tipo de pessoa: \n"
                 + "0 - Pessoa Física\n1 - Pessoa Juridica");
-        int option = scanner.nextInt();
-        return option;
+        return scanner.nextInt();
     }
 
 }
