@@ -16,6 +16,12 @@ import java.util.concurrent.ExecutionException;
 public class AcaoService {
 
     /**
+     * Construtor privado para evitar instanciação da classe.
+     */
+    private AcaoService() {
+    }
+
+    /**
      * Tipo de promotor. O, se for Pessoa Fisica; 1 se for Pessoa Juridica.
      */
     private static int TIPO_PROMOTOR;
