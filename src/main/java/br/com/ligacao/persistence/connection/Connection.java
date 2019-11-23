@@ -16,7 +16,7 @@ import com.google.firebase.cloud.FirestoreClient;
  */
 public class Connection {
     
-    public static Firestore db = Connection.getConnection();
+    public static final Firestore db = Connection.getConnection();
     
     /**
      * Método que retorna uma conexão com o banco Firestore.
