@@ -1,4 +1,4 @@
-package br.com.ligacao.client.apps;
+package br.com.ligacao.services;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class AcaoAppTest {
+class AcaoServiceTest {
     private final InputStream systemIn = System.in;
     private final PrintStream systemOut = System.out;
 
@@ -41,27 +41,26 @@ public class AcaoAppTest {
     }
 
     @Test
-    public void interfaceOpcao0() {
-       provideInput("0");
-       assertThrows(NoSuchElementException.class, AcaoApp::simuladorInterface);
-    }
-
-    @Test
-    public void interfaceOpcao1() {
+    void cadastrar() {
         provideInput("1");
-        assertThrows(NoSuchElementException.class, AcaoApp::simuladorInterface);
+        assertThrows(NoSuchElementException.class, () -> {
+            AcaoService.cadastrar();
+        });
     }
 
     @Test
-    public void interfaceOpcao2() {
-        provideInput("2");
-        assertThrows(NoSuchElementException.class, AcaoApp::simuladorInterface);
+    void editar() {
+        provideInput("1");
+        assertThrows(NoSuchElementException.class, () -> {
+            AcaoService.editar();
+        });
     }
 
     @Test
-    public void interfaceOpcao3() {
-        provideInput("3");
-        assertThrows(NoSuchElementException.class, AcaoApp::simuladorInterface);
+    void excluir() {
+        provideInput("1");
+        assertThrows(NoSuchElementException.class, () -> {
+            AcaoService.excluir();
+        });
     }
-
 }
