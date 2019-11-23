@@ -16,7 +16,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
 
-        System.out.println("O que deseja realizar?\n"
+        System.out.println("----- Inicio -----\n"
+                + "O que deseja realizar?\n"
                 + "0 - Cadastrar/Editar uma ação\n"
                 + "1 - Inscrever em ação\n"
                 + "2 - Acoes em Promotor de Ação\n"
@@ -27,15 +28,12 @@ public class Main {
         switch (opcao) {
             case 0:
                 AcaoApp.simuladorInterface(args);
-                scanner.close();
                 break;
             case 1:
                 InscreverApp.main(args);
-                scanner.close();
                 break;
             case 2:
                 PromotorApp.simuladorInterface();
-                scanner.close();
                 break;
             default:
                 scanner.close();
