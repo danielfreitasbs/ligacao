@@ -2,7 +2,6 @@ language: java
 
 script:
   - mvn clean
-  - mvn spotbugs:check
   
 cache:
   directories:
