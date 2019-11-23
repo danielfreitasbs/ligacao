@@ -247,6 +247,57 @@ public class PromotorDAO {
         return promotor;
     }
     
+    /**
+     * Realiza as busca dos dados do PromotorFisico através de um usuario e senha
+     * informado por parametro.
+     * 
+     * @param user     nome de usuario cadastrado no perfil de promotor fisico.
+     * @param password senha cadastrado no perfil de promotor fisico.
+     * 
+     * @return caso seja encontrado o perfil de Promotor fisico com os parametros
+     *             informados irá retornar uma instancia da classe com os atributos
+     *             preenchidos. Caso contrario, deverá retornar NULL.
+     */
+    static PromotorFisico loginPromotorFisico(String user, String password) 
+            throws InterruptedException, ExecutionException {
+        List<PromotorFisico> promotores = new ArrayList<PromotorFisico>();
+        
+        promotores = consultaPromotoresFisicos();
+        
+        for(PromotorFisico promotor : promotores) {
+            if(consultaUsuario(promotor.getNomePessoa()) == user
+                    && consultaSenha(promotor.getNomePessoa()) == password) {
+                    return promotor;
+            }
+        }   
+        return null;
+    }
+    
+    /**
+     * Realiza as busca dos dados do PromotorJuridico através de um usuario e senha
+     * informado por parametro.
+     * 
+     * @param user     nome de usuario cadastrado no perfil de promotor juridico.
+     * @param password senha cadastrado no perfil de promotor juridico.
+     * 
+     * @return caso seja encontrado o perfil de Promotor Juridico com os parametros
+     *             informados irá retornar uma instancia da classe com os atributos
+     *             preenchidos. Caso contrario, deverá retornar NULL.
+     */
+    static PromotorJuridico loginPromotorJuridico(String user, String password) 
+            throws InterruptedException, ExecutionException {
+        List<PromotorJuridico> promotores = new ArrayList<PromotorJuridico>();
+        
+        promotores = consultaPromotoresJuridicos();
+        
+        for(PromotorJuridico promotor : promotores) {
+            if(consultaUsuario(promotor.getNomePessoaResponsavel()) == user
+                    && consultaSenha(promotor.getNomePessoaResponsavel()) == password) {
+                    return promotor;
+            }
+        }   
+        return null;
+    }
     
     /**
      * Método responsável por consultar nome de usuário

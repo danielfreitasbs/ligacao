@@ -150,6 +150,9 @@ public class AcaoDAO {
         } catch (ExecutionException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         if (document.exists()) {
             System.out.println("Document data: " + document.getData());
