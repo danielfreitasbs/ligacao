@@ -18,19 +18,22 @@ public final class AcaoApp {
     private AcaoApp() {
     }
 
+    /**
+     * Scanner para entrada de dados pelo usuario.
+     */
     private static Scanner scanner;
 
     /**
      * Método para simular interface para invocar métodos sobre Ações.
      *
-     * @throws InterruptedException se houver problema na Main
-     * @throws ExecutionException   se houver problema na Main
-     * @throws IOException          se houver problema na Main
-     * @args Entrada padrão do menu principal
+     * @throws InterruptedException se houver problema na Main ou ao acessar
+     *                              o banco de dados
+     * @throws ExecutionException   se houver problema na Main ou ao acessar
+     *                              o banco de dados
+     * @throws IOException          se houver problema na Main ou ao utilizar
+     *                              o banco de dados
      */
-    public static void simuladorInterface() throws ExecutionException,
-            InterruptedException, IOException {
-
+    public static void simuladorInterface() throws InterruptedException, ExecutionException, IOException {
         scanner = new Scanner(System.in);
         System.out.println("----- Acoes -----\n"
                 + "0 - Cadastrar Ação.\n"
@@ -44,8 +47,16 @@ public final class AcaoApp {
         Main.main(new String[0]);
     }
 
-    public static void escolherOpcao(int opcao) throws ExecutionException,
-            InterruptedException, IOException {
+    /**
+     * Método para escolher opção do usuário e oferecer serviços sobre a Ação.
+     *
+     * @param opcao opcao a ser escolhida
+     * @throws InterruptedException se houver problema ao acessar o banco de dados
+     * @throws ExecutionException   se houver problema na Main ou ao acessar
+     *                              o banco de dados
+     * @throws IOException          se houver problema na Main
+     */
+    public static void escolherOpcao(int opcao) throws ExecutionException, InterruptedException, IOException {
         switch (opcao) {
             case 0:
                 AcaoService.cadastrar();
