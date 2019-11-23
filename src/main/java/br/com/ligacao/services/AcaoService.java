@@ -45,10 +45,12 @@ public final class AcaoService {
      * Scanner para entrada de dados pelo usuario.
      */
     private static Scanner scanner = new Scanner(System.in);
-    ;
 
     /**
      * Cadastrar nova acao de um promotor existente.
+     *
+     * @throws ExecutionException   se houver problema ao acessar o banco de dados
+     * @throws InterruptedException se houver problema ao acessar o banco de dados
      */
     public static void cadastrar() throws ExecutionException, InterruptedException {
         if (login()) {
@@ -96,6 +98,9 @@ public final class AcaoService {
 
     /**
      * Editar acao de um promotor existente.
+     *
+     * @throws ExecutionException   se houver problema ao acessar o banco de dados
+     * @throws InterruptedException se houver problema ao acessar o banco de dados
      */
     public static void editar() throws ExecutionException, InterruptedException {
         if (login()) {
@@ -109,7 +114,9 @@ public final class AcaoService {
                 System.out.println("Esse promotor não possui ações cadastradas.");
             } else {
                 System.out.println("Esse promotor possui as seguintes ações:");
-                acoes.forEach(acao -> System.out.println(acao.getNomeAcao()));
+                acoes.forEach(item -> {
+                    System.out.println(item.getNomeAcao());
+                });
 
                 System.out.println("Nome da ação a ser editada:");
                 String nomeAcao = scanner.nextLine();
@@ -190,6 +197,12 @@ public final class AcaoService {
         }
     }
 
+    /**
+     * Exclui acao de um promotor existente.
+     *
+     * @throws ExecutionException   se houver problema ao acessar o banco de dados
+     * @throws InterruptedException se houver problema ao acessar o banco de dados
+     */
     public static void excluir() throws ExecutionException, InterruptedException {
         if (login()) {
             System.out.println("----- Excluir Ação -----");
@@ -203,7 +216,7 @@ public final class AcaoService {
                 System.out.println("Esse promotor não possui ações cadastradas.");
             } else {
                 System.out.println("Esse promotor possui as seguintes ações:");
-                acoes.forEach(acao -> System.out.println(acao.getNomeAcao()));
+                acoes.forEach(item -> System.out.println(item.getNomeAcao()));
 
                 System.out.println("Nome da Ação a ser excluída:");
                 String nomeAcao = scanner.nextLine();
@@ -218,6 +231,12 @@ public final class AcaoService {
         }
     }
 
+    /**
+     * Realiza o login do promotor de acordo com tipo.
+     *
+     * @return true, se as informações de login são válidadas, false, caso o
+     * usuário ou senha forem inválidos
+     */
     private static boolean login() {
         TIPO_PROMOTOR = selecionaTipoPromotor();
 
@@ -236,6 +255,12 @@ public final class AcaoService {
         return isLogado;
     }
 
+    /**
+     * Método para selecionar o tipo de promotor, físico ou jurídico.
+     *
+     * @return 0, se o tipo de promotor for físico, 1, se o tipo de promotor
+     * for jurídico
+     */
     private static int selecionaTipoPromotor() {
         System.out.println("Selecione o tipo de pessoa: \n"
                 + "0 - Pessoa Física\n1 - Pessoa Juridica");
