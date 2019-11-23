@@ -56,7 +56,8 @@ public final class AcaoApp {
      *                              o banco de dados
      * @throws IOException          se houver problema na Main
      */
-    public static void escolherOpcao(int opcao) throws ExecutionException, InterruptedException, IOException {
+    public static void escolherOpcao(final int opcao) throws ExecutionException,
+            InterruptedException, IOException {
         switch (opcao) {
             case 0:
                 AcaoService.cadastrar();
