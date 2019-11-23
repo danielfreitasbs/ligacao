@@ -6,6 +6,7 @@ import br.com.ligacao.persistence.model.AcaoDAO;
 import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.PromotorJuridico;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -21,7 +22,7 @@ public class AcaoService {
     private static int TIPO_PROMOTOR;
 
     /**
-     * Acao a ser criada/editada/lida/excluida.
+     * Acao a ser criada/editada/excluida.
      */
     private static Acao acao = new Acao();
 
@@ -38,16 +39,17 @@ public class AcaoService {
     /**
      * Scanner para entrada de dados pelo usuario.
      */
-    private static Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in);
+    ;
 
     /**
      * Cadastrar nova acao de um promotor existente.
-     *
      */
     public static void cadastrar() throws ExecutionException, InterruptedException {
         if (login()) {
-            System.out.println("---CADASTRAR DE AÇÃO---");
+            System.out.println("----- Cadastro de Acao -----");
 
+            scanner.nextLine();
             System.out.println("Nome da ação: ");
             acao.setNomeAcao(scanner.nextLine());
 
@@ -71,26 +73,28 @@ public class AcaoService {
             int opcaoConfirmar = scanner.nextInt();
 
             if (opcaoConfirmar == 0) {
-                if (TIPO_PROMOTOR == 0) {
-                    IAcaoDAO.cadastraAcao(promotorFisico, acao);
-                } else {
-                    IAcaoDAO.cadastraAcao(promotorJuridico, acao);
+                try {
+                    if (TIPO_PROMOTOR == 0) {
+                        AcaoDAO.cadastraAcao(promotorFisico.getNomePessoa(), acao);
+                    } else {
+                        AcaoDAO.cadastraAcao(promotorJuridico.getNomePessoaResponsavel(), acao);
+                    }
+                } catch (IOException e) {
+                    System.out.println("Erro ao cadastrar Acao\n");
                 }
-                System.out.println("Acão cadastrada com sucesso!");
+                System.out.println("Acão cadastrada com sucesso!\n");
             } else {
-                System.out.println("Cadastro da Ação cancelado!");
+                System.out.println("Cadastro da Ação cancelado!\n");
             }
         }
     }
 
     /**
      * Editar acao de um promotor existente.
-     *
      */
     public static void editar() throws ExecutionException, InterruptedException {
         if (login()) {
             System.out.println("---EDITAR AÇÃO---");
-            Scanner scanner = new Scanner(System.in);
 
             String nomePromotor = TIPO_PROMOTOR == 0
                     ? promotorFisico.getNomePessoa()
@@ -183,7 +187,6 @@ public class AcaoService {
     }
 
     private static boolean login() {
-        scanner = new Scanner(System.in);
         TIPO_PROMOTOR = selecionaTipoPromotor();
 
         if (TIPO_PROMOTOR == 0) {
@@ -192,11 +195,11 @@ public class AcaoService {
             promotorJuridico = PromotorJuridicoService.login();
         }
 
-        boolean isLogado = promotorFisico == null && promotorJuridico == null;
+        boolean isLogado = promotorFisico != null || promotorJuridico != null;
         if (isLogado) {
-            System.out.println("Senha e/ou usuario incorretos!");
+            System.out.println("Usuario logado no sistema!\n");
         } else {
-            System.out.println("Usuario logado no sistema!");
+            System.out.println("Senha e/ou usuario incorretos!\n");
         }
         return isLogado;
     }
