@@ -6,7 +6,6 @@ import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.PromotorJuridico;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -45,7 +44,7 @@ public final class AcaoService {
     /**
      * Scanner para entrada de dados pelo usuario.
      */
-    private static Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
+    private static Scanner scanner = new Scanner(System.in);
 
     /**
      * Cadastrar nova acao de um promotor existente.
