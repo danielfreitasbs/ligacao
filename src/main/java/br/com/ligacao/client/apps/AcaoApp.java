@@ -12,6 +12,9 @@ import java.util.concurrent.ExecutionException;
  */
 public class AcaoApp {
 
+
+    private static Scanner scanner;
+
     /**
      * Método para simular interface para invocar métodos sobre Ações.
      *
@@ -20,9 +23,10 @@ public class AcaoApp {
      * @throws IOException          se houver problema na Main
      * @args Entrada padrão do menu principal
      */
-    public static void simuladorInterface(final String[] args) throws InterruptedException, ExecutionException, IOException {
+    public static void simuladorInterface() throws ExecutionException,
+            InterruptedException, IOException {
 
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         System.out.println("----- Acoes -----\n"
                 + "0 - Cadastrar Ação.\n"
                 + "1 - Editar Ação\n"
@@ -31,6 +35,12 @@ public class AcaoApp {
                 + "4 - Sair do sistema");
 
         int opcao = scanner.nextInt();
+        escolherOpcao(opcao);
+        Main.main(new String[0]);
+    }
+
+    public static void escolherOpcao(int opcao) throws ExecutionException,
+            InterruptedException, IOException {
         switch (opcao) {
             case 0:
                 AcaoService.cadastrar();
@@ -42,12 +52,13 @@ public class AcaoApp {
                 AcaoService.excluir();
                 break;
             case 3:
-                Main.main(args);
+                Main.main(new String[0]);
                 break;
             default:
                 scanner.close();
                 System.exit(0);
         }
-        Main.main(args);
     }
+
+
 }
