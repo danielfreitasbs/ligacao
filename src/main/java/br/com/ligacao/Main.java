@@ -5,12 +5,13 @@ import br.com.ligacao.client.apps.InscreverApp;
 import br.com.ligacao.client.apps.PromotorApp;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 public class Main {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
     private static int opcao;
 
     public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {

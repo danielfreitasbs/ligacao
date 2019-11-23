@@ -4,6 +4,7 @@ import br.com.ligacao.Main;
 import br.com.ligacao.services.AcaoService;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
@@ -34,11 +35,11 @@ public final class AcaoApp {
      *                              o banco de dados
      */
     public static void simuladorInterface() throws InterruptedException, ExecutionException, IOException {
-        scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in, StandardCharsets.UTF_8);
         System.out.println("----- Acoes -----\n"
-                + "0 - Cadastrar Ação.\n"
-                + "1 - Editar Ação\n"
-                + "2 - Excluir Ação - TBI\n"
+                + "0 - Cadastrar Acao.\n"
+                + "1 - Editar Acao\n"
+                + "2 - Excluir Acao\n"
                 + "3 - Voltar ao menu principal\n"
                 + "4 - Sair do sistema");
 
