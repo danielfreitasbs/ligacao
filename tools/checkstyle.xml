@@ -83,7 +83,6 @@
         <module name="MethodName"/>
         <module name="PackageName"/>
         <module name="ParameterName"/>
-        <module name="StaticVariableName"/>
         <module name="TypeName"/>
 
         <!-- Checks for imports                              -->
@@ -140,11 +139,6 @@
         <module name="HiddenField"/>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
-
-        <module name="MagicNumber">
-            <property name="constantWaiverParentToken"
-                      value="ASSIGN, EXPR, MOD, DIV, STAR, FINAL, MINUS, PLUS"/>
-        </module>
 
         <module name="MissingSwitchDefault"/>
         <module name="SimplifyBooleanExpression"/>
