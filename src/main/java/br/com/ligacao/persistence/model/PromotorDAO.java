@@ -265,8 +265,8 @@ public class PromotorDAO {
         promotores = consultaPromotoresFisicos();
         
         for(PromotorFisico promotor : promotores) {
-            if(consultaUsuario(promotor.getNomePessoa()) == user
-                    && consultaSenha(promotor.getNomePessoa()) == password) {
+            if(consultaUsuario(promotor.getNomePessoa()).equals(user)
+                    && consultaSenha(promotor.getNomePessoa()).equals(password)) {
                     return promotor;
             }
         }   
@@ -291,8 +291,8 @@ public class PromotorDAO {
         promotores = consultaPromotoresJuridicos();
         
         for(PromotorJuridico promotor : promotores) {
-            if(consultaUsuario(promotor.getNomePessoaResponsavel()) == user
-                    && consultaSenha(promotor.getNomePessoaResponsavel()) == password) {
+            if(consultaUsuario(promotor.getNomePessoaResponsavel()).equals(user)
+                    && consultaSenha(promotor.getNomePessoaResponsavel()).equals(password)) {
                     return promotor;
             }
         }   
