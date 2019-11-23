@@ -1,6 +1,5 @@
 package br.com.ligacao.services;
 
-import br.com.ligacao.persistence.interfaces.IAcaoDAO;
 import br.com.ligacao.persistence.model.Acao;
 import br.com.ligacao.persistence.model.AcaoDAO;
 import br.com.ligacao.persistence.model.PromotorFisico;
@@ -47,7 +46,7 @@ public class AcaoService {
      */
     public static void cadastrar() throws ExecutionException, InterruptedException {
         if (login()) {
-            System.out.println("----- Cadastro de Acao -----");
+            System.out.println("----- Cadastrar Ação -----");
 
             scanner.nextLine();
             System.out.println("Nome da ação: ");
@@ -77,7 +76,7 @@ public class AcaoService {
                     if (TIPO_PROMOTOR == 0) {
                         AcaoDAO.cadastraAcao(promotorFisico.getNomePessoa(), acao);
                     } else {
-                        AcaoDAO.cadastraAcao(promotorJuridico.getNomePessoaResponsavel(), acao);
+                        AcaoDAO.cadastraAcao(promotorJuridico.getRazaoSocial(), acao);
                     }
                 } catch (IOException e) {
                     System.out.println("Erro ao cadastrar Acao\n");
@@ -94,11 +93,11 @@ public class AcaoService {
      */
     public static void editar() throws ExecutionException, InterruptedException {
         if (login()) {
-            System.out.println("---EDITAR AÇÃO---");
+            System.out.println("----- Editar Ação -----");
 
             String nomePromotor = TIPO_PROMOTOR == 0
                     ? promotorFisico.getNomePessoa()
-                    : promotorFisico.getNomePessoa();
+                    : promotorJuridico.getRazaoSocial();
             List<Acao> acoes = AcaoDAO.consultaAcoes(nomePromotor);
             if (acoes.size() == 0) {
                 System.out.println("Esse promotor não possui ações cadastradas.");
@@ -167,23 +166,50 @@ public class AcaoService {
                             default:
                                 break;
                         }
-                        if (TIPO_PROMOTOR == 0) {
-                            IAcaoDAO.cadastraAcao(promotorFisico, acao);
-                        } else {
-                            IAcaoDAO.cadastraAcao(promotorJuridico, acao);
+
+                        try {
+                            if (TIPO_PROMOTOR == 0) {
+                                AcaoDAO.cadastraAcao(nomePromotor, acao);
+                            } else {
+                                AcaoDAO.cadastraAcao(nomePromotor, acao);
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            System.out.println("Problema ao editar ação!");
                         }
-                        System.out.println("Ação editada com sucesso!");
                     }
+                    System.out.println("Ação editada com sucesso!");
                 }
             }
-
         }
-
-
     }
 
-    public static void excluir() {
-        //TODO
+    public static void excluir() throws ExecutionException, InterruptedException {
+        if (login()) {
+            System.out.println("----- Excluir Ação -----");
+
+            String nomePromotor = TIPO_PROMOTOR == 0
+                    ? promotorFisico.getNomePessoa()
+                    : promotorJuridico.getRazaoSocial();
+
+            List<Acao> acoes = AcaoDAO.consultaAcoes(nomePromotor);
+            if (acoes.size() == 0) {
+                System.out.println("Esse promotor não possui ações cadastradas.");
+            } else {
+                System.out.println("Esse promotor possui as seguintes ações:");
+                acoes.forEach(acao -> System.out.println(acao.getNomeAcao()));
+
+                System.out.println("Nome da Ação a ser excluída:");
+                String nomeAcao = scanner.nextLine();
+                acao = AcaoDAO.consultaAcao(nomePromotor, nomeAcao);
+
+                if (acao == null) {
+                    System.out.println("Essa Ação não está listada");
+                } else {
+                    AcaoDAO.excluiAcao(nomeAcao, nomePromotor);
+                }
+            }
+        }
     }
 
     private static boolean login() {
@@ -210,6 +236,5 @@ public class AcaoService {
         int option = scanner.nextInt();
         return option;
     }
-
 
 }
