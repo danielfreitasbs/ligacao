@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Classe responsavel por gerenciar requisições do cliente sobre ações.
  */
-public class AcaoApp {
+public final class AcaoApp {
 
     /**
      * Construtor privado para evitar instanciação da classe.
