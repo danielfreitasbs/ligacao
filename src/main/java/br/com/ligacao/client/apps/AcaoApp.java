@@ -12,6 +12,11 @@ import java.util.concurrent.ExecutionException;
  */
 public class AcaoApp {
 
+    /**
+     * Construtor privado para evitar instanciação da classe.
+     */
+    private AcaoApp() {
+    }
 
     private static Scanner scanner;
 
