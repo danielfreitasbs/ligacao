@@ -1,13 +1,12 @@
 package br.com.ligacao;
 
+import br.com.ligacao.client.apps.AcaoApp;
+import br.com.ligacao.client.apps.InscreverApp;
+import br.com.ligacao.client.apps.PromotorApp;
+
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
-
-import br.com.ligacao.client.apps.InscreverApp;
-import br.com.ligacao.client.apps.AcaoApp;
-import br.com.ligacao.client.apps.LoginApp;
-import br.com.ligacao.client.apps.PromotorApp;
 
 public class Main {
 
@@ -18,7 +17,7 @@ public class Main {
 
         System.out.println("----- Inicio -----\n"
                 + "O que deseja realizar?\n"
-                + "0 - Cadastrar/Editar uma ação\n"
+                + "0 - Cadastrar/Editar/Excluir uma ação\n"
                 + "1 - Inscrever em ação\n"
                 + "2 - Acoes em Promotor de Ação\n"
                 + "4 - Sair do sistema");
@@ -27,7 +26,7 @@ public class Main {
 
         switch (opcao) {
             case 0:
-                AcaoApp.simuladorInterface(args);
+                AcaoApp.simuladorInterface();
                 break;
             case 1:
                 InscreverApp.main(args);
