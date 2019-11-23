@@ -23,7 +23,7 @@ public class AcaoApp {
     public static void simuladorInterface(final String[] args) throws InterruptedException, ExecutionException, IOException {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("----- O que deseja executar? -----\n"
+        System.out.println("----- Acoes -----\n"
                 + "0 - Cadastrar Ação.\n"
                 + "1 - Editar Ação\n"
                 + "2 - Excluir Ação - TBI\n"
@@ -34,18 +34,14 @@ public class AcaoApp {
         switch (opcao) {
             case 0:
                 AcaoService.cadastrar();
-                scanner.close();
                 break;
             case 1:
-                scanner.close();
                 AcaoService.editar();
                 break;
             case 2:
-                scanner.close();
                 AcaoService.excluir();
                 break;
             case 3:
-                scanner.close();
                 Main.main(args);
                 break;
             default:
