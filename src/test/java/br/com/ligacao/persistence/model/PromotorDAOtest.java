@@ -78,7 +78,7 @@ class PromotorDAOtest {
         assertEquals(promotorJuridicoTesteSenhaAlterada.getNomePessoaResponsavel(),"testeNomeResponsavel");
 
         //exclui cadastro de teste no banco firestore
-        PromotorDAO.excluiPromotor("testeNomeResponsavel");
+        PromotorDAO.excluiPromotor("testeRazaoSocial");
     }
 
 }
