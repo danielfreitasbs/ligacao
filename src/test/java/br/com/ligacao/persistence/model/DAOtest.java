@@ -28,7 +28,11 @@ class DAOtest {
         //testa consulta de login de promotor fisico cadastrado
         PromotorFisico promotorFisicoTesteLogin = PromotorDAO.loginPromotorFisico("userTeste", "senhaTeste");
         assertEquals(promotorFisicoTesteLogin.getNomePessoa(),"nomeTeste");
-                
+        //Senha incorreta
+        assertEquals(PromotorDAO.loginPromotorFisico("userTeste", "SenhaIncorreta"), null);
+        //Usuario incorreto
+        assertEquals(PromotorDAO.loginPromotorFisico("userIncorreto", "senhaTeste"), null);
+
         //exclui cadastro de teste no banco firestore
         PromotorDAO.excluiPromotor("nomeTeste");
     }
