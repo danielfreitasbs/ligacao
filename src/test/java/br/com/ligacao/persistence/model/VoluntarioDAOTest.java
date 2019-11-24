@@ -3,6 +3,8 @@ package br.com.ligacao.persistence.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.junit.jupiter.api.Test;
@@ -29,9 +31,28 @@ class VoluntarioDAOTest {
         VoluntarioDAO.cadastraVoluntario(voluntarioTeste);
         VoluntarioDAO.cadastraVoluntarioEmAcao("nomeTeste", "nomeAcaoTeste", voluntarioTeste);
         
+        Voluntario voluntarioTeste2 = new Voluntario("usuarioTest2", "senhaTeste2", 
+                "nomeVoluntarioTeste2", "emailVoluntarioTeste2");
+        //cadastra voluntario no banco firestore
+        VoluntarioDAO.cadastraVoluntario(voluntarioTeste2);
+        
+        //cadastra voluntarios em acao
+        VoluntarioDAO.cadastraVoluntarioEmAcao("nomeTeste", "nomeAcaoTeste", voluntarioTeste);
+        VoluntarioDAO.cadastraVoluntarioEmAcao("nomeTeste", "nomeAcaoTeste", voluntarioTeste2);
+        
+        //consulta voluntario
+        List<Voluntario> voluntariosTeste = VoluntarioDAO.consultaVoluntarios("nomeTeste", "nomeAcaoTeste");
+        assertEquals(voluntariosTeste.get(0).getNome(),"nomeVoluntarioTeste");
+        assertEquals(voluntariosTeste.get(1).getNome(),"nomeVoluntarioTeste2");
         
         //exclui voluntario de uma acao
         VoluntarioDAO.excluiVoluntario("nomeTeste", "nomeAcaoTeste", "nomeVoluntarioTeste");
+      //exclui voluntario de uma acao
+        VoluntarioDAO.excluiVoluntario("nomeTeste", "nomeAcaoTeste", "nomeVoluntarioTeste2");
+        //exclui acao de teste no banco firestore
+        AcaoDAO.excluiAcao("nomeTeste", "nomeAcaoTeste");
+        //exclui promotor de teste no banco firestore
+        PromotorDAO.excluiPromotor("nomeTeste");
     }
 
 }

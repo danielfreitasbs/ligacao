@@ -49,7 +49,9 @@ class AcaoDAOTest {
         
         //exclui acao de teste no banco firestore
         AcaoDAO.excluiAcao("nomeTeste", "nomeAcaoTeste");
-        //exclui cadastro de teste no banco firestore
+      //exclui acao de teste no banco firestore
+        AcaoDAO.excluiAcao("nomeTeste2", "nomeAcaoTeste");
+        //exclui promotor de teste no banco firestore
         PromotorDAO.excluiPromotor("nomeTeste");
     }
 
