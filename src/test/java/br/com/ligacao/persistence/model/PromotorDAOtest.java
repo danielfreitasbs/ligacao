@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 
 import org.junit.jupiter.api.Test;
 
-class DAOtest {
+class PromotorDAOtest {
 
     @Test
     void testDAOPromotorFisico() throws IOException, InterruptedException, ExecutionException {
