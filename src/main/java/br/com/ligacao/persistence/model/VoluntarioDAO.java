@@ -157,13 +157,19 @@ public class VoluntarioDAO {
 
         Firestore db = Connection.db;
         
-        DocumentReference referenciaVoluntario = db.collection("promotor de acao").document(nomePromotor)
+        DocumentReference referenciaAcaoVoluntario = db.collection("promotor de acao").document(nomePromotor)
                 .collection("acoes").document(nomeAcao)
                 .collection("voluntarios").document(voluntario);
         
+        DocumentReference referenciaVoluntarioAcao = db.collection("voluntario").document(voluntario)
+                .collection("acoes").document(nomeAcao);
+        
      // asynchronously delete a document
-        ApiFuture<WriteResult> writeResult = referenciaVoluntario.delete();
+        ApiFuture<WriteResult> writeResult = referenciaAcaoVoluntario.delete();
+     // asynchronously delete a document
+        ApiFuture<WriteResult> writeResult2 = referenciaVoluntarioAcao.delete();
         // ...
         System.out.println("Update time : " + writeResult.get().getUpdateTime());
+        System.out.println("Update time : " + writeResult2.get().getUpdateTime());
     }
 }
