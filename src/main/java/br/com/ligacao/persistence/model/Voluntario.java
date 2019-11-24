@@ -1,5 +1,11 @@
 package br.com.ligacao.persistence.model;
 
+/**
+ * Classe representante da entidade de voluntario.
+ * 
+ * @author developer
+ *
+ */
 public class Voluntario extends Login  {
     private String nomeVoluntario;
     private String emailVoluntario;
