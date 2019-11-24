@@ -3,7 +3,6 @@ package br.com.ligacao.persistence.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
