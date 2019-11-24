@@ -378,11 +378,7 @@ public class PromotorDAO {
      * @param nomePromotor Nome do promotor da ação.
      * @param senha Senha do usuário do promotor da ação.
      */
-    public static void alteraSenha(Promotor promotor,
-                            Login login) throws IOException, InterruptedException, ExecutionException {
-        
-        String nomePromotor = promotor.getNomePromotor();
-        String senha = login.getSenha();
+    public static void alteraSenha(String nomePromotor, String usuario, String senha) throws IOException, InterruptedException, ExecutionException {
         
         Firestore db = Connection.db;
         
@@ -391,6 +387,7 @@ public class PromotorDAO {
         
         // Add document data using a hashmap
         Map<String, Object> loginMap = new HashMap<String, Object>();
+        loginMap.put("usuario", usuario);
         loginMap.put("senha", senha);
         
         ApiFuture<com.google.cloud.firestore.WriteResult> resultLogin = referenciaLogin.set(loginMap);
