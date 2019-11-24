@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 
 import org.junit.jupiter.api.Test;
 
-class DAOtest {
+class PromotorDAOtest {
 
     @Test
     void testDAOPromotorFisico() throws IOException, InterruptedException, ExecutionException {
@@ -78,7 +78,7 @@ class DAOtest {
         assertEquals(promotorJuridicoTesteSenhaAlterada.getNomePessoaResponsavel(),"testeNomeResponsavel");
 
         //exclui cadastro de teste no banco firestore
-        PromotorDAO.excluiPromotor("testeNomeResponsavel");
+        PromotorDAO.excluiPromotor("testeRazaoSocial");
     }
 
 }
