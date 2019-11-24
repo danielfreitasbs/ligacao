@@ -135,9 +135,8 @@ public class AcaoDAO {
         if (document1.exists()) {
           // convert document to POJO
           acao = document1.toObject(Acao.class);
-          System.out.println(acao);
         } else {
-          System.out.println("No such document!");
+         // System.out.println("No such document!");
         }
         
         // future.get() blocks on response
@@ -154,10 +153,8 @@ public class AcaoDAO {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        if (document.exists()) {
-            System.out.println("Document data: " + document.getData());
-        } else {
-            System.out.println("No such document!");
+        if (!document.exists()) {
+            return null;
         }
         
         return acao;

@@ -3,6 +3,7 @@ package br.com.ligacao;
 import br.com.ligacao.client.apps.AcaoApp;
 import br.com.ligacao.client.apps.InscreverApp;
 import br.com.ligacao.client.apps.PromotorApp;
+import br.com.ligacao.client.apps.VoluntarioApp;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -20,6 +21,7 @@ public class Main {
                 + "0 - Cadastrar/Editar/Excluir uma ação\n"
                 + "1 - Inscrever em ação\n"
                 + "2 - Acoes em Promotor de Ação\n"
+                + "3 - Acoes em Voluntário\n"
                 + "4 - Sair do sistema");
 
         opcao = scanner.nextInt();
@@ -34,6 +36,8 @@ public class Main {
             case 2:
                 PromotorApp.simuladorInterface();
                 break;
+            case 3:
+            	VoluntarioApp.simuladorInterface();
             default:
                 scanner.close();
                 System.exit(0);

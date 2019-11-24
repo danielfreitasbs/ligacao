@@ -5,6 +5,7 @@ import java.util.Scanner;
 import br.com.ligacao.persistence.model.Promotor;
 import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.PromotorJuridico;
+import br.com.ligacao.persistence.model.Voluntario;
 
 /**
  * Esta é uma classe utilitaria, usada para representação dos atributos de um
@@ -323,10 +324,106 @@ public final class FormulariosSolicitacao {
 		return promotor;
 		
 	}
+
+	/**
+	 * Realiza a construção de uma String, que representa a solicitação dos dados para cadastro de um voluntário.
+	 *
+	 * @return Instância de Voluntário;
+	 */
+public static Voluntario solCadVoluntario() {
+		
+		Voluntario voluntario = new Voluntario();
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("----- Cadastro de Voluntário -----\n")
+		.append("Nome da Pessoa: \n");
+		System.out.println(sb.toString());
+		voluntario.setNomeVoluntario(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nEmail: \n");
+		System.out.println(sb.toString());
+		voluntario.setEmailVoluntario(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nEndereco: \n");
+		System.out.println(sb.toString());
+		voluntario.setEndereco(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nFormação/Profissão: \n");
+		System.out.println(sb.toString());
+		voluntario.setAreaDeAtuacao(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nCategorias de Ações de interesse: \n");
+		System.out.println(sb.toString());
+		voluntario.setCategoriaInteresse(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\n----- Informacoes de Acesso -----\n")
+		.append("\nLogin: \n");
+		System.out.println(sb.toString());
+		voluntario.setUsuario(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nSenha: \n");
+		System.out.println(sb.toString());
+		voluntario.setSenha(input.nextLine());
+		
+		
+		return voluntario;
+	}
+
+/**
+ * Realiza a construção de uma String, que representa a solicitação dos dados para edição de um voluntário.
+ * @param voluntario Voluntário a ser editado.
+ * @return Voluntário com dados alterados.
+ */
+public static Voluntario formDadosAlteracaoVoluntario(Voluntario voluntario) {
+
+	StringBuilder sb = new StringBuilder();
+
+	sb.append("-----  Perfil de Voluntário -----\n")
+	.append("Nome da Pessoa: ").append(voluntario.getNomeVoluntario()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	int option = input.nextInt();
+	voluntario.setNomeVoluntario(option == 1 ? voluntario.getNomeVoluntario() : lerTeclado());
+
+	sb = new StringBuilder();
+	sb.append("\nEmail: ").append(voluntario.getEmailVoluntario()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	voluntario.setEmailVoluntario(option == 1 ? voluntario.getEmailVoluntario() : lerTeclado());
+
+	sb = new StringBuilder();
+	sb.append("\nEndereco: ").append(voluntario.getEndereco()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	voluntario.setEndereco(option == 1 ? voluntario.getEndereco() : lerTeclado());
+
+	sb = new StringBuilder();
+	sb.append("\nFormação/Profissão: ").append(voluntario.getAreaDeAtuacao()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	option = input.nextInt();
+	voluntario.setAreaDeAtuacao(option == 1 ? voluntario.getAreaDeAtuacao() : lerTeclado());
+
+	sb = new StringBuilder();
+	sb.append("\nCategorias de Ações de interesse: ").append(voluntario.getCategoriaInteresse()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	option = input.nextInt();
+	voluntario.setCategoriaInteresse(option == 1 ? voluntario.getCategoriaInteresse() : lerTeclado());
+
+	return voluntario;
 	
+}
+
 	static String lerTeclado() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("\n Informe o valor do campo \n");
+		sb.append("\n Informe o valor do campo: \n");
 		
 		return input.nextLine();
 	}
