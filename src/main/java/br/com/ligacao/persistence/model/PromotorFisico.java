@@ -1,5 +1,7 @@
 package br.com.ligacao.persistence.model;
 
+import java.util.Objects;
+
 /**
  * Classe representante da entidade de promotor do tipo pessoa física.
  * 
@@ -18,7 +20,8 @@ public class PromotorFisico extends Login {
 	private String telefone;
 	private String endereco;
 	private String email;
-
+	@SuppressWarnings("unused")
+    private String tipoPessoa;
 
 	public PromotorFisico(String usuario, String senha, String nomePessoa, String cpf, String dataNascimento,
 			String fotoPerfil, String redesSociais, String categoriasAcoes, String descricaoGeral, String telefone,
@@ -122,4 +125,27 @@ public class PromotorFisico extends Login {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+
+    public void setTipoPessoa(String tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
+    
+    public String getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash( nomePessoa,
+      cpf,
+      dataNascimento,
+      fotoPerfil,
+      redesSociais,
+      categoriasAcoes,
+      descricaoGeral,
+      telefone,
+      endereco,
+      email,
+      tipoPessoa);
+  }
 }

@@ -1,5 +1,7 @@
 package br.com.ligacao.persistence.model;
 
+import java.util.Objects;
+
 /**
  * Classe representante da entidade de promotor do tipo pessoa jurídica.
  * 
@@ -20,8 +22,30 @@ public class PromotorJuridico extends Login {
 	private String telefone;
 	private String endereco;
 	private String email;
+	@SuppressWarnings("unused")
+    private String tipoPessoa;
 
-	public PromotorJuridico() {
+	public PromotorJuridico(String usuario, String senha,String nomePessoaResponsavel,
+            String cpfResponsavel, String cnpj, String razaoSocial,
+            String dataFundacao, String fotoPerfil, String redesSociais,
+            String categoriasAcoes, String descricaoGeral, String telefone,
+            String endereco, String email) {
+        super(usuario, senha);
+        this.nomePessoaResponsavel = nomePessoaResponsavel;
+        this.cpfResponsavel = cpfResponsavel;
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.dataFundacao = dataFundacao;
+        this.fotoPerfil = fotoPerfil;
+        this.redesSociais = redesSociais;
+        this.categoriasAcoes = categoriasAcoes;
+        this.descricaoGeral = descricaoGeral;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.email = email;
+    }
+
+    public PromotorJuridico() {
 	}
 
 	public String getNomePessoaResponsavel() {
@@ -119,5 +143,29 @@ public class PromotorJuridico extends Login {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void setTipoPessoa(String tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
 
+    public String getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash( nomePessoaResponsavel,
+      cpfResponsavel,
+      cnpj,
+      razaoSocial,
+      dataFundacao,
+      fotoPerfil,
+      redesSociais,
+      categoriasAcoes,
+      descricaoGeral,
+      telefone,
+      endereco,
+      email,
+      tipoPessoa);
+  }
 }
