@@ -136,7 +136,7 @@ public class AcaoDAO {
           // convert document to POJO
           acao = document1.toObject(Acao.class);
         } else {
-          System.out.println("No such document!");
+         // System.out.println("No such document!");
         }
         
         // future.get() blocks on response
