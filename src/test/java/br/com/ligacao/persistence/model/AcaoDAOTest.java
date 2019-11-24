@@ -36,10 +36,16 @@ class AcaoDAOTest {
         assertEquals(testeConsultaAcao.getNomeAcao(), "nomeAcaoTeste");
         assertEquals(AcaoDAO.consultaAcao("nomeTeste", "AcaoNaoExistente"), null);
         
+        //consulta todas as acoes de um promotor
         List<Acao> acoes = new ArrayList<Acao>();
         acoes = AcaoDAO.consultaAcoes("nomeTeste");
         assertEquals(acoes.get(0).getNomeAcao(), "nomeAcaoTeste");
         assertEquals(acoes.get(1).getNomeAcao(), "nomeAcaoTeste2");
+        
+        //consulta todas as acoes existentes no banco de dados
+        List<Acao> todasAcoes = new ArrayList<Acao>();
+        todasAcoes = AcaoDAO.consultaTodasAcoes();
+        assertFalse(todasAcoes.isEmpty());
         
         //exclui acao de teste no banco firestore
         AcaoDAO.excluiAcao("nomeTeste", "nomeAcaoTeste");
