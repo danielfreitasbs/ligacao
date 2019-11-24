@@ -3,35 +3,35 @@ package br.com.ligacao.persistence.model;
 import java.util.Objects;
 
 public class Voluntario extends Login  {
-    private String nomeVoluntario;
-    private String emailVoluntario;
+    private String nome;
+    private String email;
     
     public Voluntario() {
         
     }
     
-    public Voluntario(String usuario, String senha, String nomeVoluntario, String emailVoluntario) {
+    public Voluntario(String usuario, String senha, String nome, String email) {
         super(usuario, senha);
-        this.nomeVoluntario = nomeVoluntario;
-        this.emailVoluntario = emailVoluntario;
+        this.nome = nome;
+        this.email = email;
     }
-    public String getNomeVoluntario() {
-        return nomeVoluntario;
+    public String getNome() {
+        return nome;
     }
-    public void setNomeVoluntario(String nomeVoluntario) {
-        this.nomeVoluntario = nomeVoluntario;
+    public void setNome(String nomeVoluntario) {
+        this.nome = nomeVoluntario;
     }
-    public String getEmailVoluntario() {
-        return emailVoluntario;
+    public String getEmail() {
+        return email;
     }
-    public void setEmailVoluntario(String emailVoluntario) {
-        this.emailVoluntario = emailVoluntario;
+    public void setEmail(String emailVoluntario) {
+        this.email = emailVoluntario;
     }
    
     
     @Override
     public int hashCode() {
-      return Objects.hash( nomeVoluntario,
-               emailVoluntario);
+      return Objects.hash( nome,
+               email);
   }
 }

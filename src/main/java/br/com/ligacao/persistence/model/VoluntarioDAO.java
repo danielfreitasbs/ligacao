@@ -33,8 +33,8 @@ public class VoluntarioDAO {
                     throws IOException, InterruptedException, ExecutionException {
         
         
-        String nomeVoluntario = voluntario.getNomeVoluntario();
-        String emailVoluntario = voluntario.getEmailVoluntario();
+        String nomeVoluntario = voluntario.getNome();
+        String emailVoluntario = voluntario.getEmail();
         String usuario = voluntario.getUsuario();
         String senha = voluntario.getSenha();
 
@@ -90,9 +90,9 @@ public class VoluntarioDAO {
         
         DocumentReference referenciaVoluntarioAcao = db.collection("promotor de acao").document(promotor)
                                                .collection("acoes").document(acao)
-                                               .collection("voluntarios").document(voluntario.getNomeVoluntario());
+                                               .collection("voluntarios").document(voluntario.getNome());
         
-        DocumentReference referenciaAcaoVoluntario = db.collection("voluntario").document(voluntario.getNomeVoluntario()).
+        DocumentReference referenciaAcaoVoluntario = db.collection("voluntario").document(voluntario.getNome()).
                                                 collection("acoes").document(acao);
                 
         // Add document data using a hashmap
@@ -139,10 +139,28 @@ public class VoluntarioDAO {
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         List<Voluntario> voluntarios = new ArrayList<Voluntario>();
         for (DocumentSnapshot document : documents) {
-          //System.out.println(document.getId() + " adicionado");
-          voluntarios.add(document.toObject(Voluntario.class));
+         // System.out.println(document.getId() + " consultado");
+            DocumentReference ref = (consultaReferenciaVoluntario(
+                    referenciaVoluntarios.document(document.getId()))
+                    );
+            ApiFuture<DocumentSnapshot> future2 = ref.get();
+            DocumentSnapshot document1 = future2.get();
+            
+          voluntarios.add(document1.toObject(Voluntario.class));
         }
         return voluntarios;        
+    }
+    
+    public static DocumentReference consultaReferenciaVoluntario(
+            DocumentReference ponteiro) throws InterruptedException, ExecutionException {
+        ApiFuture<DocumentSnapshot> future = ponteiro.get();
+        
+        DocumentSnapshot document1 = future.get();
+        
+        VoluntarioREF ref = document1.toObject(VoluntarioREF.class);
+        DocumentReference path = ref.getReferencia();
+        return path;
+        
     }
     
     /**
@@ -157,13 +175,19 @@ public class VoluntarioDAO {
 
         Firestore db = Connection.db;
         
-        DocumentReference referenciaVoluntario = db.collection("promotor de acao").document(nomePromotor)
+        DocumentReference referenciaAcaoVoluntario = db.collection("promotor de acao").document(nomePromotor)
                 .collection("acoes").document(nomeAcao)
                 .collection("voluntarios").document(voluntario);
         
+        DocumentReference referenciaVoluntarioAcao = db.collection("voluntario").document(voluntario)
+                .collection("acoes").document(nomeAcao);
+        
      // asynchronously delete a document
-        ApiFuture<WriteResult> writeResult = referenciaVoluntario.delete();
+        ApiFuture<WriteResult> writeResult = referenciaAcaoVoluntario.delete();
+     // asynchronously delete a document
+        ApiFuture<WriteResult> writeResult2 = referenciaVoluntarioAcao.delete();
         // ...
         System.out.println("Update time : " + writeResult.get().getUpdateTime());
+        System.out.println("Update time : " + writeResult2.get().getUpdateTime());
     }
 }
