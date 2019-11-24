@@ -5,6 +5,7 @@ import java.util.Scanner;
 import br.com.ligacao.persistence.model.Promotor;
 import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.PromotorJuridico;
+import br.com.ligacao.persistence.model.Voluntario;
 
 /**
  * Esta é uma classe utilitaria, usada para representação dos atributos de um
@@ -322,6 +323,51 @@ public final class FormulariosSolicitacao {
 		
 		return promotor;
 		
+	}
+	
+public static Voluntario solCadVoluntario() {
+		
+		Voluntario voluntario = new Voluntario();
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("----- Cadastro de Voluntário -----\n")
+		.append("Nome da Pessoa: \n");
+		System.out.println(sb.toString());
+		voluntario.setNomeVoluntario(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nEmail: \n");
+		System.out.println(sb.toString());
+		voluntario.setEmailVoluntario(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nEndereco: \n");
+		System.out.println(sb.toString());
+		voluntario.setEndereco(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nFormação/Profissão: \n");
+		System.out.println(sb.toString());
+		voluntario.setAreaDeAtuacao(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nCategorias de Ações de interesse: \n");
+		System.out.println(sb.toString());
+		voluntario.setCategoriaInteresse(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\n----- Informacoes de Acesso -----\n")
+		.append("\nLogin: \n");
+		System.out.println(sb.toString());
+		voluntario.setUsuario(input.nextLine());
+		
+		sb = new StringBuilder();
+		sb.append("\nSenha: \n");
+		System.out.println(sb.toString());
+		voluntario.setSenha(input.nextLine());
+		
+		
+		return voluntario;
 	}
 	
 	static String lerTeclado() {
