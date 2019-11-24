@@ -26,6 +26,7 @@ class AcaoDAOTest {
         //consulta acao de teste no banco de dados Firestore
         Acao testeConsultaAcao = AcaoDAO.consultaAcao("nomeTeste", "nomeAcaoTeste");
         assertEquals(testeConsultaAcao.getNomeAcao(), "nomeAcaoTeste");
+        assertEquals(AcaoDAO.consultaAcao("nomeTeste", "AcaoNaoExistente"), null);
         
         //exclui acao de teste no banco firestore
         AcaoDAO.excluiAcao("nomeTeste", "nomeAcaoTeste");
