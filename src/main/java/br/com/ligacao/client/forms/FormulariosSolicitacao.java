@@ -5,7 +5,6 @@ import java.util.Scanner;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-import br.com.ligacao.persistence.model.Promotor;
 import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.PromotorJuridico;
 import br.com.ligacao.persistence.model.Voluntario;
@@ -20,7 +19,7 @@ import br.com.ligacao.persistence.model.Voluntario;
 public final class FormulariosSolicitacao {
 
 	private static Scanner input = new Scanner(System.in);
-	
+	/* Comentei pois havia problemas
 	public static Promotor preencherForm() {
 		Promotor promotor = new Promotor("Joãozinho do Tren�", "Ações Etílicas", "700.000.231-00", "02-02-2002",
 				"Teste de Descrição Geral", "trenotunado@email.com", "imagem1.jpg", "instagram.com/meprocuraqueacha",
@@ -33,7 +32,7 @@ public final class FormulariosSolicitacao {
 				"Teste de Descrição Geral", "trenotunado@email.com", "imagem1.jpg", "instagram.com/meprocuraqueacha",
 				"6299999999");
 		return promotor;
-	}
+	}*/
 
 	/**
 	 * Realiza a construção de uma String, que representa a solicitação dos dados para cadastro de um Promotor do tipo pessoa física.
