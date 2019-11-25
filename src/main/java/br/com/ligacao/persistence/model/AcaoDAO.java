@@ -32,9 +32,9 @@ public class AcaoDAO {
      * @param nomePromotor Objeto promotor de ação.
      * @param acao Objeto ação.
      *
-     * @throws IOException
-     * @throws InterruptedException
-     * @throws ExecutionException
+     * @throws IOException exceção de entrada e saída
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
     public static void cadastraAcao(final String nomePromotor, final Acao acao)
             throws IOException, InterruptedException, ExecutionException {
@@ -75,8 +75,8 @@ public class AcaoDAO {
      *
      * @return Retorna uma lista de objetos Acao.
      *
-     * @throws InterruptedException
-     * @throws ExecutionException
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
     public static List<Acao> consultaAcoes(final String nomePromotor)
             throws InterruptedException, ExecutionException {
@@ -104,8 +104,8 @@ public class AcaoDAO {
      * @param nomePromotor Nome do promotor da ação.
      * @param nomeAcao Nome da ação a ser excluída.
      *
-     * @throws InterruptedException
-     * @throws ExecutionException
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
     public static void excluiAcao(final String nomePromotor,
             final String nomeAcao) throws InterruptedException, ExecutionException {
@@ -130,8 +130,8 @@ public class AcaoDAO {
      *
      * @return Retorna uma classe Acao com os dados consultados.
      *
-     * @throws InterruptedException
-     * @throws ExecutionException
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
     public static Acao consultaAcao(final String nomePromotor, final String nomeAcao)
     throws InterruptedException, ExecutionException {
@@ -149,8 +149,6 @@ public class AcaoDAO {
         if (document1.exists()) {
           // convert document to POJO
           acao = document1.toObject(Acao.class);
-        } else {
-         // System.out.println("No such document!");
         }
 
         // future.get() blocks on response
@@ -179,8 +177,8 @@ public class AcaoDAO {
      *
      * @return Retorna uma list de Acao com todas as ações.
      *
-     * @throws InterruptedException
-     * @throws ExecutionException
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
     public static List<Acao> consultaTodasAcoes()
             throws InterruptedException, ExecutionException {
