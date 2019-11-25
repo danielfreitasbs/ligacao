@@ -74,12 +74,12 @@ public final class VoluntarioService {
 			System.out.println("\n ---- Alteração de Cadastro Finalizada ---- \n");
 		}
 	}
-
+	
 	/**
 	 * Realiza login de um voluntário.
 	 * @return Voluntário caso exista e null caso não exista.
 	 */
-	static Voluntario login() {
+	/*static Voluntario login() {
 		StringBuilder sb = new StringBuilder();
 		scanner = new Scanner(System.in);
 
@@ -97,6 +97,6 @@ public final class VoluntarioService {
 		String password = scanner.nextLine();
 
 		return VoluntarioDAO.loginVoluntario(user, password);
-	}
+	}*/
 
 }

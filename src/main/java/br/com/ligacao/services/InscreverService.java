@@ -44,7 +44,7 @@ public final class InscreverService {
 	 */
 	public static void inscreverEmAcao(final Acao acao) throws IOException,
 						InterruptedException, ExecutionException {
-		voluntario = login();
+		//voluntario = login();
 
 		if (voluntario == null) {
 			System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
@@ -59,7 +59,7 @@ public final class InscreverService {
 	 * Realiza login de um voluntário.
 	 * @return Voluntário caso exista e null caso não exista.
 	 */
-	static Voluntario login() {
+	/*static Voluntario login() {
 		StringBuilder sb = new StringBuilder();
 		scanner = new Scanner(System.in);
 
@@ -77,5 +77,5 @@ public final class InscreverService {
 		String password = scanner.nextLine();
 
 		return VoluntarioDAO.loginVoluntario(user, password);
-	}
+	}*/
 }
