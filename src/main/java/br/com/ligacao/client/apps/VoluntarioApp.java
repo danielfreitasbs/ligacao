@@ -6,35 +6,73 @@ import java.util.concurrent.ExecutionException;
 
 import br.com.ligacao.services.VoluntarioService;
 
-public class VoluntarioApp {
+/**
+ * Classe responsável pelo cadastro ou edição de um voluntário.
+ * @author caiob
+ *
+ */
+public final class VoluntarioApp {
 
-	private static Scanner scanner = new Scanner(System.in);
-	private static StringBuilder sb = new StringBuilder();
-	
-	public static void simuladorInterface() throws IOException, InterruptedException, ExecutionException {
-		sb = new StringBuilder();
-		sb.append("Qual ação deseja executar?\n").append("0 - Cadastrar Voluntário\n")
-				.append("1 - Editar Perfil de Voluntário\n");
-		System.out.println(sb.toString());
-		int opcao = scanner.nextInt();
-		
-		switch (opcao) {
-		case 0:
-			voluntarioCadastro();
-			break;
-		case 1:
-			//voluntarioEditar();
-			break;
-		default:
-			break;
-		}
-	}
-	
-	/*private static void voluntarioEditar() {
+    /**
+     * Construtor privado para evitar instanciação da classe.
+     */
+    private VoluntarioApp() {
+    }
+
+    /**
+     * Scanner para entrada de dados pelo usuario.
+     */
+    private static Scanner scanner = new Scanner(System.in);
+
+    /**
+     * StringBuilder para interação com usuário.
+     */
+    private static StringBuilder sb = new StringBuilder();
+
+    /**
+     * Método para simular interface para invocar métodos sobre Voluntarios.
+     *
+     * @throws IOException			Se houver problema na Main ou ao utilizar
+     *                              o banco de dados.
+     * @throws InterruptedException Se houver problema na Main ou ao utilizar
+     *                              o banco de dados.
+     * @throws ExecutionException   Se houver problema na Main ou ao utilizar
+     *                              o banco de dados.
+     */
+    public static void simuladorInterface() throws IOException, InterruptedException, ExecutionException {
+    	sb = new StringBuilder();
+    	sb.append("Qual ação deseja executar?\n").append("0 - Cadastrar Voluntário\n")
+    			.append("1 - Editar Perfil de Voluntário\n");
+    	System.out.println(sb.toString());
+    	int opcao = scanner.nextInt();
+
+    	switch (opcao) {
+    	case 0:
+    		voluntarioCadastro();
+    		break;
+    	case 1:
+    		//voluntarioEditar();
+    		break;
+    	default:
+    		break;
+    	}
+    }
+
+    /*private static void voluntarioEditar() {
 		VoluntarioService.editarVoluntario();
 	}*/
-	
-private static void voluntarioCadastro() throws IOException, InterruptedException, ExecutionException {
+
+    /**
+     * Método para cadastro de voluntário.
+     *
+     * @throws IOException			Se houver problema na Main ou ao utilizar
+     *                              o banco de dados.
+     * @throws InterruptedException Se houver problema na Main ou ao utilizar
+     *                              o banco de dados.
+     * @throws ExecutionException   Se houver problema na Main ou ao utilizar
+     *                              o banco de dados.
+     */
+    private static void voluntarioCadastro() throws IOException, InterruptedException, ExecutionException {
 		VoluntarioService.cadastroVoluntario();
-	}
+    }
 }
