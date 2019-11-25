@@ -1,6 +1,7 @@
 package br.com.ligacao.persistence.interfaces;
 
 import br.com.ligacao.persistence.model.PromotorFisico;
+import br.com.ligacao.persistence.model.Voluntario;
 
 public interface IPromotorFisicoDAO {
 
@@ -35,8 +36,11 @@ public interface IPromotorFisicoDAO {
 	 * @param promotorFisico instancia de promotorFisico;
 	 */
 	static void excluirPromotor(PromotorFisico promotorFisico) {
-		// TODO Auto-generated method stub
 
+	}
+
+	static void registrarAvaliacaoVoluntario(Voluntario voluntario, int valuation) {
+		
 	}
 
 }

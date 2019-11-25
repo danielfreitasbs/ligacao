@@ -12,6 +12,7 @@ public class PromotorApp {
 	static String CABECALHO_FORM_CAD = "\n---- Formulário de Cadastro de Promotor ----\n";
 	static String CABECALHO_FORM_EDIT = "\n---- Formulário de Cadastro de Promotor ----\n";
 	static String CABECALHO_FORM_DEL = "\n---- Formulário de Cadastro de Promotor ----\n";
+	static String CABECALHO_AVALIAR_VOLUNT = "\n---- Avaliar Voluntário ----\n";
 
 	private static Scanner scanner = new Scanner(System.in);
 	private static StringBuilder sb = new StringBuilder();
@@ -19,7 +20,8 @@ public class PromotorApp {
 	public static void simuladorInterface() throws IOException, InterruptedException, ExecutionException {
 		sb = new StringBuilder();
 		sb.append("Qual ação deseja executar?\n").append("0 - Cadastrar Promotor\n")
-				.append("1 - Editar Perfil de Promotor\n").append("2 - Excluir Perfil de Promotor\n");
+				.append("1 - Editar Perfil de Promotor\n").append("2 - Excluir Perfil de Promotor\n")
+				.append("3 - Avaliar Voluntário\n");
 		System.out.println(sb.toString());
 		int opcao = scanner.nextInt();
 
@@ -32,6 +34,23 @@ public class PromotorApp {
 			break;
 		case 2:
 			promotorExcluir();
+			break;
+		case 3:
+			avaliarVoluntario();
+		default:
+			break;
+		}
+	}
+	
+	private static void avaliarVoluntario() {
+		int option = selecionaTipoPromotor(CABECALHO_AVALIAR_VOLUNT);
+		
+		switch (option) {
+		case 0:
+			PromotorFisicoService.avaliarVoluntario();
+			break;
+		case 1:
+			PromotorJuridicoService.avaliarVoluntario();
 			break;
 		default:
 			break;
