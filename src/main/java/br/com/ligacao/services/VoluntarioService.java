@@ -62,7 +62,6 @@ public final class VoluntarioService {
 	 * Edita um voluntário já existente.
 	 */
 	public static void editarVoluntario() {
-		Voluntario voluntario = new Voluntario();
 		voluntario = login();
 
 		if (voluntario == null) {
