@@ -34,7 +34,7 @@ public final class AcaoApp {
      *                              o banco de dados
      */
     public static void simuladorInterface() throws InterruptedException, ExecutionException, IOException {
-        scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in, "UTF-8");
         System.out.println("----- Acoes -----\n"
                 + "0 - Cadastrar Ação.\n"
                 + "1 - Editar Ação\n"
