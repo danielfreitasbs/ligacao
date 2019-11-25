@@ -64,7 +64,7 @@ public final class VoluntarioService {
 	 * Edita um voluntário já existente.
 	 */
 	public static void editarVoluntario() {
-		voluntario = login();
+		//voluntario = login();
 
 		if (voluntario == null) {
 			System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
