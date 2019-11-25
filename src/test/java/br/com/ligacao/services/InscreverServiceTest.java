@@ -45,7 +45,7 @@ public class InscreverServiceTest {
     	acao.setNomeAcao("Banho do Bem");
     	acao.setNomePromotor("Banho do Bem");
         provideInput("1");
-        assertThrows(NoSuchElementException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             InscreverService.inscreverEmAcao(acao);
         });
     }

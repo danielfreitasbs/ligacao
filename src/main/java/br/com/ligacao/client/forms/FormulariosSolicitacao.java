@@ -385,6 +385,7 @@ public static Voluntario solCadVoluntario() {
 
 /**
  * Realiza a construção de uma String, que representa a solicitação dos dados para edição de um voluntário.
+ *
  * @param voluntario Voluntário a ser editado.
  * @return Voluntário com dados alterados.
  */
