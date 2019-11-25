@@ -375,6 +375,11 @@ public static Voluntario solCadVoluntario() {
 		return voluntario;
 	}
 
+/**
+ * Realiza a construção de uma String, que representa a solicitação dos dados para edição de um voluntário.
+ * @param voluntario Voluntário a ser editado.
+ * @return Voluntário com dados alterados.
+ */
 public static Voluntario formDadosAlteracaoVoluntario(Voluntario voluntario) {
 
 	StringBuilder sb = new StringBuilder();
@@ -415,7 +420,7 @@ public static Voluntario formDadosAlteracaoVoluntario(Voluntario voluntario) {
 	return voluntario;
 	
 }
-	
+
 	static String lerTeclado() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n Informe o valor do campo: \n");
