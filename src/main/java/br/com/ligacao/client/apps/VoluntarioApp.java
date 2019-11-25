@@ -48,7 +48,7 @@ public final class VoluntarioApp {
 
     	switch (opcao) {
     	case 0:
-    		voluntarioCadastro();
+    		VoluntarioService.cadastroVoluntario();
     		break;
     	case 1:
     		//voluntarioEditar();
@@ -56,23 +56,5 @@ public final class VoluntarioApp {
     	default:
     		break;
     	}
-    }
-
-    /*private static void voluntarioEditar() {
-		VoluntarioService.editarVoluntario();
-	}*/
-
-    /**
-     * Método para cadastro de voluntário.
-     *
-     * @throws IOException			Se houver problema na Main ou ao utilizar
-     *                              o banco de dados.
-     * @throws InterruptedException Se houver problema na Main ou ao utilizar
-     *                              o banco de dados.
-     * @throws ExecutionException   Se houver problema na Main ou ao utilizar
-     *                              o banco de dados.
-     */
-    private static void voluntarioCadastro() throws IOException, InterruptedException, ExecutionException {
-		VoluntarioService.cadastroVoluntario();
     }
 }
