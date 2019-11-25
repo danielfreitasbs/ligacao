@@ -374,10 +374,51 @@ public static Voluntario solCadVoluntario() {
 		
 		return voluntario;
 	}
+
+public static Voluntario formDadosAlteracaoVoluntario(Voluntario voluntario) {
+
+	StringBuilder sb = new StringBuilder();
+
+	sb.append("-----  Perfil de Voluntário -----\n")
+	.append("Nome da Pessoa: ").append(voluntario.getNomeVoluntario()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	int option = input.nextInt();
+	voluntario.setNomeVoluntario(option == 1 ? voluntario.getNomeVoluntario() : lerTeclado());
+
+	sb = new StringBuilder();
+	sb.append("\nEmail: ").append(voluntario.getEmailVoluntario()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	voluntario.setEmailVoluntario(option == 1 ? voluntario.getEmailVoluntario() : lerTeclado());
+
+	sb = new StringBuilder();
+	sb.append("\nEndereco: ").append(voluntario.getEndereco()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	voluntario.setEndereco(option == 1 ? voluntario.getEndereco() : lerTeclado());
+
+	sb = new StringBuilder();
+	sb.append("\nFormação/Profissão: ").append(voluntario.getAreaDeAtuacao()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	option = input.nextInt();
+	voluntario.setAreaDeAtuacao(option == 1 ? voluntario.getAreaDeAtuacao() : lerTeclado());
+
+	sb = new StringBuilder();
+	sb.append("\nCategorias de Ações de interesse: ").append(voluntario.getCategoriaInteresse()).append("\n")
+	.append("0 - para alterar este dado \n1 - para não alterar");
+	System.out.println(sb.toString());
+	option = input.nextInt();
+	voluntario.setCategoriaInteresse(option == 1 ? voluntario.getCategoriaInteresse() : lerTeclado());
+
+	return voluntario;
+	
+}
 	
 	static String lerTeclado() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("\n Informe o valor do campo \n");
+		sb.append("\n Informe o valor do campo: \n");
 		
 		return input.nextLine();
 	}

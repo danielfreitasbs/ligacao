@@ -51,7 +51,7 @@ public final class VoluntarioApp {
     		VoluntarioService.cadastroVoluntario();
     		break;
     	case 1:
-    		//voluntarioEditar();
+    		VoluntarioService.editarVoluntario();
     		break;
     	default:
     		break;
