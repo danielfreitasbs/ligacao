@@ -324,7 +324,12 @@ public final class FormulariosSolicitacao {
 		return promotor;
 		
 	}
-	
+
+	/**
+	 * Realiza a construção de uma String, que representa a solicitação dos dados para cadastro de um voluntário.
+	 *
+	 * @return Instância de Voluntário;
+	 */
 public static Voluntario solCadVoluntario() {
 		
 		Voluntario voluntario = new Voluntario();
