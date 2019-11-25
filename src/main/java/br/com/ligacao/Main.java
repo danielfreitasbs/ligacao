@@ -31,7 +31,7 @@ public class Main {
                 AcaoApp.simuladorInterface();
                 break;
             case 1:
-                InscreverApp.main(args);
+                InscreverApp.simuladorInterface();
                 break;
             case 2:
                 PromotorApp.simuladorInterface();
