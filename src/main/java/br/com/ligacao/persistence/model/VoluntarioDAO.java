@@ -33,8 +33,8 @@ public class VoluntarioDAO {
                     throws IOException, InterruptedException, ExecutionException {
         
         
-        String nomeVoluntario = voluntario.getNome();
-        String emailVoluntario = voluntario.getEmail();
+        String nomeVoluntario = voluntario.getNomeVoluntario();
+        String emailVoluntario = voluntario.getEmailVoluntario();
         String usuario = voluntario.getUsuario();
         String senha = voluntario.getSenha();
 
@@ -90,9 +90,9 @@ public class VoluntarioDAO {
         
         DocumentReference referenciaVoluntarioAcao = db.collection("promotor de acao").document(promotor)
                                                .collection("acoes").document(acao)
-                                               .collection("voluntarios").document(voluntario.getNome());
+                                               .collection("voluntarios").document(voluntario.getNomeVoluntario());
         
-        DocumentReference referenciaAcaoVoluntario = db.collection("voluntario").document(voluntario.getNome()).
+        DocumentReference referenciaAcaoVoluntario = db.collection("voluntario").document(voluntario.getNomeVoluntario()).
                                                 collection("acoes").document(acao);
                 
         // Add document data using a hashmap

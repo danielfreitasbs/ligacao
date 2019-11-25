@@ -25,13 +25,15 @@ class VoluntarioDAOTest {
         AcaoDAO.cadastraAcao("nomeTeste", acaoTeste);
         
         Voluntario voluntarioTeste = new Voluntario("usuarioTest", "senhaTeste", 
-                "nomeVoluntarioTeste", "emailVoluntarioTeste");
+                "nomeVoluntarioTeste", "emailVoluntarioTeste", "imagemTeste", "redeSocialTeste",
+                "enderecoTeste", "areaDeAtuacaoTeste", "categoriaInteresseTeste");
         //cadastra voluntario no banco firestore
         VoluntarioDAO.cadastraVoluntario(voluntarioTeste);
         VoluntarioDAO.cadastraVoluntarioEmAcao("nomeTeste", "nomeAcaoTeste", voluntarioTeste);
         
         Voluntario voluntarioTeste2 = new Voluntario("usuarioTest2", "senhaTeste2", 
-                "nomeVoluntarioTeste2", "emailVoluntarioTeste2");
+                "nomeVoluntarioTeste2", "emailVoluntarioTeste2", "imagemTeste2", "redeSocialTeste2",
+                "enderecoTeste2", "areaDeAtuacaoTeste2", "categoriaInteresseTeste2");
         //cadastra voluntario no banco firestore
         VoluntarioDAO.cadastraVoluntario(voluntarioTeste2);
         
@@ -41,8 +43,8 @@ class VoluntarioDAOTest {
         
         //consulta voluntario
         List<Voluntario> voluntariosTeste = VoluntarioDAO.consultaVoluntarios("nomeTeste", "nomeAcaoTeste");
-        assertEquals(voluntariosTeste.get(0).getNome(),"nomeVoluntarioTeste");
-        assertEquals(voluntariosTeste.get(1).getNome(),"nomeVoluntarioTeste2");
+        assertEquals(voluntariosTeste.get(0).getNomeVoluntario(),"nomeVoluntarioTeste");
+        assertEquals(voluntariosTeste.get(1).getNomeVoluntario(),"nomeVoluntarioTeste2");
         
         //exclui voluntario de uma acao
         VoluntarioDAO.excluiVoluntario("nomeTeste", "nomeAcaoTeste", "nomeVoluntarioTeste");
