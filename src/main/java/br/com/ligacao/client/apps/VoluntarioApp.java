@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 import br.com.ligacao.services.VoluntarioService;
 
 /**
- * Classe responsável pelo cadastro ou edição de um voluntário.
+ * Classe responsável pelo gerenciamento de voluntários.
  * @author caiob
  *
  */
