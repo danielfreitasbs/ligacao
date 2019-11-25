@@ -27,6 +27,13 @@ public class PromotorFisicoService {
 		} else {
 			List<Acao> listaAcoes = AcaoDAO.consultaTodasAcoes();
 
+			listaAcoes.removeIf(acao -> (acao.getNomePromotor() != promotorFisico.getNomePessoa()));
+
+			if (listaAcoes.isEmpty() || listaAcoes == null) {
+				System.out.println("\nNenhuma ação encontrada para este promotor");
+				return;
+			}
+
 			for (int i = 0; i < listaAcoes.size(); i++) {
 				System.out.println(i + " - " + listaAcoes.get(i) + "\n");
 			}
@@ -35,30 +42,61 @@ public class PromotorFisicoService {
 			scanner = new Scanner(System.in);
 			int option = scanner.nextInt();
 			Acao acao = new Acao();
-
+			boolean acaoEncontrada = false;
 			for (int i = 0; i < listaAcoes.size(); i++) {
 				if (option == i) {
 					acao = listaAcoes.get(i);
+					acaoEncontrada = true;
 				}
 			}
-			List<Voluntario> listVoluntarios = VoluntarioDAO.consultaVoluntarios(promotorFisico.getNomePessoa(), acao.getNomeAcao());
 
-			for(int i = 0; i < listVoluntarios.size(); i++) {
+			if (!acaoEncontrada) {
+				System.out.println("\nNao existe esta ação na listagem.");
+				return;
+			}
+
+			List<Voluntario> listVoluntarios = VoluntarioDAO.consultaVoluntarios(promotorFisico.getNomePessoa(),
+					acao.getNomeAcao());
+
+			for (int i = 0; i < listVoluntarios.size(); i++) {
 				System.out.println(i + " - " + listVoluntarios.get(i) + "\n");
 			}
-			
+
 			System.out.println("Infome o numero do voluntario que deseja avaliar: \n");
-			scanner = new Scanner(System.in);
 			option = scanner.nextInt();
 			Voluntario voluntario = new Voluntario();
-			
+			boolean voluntarioEncontrado = false;
+
 			for (int i = 0; i < listVoluntarios.size(); i++) {
 				if (option == i) {
 					voluntario = listVoluntarios.get(i);
+					voluntarioEncontrado = true;
 				}
 			}
-			
-			
+
+			if (!voluntarioEncontrado) {
+				System.out.println("Não existe este voluntario na listagem. \n");
+				return;
+			}
+
+			System.out.println("Informe a nota de avaliação de 0 a 5: \n");
+			int valuation = scanner.nextInt();
+
+			if (valuation < 0 || valuation > 5) {
+				System.out.println("Não foi possivel avaliar o voluntario com este valor.");
+				return;
+			}
+
+			System.out.println(
+					"Deseja confirmar a avaliação do voluntario: " + voluntario.getNome() + "?. \n0 - Sim\n1 - Não\n");
+			option = scanner.nextInt();
+
+			if (option == 0) {
+				IPromotorFisicoDAO.registrarAvaliacaoVoluntario(voluntario, valuation);
+			} else {
+				System.out.println("\nAvaliação de voluntario não registrada.\n");
+			}
+
 			System.out.println("\n ---- Avaliação de Voluntário Finalizada ---- \n");
 		}
 
