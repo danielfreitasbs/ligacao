@@ -2,6 +2,9 @@ package br.com.ligacao.client.forms;
 
 import java.util.Scanner;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import br.com.ligacao.persistence.model.Promotor;
 import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.PromotorJuridico;
@@ -343,7 +346,13 @@ public static Voluntario solCadVoluntario() {
 		sb = new StringBuilder();
 		sb.append("\nEmail: \n");
 		System.out.println(sb.toString());
-		voluntario.setEmailVoluntario(input.nextLine());
+		String emailValido = input.nextLine();
+		
+		while(isValidEmailAddress(emailValido) == false) {
+			System.out.println("\nEmail inválido. Digite um email válido: \n");
+			emailValido = input.nextLine();
+		}
+		voluntario.setEmailVoluntario(emailValido);
 		
 		sb = new StringBuilder();
 		sb.append("\nEndereco: \n");
@@ -427,4 +436,22 @@ public static Voluntario formDadosAlteracaoVoluntario(Voluntario voluntario) {
 		
 		return input.nextLine();
 	}
+	
+	/**
+	 * Método que valida endereço de email.
+	 * 
+	 * @param email String contendo endereço de email a ser validado.
+	 * 
+	 * @return {@code true} se endereço de email é valido e {@code false} caso não seja.
+	 */
+	public static boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
+    }
 }
