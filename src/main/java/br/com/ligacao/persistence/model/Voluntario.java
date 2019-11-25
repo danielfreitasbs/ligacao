@@ -2,7 +2,7 @@ package br.com.ligacao.persistence.model;
 
 /**
  * Classe representante da entidade de voluntario.
- * 
+ *
  * @author developer
  *
  */
