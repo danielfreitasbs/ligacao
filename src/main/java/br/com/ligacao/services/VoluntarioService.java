@@ -20,10 +20,12 @@ public final class VoluntarioService {
      */
     private VoluntarioService() {
     }
+    
 	/**
 	 * Voluntário a ser criado/editado.
 	 */
 	private static Voluntario voluntario = new Voluntario();
+	
 	/**
      * Scanner para entrada de dados pelo usuario.
      */
