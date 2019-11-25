@@ -78,7 +78,7 @@ public class AcaoDAO {
      * @throws InterruptedException
      * @throws ExecutionException
      */
-    public static List<Acao> consultaAcoes(String nomePromotor)
+    public static List<Acao> consultaAcoes(final String nomePromotor)
             throws InterruptedException, ExecutionException {
 
         Firestore db = Connection.db;
