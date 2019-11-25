@@ -340,7 +340,7 @@ public static Voluntario solCadVoluntario() {
 		sb.append("----- Cadastro de Voluntário -----\n")
 		.append("Nome da Pessoa: \n");
 		System.out.println(sb.toString());
-		voluntario.setNomeVoluntario(input.nextLine());
+		voluntario.setNome(input.nextLine());
 		
 		sb = new StringBuilder();
 		sb.append("\nEmail: \n");
@@ -351,7 +351,7 @@ public static Voluntario solCadVoluntario() {
 			System.out.println("\nEmail inválido. Digite um email válido: \n");
 			emailValido = input.nextLine();
 		}
-		voluntario.setEmailVoluntario(emailValido);
+		voluntario.setEmail(emailValido);
 		
 		sb = new StringBuilder();
 		sb.append("\nEndereco: \n");
@@ -394,17 +394,17 @@ public static Voluntario formDadosAlteracaoVoluntario(Voluntario voluntario) {
 	StringBuilder sb = new StringBuilder();
 
 	sb.append("-----  Perfil de Voluntário -----\n")
-	.append("Nome da Pessoa: ").append(voluntario.getNomeVoluntario()).append("\n")
+	.append("Nome da Pessoa: ").append(voluntario.getNome()).append("\n")
 	.append("0 - para alterar este dado \n1 - para não alterar");
 	System.out.println(sb.toString());
 	int option = input.nextInt();
-	voluntario.setNomeVoluntario(option == 1 ? voluntario.getNomeVoluntario() : lerTeclado());
+	voluntario.setNome(option == 1 ? voluntario.getNome() : lerTeclado());
 
 	sb = new StringBuilder();
-	sb.append("\nEmail: ").append(voluntario.getEmailVoluntario()).append("\n")
+	sb.append("\nEmail: ").append(voluntario.getEmail()).append("\n")
 	.append("0 - para alterar este dado \n1 - para não alterar");
 	System.out.println(sb.toString());
-	voluntario.setEmailVoluntario(option == 1 ? voluntario.getEmailVoluntario() : lerTeclado());
+	voluntario.setEmail(option == 1 ? voluntario.getEmail() : lerTeclado());
 
 	sb = new StringBuilder();
 	sb.append("\nEndereco: ").append(voluntario.getEndereco()).append("\n")

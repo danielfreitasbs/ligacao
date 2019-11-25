@@ -43,8 +43,8 @@ class VoluntarioDAOTest {
         
         //consulta voluntario
         List<Voluntario> voluntariosTeste = VoluntarioDAO.consultaVoluntarios("nomeTeste", "nomeAcaoTeste");
-        assertEquals(voluntariosTeste.get(0).getNomeVoluntario(),"nomeVoluntarioTeste");
-        assertEquals(voluntariosTeste.get(1).getNomeVoluntario(),"nomeVoluntarioTeste2");
+        assertEquals(voluntariosTeste.get(0).getNome(),"nomeVoluntarioTeste");
+        assertEquals(voluntariosTeste.get(1).getNome(),"nomeVoluntarioTeste2");
         
         //exclui voluntario de uma acao
         VoluntarioDAO.excluiVoluntario("nomeTeste", "nomeAcaoTeste", "nomeVoluntarioTeste");

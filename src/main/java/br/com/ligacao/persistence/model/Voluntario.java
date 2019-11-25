@@ -8,8 +8,8 @@ package br.com.ligacao.persistence.model;
  */
 public class Voluntario extends Login  {
 
-    private String nomeVoluntario;
-    private String emailVoluntario;
+    private String nome;
+    private String email;
     private String imagem;
     private String redeSocial;
     private String endereco;
@@ -24,28 +24,28 @@ public class Voluntario extends Login  {
     		String imagem, String redeSocial, String endereco,
     		String areaDeAtuacao, String categoriaInteresse) {
         super(usuario, senha);
-        this.nomeVoluntario = nomeVoluntario;
-        this.emailVoluntario = emailVoluntario;
+        this.nome = nomeVoluntario;
+        this.email = emailVoluntario;
         this.imagem = imagem;
         this.redeSocial = redeSocial;
         this.endereco = endereco;
         this.areaDeAtuacao = areaDeAtuacao;
         this.categoriaInteresse = categoriaInteresse;
     }
-    public String getNomeVoluntario() {
-		return nomeVoluntario;
+    public String getNome() {
+		return nome;
 	}
 
-	public void setNomeVoluntario(String nomeVoluntario) {
-		this.nomeVoluntario = nomeVoluntario;
+	public void setNome(String nomeVoluntario) {
+		this.nome = nomeVoluntario;
 	}
 
-	public String getEmailVoluntario() {
-		return emailVoluntario;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmailVoluntario(String emailVoluntario) {
-		this.emailVoluntario = emailVoluntario;
+	public void setEmail(String emailVoluntario) {
+		this.email = emailVoluntario;
 	}
 
 	public String getImagem() {
