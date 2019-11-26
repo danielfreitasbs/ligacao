@@ -8,6 +8,7 @@ import br.com.ligacao.client.apps.VoluntarioApp;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
+import javax.management.AttributeNotFoundException;
 
 /**
  * Classe principal de execução do sistema.
@@ -31,14 +32,17 @@ public class Main {
      *
      * @param args Argumentos para execução.
      *
-     * @throws IOException          Se houver problema na Main ou ao utilizar o
-     *                              banco de dados.
-     * @throws InterruptedException Se houver problema na Main ou ao utilizar o
-     *                              banco de dados.
-     * @throws ExecutionException   Se houver problema na Main ou ao utilizar o
-     *                              banco de dados.
+     * @throws IOException                Se houver problema na Main ou ao utilizar
+     *                                    o banco de dados.
+     * @throws InterruptedException       Se houver problema na Main ou ao utilizar
+     *                                    o banco de dados.
+     * @throws ExecutionException         Se houver problema na Main ou ao utilizar
+     *                                    o banco de dados.
+     * @throws AttributeNotFoundException Se houver problema na Main ou ao utilizar
+     *                                    o banco de dados.
      */
-    public static void main(final String[] args) throws IOException, InterruptedException, ExecutionException {
+    public static void main(final String[] args)
+            throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
 
         System.out.println("----- Inicio -----\n" + "O que deseja realizar?\n"
                 + "0 - Cadastrar/Editar/Excluir uma ação\n" + "1 - Inscrever em ação\n"

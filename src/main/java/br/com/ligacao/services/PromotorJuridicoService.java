@@ -3,7 +3,7 @@ package br.com.ligacao.services;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
-import br.com.ligacao.client.forms.FormulariosSolicitacao;
+import javax.management.AttributeNotFoundException;
 import br.com.ligacao.persistence.model.PromotorDAO;
 import br.com.ligacao.persistence.model.PromotorJuridico;
 
@@ -23,95 +23,52 @@ public class PromotorJuridicoService {
   /**
    * Metodo responsável pela edição de promotorJuridico.
    * 
+   * @param promotor instancia de promotor juridico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
+   * @throws IOException caso ocorra algum erro no uso do banco de dados.
    */
-  public static void editarPromotorJuridico() throws InterruptedException, ExecutionException {
-    PromotorJuridico promotorJuridico = new PromotorJuridico();
-    promotorJuridico = login();
-
-    if (promotorJuridico == null) {
-      StringBuilder sb = new StringBuilder();
-      sb.append("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
-      System.out.println(sb.toString());
-      return;
-    } else {
-      promotorJuridico = FormulariosSolicitacao.formDadosAlteracaoPJ(promotorJuridico);
-      System.out.println("\n ---- Alteração de Cadastro Finalizada ---- \n");
+  public static void editarPromotorJuridico(final PromotorJuridico promotor)
+      throws InterruptedException, ExecutionException, IOException {
+    if (promotor.getRazaoSocial() == "") {
+      PromotorDAO.cadastraPromotorJuridico(promotor);
+    }else {
+      throw new IllegalArgumentException();
     }
   }
 
   /**
    * Metodo responsável pelo cadastro de promotor Juridico.
    * 
+   * @param promotorJuridico instancia de promotor juridico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    * @throws IOException caso ocorra erro na leitura de inputs do teclado.
+   * @throws AttributeNotFoundException caso não seja informado o atributo cnpj do promotor.
    */
-  public static void cadastroPromotorJuridico()
-      throws IOException, InterruptedException, ExecutionException {
-
-    StringBuilder sb = new StringBuilder();
-    Scanner scanner = new Scanner(System.in);
-    PromotorJuridico promotorJuridico = new PromotorJuridico();
-
-    /**
-     * Realiza a solicitação dos dados para cadastro.
-     */
-    promotorJuridico = FormulariosSolicitacao.solCadPromotorJuridico();
-
-    sb = new StringBuilder();
-    sb.append("\nPara confirmar o cadastro digite 0, para cancelar digite 1: \n");
-    System.out.println(sb.toString());
-    int opcao = scanner.nextInt();
-
-    if (opcao == 0) {
-      scanner.close();
+  public static void cadastroPromotorJuridico(final PromotorJuridico promotorJuridico)
+      throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
+    if (promotorJuridico.getCnpj() != "") {
       PromotorDAO.cadastraPromotorJuridico(promotorJuridico);
     } else {
-      scanner.close();
-      System.exit(0);
+      throw new AttributeNotFoundException();
     }
   }
 
   /**
    * Exclusão de promotor juridico.
    * 
+   * @param promotorJuridico instancia de promotor juridico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    */
-  public static void excluirPromotor() throws InterruptedException, ExecutionException {
-    PromotorJuridico promotorJuridico = new PromotorJuridico();
-    promotorJuridico = login();
-
-    if (promotorJuridico == null) {
-      System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
-      return;
-    } else {
-      StringBuilder sb = new StringBuilder();
-      sb.append("Tem certeza que deseja excluir o perfil de " + promotorJuridico.getRazaoSocial()
-          + " junto de todos seus dados?\n")
-          .append("\nPara confirmar a ação digite 0, para cancelar digite 1: \n");
-      System.out.println(sb.toString());
-      int option = scanner.nextInt();
-
-      switch (option) {
-        case 0:
-          PromotorDAO.excluiPromotor(promotorJuridico.getNomePessoaResponsavel());
-          System.out.println("\nExclusão de perfil do Promotor Juridico "
-              + promotorJuridico.getRazaoSocial() + " executada com sucesso.");
-          return;
-        case 1:
-          System.out.println("\nExclusão de perfil do Promotor Juridico"
-              + promotorJuridico.getRazaoSocial() + " cancelada.");
-          return;
-        default:
-          System.out.println("ERRO");
-          break;
-      }
-
+  public static void excluirPromotor(final PromotorJuridico promotorJuridico)
+      throws InterruptedException, ExecutionException {
+    if(promotorJuridico.getRazaoSocial() != "") {
+      PromotorDAO.excluiPromotor(promotorJuridico.getRazaoSocial());
+    }else {
+      throw new IllegalArgumentException();
     }
-
   }
 
   /**
@@ -140,5 +97,23 @@ public class PromotorJuridicoService {
     String password = scanner.nextLine();
 
     return PromotorDAO.loginPromotorJuridico(user, password);
+  }
+
+  /**
+   * Realiza o login atraves de parametros.
+   * 
+   * @param user usuario do promotor.
+   * @param password senha do promotor.
+   * @return instancia caso encontre e null caso contrario.
+   * @throws InterruptedException caso ocorra algum erro no uso do banco de dados.
+   * @throws ExecutionException caso ocorra algum erro no uso do banco de dados.
+   */
+  public static PromotorJuridico login(final String user, final String password)
+      throws InterruptedException, ExecutionException {
+    if (user != "" && password != "") {
+      return PromotorDAO.loginPromotorJuridico(user, password);
+    } else {
+      return null;
+    }
   }
 }

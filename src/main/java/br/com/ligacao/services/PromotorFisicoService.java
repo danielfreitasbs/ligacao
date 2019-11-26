@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
-import br.com.ligacao.client.forms.FormulariosSolicitacao;
+import javax.management.AttributeNotFoundException;
 import br.com.ligacao.persistence.model.Acao;
 import br.com.ligacao.persistence.model.AcaoDAO;
 import br.com.ligacao.persistence.model.PromotorDAO;
@@ -109,11 +109,11 @@ public class PromotorFisicoService {
           + "?. \n0 - Sim\n1 - Não\n");
       option = scanner.nextInt();
 
-//      if (option == 0) {
-//        // IPromotorFisicoDAO.registrarAvaliacaoVoluntario(voluntario, valuation);
-//      } else {
-//        System.out.println("\nAvaliação de voluntario não registrada.\n");
-//      }
+      // if (option == 0) {
+      // // IPromotorFisicoDAO.registrarAvaliacaoVoluntario(voluntario, valuation);
+      // } else {
+      // System.out.println("\nAvaliação de voluntario não registrada.\n");
+      // }
 
       System.out.println("\n ---- Avaliação de Voluntário Finalizada ---- \n");
     }
@@ -123,90 +123,52 @@ public class PromotorFisicoService {
   /**
    * Metodo responsável pela execução de regras de negocio para cadastro de promotorFisico.
    * 
+   * @param promotorFisico instancia de promotor fisico.
    * @throws IOException problema na leitura de input do teclado.
    * @throws InterruptedException problemas em acoes com banco de dados.
    * @throws ExecutionException problemas em acoes com banco de dados.
+   * @throws AttributeNotFoundException caso não seja informado o nome do promotor.
    */
-  public static void cadastroPromotorFisico()
-      throws IOException, InterruptedException, ExecutionException {
-    scanner = new Scanner(System.in);
-
-    /**
-     * Realiza a solicitação dos dados para cadastro.
-     */
-
-    promotorFisico = FormulariosSolicitacao.solCadPromotorFisico();
-
-    StringBuilder sb = new StringBuilder();
-    sb.append("\nPara confirmar o cadastro digite 0, para cancelar digite 1: \n");
-    System.out.println(sb.toString());
-    int opcao = scanner.nextInt();
-
-    if (opcao == 1) {
-      scanner.close();
+  public static void cadastroPromotorFisico(final PromotorFisico promotorFisico)
+      throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
+    if (promotorFisico.getNomePessoa() == "") {
       PromotorDAO.cadastraPromotorFisico(promotorFisico);
     } else {
-      scanner.close();
-      System.exit(0);
+      throw new AttributeNotFoundException();
     }
   }
 
   /**
    * Método responsável pela execução de regras para edicao de promotorFisico.
    * 
+   * @param promotorFisico instancia de promotor fisico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
+   * @throws IOException caso ocorra algum erro de escrita.
    */
-  public static void editarPromotorFisico() throws InterruptedException, ExecutionException {
-    PromotorFisico promotorFisico = new PromotorFisico();
-    promotorFisico = login();
-
-    if (promotorFisico == null) {
-      System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
-      return;
-    } else {
-      promotorFisico = FormulariosSolicitacao.formDadosAlteracao(promotorFisico);
-      System.out.println("\n ---- Alteração de Cadastro Finalizada ---- \n");
+  public static void editarPromotorFisico(final PromotorFisico promotorFisico)
+      throws InterruptedException, ExecutionException, IOException {
+    if (promotorFisico.getNomePessoa() == "") {
+      PromotorDAO.cadastraPromotorFisico(promotorFisico);
+    }else {
+      throw new IllegalArgumentException();
     }
-
   }
+
 
   /**
    * Responsável pela execução de regras da exclusão de promotor.
    * 
+   * @param promotorFisico instancia de promotor fisico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    */
-  public static void excluirPromotor() throws InterruptedException, ExecutionException {
-    PromotorFisico promotorFisico = new PromotorFisico();
-    promotorFisico = login();
-
-    if (promotorFisico == null) {
-      System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
-      return;
+  public static void excluirPromotor(final PromotorFisico promotorFisico)
+      throws InterruptedException, ExecutionException {
+    if (promotorFisico.getNomePessoa() != "") {
+      PromotorDAO.excluiPromotor(promotorFisico.getNomePessoa());
     } else {
-      StringBuilder sb = new StringBuilder();
-      sb.append("Tem certeza que deseja excluir o perfil de " + promotorFisico.getNomePessoa()
-          + " junto de todos seus dados?\n")
-          .append("\nPara confirmar a ação digite 0, para cancelar digite 1: \n");
-      System.out.println(sb.toString());
-      int option = scanner.nextInt();
-
-      switch (option) {
-        case 0:
-          PromotorDAO.excluiPromotor(promotorFisico.getNomePessoa());
-          System.out.println("\nExclusão de perfil do Promotor Fisico "
-              + promotorFisico.getNomePessoa() + " executada com sucesso.");
-          return;
-        case 1:
-          System.out.println("\nExclusão de perfil do Promotor Fisico "
-              + promotorFisico.getNomePessoa() + " cancelada.");
-          return;
-        default:
-          System.out.println("ERRO");
-          break;
-      }
-
+      throw new IllegalArgumentException();
     }
   }
 
@@ -217,7 +179,7 @@ public class PromotorFisicoService {
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    * @return instancia de promotor fisico.
    */
-  static PromotorFisico login() throws InterruptedException, ExecutionException {
+  public static PromotorFisico login() throws InterruptedException, ExecutionException {
     StringBuilder sb = new StringBuilder();
     scanner = new Scanner(System.in);
 
@@ -235,5 +197,23 @@ public class PromotorFisicoService {
     String password = scanner.nextLine();
 
     return PromotorDAO.loginPromotorFisico(user, password);
+  }
+
+  /**
+   * Realiza o login atraves de parametros.
+   * 
+   * @param user usuario do promotor.
+   * @param password senha do promotor.
+   * @return instancia caso encontre e null caso contrario.
+   * @throws InterruptedException caso ocorra algum erro no uso do banco de dados.
+   * @throws ExecutionException caso ocorra algum erro no uso do banco de dados.
+   */
+  public static PromotorFisico login(final String user, final String password)
+      throws InterruptedException, ExecutionException {
+    if (user != "" && password != "") {
+      return PromotorDAO.loginPromotorFisico(user, password);
+    } else {
+      return null;
+    }
   }
 }
