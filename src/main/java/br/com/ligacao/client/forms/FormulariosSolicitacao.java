@@ -1,11 +1,16 @@
 package br.com.ligacao.client.forms;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.management.AttributeNotFoundException;
 import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.PromotorJuridico;
 import br.com.ligacao.persistence.model.Voluntario;
+import br.com.ligacao.services.PromotorFisicoService;
+import br.com.ligacao.services.PromotorJuridicoService;
 
 /**
  * Esta é uma classe utilitaria, usada para representação dos atributos de um formulário de
@@ -25,9 +30,13 @@ public final class FormulariosSolicitacao {
    * Realiza a construção de uma String, que representa a solicitação dos dados para cadastro de um
    * Promotor do tipo pessoa física.
    * 
-   * @return instancia de Promotor Física;
+   * @throws ExecutionException caso ocorra algum problema no uso do banco de dados.
+   * @throws InterruptedException caso ocorra algum problema no uso do banco de dados.
+   * @throws IOException caso ocorra erro na leitura de atributos do teclado.
+   * @throws AttributeNotFoundException caso não seja informado o nome do promotor.
    */
-  public static PromotorFisico solCadPromotorFisico() {
+  public static void solCadPromotorFisico()
+      throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
 
     PromotorFisico promotorFisico = new PromotorFisico();
 
@@ -83,15 +92,29 @@ public final class FormulariosSolicitacao {
     System.out.println(sb.toString());
     promotorFisico.setSenha(input.nextLine());
 
-    return promotorFisico;
+    sb.append("\nPara confirmar o cadastro digite 0, para cancelar digite 1: \n");
+    System.out.println(sb.toString());
+    int opcao = input.nextInt();
+
+    if (opcao == 1) {
+      input.close();
+      PromotorFisicoService.cadastroPromotorFisico(promotorFisico);
+    } else {
+      input.close();
+      System.exit(0);
+    }
   }
 
   /**
    * Metodo responsável por simular a interface de um formulário com o usuário Promotor.
    * 
-   * @return instancia de PromotorJuridico.
+   * @throws ExecutionException em caso de erro no uso de banco de dados.
+   * @throws InterruptedException em caso de erro no uso de banco de dados.
+   * @throws IOException caso ocorra erro na leitura do input pelo teclado.
+   * @throws AttributeNotFoundException caso nao seja informado o atributo cnpj.
    */
-  public static PromotorJuridico solCadPromotorJuridico() {
+  public static void solCadPromotorJuridico()
+      throws AttributeNotFoundException, IOException, InterruptedException, ExecutionException {
     PromotorJuridico promotorJuridico = new PromotorJuridico();
 
     StringBuilder sb = new StringBuilder();
@@ -161,172 +184,335 @@ public final class FormulariosSolicitacao {
     System.out.println(sb.toString());
     promotorJuridico.setSenha(input.nextLine());
 
-    return promotorJuridico;
+    sb = new StringBuilder();
+    sb.append("\nPara confirmar o cadastro digite 0, para cancelar digite 1: \n");
+    System.out.println(sb.toString());
+    int opcao = input.nextInt();
+
+    if (opcao == 0) {
+      input.close();
+      PromotorJuridicoService.cadastroPromotorJuridico(promotorJuridico);
+    } else {
+      input.close();
+      System.exit(0);
+    }
   }
 
   /**
    * Metodo responsável por simular a interface de um formulário com o usuário Promotor.
    * 
-   * @param promotor instancia de promotor fisico.
-   * @return instancia de PromotorFisico.
+   * @throws ExecutionException caso ocorra algum erro no uso do banco de dados.
+   * @throws InterruptedException caso ocorra algum erro no uso do banco de dados.
+   * @throws IOException caso ocorra algum erro no uso do banco de dados.
    */
-  public static PromotorFisico formDadosAlteracao(final PromotorFisico promotor) {
+  public static void formDadosAlteracao()
+      throws InterruptedException, ExecutionException, IOException {
 
     StringBuilder sb = new StringBuilder();
 
-    sb.append("-----  Perfil de Promotor Pessoa Física -----\n").append("Nome da Pessoa: ")
-        .append(promotor.getNomePessoa()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
+    sb.append("\n ---- Acesso ao Sistema ---- \n");
+    sb.append("Informe o nome de usuário: \n");
     System.out.println(sb.toString());
-    int option = input.nextInt();
-    promotor.setNomePessoa(option == 1 ? promotor.getNomePessoa() : lerTeclado());
+
+    String user = input.nextLine();
 
     sb = new StringBuilder();
-    sb.append("\nCPF do Responsável: ").append(promotor.getCpf()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
+    sb.append("\n ---- Acesso ao Sistema ---- \n");
+    sb.append("Informe a senha: \n");
     System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setCpf(option == 1 ? promotor.getCpf() : lerTeclado());
 
-    sb = new StringBuilder();
-    sb.append("\nData de Nascimento (DDMMYYYY): ").append(promotor.getDataNascimento()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setDataNascimento(option == 1 ? promotor.getDataNascimento() : lerTeclado());
-    promotor.setFotoPerfil("");
+    String password = input.nextLine();
 
-    sb = new StringBuilder();
-    sb.append("\nCategorias de Ações: ").append(promotor.getCategoriasAcoes()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setCategoriasAcoes(option == 1 ? promotor.getDataNascimento() : lerTeclado());
+    PromotorFisico promotor = new PromotorFisico();
+    promotor = PromotorFisicoService.login(user, password);
 
-    sb = new StringBuilder();
-    sb.append("\nDescricao Geral: ").append(promotor.getDescricaoGeral()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    promotor.setDescricaoGeral(option == 1 ? promotor.getDescricaoGeral() : lerTeclado());
+    if (promotor == null) {
+      System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
+      return;
+    } else {
+      sb.append("\n-----  Perfil de Promotor Pessoa Física -----\n").append("Nome da Pessoa: ")
+          .append(promotor.getNomePessoa()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      int option = input.nextInt();
+      promotor.setNomePessoa(option == 1 ? promotor.getNomePessoa() : lerTeclado());
 
-    sb = new StringBuilder();
-    sb.append("\nTelefone: ").append(promotor.getTelefone()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    promotor.setTelefone(option == 1 ? promotor.getTelefone() : lerTeclado());
+      sb = new StringBuilder();
+      sb.append("\nCPF do Responsável: ").append(promotor.getCpf()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setCpf(option == 1 ? promotor.getCpf() : lerTeclado());
 
-    sb = new StringBuilder();
-    sb.append("\nEndereco: ").append(promotor.getEndereco()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    promotor.setEndereco(option == 1 ? promotor.getCpf() : lerTeclado());
+      sb = new StringBuilder();
+      sb.append("\nData de Nascimento (DDMMYYYY): ").append(promotor.getDataNascimento())
+          .append("\n").append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setDataNascimento(option == 1 ? promotor.getDataNascimento() : lerTeclado());
+      promotor.setFotoPerfil("");
 
-    sb = new StringBuilder();
-    sb.append("\nEmail: ").append(promotor.getEmail()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    promotor.setEmail(option == 1 ? promotor.getCpf() : lerTeclado());
+      sb = new StringBuilder();
+      sb.append("\nCategorias de Ações: ").append(promotor.getCategoriasAcoes()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setCategoriasAcoes(option == 1 ? promotor.getDataNascimento() : lerTeclado());
 
-    return promotor;
+      sb = new StringBuilder();
+      sb.append("\nDescricao Geral: ").append(promotor.getDescricaoGeral()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      promotor.setDescricaoGeral(option == 1 ? promotor.getDescricaoGeral() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nTelefone: ").append(promotor.getTelefone()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      promotor.setTelefone(option == 1 ? promotor.getTelefone() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nEndereco: ").append(promotor.getEndereco()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      promotor.setEndereco(option == 1 ? promotor.getCpf() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nEmail: ").append(promotor.getEmail()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      promotor.setEmail(option == 1 ? promotor.getCpf() : lerTeclado());
+
+      PromotorFisicoService.editarPromotorFisico(promotor);
+
+      System.out.println("\n ---- Alteração de Cadastro Finalizada ---- \n");
+    }
 
   }
 
   /**
    * Metodo responsável por simular a interface de um formulário com o usuário Promotor.
    * 
-   * @param promotor instancia de promotor juridico.
-   * @return instancia de PromotorJuridico.
+   * @throws IOException caso ocorra algum erro no uso do banco de dados.
+   * @throws ExecutionException caso ocorra algum erro no uso do banco de dados.
+   * @throws InterruptedException caso ocorra algum erro no uso do banco de dados.
    */
-  public static PromotorJuridico formDadosAlteracaoPJ(final PromotorJuridico promotor) {
+  public static void formDadosAlteracaoPJ()
+      throws InterruptedException, ExecutionException, IOException {
 
     StringBuilder sb = new StringBuilder();
 
-    sb.append("-----  Perfil de Promotor Pessoa Jurídica -----\n")
-        .append("Nome da Pessoa Fisica Responsável: ").append(promotor.getNomePessoaResponsavel())
-        .append("\n").append("0 - para alterar este dado \n1 - para não alterar");
+    sb.append("\n ---- Acesso ao Sistema ---- \n");
+    sb.append("Informe o nome de usuário: \n");
     System.out.println(sb.toString());
-    int option = input.nextInt();
-    promotor
-        .setNomePessoaResponsavel(option == 1 ? promotor.getNomePessoaResponsavel() : lerTeclado());
+
+    String user = input.nextLine();
 
     sb = new StringBuilder();
-    sb.append("\nCPF do Responsável: ").append(promotor.getCpfResponsavel()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
+    sb.append("\n ---- Acesso ao Sistema ---- \n");
+    sb.append("Informe a senha: \n");
     System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setCpfResponsavel(option == 1 ? promotor.getCpfResponsavel() : lerTeclado());
+
+    String password = input.nextLine();
+
+    PromotorJuridico promotor = new PromotorJuridico();
+    promotor = PromotorJuridicoService.login(user, password);
+
+    if (promotor == null) {
+      sb = new StringBuilder();
+      sb.append("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
+      System.out.println(sb.toString());
+      return;
+    } else {
+
+      sb.append("-----  Perfil de Promotor Pessoa Jurídica -----\n")
+          .append("Nome da Pessoa Fisica Responsável: ").append(promotor.getNomePessoaResponsavel())
+          .append("\n").append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      int option = input.nextInt();
+      promotor.setNomePessoaResponsavel(
+          option == 1 ? promotor.getNomePessoaResponsavel() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nCPF do Responsável: ").append(promotor.getCpfResponsavel()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setCpfResponsavel(option == 1 ? promotor.getCpfResponsavel() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nCNPJ: ").append(promotor.getCnpj()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setCnpj(option == 1 ? promotor.getCnpj() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nRazão Social: ").append(promotor.getRazaoSocial()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setRazaoSocial(option == 1 ? promotor.getRazaoSocial() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nData de Fundacao: ").append(promotor.getDataFundacao()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setDataFundacao(option == 1 ? promotor.getDataFundacao() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nFoto de Perfil: ").append(promotor.getFotoPerfil()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setFotoPerfil(option == 1 ? promotor.getFotoPerfil() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nRede Social: ").append(promotor.getRedesSociais()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setRedesSociais(option == 1 ? promotor.getRedesSociais() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nCategoria de Acoes: ").append(promotor.getCategoriasAcoes()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setCategoriasAcoes(option == 1 ? promotor.getCategoriasAcoes() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nDescricao Geral: ").append(promotor.getDescricaoGeral()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setDescricaoGeral(option == 1 ? promotor.getDescricaoGeral() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nTelefone: ").append(promotor.getTelefone()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setTelefone(option == 1 ? promotor.getTelefone() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nEndereco: ").append(promotor.getEndereco()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setEndereco(option == 1 ? promotor.getEndereco() : lerTeclado());
+
+      sb = new StringBuilder();
+      sb.append("\nEmail: ").append(promotor.getEmail()).append("\n")
+          .append("0 - para alterar este dado \n1 - para não alterar");
+      System.out.println(sb.toString());
+      option = input.nextInt();
+      promotor.setEmail(option == 1 ? promotor.getEmail() : lerTeclado());
+
+      PromotorJuridicoService.editarPromotorJuridico(promotor);
+
+      System.out.println("\n ---- Alteração de Cadastro Finalizada ---- \n");
+    }
+
+  }
+
+  public static void solExclusaoPromotorFisico() throws InterruptedException, ExecutionException {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("\n ---- Acesso ao Sistema ---- \n");
+    sb.append("Informe o nome de usuário: \n");
+    System.out.println(sb.toString());
+
+    String user = input.nextLine();
 
     sb = new StringBuilder();
-    sb.append("\nCNPJ: ").append(promotor.getCnpj()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
+    sb.append("\n ---- Acesso ao Sistema ---- \n");
+    sb.append("Informe a senha: \n");
     System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setCnpj(option == 1 ? promotor.getCnpj() : lerTeclado());
+
+    String password = input.nextLine();
+
+    PromotorFisico promotor = new PromotorFisico();
+    promotor = PromotorFisicoService.login(user, password);
+
+    if (promotor == null) {
+      System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
+      return;
+    } else {
+      sb = new StringBuilder();
+      sb.append("Tem certeza que deseja excluir o perfil de " + promotor.getNomePessoa()
+          + " junto de todos seus dados?\n")
+          .append("\nPara confirmar a ação digite 0, para cancelar digite 1: \n");
+      System.out.println(sb.toString());
+      int option = input.nextInt();
+
+      switch (option) {
+        case 0:
+          PromotorFisicoService.excluirPromotor(promotor);
+          System.out.println("\nExclusão de perfil do Promotor Fisico " + promotor.getNomePessoa()
+              + " executada com sucesso.");
+          return;
+        case 1:
+          System.out.println("\nExclusão de perfil do Promotor Fisico " + promotor.getNomePessoa()
+              + " cancelada.");
+          return;
+        default:
+          System.out.println("ERRO");
+          break;
+      }
+
+    }
+
+  }
+
+  public static void solExclusaoPromotorJuridico() throws InterruptedException, ExecutionException {
+    StringBuilder sb = new StringBuilder();
+
+    sb.append("\n ---- Acesso ao Sistema ---- \n");
+    sb.append("Informe o nome de usuário: \n");
+    System.out.println(sb.toString());
+
+    String user = input.nextLine();
 
     sb = new StringBuilder();
-    sb.append("\nRazão Social: ").append(promotor.getRazaoSocial()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
+    sb.append("\n ---- Acesso ao Sistema ---- \n");
+    sb.append("Informe a senha: \n");
     System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setRazaoSocial(option == 1 ? promotor.getRazaoSocial() : lerTeclado());
 
-    sb = new StringBuilder();
-    sb.append("\nData de Fundacao: ").append(promotor.getDataFundacao()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setDataFundacao(option == 1 ? promotor.getDataFundacao() : lerTeclado());
+    String password = input.nextLine();
 
-    sb = new StringBuilder();
-    sb.append("\nFoto de Perfil: ").append(promotor.getFotoPerfil()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setFotoPerfil(option == 1 ? promotor.getFotoPerfil() : lerTeclado());
+    PromotorJuridico promotor = new PromotorJuridico();
+    promotor = PromotorJuridicoService.login(user, password);
 
-    sb = new StringBuilder();
-    sb.append("\nRede Social: ").append(promotor.getRedesSociais()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setRedesSociais(option == 1 ? promotor.getRedesSociais() : lerTeclado());
+    if (promotor == null) {
+      System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
+      return;
+    } else {
+      sb = new StringBuilder();
+      sb.append("Tem certeza que deseja excluir o perfil de " + promotor.getRazaoSocial()
+          + " junto de todos seus dados?\n")
+          .append("\nPara confirmar a ação digite 0, para cancelar digite 1: \n");
+      System.out.println(sb.toString());
+      int option = input.nextInt();
 
-    sb = new StringBuilder();
-    sb.append("\nCategoria de Acoes: ").append(promotor.getCategoriasAcoes()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setCategoriasAcoes(option == 1 ? promotor.getCategoriasAcoes() : lerTeclado());
+      switch (option) {
+        case 0:
+          PromotorJuridicoService.excluirPromotor(promotor);
+          System.out.println("\nExclusão de perfil do Promotor Juridico "
+              + promotor.getRazaoSocial() + " executada com sucesso.");
+          return;
+        case 1:
+          System.out.println("\nExclusão de perfil do Promotor Juridico" + promotor.getRazaoSocial()
+              + " cancelada.");
+          return;
+        default:
+          System.out.println("ERRO");
+          break;
+      }
 
-    sb = new StringBuilder();
-    sb.append("\nDescricao Geral: ").append(promotor.getDescricaoGeral()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setDescricaoGeral(option == 1 ? promotor.getDescricaoGeral() : lerTeclado());
 
-    sb = new StringBuilder();
-    sb.append("\nTelefone: ").append(promotor.getTelefone()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setTelefone(option == 1 ? promotor.getTelefone() : lerTeclado());
-
-    sb = new StringBuilder();
-    sb.append("\nEndereco: ").append(promotor.getEndereco()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setEndereco(option == 1 ? promotor.getEndereco() : lerTeclado());
-
-    sb = new StringBuilder();
-    sb.append("\nEmail: ").append(promotor.getEmail()).append("\n")
-        .append("0 - para alterar este dado \n1 - para não alterar");
-    System.out.println(sb.toString());
-    option = input.nextInt();
-    promotor.setEmail(option == 1 ? promotor.getEmail() : lerTeclado());
-
-    return promotor;
+    }
 
   }
 

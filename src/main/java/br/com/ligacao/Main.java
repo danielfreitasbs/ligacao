@@ -8,13 +8,14 @@ import br.com.ligacao.client.apps.VoluntarioApp;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
+import javax.management.AttributeNotFoundException;
 
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in, "UTF-8");
     private static int opcao;
 
-    public static void main(String[] args) throws IOException, InterruptedException, ExecutionException {
+    public static void main(String[] args) throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
 
         System.out.println("----- Inicio -----\n"
                 + "O que deseja realizar?\n"
