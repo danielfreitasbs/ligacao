@@ -184,6 +184,65 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 - No passo 2 do fluxo principal, caso o promotor não possua ações, o sistema informará e voltará ao menu inicial
 - No passo 3 do fluxo principal, caso o promotor indique um nome de ação inexistente o sistema indicará e ao voltará ao menu inicial 
 
+### RF06: Avaliar voluntários através de pontuação
+
+**Ator**: Promotor de Acao
+**Pré-condições**: Ação ter sido realizada
+**Pós-condições**: ator com perfil de __Promotor de Ação__ com os dados excluidos da base de dados e assim também suas ações
+**Fluxo principal**:  
+
+1. Ator aciona alternativa de avaliar voluntário;
+2. Exibicao de formulario para abrir sessao no sistema. Formulario contem atributos usuario e senha;
+3. Ator informa usuario e senha;
+4. Exibição de lista enumerada com ações já realizadas;
+5. Exibicao de mensagem solicitando qual acao o Ator deseja avaliar o voluntário;
+6. Ator informa numero identificador da acao na listagem;
+7. Exibicao de lista enumerada com voluntários participantes da ação;
+8. Exibicao de mensagem solicitando qual voluntario o Ator deseja avaliar;
+9. Ator informa numero identificador do voluntario na listagem;
+10. Exibicao de mensagem solicitando avaliacao numerica entre 0 e 5;
+11. Ator informa valor da avaliacao;
+12. Exibicao de mensagem confirmando a acao;
+
+**Fluxos alternativos**:
+
+- No passo 3:
+    - caso o usuario ou senha esteja incorreto será retornada uma mensagem de finalizacao da operacao e a rotina se encerrará.
+- No passo 4: 
+    - Caso não exista ação realizada, será exibida a mensagem _nenhuma ação encontrada_;
+    - Rotina será encerrada.
+- No passo 6:
+    - Caso seja informado um valor que não esteja listado, será exibida a mensagem _Ação não existe_;
+    - Exibicao da mensagem de solicitacao de selecao da acao;
+- No passo 9:
+    - Caso seja informado um valor que não esteja listado, será exibida a mensagem _Voluntário não encontrado_;
+    - Exibicao da mensagem de solicitacao de selecao do voluntário;
+- No passo 11:
+    - Caso seja informado um valor abaixo ou acima do limite especificado, será exibida a mensagem _não foi possivel avaliar o voluntário com este valor_;
+    - Exibicao de mensagem de solicitacao de avaliação do voluntario;
+- No passo 12: 
+    - Caso informe acao positiva para confirmar a acao de avaliar o voluntario, os dados deverão ser registrados e a rotina será encerrada;
+    - Caso informe acao negativa para confirmar a acao de avaliar o voluntário, a rotina será encerrada.
+
+### RF08: Cadastrar em ação
+
+**Ator**: Voluntário
+**Pré-condições**: Ação ter sido cadastrada
+**Pós-condições**: Voluntário estar cadastrado em uma ação
+**Fluxo principal**:  
+
+1. Ator aciona alternativa de inscrever em ação;
+2. Exibição de todas as ações disponíveis;
+3. Ator seleciona a ação ao qual deseja se inscrever;
+4. Sistema solicita dados para login;
+5. Ator preenche os dados para login corretamente;
+6. Exibição de mensagem confirmando cadastro em ação;
+
+**Fluxos alternativos**:
+
+- No passo 5:
+    - caso o usuario ou senha esteja incorreto será retornada uma mensagem de finalizacao da operacao e a rotina se encerrará.
+
 ### RF10: Criar perfil de Promotor de Ação
 
 **Ator**: Organização ou pessoa física  
@@ -279,46 +338,6 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 
 - No passo 5, caso o usuario ou senha esteja incorreto será retornada uma mensagem de finalizacao da operacao e a rotina se encerrará;
 - No passo 6, caso o ator opte pela **nao exclusao** do perfil, os dados não seram alterados e a rotina se encerrará;
-
-### RF06: Avaliar voluntários através de pontuação
-
-**Ator**: Promotor de Acao
-**Pré-condições**: Ação ter sido realizada
-**Pós-condições**: ator com perfil de __Promotor de Ação__ com os dados excluidos da base de dados e assim também suas ações
-**Fluxo principal**:  
-
-1. Ator aciona alternativa de avaliar voluntário;
-2. Exibicao de formulario para abrir sessao no sistema. Formulario contem atributos usuario e senha;
-3. Ator informa usuario e senha;
-4. Exibição de lista enumerada com ações já realizadas;
-5. Exibicao de mensagem solicitando qual acao o Ator deseja avaliar o voluntário;
-6. Ator informa numero identificador da acao na listagem;
-7. Exibicao de lista enumerada com voluntários participantes da ação;
-8. Exibicao de mensagem solicitando qual voluntario o Ator deseja avaliar;
-9. Ator informa numero identificador do voluntario na listagem;
-10. Exibicao de mensagem solicitando avaliacao numerica entre 0 e 5;
-11. Ator informa valor da avaliacao;
-12. Exibicao de mensagem confirmando a acao;
-
-**Fluxos alternativos**:
-
-- No passo 3:
-    - caso o usuario ou senha esteja incorreto será retornada uma mensagem de finalizacao da operacao e a rotina se encerrará.
-- No passo 4: 
-    - Caso não exista ação realizada, será exibida a mensagem _nenhuma ação encontrada_;
-    - Rotina será encerrada.
-- No passo 6:
-    - Caso seja informado um valor que não esteja listado, será exibida a mensagem _Ação não existe_;
-    - Exibicao da mensagem de solicitacao de selecao da acao;
-- No passo 9:
-    - Caso seja informado um valor que não esteja listado, será exibida a mensagem _Voluntário não encontrado_;
-    - Exibicao da mensagem de solicitacao de selecao do voluntário;
-- No passo 11:
-    - Caso seja informado um valor abaixo ou acima do limite especificado, será exibida a mensagem _não foi possivel avaliar o voluntário com este valor_;
-    - Exibicao de mensagem de solicitacao de avaliação do voluntario;
-- No passo 12: 
-    - Caso informe acao positiva para confirmar a acao de avaliar o voluntario, os dados deverão ser registrados e a rotina será encerrada;
-    - Caso informe acao negativa para confirmar a acao de avaliar o voluntário, a rotina será encerrada.
 
 ## Diagrama de classes
 
