@@ -50,6 +50,11 @@ public class PromotorFisico extends Login {
    * Atributo representando email do promotor.
    */
   private String email;
+  /**
+   * Atributo representando tipo de pessoa do promotor.
+   */
+  @SuppressWarnings("unused")
+  private String tipoPessoa;
 
   /**
    * Construtor com todos os atributos da classe.
@@ -233,11 +238,25 @@ public class PromotorFisico extends Login {
   }
 
   /**
+   * @param tipoPessoa the tipoPessoa to set
+   */
+  public void setTipoPessoa(String tipoPessoa) {
+      this.tipoPessoa = tipoPessoa;
+  }
+
+  /**
+   * @return the tipoPessoa
+   */
+  public String getTipoPessoa() {
+      return tipoPessoa;
+  }
+
+  /**
    * hashCode baseada nos atributos.
    */
   @Override
   public int hashCode() {
     return Objects.hash(nomePessoa, cpf, dataNascimento, fotoPerfil, redesSociais, categoriasAcoes,
-        descricaoGeral, telefone, endereco, email);
+        descricaoGeral, telefone, endereco, email, tipoPessoa);
   }
 }
