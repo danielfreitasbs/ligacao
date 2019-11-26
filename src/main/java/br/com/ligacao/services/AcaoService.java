@@ -238,16 +238,16 @@ public final class AcaoService {
 
         if (TIPO_PROMOTOR == 0) {
             try {
-				promotorFisico = PromotorFisicoService.login();
-			} catch (InterruptedException | ExecutionException e) {
-				e.printStackTrace();
-			}
+                promotorFisico = PromotorFisicoService.login();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
         } else {
             try {
-				promotorJuridico = PromotorJuridicoService.login();
-			} catch (InterruptedException | ExecutionException e) {
-				e.printStackTrace();
-			}
+                promotorJuridico = PromotorJuridicoService.login();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
         }
 
         boolean isLogado = promotorFisico != null || promotorJuridico != null;
