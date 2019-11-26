@@ -339,6 +339,27 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 - No passo 5, caso o usuario ou senha esteja incorreto será retornada uma mensagem de finalizacao da operacao e a rotina se encerrará;
 - No passo 6, caso o ator opte pela **nao exclusao** do perfil, os dados não seram alterados e a rotina se encerrará;
 
+### RF14: Criar perfil de voluntário
+
+**Ator**: Voluntário
+**Pré-condições**: Voluntário com acesso ao cadastro de perfil
+**Pós-condições**: Voluntário estar com o perfil criado
+**Fluxo principal**:  
+
+1. Ator aciona alternativa de ações em voluntário;
+2. Exibição de opções de cadastro ou edição de perfil de voluntário;
+3. Ator seleciona o cadastro de voluntário;
+4. Sistema solicita dados para cadastro;
+5. Ator preenche os dados para cadastro corretamente;
+6. Exibição de mensagem confirmando cadastro de voluntário;
+7. Ator confirma cadastro;
+8. Cadastro de voluntário é criado.
+
+**Fluxos alternativos**:
+
+- No passo 7:
+    - caso o voluntário não confirme o cadastro o perfil não é criado.
+
 ## Diagrama de classes
 
 ![Diagrama de classes](docs/diagrama-de-classes.pdf)
