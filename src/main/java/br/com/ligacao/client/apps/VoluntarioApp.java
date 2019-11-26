@@ -8,6 +8,7 @@ import br.com.ligacao.services.VoluntarioService;
 
 /**
  * Classe responsável pelo gerenciamento de voluntários.
+ *
  * @author caiob
  *
  */
@@ -22,7 +23,7 @@ public final class VoluntarioApp {
     /**
      * Scanner para entrada de dados pelo usuario.
      */
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in, "UTF-8");
 
     /**
      * StringBuilder para interação com usuário.
@@ -32,29 +33,29 @@ public final class VoluntarioApp {
     /**
      * Método para simular interface para invocar métodos sobre Voluntarios.
      *
-     * @throws IOException			Se houver problema na Main ou ao utilizar
-     *                              o banco de dados.
-     * @throws InterruptedException Se houver problema na Main ou ao utilizar
-     *                              o banco de dados.
-     * @throws ExecutionException   Se houver problema na Main ou ao utilizar
-     *                              o banco de dados.
+     * @throws IOException          Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
+     * @throws InterruptedException Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
+     * @throws ExecutionException   Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
      */
     public static void simuladorInterface() throws IOException, InterruptedException, ExecutionException {
-    	sb = new StringBuilder();
-    	sb.append("Qual ação deseja executar?\n").append("0 - Cadastrar Voluntário\n")
-    			.append("1 - Editar Perfil de Voluntário\n");
-    	System.out.println(sb.toString());
-    	int opcao = scanner.nextInt();
+        sb = new StringBuilder();
+        sb.append("Qual ação deseja executar?\n").append("0 - Cadastrar Voluntário\n")
+                .append("1 - Editar Perfil de Voluntário\n");
+        System.out.println(sb.toString());
+        int opcao = scanner.nextInt();
 
-    	switch (opcao) {
-    	case 0:
-    		VoluntarioService.cadastroVoluntario();
-    		break;
-    	case 1:
-    		VoluntarioService.editarVoluntario();
-    		break;
-    	default:
-    		break;
-    	}
+        switch (opcao) {
+        case 0:
+            VoluntarioService.cadastroVoluntario();
+            break;
+        case 1:
+            VoluntarioService.editarVoluntario();
+            break;
+        default:
+            break;
+        }
     }
 }

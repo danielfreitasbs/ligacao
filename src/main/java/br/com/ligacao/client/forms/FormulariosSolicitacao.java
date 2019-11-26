@@ -15,7 +15,7 @@ import br.com.ligacao.services.PromotorJuridicoService;
 /**
  * Esta é uma classe utilitaria, usada para representação dos atributos de um formulário de
  * cadastro.
- * 
+ *
  * @author danielfreitasbs
  *
  */
@@ -536,7 +536,7 @@ public final class FormulariosSolicitacao {
     System.out.println(sb.toString());
     String emailValido = input.nextLine();
 
-    while (isValidEmailAddress(emailValido) == false) {
+    while (!isValidEmailAddress(emailValido)) {
       System.out.println("\nEmail inválido. Digite um email válido: \n");
       emailValido = input.nextLine();
     }
@@ -577,7 +577,7 @@ public final class FormulariosSolicitacao {
    * @param voluntario Voluntário a ser editado.
    * @return Voluntário com dados alterados.
    */
-  public static Voluntario formDadosAlteracaoVoluntario(Voluntario voluntario) {
+  public static Voluntario formDadosAlteracaoVoluntario(final Voluntario voluntario) {
 
     StringBuilder sb = new StringBuilder();
 
@@ -621,24 +621,24 @@ public final class FormulariosSolicitacao {
 
   /**
    * Metodo responsável pela leitura de entradas do teclado.
-   * 
+   *
    * @return string representando a linha de input.
    */
   static String lerTeclado() {
     StringBuilder sb = new StringBuilder();
     sb.append("\n Informe o valor do campo: \n");
-
+    System.out.println(sb.toString());
     return input.nextLine();
   }
 
   /**
    * Método que valida endereço de email.
-   * 
+   *
    * @param email String contendo endereço de email a ser validado.
-   * 
+   *
    * @return {@code true} se endereço de email é valido e {@code false} caso não seja.
    */
-  public static boolean isValidEmailAddress(String email) {
+  public static boolean isValidEmailAddress(final String email) {
     boolean result = true;
     try {
       InternetAddress emailAddr = new InternetAddress(email);
