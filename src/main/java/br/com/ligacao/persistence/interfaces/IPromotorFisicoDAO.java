@@ -39,8 +39,13 @@ public interface IPromotorFisicoDAO {
 
 	}
 
+	/**
+	 * 
+	 * @param voluntario
+	 * @param valuation
+	 */
 	static void registrarAvaliacaoVoluntario(Voluntario voluntario, int valuation) {
-		
+
 	}
 
 }

@@ -3,15 +3,25 @@ package br.com.ligacao.services;
 import java.util.Scanner;
 
 import br.com.ligacao.client.forms.FormulariosSolicitacao;
-import br.com.ligacao.persistence.interfaces.IPromotorFisicoDAO;
 import br.com.ligacao.persistence.interfaces.IPromotorJuridicoDAO;
 import br.com.ligacao.persistence.model.PromotorJuridico;
-import br.com.ligacao.persistence.model.PromotorJuridico;
 
+/**
+ * Classe responsável pela execução de regra de negocio para promotor juridico.
+ * 
+ * @author danielfreitasbs.
+ *
+ */
 public class PromotorJuridicoService {
 
+	/**
+	 * Scanner para leitura de input do teclado.
+	 */
 	private static Scanner scanner;
 
+	/**
+	 * Metodo responsável pela edição de promotorJuridico
+	 */
 	public static void editarPromotorJuridico() {
 		PromotorJuridico promotorJuridico = new PromotorJuridico();
 		promotorJuridico = login();
@@ -27,6 +37,9 @@ public class PromotorJuridicoService {
 		}
 	}
 
+	/**
+	 * Metodo responsável pelo cadastro de promotor Juridico.
+	 */
 	public static void cadastroPromotorJuridico() {
 
 		StringBuilder sb = new StringBuilder();
@@ -52,6 +65,9 @@ public class PromotorJuridicoService {
 		}
 	}
 
+	/**
+	 * Exclusão de promotor juridico.
+	 */
 	public static void excluirPromotor() {
 		PromotorJuridico promotorJuridico = new PromotorJuridico();
 		promotorJuridico = login();
@@ -83,6 +99,11 @@ public class PromotorJuridicoService {
 
 	}
 
+	/**
+	 * Metodo responsável pela execução de login para promotorJuridico.
+	 * 
+	 * @return instancia de promotor juridico.
+	 */
 	static PromotorJuridico login() {
 		StringBuilder sb = new StringBuilder();
 		scanner = new Scanner(System.in);
