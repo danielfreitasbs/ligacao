@@ -136,8 +136,6 @@
         <!--<module name="AvoidInlineConditionals"/>-->
 
         <module name="EmptyStatement"/>
-        <module name="EqualsHashCode"/>
-        <module name="HiddenField">
         	<property name="ignoreConstructorParameter" value="true"/>
         </module>
         <module name="IllegalInstantiation"/>
