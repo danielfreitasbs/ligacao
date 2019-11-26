@@ -55,13 +55,13 @@ public class Acao {
     /**
      * Construtor com todos os atributos da classe ação.
      *
-     * @param nomePromotor1 o nome do promotor da ação
-     * @param nomeAcao1 o nome da ação
-     * @param categoriaAcao1 a categoria da ação
+     * @param nomePromotor1   o nome do promotor da ação
+     * @param nomeAcao1       o nome da ação
+     * @param categoriaAcao1  a categoria da ação
      * @param dataRealizacao1 a data de realiação da ação
-     * @param descricao1 a descrição da ação
-     * @param horaInicio1 a hora de inicio da ação
-     * @param horaFim1 a hora de fim da ação
+     * @param descricao1      a descrição da ação
+     * @param horaInicio1     a hora de inicio da ação
+     * @param horaFim1        a hora de fim da ação
      */
     public Acao(final String nomePromotor1, final String nomeAcao1,
                 final String categoriaAcao1,
@@ -80,6 +80,7 @@ public class Acao {
 
     /**
      * Método para obter o nome do promotor.
+     *
      * @return o nome do promotor
      */
     public String getNomePromotor() {
@@ -88,6 +89,7 @@ public class Acao {
 
     /**
      * Set o nome do promotor.
+     *
      * @param nomePromotor1 nome do promotor
      */
     public void setNomePromotor(final String nomePromotor1) {
@@ -96,6 +98,7 @@ public class Acao {
 
     /**
      * Obtém o nome da ação.
+     *
      * @return o nome da ação
      */
     public String getNomeAcao() {
@@ -104,6 +107,7 @@ public class Acao {
 
     /**
      * Set o nome da ação.
+     *
      * @param nomeAcao1 o nome da ação
      */
     public void setNomeAcao(final String nomeAcao1) {
@@ -112,6 +116,7 @@ public class Acao {
 
     /**
      * Obtém a categoria da ação.
+     *
      * @return a categoria da ação
      */
     public String getCategoriaAcao() {
@@ -120,6 +125,7 @@ public class Acao {
 
     /**
      * Set a categoria da ação.
+     *
      * @param categoriaAcao1 a categoria da ação
      */
     public void setCategoriaAcao(final String categoriaAcao1) {
@@ -128,6 +134,7 @@ public class Acao {
 
     /**
      * Obtém a data de realiação da ação.
+     *
      * @return a data de realização
      */
     public String getDataRealizacao() {
@@ -136,6 +143,7 @@ public class Acao {
 
     /**
      * Set a data de realização da ação.
+     *
      * @param dataRealizacao1 a data de realização
      */
     public void setDataRealizacao(final String dataRealizacao1) {
@@ -144,6 +152,7 @@ public class Acao {
 
     /**
      * Obtém a descrição da da ação.
+     *
      * @return a descritação da ação
      */
     public String getDescricao() {
@@ -152,6 +161,7 @@ public class Acao {
 
     /**
      * Set a descrição da ação.
+     *
      * @param descricao1 a descrição da ação
      */
     public void setDescricao(final String descricao1) {
@@ -160,6 +170,7 @@ public class Acao {
 
     /**
      * Obtém a hora de início.
+     *
      * @return hora de início da ação
      */
     public String getHoraInicio() {
@@ -168,6 +179,7 @@ public class Acao {
 
     /**
      * Set a hora de início.
+     *
      * @param horaInicio1 hora de final da ação
      */
     public void setHoraInicio(final String horaInicio1) {
@@ -176,6 +188,7 @@ public class Acao {
 
     /**
      * Obtém hora de fim da ação.
+     *
      * @return hora de fim da ação
      */
     public String getHoraFim() {
@@ -184,6 +197,7 @@ public class Acao {
 
     /**
      * Set hora de fim da ação.
+     *
      * @param horaFim1 hora de fim da ação
      */
     public void setHoraFim(final String horaFim1) {
@@ -192,6 +206,7 @@ public class Acao {
 
     /**
      * Obtém os e-mails dos voluntário.
+     *
      * @return array com emails dos voluntários
      */
     public ArrayList<String> getEmails() {
@@ -200,6 +215,7 @@ public class Acao {
 
     /**
      * Set emails.
+     *
      * @param emails1 emails dos voluntarios
      */
     public void setEmails(final ArrayList<String> emails1) {
@@ -208,6 +224,7 @@ public class Acao {
 
     /**
      * Hashcode.
+     *
      * @return o objeto hash
      */
     @Override
