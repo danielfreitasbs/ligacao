@@ -22,17 +22,21 @@ import br.com.ligacao.persistence.connection.Connection;
  * Classe responsável por gerenciar os dados de ações no banco Firestore.
  */
 public class AcaoDAO {
-    
+
     /**
-     * Método responsável por cadastrar ou atualizar uma nova 
+     * Método responsável por cadastrar ou atualizar uma nova
      * ação de um promotor de ação no banco de dados Firebase.
      * Caso o registro não exista, um novo documento será criado,
      * caso já exista, as informações enviadas serão atualizadas.
-     * 
-     * @param promotor Objeto promotor de ação.
+     *
+     * @param nomePromotor Objeto promotor de ação.
      * @param acao Objeto ação.
+     *
+     * @throws IOException exceção de entrada e saída
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
-    public static void cadastraAcao(String nomePromotor, Acao acao)
+    public static void cadastraAcao(final String nomePromotor, final Acao acao)
             throws IOException, InterruptedException, ExecutionException {
 
         String nomeAcao = acao.getNomeAcao();
@@ -41,12 +45,12 @@ public class AcaoDAO {
         String descricao = acao.getDescricao();
         String horaInicio = acao.getHoraInicio();
         String horaFim = acao.getHoraFim();
-                
+
         Firestore db = Connection.db;
-        
+
         DocumentReference referenciaAcao = db.collection("promotor de acao").document(nomePromotor)
                                                .collection("acoes").document(nomeAcao);
-        
+
         // Add document data using a hashmap
         Map<String, Object> cadastroAcao = new HashMap<>();
         cadastroAcao.put("nomeAcao", nomeAcao);
@@ -60,25 +64,28 @@ public class AcaoDAO {
         // ...
         // result.get() blocks on response
         System.out.println("Update time : " + resultAcao.get().getUpdateTime());
-        
+
     }
-    
+
     /**
      * Método responsável por consultar ações cadastradas
      * em um promotor de ação.
-     * 
+     *
      * @param nomePromotor Nome do promotor da ação.
-     * 
+     *
      * @return Retorna uma lista de objetos Acao.
+     *
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
-    public static List<Acao> consultaAcoes(String nomePromotor)
+    public static List<Acao> consultaAcoes(final String nomePromotor)
             throws InterruptedException, ExecutionException {
-                
+
         Firestore db = Connection.db;
-        
+
         CollectionReference referenciaAcoes = db.collection("promotor de acao").document(nomePromotor)
                 .collection("acoes");
-        
+
       //asynchronously retrieve multiple documents
         ApiFuture<QuerySnapshot> future = referenciaAcoes.get();
         // future.get() blocks on response
@@ -88,57 +95,62 @@ public class AcaoDAO {
           //System.out.println(document.getId() + " adicionado");
           acoes.add(document.toObject(Acao.class));
         }
-        return acoes;        
+        return acoes;
     }
-    
+
     /**
      * Método responsável por excluir uma ação.
-     * 
+     *
      * @param nomePromotor Nome do promotor da ação.
      * @param nomeAcao Nome da ação a ser excluída.
+     *
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
-    public static void excluiAcao(String nomePromotor, 
-            String nomeAcao) throws InterruptedException, ExecutionException {
+    public static void excluiAcao(final String nomePromotor,
+            final String nomeAcao) throws InterruptedException, ExecutionException {
 
         Firestore db = Connection.db;
-        
+
         DocumentReference referenciaAcao = db.collection("promotor de acao").document(nomePromotor)
                 .collection("acoes").document(nomeAcao);
-        
+
      // asynchronously delete a document
         ApiFuture<WriteResult> writeResult = referenciaAcao.delete();
         // ...
         System.out.println("Update time : " + writeResult.get().getUpdateTime());
     }
-    
+
     /**
      * Método responsável por consultar dados cadastrados
      * de uma ação.
-     * 
+     *
      * @param nomePromotor Nome do promotor da ação.
      * @param nomeAcao Nome da ação.
-     * 
+     *
      * @return Retorna uma classe Acao com os dados consultados.
+     *
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
-    public static Acao consultaAcao(String nomePromotor, String nomeAcao) throws InterruptedException, ExecutionException {
+    public static Acao consultaAcao(final String nomePromotor, final String nomeAcao)
+    throws InterruptedException, ExecutionException {
         Firestore db = Connection.db;
-        
+
         DocumentReference docRef = db.collection("promotor de acao").document(nomePromotor)
                                     .collection("acoes").document(nomeAcao);
         // asynchronously retrieve the document
         ApiFuture<DocumentSnapshot> future = docRef.get();
         // ...
-        
+
         DocumentSnapshot document1 = future.get();
 
         Acao acao = null;
         if (document1.exists()) {
           // convert document to POJO
           acao = document1.toObject(Acao.class);
-        } else {
-         // System.out.println("No such document!");
         }
-        
+
         // future.get() blocks on response
         DocumentSnapshot document = null;
         try {
@@ -156,30 +168,34 @@ public class AcaoDAO {
         if (!document.exists()) {
             return null;
         }
-        
+
         return acao;
     }
-    
+
     /**
      * Método responsável por consultar todas as ações existentes.
-     *  
+     *
      * @return Retorna uma list de Acao com todas as ações.
+     *
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
      */
     public static List<Acao> consultaTodasAcoes()
             throws InterruptedException, ExecutionException {
-                
+
         Firestore db = Connection.db;
-        
+
         List<Acao> acoes = new ArrayList<Acao>();
-        
+
         List<PromotorFisico> promotoresF = new ArrayList<PromotorFisico>();
         promotoresF = PromotorDAO.consultaPromotoresFisicos();
-        
+
         for (PromotorFisico documentoPromotor : promotoresF) {
-        
-            CollectionReference referenciaAcoes = db.collection("promotor de acao").document(documentoPromotor.getNomePessoa())
+
+            CollectionReference referenciaAcoes = db.collection("promotor de acao")
+            .document(documentoPromotor.getNomePessoa())
                     .collection("acoes");
-            
+
           //asynchronously retrieve multiple documents
             ApiFuture<QuerySnapshot> future = referenciaAcoes.get();
             // future.get() blocks on response
@@ -189,15 +205,16 @@ public class AcaoDAO {
               acoes.add(document.toObject(Acao.class));
             }
         }
-        
+
         List<PromotorJuridico> promotoresJ = new ArrayList<PromotorJuridico>();
         promotoresJ = PromotorDAO.consultaPromotoresJuridicos();
-        
+
         for (PromotorJuridico documentoPromotor : promotoresJ) {
-        
-            CollectionReference referenciaAcoes = db.collection("promotor de acao").document(documentoPromotor.getRazaoSocial())
+
+            CollectionReference referenciaAcoes = db.collection("promotor de acao")
+            .document(documentoPromotor.getRazaoSocial())
                     .collection("acoes");
-            
+
           //asynchronously retrieve multiple documents
             ApiFuture<QuerySnapshot> future = referenciaAcoes.get();
             // future.get() blocks on response
@@ -207,6 +224,6 @@ public class AcaoDAO {
               acoes.add(document.toObject(Acao.class));
             }
         }
-        return acoes;        
+        return acoes;
     }
 }

@@ -15,22 +15,26 @@ import com.google.firebase.cloud.FirestoreClient;
  * Classe responsável pela conexão com o Firestore.
  */
 public class Connection {
-    
+
+    /**
+     * Atributo do tipo Firestore que contém uma conexão com o banco.
+     */
     public static final Firestore db = Connection.getConnection();
-    
+
     /**
      * Método que retorna uma conexão com o banco Firestore.
      * Caso não haja json no caminho especificado, o método
      * busca a chave na variavel de ambiente GOOGLE_APPLICATION_CREDENTIALS
      *
      * @return objeto Firestore de conexão.
-     * @throws IOException 
+     * @throws IOException
      */
     public static Firestore getConnection() {
         GoogleCredentials credentials = null;
         try {
             credentials = GoogleCredentials
-                    .fromStream(new FileInputStream("./.settings/ligacao-2121b-firebase-adminsdk-cpw8e-af2c81b80b.json"))
+                    .fromStream(new FileInputStream(
+                        "./.settings/ligacao-2121b-firebase-adminsdk-cpw8e-af2c81b80b.json"))
                     .createScoped(Lists.newArrayList("https://www.googleapis.com/auth/cloud-platform"));
         } catch (IOException e) {
             try {
@@ -40,16 +44,16 @@ public class Connection {
                 e1.printStackTrace();
             }
         }
-        
+
         FirebaseOptions options = null;
         options = new FirebaseOptions.Builder()
                 .setCredentials(credentials)
                 .build();
      // Initialize the default app
         FirebaseApp defaultApp = FirebaseApp.initializeApp(options);
-        Firestore db = FirestoreClient.getFirestore(); 
-        System.out.println(defaultApp.getName());  // "[DEFAULT]" 
+        Firestore conexao = FirestoreClient.getFirestore();
+        System.out.println(defaultApp.getName());  // "[DEFAULT]"
 
-        return db; 
+        return conexao;
     }
 }
