@@ -351,7 +351,7 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 3. Ator seleciona o cadastro de voluntário;
 4. Sistema solicita dados para cadastro;
 5. Ator preenche os dados para cadastro corretamente;
-6. Exibição de mensagem confirmando cadastro de voluntário;
+6. Exibição de mensagem para confirmação de cadastro de voluntário;
 7. Ator confirma cadastro;
 8. Cadastro de voluntário é criado.
 
@@ -359,6 +359,26 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 
 - No passo 7:
     - caso o voluntário não confirme o cadastro o perfil não é criado.
+
+### RF17: Editar perfil de voluntário
+
+**Ator**: Voluntário
+**Pré-condições**: Voluntário estar cadastrado
+**Pós-condições**: Voluntário estar com o perfil editado
+**Fluxo principal**:  
+
+1. Ator aciona alternativa de ações em voluntário;
+2. Exibição de opções de cadastro ou edição de perfil de voluntário;
+3. Ator seleciona a edição de voluntário;
+4. Sistema solicita confirmação e dados para edição;
+5. Ator preenche os dados para edição;
+6. Exibição de mensagem confirmando edição de voluntário;
+7. Edição de voluntário é finalizada.
+
+**Fluxos alternativos**:
+
+- No passo 3:
+    - caso o voluntário não selecione nenhuma opção existente a edição de perfil não acontece.
 
 ## Diagrama de classes
 
