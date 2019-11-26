@@ -1,7 +1,8 @@
 package br.com.ligacao.services;
 
 import java.io.IOException;
-import java.util.Scanner;
+// Comentado para retirar bug do spotbugs
+//import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 import br.com.ligacao.persistence.model.Acao;
@@ -30,7 +31,7 @@ public final class InscreverService {
     /**
      * Scanner para entrada de dados pelo usuario.
      */
-    // Comentado para retirar erro do spotbugs
+    // Comentado para retirar bug do spotbugs
     //private static Scanner scanner;
 
     /**
