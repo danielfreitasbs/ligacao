@@ -30,7 +30,8 @@ public final class InscreverService {
     /**
      * Scanner para entrada de dados pelo usuario.
      */
-    private static Scanner scanner;
+    // Comentado para retirar erro do spotbugs
+    //private static Scanner scanner;
 
     /**
      * Cadastra um voluntário em uma ação.
