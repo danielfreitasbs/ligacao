@@ -13,11 +13,30 @@ import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.Voluntario;
 import br.com.ligacao.persistence.model.VoluntarioDAO;
 
+/**
+ * Classe responsável pela execução de regras de negócio do promotorFisico.
+ * 
+ * @author danielfreitasbs.
+ *
+ */
 public class PromotorFisicoService {
 
+	/**
+	 * Instancia de promotor fisico.
+	 */
 	private static PromotorFisico promotorFisico = new PromotorFisico();
+
+	/**
+	 * Scanner para leitura de input do teclado.
+	 */
 	private static Scanner scanner;
 
+	/**
+	 * Metodo responsável pela coleta de dados para avaliação de voluntário.
+	 * 
+	 * @throws InterruptedException problemas em acoes com banco de dados.
+	 * @throws ExecutionException   problemas em acoes com banco de dados.
+	 */
 	public static void avaliarVoluntario() throws InterruptedException, ExecutionException {
 		promotorFisico = login();
 
@@ -102,6 +121,14 @@ public class PromotorFisicoService {
 
 	}
 
+	/**
+	 * Metodo responsável pela execução de regras de negocio para cadastro de
+	 * promotorFisico.
+	 * 
+	 * @throws IOException          problema na leitura de input do teclado.
+	 * @throws InterruptedException problemas em acoes com banco de dados.
+	 * @throws ExecutionException   problemas em acoes com banco de dados.
+	 */
 	public static void cadastroPromotorFisico() throws IOException, InterruptedException, ExecutionException {
 		scanner = new Scanner(System.in);
 
@@ -125,6 +152,9 @@ public class PromotorFisicoService {
 		}
 	}
 
+	/**
+	 * Método responsável pela execução de regras para edicao de promotorFisico.
+	 */
 	public static void editarPromotorFisico() {
 		PromotorFisico promotorFisico = new PromotorFisico();
 		promotorFisico = login();
@@ -139,6 +169,9 @@ public class PromotorFisicoService {
 
 	}
 
+	/**
+	 * Responsável pela execução de regras da exclusão de promotor
+	 */
 	public static void excluirPromotor() {
 		PromotorFisico promotorFisico = new PromotorFisico();
 		promotorFisico = login();
@@ -172,6 +205,11 @@ public class PromotorFisicoService {
 		}
 	}
 
+	/**
+	 * Metodo responsável pela execução de login de promotor Fisico.
+	 * 
+	 * @return instancia de promotor fisico.
+	 */
 	static PromotorFisico login() {
 		StringBuilder sb = new StringBuilder();
 		scanner = new Scanner(System.in);
