@@ -23,7 +23,7 @@ public final class InscreverApp {
     /**
      * Scanner para entrada de dados pelo usuario.
      */
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in, "UTF-8");
 
     /**
      * Método para simular interface para invocar métodos sobre inscrição de

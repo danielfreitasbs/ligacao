@@ -43,7 +43,7 @@ public final class VoluntarioService {
      *                              banco de dados.
      */
     public static void cadastroVoluntario() throws IOException, InterruptedException, ExecutionException {
-        scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in, "UTF-8");
 
         voluntario = FormulariosSolicitacao.solCadVoluntario();
 

@@ -27,7 +27,7 @@ public final class LoginApp {
      */
     public static void simuladorInterface(final String[] args)
             throws InterruptedException, ExecutionException, IOException {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, "UTF-8");
         System.out.println("Login necessário.\n"
                 + "0 - Realizar Login\n"
                 + "1 - Voltar ao menu principal\n"
@@ -60,7 +60,7 @@ public final class LoginApp {
      * false, se senha e/ou usuários estão incorretos.
      */
     private static boolean logar() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in, "UTF-8");
 
         System.out.println("Insira o nome do Promotor: ");
         String nome = scanner.nextLine();

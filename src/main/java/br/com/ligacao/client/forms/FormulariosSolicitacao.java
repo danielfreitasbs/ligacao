@@ -19,7 +19,7 @@ public final class FormulariosSolicitacao {
     /**
      * Scanner para entrada de dados pelo usuário.
      */
-    private static Scanner input = new Scanner(System.in);
+    private static Scanner input = new Scanner(System.in, "UTF-8");
 
     /**
      * Realiza a construção de uma String, que representa a solicitação dos dados
@@ -440,7 +440,7 @@ public final class FormulariosSolicitacao {
     static String lerTeclado() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n Informe o valor do campo: \n");
-
+        System.out.println(sb.toString());
         return input.nextLine();
     }
 
