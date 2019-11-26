@@ -15,6 +15,7 @@ Projeto para a disciplina de Domínios de Software - 2019/02 - do curso de Engen
 - [Requisitos funcionais](#requisitos-funcionais)
 - [Diagrama de casos de uso](#diagrama-de-casos-de-uso)
 - [Casos de uso detalhados](#casos-de-uso-detalhados)
+- [Diagrama de classes](#diagrama-de-classes)
 - [Programação das entregas dos requisitos](#programação-das-entregas-dos-requisitos)
 
 ## Identificação dos componentes do grupo
@@ -132,16 +133,56 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 **Fluxo principal**:  
 
 1. O promotor de ação solicita a criação de uma nova ação
-2. O sistema exibe um formulário com os atributos de ações a serem preenchidos: nome do Promotor da ação, nome da ação, local, data, horário início, horário fim, descrição, imagem descritiva da ação (opcional), categoria da ação (opções: projeto social, ambiental, animal, educação, esportes, arte e cultura)
+2. O sistema exibe um formulário com os atributos de ações a serem preenchidos: nome da ação, data, horário início, horário fim, descrição, imagem descritiva da ação (opcional), categoria da ação
 3. O promotor de ação preenche e submete os dados da ação
 4. O sistema envia mensagem solicitando confirmação da criação da ação
 5. O sistema registra as informações e envia mensagem ao promotor de ação indicando que a ação foi registrada com sucesso
 
 **Fluxos alternativos**:
 
-- No passo 1 do fluxo principal, caso o promotor de ação ainda não possua um perfil, o sistema retornará uma mensagem indicando a realização do cadastro como promotor de ação
+- No passo 1 do fluxo principal, caso o promotor de ação ainda esteja logado, o sistema retornará uma mensagem indicando que o usuário não está logado
 - No passo 3 do fluxo principal, caso o promotor não preencha algum dado obrigatório o sistema retornará uma mensagem indicando o(s) campo(s) ausente(s)
 - No passo 4 do fluxo principal, se o promotor de ação desistir de cadastrar a ação será direcionado para a página inicial
+
+### RF02: Editar ação
+
+**Ator**: Promotor de ação  
+**Pré-condições**: Promotor de ação cadastrado e logado no sistema  
+**Pós-condições**: A ação foi editada  
+**Fluxo principal**:  
+
+1. O promotor de ação solicita a edição de uma ação
+2. O sistema exibe todas as ações do promotor presentes no banco de dados
+3. O promotor indica o nome da ação que deseja editar
+4. O sistema lista todos os campos que o promotor pode editar
+5. O promotor indica qual campo deseja editar
+6. O sistema mostra o valor atual do campo e solicita que o promotor entre com a modificação
+7. O promotor edita o campo
+8. O sistema indica que ação foi editada com sucesso
+
+**Fluxos alternativos**:
+
+- No passo 2 do fluxo principal, caso o promotor não possua ações, o sistema informará e voltará ao menu inicial
+- No passo 3 do fluxo principal, caso o promotor indique um nome de ação inexistente o sistema indicará e ao voltará ao menu inicial
+- No passo 8 do fluxo principal, se houver um erro na edição da ação, o promotor será informado e retornará ao menu principal
+- No passo 8 do fluxo principal, o sistema indica que o promotor pode editar outro campo, caso confirme que deseja o sistema volta para o passo 4, caso cancele, o sistema o envia para o menu principal
+
+### RF03: Excluir ação
+
+**Ator**: Promotor de ação  
+**Pré-condições**: Promotor de ação cadastrado e logado no sistema  
+**Pós-condições**: A ação foi excluida  
+**Fluxo principal**:  
+
+1. O promotor de ação solicita a exclusão de uma ação
+2. O sistema exibe todas as ações do promotor presentes no banco de dados
+3. O promotor indica o nome da ação que deseja excluir
+4. O sistema exclui a ação solicitada e retorna ao menu inicial
+
+**Fluxos alternativos**:
+
+- No passo 2 do fluxo principal, caso o promotor não possua ações, o sistema informará e voltará ao menu inicial
+- No passo 3 do fluxo principal, caso o promotor indique um nome de ação inexistente o sistema indicará e ao voltará ao menu inicial 
 
 ### RF10: Criar perfil de Promotor de Ação
 
@@ -279,6 +320,10 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
     - Caso informe acao positiva para confirmar a acao de avaliar o voluntario, os dados deverão ser registrados e a rotina será encerrada;
     - Caso informe acao negativa para confirmar a acao de avaliar o voluntário, a rotina será encerrada.
 
+## Diagrama de classes
+
+![Diagrama de classes](docs/diagrama-de-classes.pdf)
+
 ## Programação das entregas dos requisitos
 
 | Identificador | Assunto | Iteração | Fonte do requisito | Última atualização
@@ -288,8 +333,8 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 | RF08 | Inscrever em ação (Voluntário) | #1 | Resultados da entrevista | 02/11/2019
 | RF10 | Criar perfil (Promotor) | #1 | Resultados da entrevista | 02/11/2019
 | RF12 | Editar perfil (Promotor)| #1 | Resultados da entrevista | 02/11/2019
-| RF03 | Excluir ação (Promotor)| #2 | Resultados da entrevista | -
-| RF06 | Avaliar voluntários (Promotor)| #2 | Resultados da entrevista | -
-| RF13 | Excluir perfil (Promotor)| #2 | Resultados da entrevista | -
-| RF14 | Criar perfil (Voluntário)| #2 | Resultados da entrevista | -
-| RF17 | Editar perfil (Voluntário)| #2 | Resultados da entrevista | -
+| RF03 | Excluir ação (Promotor)| #2 | Resultados da entrevista | 26/11/2019
+| RF06 | Avaliar voluntários (Promotor)| #2 | Resultados da entrevista | 26/11/2019
+| RF13 | Excluir perfil (Promotor)| #2 | Resultados da entrevista | 26/11/2019
+| RF14 | Criar perfil (Voluntário)| #2 | Resultados da entrevista | 26/11/2019
+| RF17 | Editar perfil (Voluntário)| #2 | Resultados da entrevista | 26/11/2019
