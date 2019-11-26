@@ -83,8 +83,13 @@ public class PromotorApp {
 
 	/**
 	 * Metodo responsável pela chamada de metodos para avaliação de voluntarios.
+	 * 
+	 * @throws ExecutionException   caso ocorra problemas na consulta do banco de
+	 *                              dados.
+	 * @throws InterruptedException caso ocorra problemas na consulta do banco de
+	 *                              dados.
 	 */
-	private static void avaliarVoluntario() {
+	private static void avaliarVoluntario() throws InterruptedException, ExecutionException {
 		int option = selecionaTipoPromotor(CABECALHO_AVALIAR_VOLUNT);
 
 		switch (option) {
@@ -92,7 +97,7 @@ public class PromotorApp {
 			PromotorFisicoService.avaliarVoluntario();
 			break;
 		case 1:
-			PromotorJuridicoService.avaliarVoluntario();
+//			PromotorJuridicoService.avaliarVoluntario();
 			break;
 		default:
 			break;
@@ -107,10 +112,18 @@ public class PromotorApp {
 
 		switch (option) {
 		case 0:
-			PromotorFisicoService.excluirPromotor();
+			try {
+				PromotorFisicoService.excluirPromotor();
+			} catch (InterruptedException | ExecutionException e) {
+				e.printStackTrace();
+			}
 			break;
 		case 1:
-			PromotorJuridicoService.excluirPromotor();
+			try {
+				PromotorJuridicoService.excluirPromotor();
+			} catch (InterruptedException | ExecutionException e) {
+				e.printStackTrace();
+			}
 			break;
 		default:
 			break;
@@ -119,6 +132,12 @@ public class PromotorApp {
 
 	/**
 	 * Metodo responsável pela chamada de metodos para edicao de perfil de promotor.
+	 * 
+	 * @throws IOException          caso ocorra algum problema de leitura de input.
+	 * @throws InterruptedException caso ocorra algum problema no uso de banco de
+	 *                              dados.
+	 * @throws ExecutionException   caso ocorra algum problema no uso de banco de
+	 *                              dados.
 	 */
 	private static void promotorEditar() throws IOException, InterruptedException, ExecutionException {
 		int option = selecionaTipoPromotor(CABECALHO_FORM_EDIT);
@@ -165,7 +184,7 @@ public class PromotorApp {
 	 * @param cabecalho referente ao nome do formulário que será usada a ação.
 	 * @return 0 representando pessoa física, e 1 representando pessoa juridica.
 	 */
-	static int selecionaTipoPromotor(String cabecalho) {
+	static final int selecionaTipoPromotor(final String cabecalho) {
 		sb = new StringBuilder();
 		sb.append(cabecalho);
 		sb.append("Selecione o tipo de pessoa: \n");

@@ -276,7 +276,7 @@ public class PromotorDAO {
      * @throws InterruptedException exceção de interrupção
      * @throws ExecutionException exceção de execução
      */
-    static PromotorFisico loginPromotorFisico(final String user, final String password)
+    public static PromotorFisico loginPromotorFisico(final String user, final String password)
             throws InterruptedException, ExecutionException {
         List<PromotorFisico> promotores = new ArrayList<PromotorFisico>();
 
@@ -304,7 +304,7 @@ public class PromotorDAO {
      * @throws InterruptedException exceção de interrupção
      * @throws ExecutionException exceção de execução
      */
-    static PromotorJuridico loginPromotorJuridico(final String user, final String password)
+    public static PromotorJuridico loginPromotorJuridico(final String user, final String password)
             throws InterruptedException, ExecutionException {
         List<PromotorJuridico> promotores = new ArrayList<PromotorJuridico>();
 
