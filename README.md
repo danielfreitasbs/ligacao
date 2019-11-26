@@ -15,6 +15,7 @@ Projeto para a disciplina de Domínios de Software - 2019/02 - do curso de Engen
 - [Requisitos funcionais](#requisitos-funcionais)
 - [Diagrama de casos de uso](#diagrama-de-casos-de-uso)
 - [Casos de uso detalhados](#casos-de-uso-detalhados)
+- [Diagrama de classes](#diagrama-de-classes)
 - [Programação das entregas dos requisitos](#programação-das-entregas-dos-requisitos)
 
 ## Identificação dos componentes do grupo
@@ -318,6 +319,10 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 - No passo 12: 
     - Caso informe acao positiva para confirmar a acao de avaliar o voluntario, os dados deverão ser registrados e a rotina será encerrada;
     - Caso informe acao negativa para confirmar a acao de avaliar o voluntário, a rotina será encerrada.
+
+## Diagrama de classes
+
+![Diagrama de classes](docs/diagrama-de-classes.pdf)
 
 ## Programação das entregas dos requisitos
 
