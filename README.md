@@ -150,7 +150,7 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 **Pós-condições**: A ação foi editada  
 **Fluxo principal**:  
 
-1. O promotor de ação solicita a edição de uma ação existente
+1. O promotor de ação solicita a edição de uma ação
 2. O sistema exibe todas as ações do promotor presentes no banco de dados
 3. O promotor indica o nome da ação que deseja editar
 4. O sistema lista todos os campos que o promotor pode editar
@@ -166,6 +166,22 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 - No passo 8 do fluxo principal, se houver um erro na edição da ação, o promotor será informado e retornará ao menu principal
 - No passo 8 do fluxo principal, o sistema indica que o promotor pode editar outro campo, caso confirme que deseja o sistema volta para o passo 4, caso cancele, o sistema o envia para o menu principal
 
+### RF03: Excluir ação
+
+**Ator**: Promotor de ação  
+**Pré-condições**: Promotor de ação cadastrado e logado no sistema  
+**Pós-condições**: A ação foi excluida  
+**Fluxo principal**:  
+
+1. O promotor de ação solicita a exclusão de uma ação
+2. O sistema exibe todas as ações do promotor presentes no banco de dados
+3. O promotor indica o nome da ação que deseja excluir
+4. O sistema exclui a ação solicitada e retorna ao menu inicial
+
+**Fluxos alternativos**:
+
+- No passo 2 do fluxo principal, caso o promotor não possua ações, o sistema informará e voltará ao menu inicial
+- No passo 3 do fluxo principal, caso o promotor indique um nome de ação inexistente o sistema indicará e ao voltará ao menu inicial 
 
 ### RF10: Criar perfil de Promotor de Ação
 
