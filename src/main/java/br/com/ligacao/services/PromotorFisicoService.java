@@ -9,6 +9,7 @@ import br.com.ligacao.client.forms.FormulariosSolicitacao;
 import br.com.ligacao.persistence.interfaces.IPromotorFisicoDAO;
 import br.com.ligacao.persistence.model.Acao;
 import br.com.ligacao.persistence.model.AcaoDAO;
+import br.com.ligacao.persistence.model.PromotorDAO;
 import br.com.ligacao.persistence.model.PromotorFisico;
 import br.com.ligacao.persistence.model.Voluntario;
 import br.com.ligacao.persistence.model.VoluntarioDAO;
@@ -111,7 +112,7 @@ public class PromotorFisicoService {
 			option = scanner.nextInt();
 
 			if (option == 0) {
-				IPromotorFisicoDAO.registrarAvaliacaoVoluntario(voluntario, valuation);
+//				IPromotorFisicoDAO.registrarAvaliacaoVoluntario(voluntario, valuation);
 			} else {
 				System.out.println("\nAvaliação de voluntario não registrada.\n");
 			}
@@ -145,7 +146,7 @@ public class PromotorFisicoService {
 
 		if (opcao == 1) {
 			scanner.close();
-			IPromotorFisicoDAO.cadastraPromotor(promotorFisico);
+			PromotorDAO.cadastraPromotorFisico(promotorFisico);
 		} else {
 			scanner.close();
 			System.exit(0);
@@ -154,8 +155,11 @@ public class PromotorFisicoService {
 
 	/**
 	 * Método responsável pela execução de regras para edicao de promotorFisico.
+	 * 
+	 * @throws ExecutionException   erro ao realizar ação no banco de dados.
+	 * @throws InterruptedException erro ao realizar ação no banco de dados.
 	 */
-	public static void editarPromotorFisico() {
+	public static void editarPromotorFisico() throws InterruptedException, ExecutionException {
 		PromotorFisico promotorFisico = new PromotorFisico();
 		promotorFisico = login();
 
@@ -171,8 +175,11 @@ public class PromotorFisicoService {
 
 	/**
 	 * Responsável pela execução de regras da exclusão de promotor
+	 * 
+	 * @throws ExecutionException   erro ao realizar ação no banco de dados.
+	 * @throws InterruptedException erro ao realizar ação no banco de dados.
 	 */
-	public static void excluirPromotor() {
+	public static void excluirPromotor() throws InterruptedException, ExecutionException {
 		PromotorFisico promotorFisico = new PromotorFisico();
 		promotorFisico = login();
 
@@ -189,7 +196,7 @@ public class PromotorFisicoService {
 
 			switch (option) {
 			case 0:
-				IPromotorFisicoDAO.excluirPromotor(promotorFisico);
+				PromotorDAO.excluiPromotor(promotorFisico.getNomePessoa());
 				System.out.println("\nExclusão de perfil do Promotor Fisico " + promotorFisico.getNomePessoa()
 						+ " executada com sucesso.");
 				return;
@@ -208,9 +215,11 @@ public class PromotorFisicoService {
 	/**
 	 * Metodo responsável pela execução de login de promotor Fisico.
 	 * 
+	 * @throws ExecutionException   erro ao realizar ação no banco de dados.
+	 * @throws InterruptedException erro ao realizar ação no banco de dados.
 	 * @return instancia de promotor fisico.
 	 */
-	static PromotorFisico login() {
+	static PromotorFisico login() throws InterruptedException, ExecutionException {
 		StringBuilder sb = new StringBuilder();
 		scanner = new Scanner(System.in);
 
@@ -227,6 +236,6 @@ public class PromotorFisicoService {
 
 		String password = scanner.nextLine();
 
-		return IPromotorFisicoDAO.login(user, password);
+		return PromotorDAO.loginPromotorFisico(user, password);
 	}
 }

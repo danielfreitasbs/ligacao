@@ -1,9 +1,12 @@
 package br.com.ligacao.services;
 
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 import br.com.ligacao.client.forms.FormulariosSolicitacao;
 import br.com.ligacao.persistence.interfaces.IPromotorJuridicoDAO;
+import br.com.ligacao.persistence.model.PromotorDAO;
 import br.com.ligacao.persistence.model.PromotorJuridico;
 
 /**
@@ -21,8 +24,11 @@ public class PromotorJuridicoService {
 
 	/**
 	 * Metodo responsável pela edição de promotorJuridico
+	 * 
+	 * @throws ExecutionException   erro ao realizar ação no banco de dados.
+	 * @throws InterruptedException erro ao realizar ação no banco de dados.
 	 */
-	public static void editarPromotorJuridico() {
+	public static void editarPromotorJuridico() throws InterruptedException, ExecutionException {
 		PromotorJuridico promotorJuridico = new PromotorJuridico();
 		promotorJuridico = login();
 
@@ -39,8 +45,13 @@ public class PromotorJuridicoService {
 
 	/**
 	 * Metodo responsável pelo cadastro de promotor Juridico.
+	 * 
+	 * @throws ExecutionException   erro ao realizar ação no banco de dados.
+	 * @throws InterruptedException erro ao realizar ação no banco de dados.
+	 * @throws IOException          caso ocorra erro na leitura de inputs do
+	 *                              teclado.
 	 */
-	public static void cadastroPromotorJuridico() {
+	public static void cadastroPromotorJuridico() throws IOException, InterruptedException, ExecutionException {
 
 		StringBuilder sb = new StringBuilder();
 		Scanner scanner = new Scanner(System.in);
@@ -58,7 +69,7 @@ public class PromotorJuridicoService {
 
 		if (opcao == 0) {
 			scanner.close();
-			IPromotorJuridicoDAO.cadastrarPromotor(promotorJuridico);
+			PromotorDAO.cadastraPromotorJuridico(promotorJuridico);
 		} else {
 			scanner.close();
 			System.exit(0);
@@ -67,34 +78,40 @@ public class PromotorJuridicoService {
 
 	/**
 	 * Exclusão de promotor juridico.
+	 * 
+	 * @throws ExecutionException   erro ao realizar ação no banco de dados.
+	 * @throws InterruptedException erro ao realizar ação no banco de dados.
 	 */
-	public static void excluirPromotor() {
+	public static void excluirPromotor() throws InterruptedException, ExecutionException {
 		PromotorJuridico promotorJuridico = new PromotorJuridico();
 		promotorJuridico = login();
 
-		if(promotorJuridico == null) {
+		if (promotorJuridico == null) {
 			System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
 			return;
-		}else {
+		} else {
 			StringBuilder sb = new StringBuilder();
-			sb.append("Tem certeza que deseja excluir o perfil de " + promotorJuridico.getRazaoSocial() + " junto de todos seus dados?\n")
-			.append("\nPara confirmar a ação digite 0, para cancelar digite 1: \n");
+			sb.append("Tem certeza que deseja excluir o perfil de " + promotorJuridico.getRazaoSocial()
+					+ " junto de todos seus dados?\n")
+					.append("\nPara confirmar a ação digite 0, para cancelar digite 1: \n");
 			System.out.println(sb.toString());
 			int option = scanner.nextInt();
-			
+
 			switch (option) {
 			case 0:
-				IPromotorJuridicoDAO.excluirPromotor(promotorJuridico);
-				System.out.println("\nExclusão de perfil do Promotor Juridico " + promotorJuridico.getRazaoSocial() + " executada com sucesso.");
+				PromotorDAO.excluiPromotor(promotorJuridico.getNomePessoaResponsavel());
+				System.out.println("\nExclusão de perfil do Promotor Juridico " + promotorJuridico.getRazaoSocial()
+						+ " executada com sucesso.");
 				return;
 			case 1:
-				System.out.println("\nExclusão de perfil do Promotor Juridico" + promotorJuridico.getRazaoSocial() + " cancelada.");
+				System.out.println("\nExclusão de perfil do Promotor Juridico" + promotorJuridico.getRazaoSocial()
+						+ " cancelada.");
 				return;
 			default:
 				System.out.println("ERRO");
 				break;
 			}
-			
+
 		}
 
 	}
@@ -102,9 +119,11 @@ public class PromotorJuridicoService {
 	/**
 	 * Metodo responsável pela execução de login para promotorJuridico.
 	 * 
+	 * @throws ExecutionException   erro ao realizar ação no banco de dados.
+	 * @throws InterruptedException erro ao realizar ação no banco de dados.
 	 * @return instancia de promotor juridico.
 	 */
-	static PromotorJuridico login() {
+	static PromotorJuridico login() throws InterruptedException, ExecutionException {
 		StringBuilder sb = new StringBuilder();
 		scanner = new Scanner(System.in);
 		PromotorJuridico promotorJuridico = new PromotorJuridico();
@@ -122,6 +141,6 @@ public class PromotorJuridicoService {
 
 		String password = scanner.nextLine();
 
-		return IPromotorJuridicoDAO.login(user, password);
+		return PromotorDAO.loginPromotorJuridico(user, password);
 	}
 }

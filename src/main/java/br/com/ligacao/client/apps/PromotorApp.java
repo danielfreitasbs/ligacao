@@ -83,8 +83,11 @@ public class PromotorApp {
 
 	/**
 	 * Metodo responsável pela chamada de metodos para avaliação de voluntarios.
+	 * 
+	 * @throws ExecutionException caso ocorra problemas na consulta do banco de dados. 
+	 * @throws InterruptedException caso ocorra problemas na consulta do banco de dados. 
 	 */
-	private static void avaliarVoluntario() {
+	private static void avaliarVoluntario() throws InterruptedException, ExecutionException {
 		int option = selecionaTipoPromotor(CABECALHO_AVALIAR_VOLUNT);
 
 		switch (option) {
@@ -92,7 +95,7 @@ public class PromotorApp {
 			PromotorFisicoService.avaliarVoluntario();
 			break;
 		case 1:
-			PromotorJuridicoService.avaliarVoluntario();
+//			PromotorJuridicoService.avaliarVoluntario();
 			break;
 		default:
 			break;
