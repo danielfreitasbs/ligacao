@@ -57,7 +57,7 @@ public final class VoluntarioService {
             VoluntarioDAO.cadastraVoluntario(voluntario);
         } else {
             scanner.close();
-            System.exit(0);
+            return;
         }
     }
 
