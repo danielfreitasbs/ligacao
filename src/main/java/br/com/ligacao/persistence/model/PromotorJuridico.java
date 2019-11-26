@@ -10,162 +10,274 @@ import java.util.Objects;
  */
 public class PromotorJuridico extends Login {
 
-	private String nomePessoaResponsavel;
-	private String cpfResponsavel;
-	private String cnpj;
-	private String razaoSocial;
-	private String dataFundacao;
-	private String fotoPerfil;
-	private String redesSociais;
-	private String categoriasAcoes;
-	private String descricaoGeral;
-	private String telefone;
-	private String endereco;
-	private String email;
-	@SuppressWarnings("unused")
-    private String tipoPessoa;
+  /**
+   * Atributo representando nome da pessoa fisica responsável.
+   */
+  private String nomePessoaResponsavel;
+  /**
+   * Atributo representando cpf da pessoa fisica responsavel.
+   */
+  private String cpfResponsavel;
+  /**
+   * Atributo representando cnpj do promotor.
+   */
+  private String cnpj;
+  /**
+   * Atributo representando razao social do promotor.
+   */
+  private String razaoSocial;
+  /**
+   * Atributo representando data de fundacao do cnpj do promotor.
+   */
+  private String dataFundacao;
+  /**
+   * Atributo representando foto de perfil do promotor.
+   */
+  private String fotoPerfil;
+  /**
+   * Atributo representando link das redes sociais do promotor.
+   */
+  private String redesSociais;
+  /**
+   * Atributo representando lista de categorias atendidas pelo promotor.
+   */
+  private String categoriasAcoes;
+  /**
+   * Atributo representando descricao geral do promotor.
+   */
+  private String descricaoGeral;
+  /**
+   * Atributo representando numero de contato.
+   */
+  private String telefone;
+  /**
+   * Atributo representando endereco do promotor.
+   */
+  private String endereco;
+  /**
+   * Atributo representando email do promotor.
+   */
+  private String email;
 
-	public PromotorJuridico(String usuario, String senha,String nomePessoaResponsavel,
-            String cpfResponsavel, String cnpj, String razaoSocial,
-            String dataFundacao, String fotoPerfil, String redesSociais,
-            String categoriasAcoes, String descricaoGeral, String telefone,
-            String endereco, String email) {
-        super(usuario, senha);
-        this.nomePessoaResponsavel = nomePessoaResponsavel;
-        this.cpfResponsavel = cpfResponsavel;
-        this.cnpj = cnpj;
-        this.razaoSocial = razaoSocial;
-        this.dataFundacao = dataFundacao;
-        this.fotoPerfil = fotoPerfil;
-        this.redesSociais = redesSociais;
-        this.categoriasAcoes = categoriasAcoes;
-        this.descricaoGeral = descricaoGeral;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.email = email;
-    }
+  /**
+   * Metodo construtor utilizando de todos atributos da classe.
+   * 
+   * @param usuario para acesso.
+   * @param senha para acesso.
+   * @param nomePessoaResponsavel nome da pessoa fisica responsavel.
+   * @param cpfResponsavel cpf da pessoa fisica responsavel.
+   * @param cnpj do promotor.
+   * @param razaoSocial do promotor.
+   * @param dataFundacao do cnpj do promotor.
+   * @param fotoPerfil string representando foto.
+   * @param redesSociais string representando lista de links de redes sociais.
+   * @param categoriasAcoes string representando categoria de acoes atendidas pelo promotor.
+   * @param descricaoGeral string representando descricao geral do promotor.
+   * @param telefone string para telefone.
+   * @param endereco string para endereco completo.
+   * @param email de contato do promotor.
+   */
+  public PromotorJuridico(final String usuario, final String senha,
+      final String nomePessoaResponsavel, final String cpfResponsavel, final String cnpj,
+      final String razaoSocial, final String dataFundacao, final String fotoPerfil,
+      final String redesSociais, final String categoriasAcoes, final String descricaoGeral,
+      final String telefone, final String endereco, final String email) {
+    super(usuario, senha);
+    this.nomePessoaResponsavel = nomePessoaResponsavel;
+    this.cpfResponsavel = cpfResponsavel;
+    this.cnpj = cnpj;
+    this.razaoSocial = razaoSocial;
+    this.dataFundacao = dataFundacao;
+    this.fotoPerfil = fotoPerfil;
+    this.redesSociais = redesSociais;
+    this.categoriasAcoes = categoriasAcoes;
+    this.descricaoGeral = descricaoGeral;
+    this.telefone = telefone;
+    this.endereco = endereco;
+    this.email = email;
+  }
 
-    public PromotorJuridico() {
-	}
+  /**
+   * construtor default.
+   */
+  public PromotorJuridico() {
+    
+  }
 
-	public String getNomePessoaResponsavel() {
-		return nomePessoaResponsavel;
-	}
+  /**
+   * @return the nomePessoaResponsavel
+   */
+  public String getNomePessoaResponsavel() {
+    return nomePessoaResponsavel;
+  }
 
-	public void setNomePessoaResponsavel(String nomePessoaResponsavel) {
-		this.nomePessoaResponsavel = nomePessoaResponsavel;
-	}
+  /**
+   * @param nomePessoaResponsavel the nomePessoaResponsavel to set
+   */
+  public void setNomePessoaResponsavel(final String nomePessoaResponsavel) {
+    this.nomePessoaResponsavel = nomePessoaResponsavel;
+  }
 
-	public String getCpfResponsavel() {
-		return cpfResponsavel;
-	}
+  /**
+   * @return the cpfResponsavel
+   */
+  public String getCpfResponsavel() {
+    return cpfResponsavel;
+  }
 
-	public void setCpfResponsavel(String cpfResponsavel) {
-		this.cpfResponsavel = cpfResponsavel;
-	}
+  /**
+   * @param cpfResponsavel the cpfResponsavel to set
+   */
+  public void setCpfResponsavel(final String cpfResponsavel) {
+    this.cpfResponsavel = cpfResponsavel;
+  }
 
-	public String getCnpj() {
-		return cnpj;
-	}
+  /**
+   * @return the cnpj
+   */
+  public String getCnpj() {
+    return cnpj;
+  }
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
+  /**
+   * @param cnpj the cnpj to set
+   */
+  public void setCnpj(final String cnpj) {
+    this.cnpj = cnpj;
+  }
 
-	public String getRazaoSocial() {
-		return razaoSocial;
-	}
+  /**
+   * @return the razaoSocial
+   */
+  public String getRazaoSocial() {
+    return razaoSocial;
+  }
 
-	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
-	}
+  /**
+   * @param razaoSocial the razaoSocial to set
+   */
+  public void setRazaoSocial(final String razaoSocial) {
+    this.razaoSocial = razaoSocial;
+  }
 
-	public String getDataFundacao() {
-		return dataFundacao;
-	}
+  /**
+   * @return the dataFundacao
+   */
+  public String getDataFundacao() {
+    return dataFundacao;
+  }
 
-	public void setDataFundacao(String dataFundacao) {
-		this.dataFundacao = dataFundacao;
-	}
+  /**
+   * @param dataFundacao the dataFundacao to set
+   */
+  public void setDataFundacao(final String dataFundacao) {
+    this.dataFundacao = dataFundacao;
+  }
 
-	public String getFotoPerfil() {
-		return fotoPerfil;
-	}
+  /**
+   * @return the fotoPerfil
+   */
+  public String getFotoPerfil() {
+    return fotoPerfil;
+  }
 
-	public void setFotoPerfil(String fotoPerfil) {
-		this.fotoPerfil = fotoPerfil;
-	}
+  /**
+   * @param fotoPerfil the fotoPerfil to set
+   */
+  public void setFotoPerfil(final String fotoPerfil) {
+    this.fotoPerfil = fotoPerfil;
+  }
 
-	public String getRedesSociais() {
-		return redesSociais;
-	}
+  /**
+   * @return the redesSociais
+   */
+  public String getRedesSociais() {
+    return redesSociais;
+  }
 
-	public void setRedesSociais(String redesSociais) {
-		this.redesSociais = redesSociais;
-	}
+  /**
+   * @param redesSociais the redesSociais to set
+   */
+  public void setRedesSociais(final String redesSociais) {
+    this.redesSociais = redesSociais;
+  }
 
-	public String getCategoriasAcoes() {
-		return categoriasAcoes;
-	}
+  /**
+   * @return the categoriasAcoes
+   */
+  public String getCategoriasAcoes() {
+    return categoriasAcoes;
+  }
 
-	public void setCategoriasAcoes(String categoriasAcoes) {
-		this.categoriasAcoes = categoriasAcoes;
-	}
+  /**
+   * @param categoriasAcoes the categoriasAcoes to set
+   */
+  public void setCategoriasAcoes(final String categoriasAcoes) {
+    this.categoriasAcoes = categoriasAcoes;
+  }
 
-	public String getDescricaoGeral() {
-		return descricaoGeral;
-	}
+  /**
+   * @return the descricaoGeral
+   */
+  public String getDescricaoGeral() {
+    return descricaoGeral;
+  }
 
-	public void setDescricaoGeral(String descricaoGeral) {
-		this.descricaoGeral = descricaoGeral;
-	}
+  /**
+   * @param descricaoGeral the descricaoGeral to set
+   */
+  public void setDescricaoGeral(final String descricaoGeral) {
+    this.descricaoGeral = descricaoGeral;
+  }
 
-	public String getTelefone() {
-		return telefone;
-	}
+  /**
+   * @return the telefone
+   */
+  public String getTelefone() {
+    return telefone;
+  }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+  /**
+   * @param telefone the telefone to set
+   */
+  public void setTelefone(final String telefone) {
+    this.telefone = telefone;
+  }
 
-	public String getEndereco() {
-		return endereco;
-	}
+  /**
+   * @return the endereco
+   */
+  public String getEndereco() {
+    return endereco;
+  }
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+  /**
+   * @param endereco the endereco to set
+   */
+  public void setEndereco(final String endereco) {
+    this.endereco = endereco;
+  }
 
-	public String getEmail() {
-		return email;
-	}
+  /**
+   * @return the email
+   */
+  public String getEmail() {
+    return email;
+  }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	public void setTipoPessoa(String tipoPessoa) {
-        this.tipoPessoa = tipoPessoa;
-    }
+  /**
+   * @param email the email to set
+   */
+  public void setEmail(final String email) {
+    this.email = email;
+  }
 
-    public String getTipoPessoa() {
-        return tipoPessoa;
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash( nomePessoaResponsavel,
-      cpfResponsavel,
-      cnpj,
-      razaoSocial,
-      dataFundacao,
-      fotoPerfil,
-      redesSociais,
-      categoriasAcoes,
-      descricaoGeral,
-      telefone,
-      endereco,
-      email,
-      tipoPessoa);
+  /**
+   * hashcode com todos atributos do promotor.
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(nomePessoaResponsavel, cpfResponsavel, cnpj, razaoSocial, dataFundacao,
+        fotoPerfil, redesSociais, categoriasAcoes, descricaoGeral, telefone, endereco, email);
   }
 }

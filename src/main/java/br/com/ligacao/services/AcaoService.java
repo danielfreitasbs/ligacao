@@ -1,14 +1,14 @@
 package br.com.ligacao.services;
 
-import br.com.ligacao.persistence.model.Acao;
-import br.com.ligacao.persistence.model.AcaoDAO;
-import br.com.ligacao.persistence.model.PromotorFisico;
-import br.com.ligacao.persistence.model.PromotorJuridico;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
+
+import br.com.ligacao.persistence.model.Acao;
+import br.com.ligacao.persistence.model.AcaoDAO;
+import br.com.ligacao.persistence.model.PromotorFisico;
+import br.com.ligacao.persistence.model.PromotorJuridico;
 
 /**
  * Classe responsavel por oferecer serviços relacionados a acoes.
@@ -237,9 +237,17 @@ public final class AcaoService {
         TIPO_PROMOTOR = selecionaTipoPromotor();
 
         if (TIPO_PROMOTOR == 0) {
-            promotorFisico = PromotorFisicoService.login();
+            try {
+				promotorFisico = PromotorFisicoService.login();
+			} catch (InterruptedException | ExecutionException e) {
+				e.printStackTrace();
+			}
         } else {
-            promotorJuridico = PromotorJuridicoService.login();
+            try {
+				promotorJuridico = PromotorJuridicoService.login();
+			} catch (InterruptedException | ExecutionException e) {
+				e.printStackTrace();
+			}
         }
 
         boolean isLogado = promotorFisico != null || promotorJuridico != null;

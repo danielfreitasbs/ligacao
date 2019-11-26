@@ -6,6 +6,7 @@ import br.com.ligacao.client.apps.PromotorApp;
 import br.com.ligacao.client.apps.VoluntarioApp;
 
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 public class Main {

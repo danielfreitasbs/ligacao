@@ -2,38 +2,71 @@ package br.com.ligacao.persistence.model;
 
 import java.util.Objects;
 
+/**
+ * Classe representa a entidade de login do sistema.
+ * 
+ * @author danielfreitasbs.
+ *
+ */
 public class Login {
-	private String usuario;
-	private String senha;
+  /**
+   * Atributo representa o usuario do sistema.
+   */
+  private String usuario;
+  /**
+   * Atributo representa a senha do usuario.
+   */
+  private String senha;
 
-	public Login() {
+  /**
+   * Construtor default.
+   */
+  public Login() {
 
-	}
+  }
 
-	public Login(String usuario, String senha) {
-		super();
-		this.usuario = usuario;
-		this.senha = senha;
-	}
+  /**
+   * Construtor com atributos.
+   * 
+   * @param usuario string representando o nome de usuario.
+   * @param senha string representando a senha do usuario.
+   */
+  public Login(final String usuario, final String senha) {
+    super();
+    this.usuario = usuario;
+    this.senha = senha;
+  }
 
-	public String getUsuario() {
-		return usuario;
-	}
+  /**
+   * @return the usuario
+   */
+  public String getUsuario() {
+    return usuario;
+  }
 
-	public void setUsuario(String nomePromotor) {
-		this.usuario = nomePromotor;
-	}
+  /**
+   * @param usuario the usuario to set
+   */
+  public void setUsuario(final String usuario) {
+    this.usuario = usuario;
+  }
 
-	public String getSenha() {
-		return senha;
-	}
+  /**
+   * @return the senha
+   */
+  public String getSenha() {
+    return senha;
+  }
 
-	public void setSenha(String categoriaAcao) {
-		this.senha = categoriaAcao;
-	}
+  /**
+   * @param senha the senha to set
+   */
+  public void setSenha(final String senha) {
+    this.senha = senha;
+  }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(usuario, senha);
-	}
+  @Override
+  public int hashCode() {
+    return Objects.hash(usuario, senha);
+  }
 }
