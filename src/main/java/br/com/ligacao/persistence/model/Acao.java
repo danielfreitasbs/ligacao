@@ -55,27 +55,27 @@ public class Acao {
     /**
      * Construtor com todos os atributos da classe ação.
      *
-     * @param nomePromotor1   o nome do promotor da ação
-     * @param nomeAcao1       o nome da ação
-     * @param categoriaAcao1  a categoria da ação
-     * @param dataRealizacao1 a data de realiação da ação
-     * @param descricao1      a descrição da ação
-     * @param horaInicio1     a hora de inicio da ação
-     * @param horaFim1        a hora de fim da ação
+     * @param nomePromotor   o nome do promotor da ação
+     * @param nomeAcao       o nome da ação
+     * @param categoriaAcao  a categoria da ação
+     * @param dataRealizacao a data de realiação da ação
+     * @param descricao      a descrição da ação
+     * @param horaInicio     a hora de inicio da ação
+     * @param horaFim        a hora de fim da ação
      */
-    public Acao(final String nomePromotor1, final String nomeAcao1,
-                final String categoriaAcao1,
-                final String dataRealizacao1, final String descricao1,
-                final String horaInicio1,
-                final String horaFim1) {
+    public Acao(final String nomePromotor, final String nomeAcao,
+                final String categoriaAcao,
+                final String dataRealizacao, final String descricao,
+                final String horaInicio,
+                final String horaFim) {
         super();
-        this.nomePromotor = nomePromotor1;
-        this.nomeAcao = nomeAcao1;
-        this.categoriaAcao = categoriaAcao1;
-        this.dataRealizacao = dataRealizacao1;
-        this.descricao = descricao1;
-        this.horaInicio = horaInicio1;
-        this.horaFim = horaFim1;
+        this.nomePromotor = nomePromotor;
+        this.nomeAcao = nomeAcao;
+        this.categoriaAcao = categoriaAcao;
+        this.dataRealizacao = dataRealizacao;
+        this.descricao = descricao;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
     }
 
     /**
@@ -90,10 +90,10 @@ public class Acao {
     /**
      * Set o nome do promotor.
      *
-     * @param nomePromotor1 nome do promotor
+     * @param nomePromotor nome do promotor
      */
-    public void setNomePromotor(final String nomePromotor1) {
-        this.nomePromotor = nomePromotor1;
+    public void setNomePromotor(final String nomePromotor) {
+        this.nomePromotor = nomePromotor;
     }
 
     /**
@@ -108,10 +108,10 @@ public class Acao {
     /**
      * Set o nome da ação.
      *
-     * @param nomeAcao1 o nome da ação
+     * @param nomeAcao o nome da ação
      */
-    public void setNomeAcao(final String nomeAcao1) {
-        this.nomeAcao = nomeAcao1;
+    public void setNomeAcao(final String nomeAcao) {
+        this.nomeAcao = nomeAcao;
     }
 
     /**
@@ -126,10 +126,10 @@ public class Acao {
     /**
      * Set a categoria da ação.
      *
-     * @param categoriaAcao1 a categoria da ação
+     * @param categoriaAcao a categoria da ação
      */
-    public void setCategoriaAcao(final String categoriaAcao1) {
-        this.categoriaAcao = categoriaAcao1;
+    public void setCategoriaAcao(final String categoriaAcao) {
+        this.categoriaAcao = categoriaAcao;
     }
 
     /**
@@ -144,10 +144,10 @@ public class Acao {
     /**
      * Set a data de realização da ação.
      *
-     * @param dataRealizacao1 a data de realização
+     * @param dataRealizacao a data de realização
      */
-    public void setDataRealizacao(final String dataRealizacao1) {
-        this.dataRealizacao = dataRealizacao1;
+    public void setDataRealizacao(final String dataRealizacao) {
+        this.dataRealizacao = dataRealizacao;
     }
 
     /**
@@ -162,10 +162,10 @@ public class Acao {
     /**
      * Set a descrição da ação.
      *
-     * @param descricao1 a descrição da ação
+     * @param descricao a descrição da ação
      */
-    public void setDescricao(final String descricao1) {
-        this.descricao = descricao1;
+    public void setDescricao(final String descricao) {
+        this.descricao = descricao;
     }
 
     /**
@@ -180,10 +180,10 @@ public class Acao {
     /**
      * Set a hora de início.
      *
-     * @param horaInicio1 hora de final da ação
+     * @param horaInicio hora de final da ação
      */
-    public void setHoraInicio(final String horaInicio1) {
-        this.horaInicio = horaInicio1;
+    public void setHoraInicio(final String horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
     /**
@@ -198,10 +198,10 @@ public class Acao {
     /**
      * Set hora de fim da ação.
      *
-     * @param horaFim1 hora de fim da ação
+     * @param horaFim hora de fim da ação
      */
-    public void setHoraFim(final String horaFim1) {
-        this.horaFim = horaFim1;
+    public void setHoraFim(final String horaFim) {
+        this.horaFim = horaFim;
     }
 
     /**
@@ -216,10 +216,10 @@ public class Acao {
     /**
      * Set emails.
      *
-     * @param emails1 emails dos voluntarios
+     * @param emails emails dos voluntarios
      */
-    public void setEmails(final ArrayList<String> emails1) {
-        this.emails = emails1;
+    public void setEmails(final ArrayList<String> emails) {
+        this.emails = emails;
     }
 
     /**
