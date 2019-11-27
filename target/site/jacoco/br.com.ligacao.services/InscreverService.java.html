@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InscreverService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java.br.com.ligacao:ligacao</a> &gt; <a href="index.source.html" class="el_package">br.com.ligacao.services</a> &gt; <span class="el_source">InscreverService.java</span></div><h1>InscreverService.java</h1><pre class="source lang-java linenums">package br.com.ligacao.services;
+
+import java.io.IOException;
+// Comentado para retirar bug do spotbugs
+//import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+
+import br.com.ligacao.persistence.model.Acao;
+import br.com.ligacao.persistence.model.Voluntario;
+import br.com.ligacao.persistence.model.VoluntarioDAO;
+
+/**
+ * Classe responsável por oferecer serviços relacionados a inscrição de
+ * voluntários em ações.
+ *
+ * @author caiob
+ *
+ */
+public final class InscreverService {
+
+    /**
+     * Construtor privado para evitar instanciação da classe.
+     */
+    private InscreverService() {
+    }
+
+    /**
+     * Voluntário a ser inscrito em ação.
+     */
+<span class="fc" id="L30">    private static Voluntario voluntario = new Voluntario();</span>
+    /**
+     * Scanner para entrada de dados pelo usuario.
+     */
+    // Comentado para retirar bug do spotbugs
+    //private static Scanner scanner;
+
+    /**
+     * Cadastra um voluntário em uma ação.
+     *
+     * @param acao Ação ao qual o voluntário escolheu se inscrever.
+     *
+     * @throws IOException          Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
+     * @throws InterruptedException Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
+     * @throws ExecutionException   Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
+     */
+    public static void inscreverEmAcao(final Acao acao) throws IOException, InterruptedException, ExecutionException {
+        // voluntario = login();
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (voluntario == null) {</span>
+<span class="nc" id="L53">            System.out.println(&quot;\nUsuário não encontrado ou Usuario/Senha incorreto.\n&quot;);</span>
+<span class="nc" id="L54">            return;</span>
+        } else {
+<span class="nc" id="L56">            VoluntarioDAO.cadastraVoluntarioEmAcao(acao.getNomePromotor(), acao.getNomeAcao(), voluntario);</span>
+<span class="nc" id="L57">            System.out.println(&quot;\n ---- Inscrição em Ação Finalizada ---- \n&quot;);</span>
+        }
+<span class="nc" id="L59">    }</span>
+
+    /**
+     * Realiza login de um voluntário.
+     *
+     * @return Voluntário caso exista e null caso não exista.
+     */
+    /*
+     * static Voluntario login() { StringBuilder sb = new StringBuilder(); scanner =
+     * new Scanner(System.in);
+     *
+     * sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);
+     * sb.append(&quot;Informe o nome de usuário: \n&quot;);
+     * System.out.println(sb.toString());
+     *
+     * String user = scanner.nextLine();
+     *
+     * sb = new StringBuilder(); sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);
+     * sb.append(&quot;Informe a senha: \n&quot;); System.out.println(sb.toString());
+     *
+     * String password = scanner.nextLine();
+     *
+     * return VoluntarioDAO.loginVoluntario(user, password); }
+     */
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

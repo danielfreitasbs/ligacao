@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PromotorApp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java.br.com.ligacao:ligacao</a> &gt; <a href="index.source.html" class="el_package">br.com.ligacao.client.apps</a> &gt; <span class="el_source">PromotorApp.java</span></div><h1>PromotorApp.java</h1><pre class="source lang-java linenums">package br.com.ligacao.client.apps;
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+import javax.management.AttributeNotFoundException;
+import br.com.ligacao.client.forms.FormulariosSolicitacao;
+import br.com.ligacao.services.PromotorFisicoService;
+import br.com.ligacao.services.PromotorJuridicoService;
+
+/**
+ * Classe responsável pela simulação interface de apicação para interação com Promotores de Ações.
+ * 
+ * @author danielfreitasbs
+ *
+ */
+<span class="nc" id="L17">public class PromotorApp {</span>
+
+  /**
+   * Variavel que representa o cabeçalho do formulário de cadastro de promotor.
+   */
+<span class="fc" id="L22">  static String CABECALHO_FORM_CAD = &quot;\n---- Formulário de Cadastro de Promotor ----\n&quot;;</span>
+
+  /**
+   * Variavel que representa o cabeçalho do formulário de edição de promotor.
+   */
+<span class="fc" id="L27">  static String CABECALHO_FORM_EDIT = &quot;\n---- Formulário de Cadastro de Promotor ----\n&quot;;</span>
+
+  /**
+   * Variavel que representa o cabeçalho do formulário de exclusão de promotor.
+   */
+<span class="fc" id="L32">  static String CABECALHO_FORM_DEL = &quot;\n---- Formulário de Exclusao de Promotor ----\n&quot;;</span>
+
+  /**
+   * Variavel que representa o cabeçalho do formulário de avaliar voluntario.
+   */
+<span class="fc" id="L37">  static String CABECALHO_AVALIAR_VOLUNT = &quot;\n---- Avaliar Voluntário ----\n&quot;;</span>
+
+  /**
+   * Scanner para entrada de dados pelo usuário.
+   */
+<span class="fc" id="L42">  private static Scanner scanner = new Scanner(System.in);</span>
+
+  /**
+   * Variavel para construção de strings de exibição de mensagens do sistema.
+   */
+<span class="fc" id="L47">  private static StringBuilder sb = new StringBuilder();</span>
+
+  /**
+   * Metodo responsável pela representação conceitual da interface de interação com o usuário.
+   * 
+   * @throws IOException caso não seja possivel ler do teclado.
+   * @throws InterruptedException caso ocorra erro na busca de dados do banco de dados.
+   * @throws ExecutionException caso ocorra erro na busca de dados do banco de dados.
+   * @throws AttributeNotFoundException caso ocorra a falta de algum atributo chave do promotor.
+   */
+  public static void simuladorInterface()
+      throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
+<span class="fc" id="L59">    sb = new StringBuilder();</span>
+<span class="fc" id="L60">    sb.append(&quot;Qual ação deseja executar?\n&quot;).append(&quot;0 - Cadastrar Promotor\n&quot;)</span>
+<span class="fc" id="L61">        .append(&quot;1 - Editar Perfil de Promotor\n&quot;).append(&quot;2 - Excluir Perfil de Promotor\n&quot;)</span>
+<span class="fc" id="L62">        .append(&quot;3 - Avaliar Voluntário\n&quot;);</span>
+<span class="fc" id="L63">    System.out.println(sb.toString());</span>
+<span class="nc" id="L64">    int opcao = scanner.nextInt();</span>
+
+<span class="nc bnc" id="L66" title="All 5 branches missed.">    switch (opcao) {</span>
+      case 0:
+<span class="nc" id="L68">        promotorCadastro();</span>
+<span class="nc" id="L69">        break;</span>
+      case 1:
+<span class="nc" id="L71">        promotorEditar();</span>
+<span class="nc" id="L72">        break;</span>
+      case 2:
+<span class="nc" id="L74">        promotorExcluir();</span>
+<span class="nc" id="L75">        break;</span>
+      case 3:
+<span class="nc" id="L77">        avaliarVoluntario();</span>
+      default:
+        break;
+    }
+<span class="nc" id="L81">  }</span>
+
+  /**
+   * Metodo responsável pela chamada de metodos para avaliação de voluntarios.
+   * 
+   * @throws ExecutionException caso ocorra problemas na consulta do banco de dados.
+   * @throws InterruptedException caso ocorra problemas na consulta do banco de dados.
+   */
+  private static void avaliarVoluntario() throws InterruptedException, ExecutionException {
+<span class="nc" id="L90">    int option = selecionaTipoPromotor(CABECALHO_AVALIAR_VOLUNT);</span>
+
+<span class="nc bnc" id="L92" title="All 3 branches missed.">    switch (option) {</span>
+      case 0:
+<span class="nc" id="L94">        PromotorFisicoService.avaliarVoluntario();</span>
+<span class="nc" id="L95">        break;</span>
+      case 1:
+        // PromotorJuridicoService.avaliarVoluntario();
+<span class="nc" id="L98">        break;</span>
+      default:
+        break;
+    }
+<span class="nc" id="L102">  }</span>
+
+  /**
+   * Metodo responsável pela chamada de metodos para exclusao de promotor.
+   */
+  private static void promotorExcluir() {
+<span class="nc" id="L108">    int option = selecionaTipoPromotor(CABECALHO_FORM_DEL);</span>
+
+<span class="nc bnc" id="L110" title="All 3 branches missed.">    switch (option) {</span>
+      case 0:
+        try {
+<span class="nc" id="L113">          FormulariosSolicitacao.solExclusaoPromotorFisico();</span>
+<span class="nc" id="L114">        } catch (InterruptedException | ExecutionException e) {</span>
+<span class="nc" id="L115">          e.printStackTrace();</span>
+<span class="nc" id="L116">        }</span>
+<span class="nc" id="L117">        break;</span>
+      case 1:
+        try {
+<span class="nc" id="L120">          FormulariosSolicitacao.solExclusaoPromotorJuridico();</span>
+<span class="nc" id="L121">        } catch (InterruptedException | ExecutionException e) {</span>
+<span class="nc" id="L122">          e.printStackTrace();</span>
+<span class="nc" id="L123">        }</span>
+<span class="nc" id="L124">        break;</span>
+      default:
+        break;
+    }
+<span class="nc" id="L128">  }</span>
+
+  /**
+   * Metodo responsável pela chamada de metodos para edicao de perfil de promotor.
+   * 
+   * @throws IOException caso ocorra algum problema de leitura de input.
+   * @throws InterruptedException caso ocorra algum problema no uso de banco de dados.
+   * @throws ExecutionException caso ocorra algum problema no uso de banco de dados.
+   */
+  private static void promotorEditar()
+      throws IOException, InterruptedException, ExecutionException {
+<span class="nc" id="L139">    int option = selecionaTipoPromotor(CABECALHO_FORM_EDIT);</span>
+
+<span class="nc bnc" id="L141" title="All 3 branches missed.">    switch (option) {</span>
+      case 0:
+<span class="nc" id="L143">        FormulariosSolicitacao.formDadosAlteracao();</span>
+<span class="nc" id="L144">        break;</span>
+      case 1:
+<span class="nc" id="L146">        FormulariosSolicitacao.formDadosAlteracaoPJ();</span>
+<span class="nc" id="L147">        break;</span>
+
+      default:
+        break;
+    }
+<span class="nc" id="L152">  }</span>
+
+  /**
+   * Responsável pela chamada de metodos para cadastro de promotores.
+   * 
+   * @throws IOException caso ocorra erro na leitura de input do teclado.
+   * @throws InterruptedException erro ao efetuar acao com banco de dados.
+   * @throws ExecutionException erro ao efetuar acao com banco de dados.
+   * @throws AttributeNotFoundException caso não seja informado o atributo chave do promotor.
+   */
+  private static void promotorCadastro()
+      throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
+<span class="nc" id="L164">    int option = selecionaTipoPromotor(CABECALHO_FORM_CAD);</span>
+
+<span class="nc bnc" id="L166" title="All 3 branches missed.">    switch (option) {</span>
+      case 0:
+<span class="nc" id="L168">        FormulariosSolicitacao.solCadPromotorFisico();</span>
+<span class="nc" id="L169">        break;</span>
+      case 1:
+<span class="nc" id="L171">        FormulariosSolicitacao.solCadPromotorJuridico();</span>
+<span class="nc" id="L172">        break;</span>
+
+      default:
+        break;
+    }
+<span class="nc" id="L177">  }</span>
+
+  /**
+   * Responsável pela seleção do tipo de pessoa do perfil de promotor.
+   * 
+   * @param cabecalho referente ao nome do formulário que será usada a ação.
+   * @return 0 representando pessoa física, e 1 representando pessoa juridica.
+   */
+  static final int selecionaTipoPromotor(final String cabecalho) {
+<span class="fc" id="L186">    sb = new StringBuilder();</span>
+<span class="fc" id="L187">    sb.append(cabecalho);</span>
+<span class="fc" id="L188">    sb.append(&quot;Selecione o tipo de pessoa: \n&quot;);</span>
+<span class="fc" id="L189">    sb.append(&quot;0 - Pessoa Física \n1 - Pessoa Juridica&quot;);</span>
+
+<span class="nc" id="L191">    int option = scanner.nextInt();</span>
+<span class="nc" id="L192">    return option;</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
