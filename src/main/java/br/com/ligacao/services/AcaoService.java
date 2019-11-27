@@ -183,7 +183,6 @@ public final class AcaoService {
                         try {
                             AcaoDAO.cadastraAcao(nomePromotor, acao);
                         } catch (IOException e) {
-                            e.printStackTrace();
                             System.out.println("Problema ao editar ação!");
                         }
                     }
@@ -240,7 +239,7 @@ public final class AcaoService {
             try {
                 promotorFisico = PromotorFisicoService.login();
             } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
+                System.out.println("Erro ao logar no sistema!\n");
             }
         } else {
             try {

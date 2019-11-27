@@ -58,6 +58,11 @@ public class PromotorJuridico extends Login {
    * Atributo representando email do promotor.
    */
   private String email;
+  /**
+   * Atributo representando tipo de pessoa do promotor.
+   */
+  @SuppressWarnings("unused")
+  private String tipoPessoa;
 
   /**
    * Metodo construtor utilizando de todos atributos da classe.
@@ -276,12 +281,27 @@ public class PromotorJuridico extends Login {
   }
 
   /**
+   * @param tipoPessoa the tipoPessoa to set
+   */
+  public void setTipoPessoa(String tipoPessoa) {
+      this.tipoPessoa = tipoPessoa;
+  }
+
+  /**
+   * @return the tipoPessoa
+   */
+  public String getTipoPessoa() {
+      return tipoPessoa;
+  }
+
+  /**
    * hashcode com todos atributos do promotor.
    */
   @Override
   public int hashCode() {
     return Objects.hash(nomePessoaResponsavel, cpfResponsavel, cnpj, razaoSocial, dataFundacao,
-        fotoPerfil, redesSociais, categoriasAcoes, descricaoGeral, telefone, endereco, email);
+        fotoPerfil, redesSociais, categoriasAcoes, descricaoGeral, telefone, endereco, email,
+        tipoPessoa);
   }
 
   /**
