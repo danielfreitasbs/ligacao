@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>java.br.com.ligacao:ligacao - Checkstyle report</title>
+    <link>https://github.com/danielfreitasbs/ligacao</link>
+    <description>java.br.com.ligacao:ligacao - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2019</copyright>
+    <item>
+      <title>File: 27,
+             Errors: 50,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>https://github.com/danielfreitasbs/ligacao/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.PromotorFisico.java">br/com/ligacao/persistence/model/PromotorFisico.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.VoluntarioDAO.java">br/com/ligacao/persistence/model/VoluntarioDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.services.AcaoService.java">br/com/ligacao/services/AcaoService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.Main.java">br/com/ligacao/Main.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.services.PromotorFisicoService.java">br/com/ligacao/services/PromotorFisicoService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.client.forms.FormulariosSolicitacao.java">br/com/ligacao/client/forms/FormulariosSolicitacao.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.PromotorDAO.java">br/com/ligacao/persistence/model/PromotorDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.client.apps.InscreverApp.java">br/com/ligacao/client/apps/InscreverApp.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.client.forms.package-info.java">br/com/ligacao/client/forms/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.package-info.java">br/com/ligacao/persistence/model/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.connection.Connection.java">br/com/ligacao/persistence/connection/Connection.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.VoluntarioREF.java">br/com/ligacao/persistence/model/VoluntarioREF.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.client.apps.PromotorApp.java">br/com/ligacao/client/apps/PromotorApp.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.Login.java">br/com/ligacao/persistence/model/Login.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.AcaoDAO.java">br/com/ligacao/persistence/model/AcaoDAO.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.connection.package-info.java">br/com/ligacao/persistence/connection/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.Voluntario.java">br/com/ligacao/persistence/model/Voluntario.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.services.VoluntarioService.java">br/com/ligacao/services/VoluntarioService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.Acao.java">br/com/ligacao/persistence/model/Acao.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.persistence.model.PromotorJuridico.java">br/com/ligacao/persistence/model/PromotorJuridico.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.services.InscreverService.java">br/com/ligacao/services/InscreverService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.client.apps.AcaoApp.java">br/com/ligacao/client/apps/AcaoApp.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.services.PromotorJuridicoService.java">br/com/ligacao/services/PromotorJuridicoService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.client.apps.VoluntarioApp.java">br/com/ligacao/client/apps/VoluntarioApp.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.package-info.java">br/com/ligacao/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.client.apps.package-info.java">br/com/ligacao/client/apps/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/danielfreitasbs/ligacao/checkstyle.html#br.com.ligacao.services.package-info.java">br/com/ligacao/services/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"br.com.ligacao"},{"l":"br.com.ligacao.client.apps"},{"l":"br.com.ligacao.client.forms"},{"l":"br.com.ligacao.persistence.connection"},{"l":"br.com.ligacao.persistence.model"},{"l":"br.com.ligacao.services"}]

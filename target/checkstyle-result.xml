@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.19">
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\client\apps\AcaoApp.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\client\apps\InscreverApp.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\client\apps\package-info.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\client\apps\PromotorApp.java">
+<error line="9" column="8" severity="error" message="Importação não utilizada - br.com.ligacao.services.PromotorJuridicoService." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
+<error line="13" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="22" column="17" severity="error" message="A variável &apos;CABECALHO_FORM_CAD&apos; deveria ser privada e ter métodos acessores." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="27" column="17" severity="error" message="A variável &apos;CABECALHO_FORM_EDIT&apos; deveria ser privada e ter métodos acessores." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="32" column="17" severity="error" message="A variável &apos;CABECALHO_FORM_DEL&apos; deveria ser privada e ter métodos acessores." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="37" column="17" severity="error" message="A variável &apos;CABECALHO_AVALIAR_VOLUNT&apos; deveria ser privada e ter métodos acessores." source="com.puppycrawl.tools.checkstyle.checks.design.VisibilityModifierCheck"/>
+<error line="51" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="85" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="132" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="156" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="181" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\client\apps\VoluntarioApp.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\client\forms\FormulariosSolicitacao.java">
+<error line="32" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="110" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="203" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="295" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="420" column="3" severity="error" message="Falta o comentário Javadoc." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+<error line="469" column="3" severity="error" message="Falta o comentário Javadoc." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\client\forms\package-info.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\Main.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\package-info.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\connection\Connection.java">
+<error line="22" column="35" severity="error" message="O nome &apos;db&apos; deve condizer com o padrão &apos;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\connection\package-info.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\Acao.java">
+<error line="6" severity="error" message="Falta o comentário Javadoc." source="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\AcaoDAO.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\Login.java">
+<error line="7" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="30" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\package-info.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\PromotorDAO.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\PromotorFisico.java">
+<error line="7" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="61" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="76" column="10" severity="error" message="Existe mais do que 9 parâmetros (encontrado 12)." source="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck"/>
+<error line="243" column="29" severity="error" message="O parâmetro tipoPessoa deve ser final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\PromotorJuridico.java">
+<error line="7" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="69" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="85" column="10" severity="error" message="Existe mais do que 9 parâmetros (encontrado 14)." source="com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck"/>
+<error line="109" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="283" column="29" severity="error" message="O parâmetro tipoPessoa deve ser final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\Voluntario.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\VoluntarioDAO.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\persistence\model\VoluntarioREF.java">
+<error line="20" column="26" severity="error" message="O parâmetro referencia deve ser final." source="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\services\AcaoService.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\services\InscreverService.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\services\package-info.java">
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\services\PromotorFisicoService.java">
+<error line="35" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="125" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="143" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="153" column="5" severity="error" message="&apos;}&apos; não está seguido de espaço em branco." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="153" column="6" severity="error" message="&apos;else&apos; não está precedido por espaço em branco." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="161" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="177" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="204" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\services\PromotorJuridicoService.java">
+<error line="12" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="25" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="35" column="5" severity="error" message="&apos;}&apos; não está seguido de espaço em branco." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="35" column="6" severity="error" message="&apos;else&apos; não está precedido por espaço em branco." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="42" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="60" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="67" column="5" severity="error" message="&apos;if&apos; não está seguido de espaço em branco." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
+<error line="69" column="5" severity="error" message="&apos;}&apos; não está seguido de espaço em branco." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="69" column="6" severity="error" message="&apos;else&apos; não está precedido por espaço em branco." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
+<error line="76" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+<error line="104" severity="error" message="Line has trailing spaces." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck"/>
+</file>
+<file name="C:\Users\alice\Desktop\ligacao\src\main\java\br\com\ligacao\services\VoluntarioService.java">
+</file>
+</checkstyle>
