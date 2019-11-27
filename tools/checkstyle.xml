@@ -100,7 +100,7 @@
         </module>
         <module name="MethodLength"/>
         <module name="ParameterNumber">
-			<property name="max" value="9"/>
+			<property name="max" value="14"/>
  		</module>
  		
         <!-- Checks for whitespace                               -->

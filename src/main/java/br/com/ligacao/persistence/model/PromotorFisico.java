@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Classe representante da entidade de promotor do tipo pessoa física.
- * 
+ *
  * @author danielfreitasbs
  *
  */
@@ -53,36 +53,38 @@ public class PromotorFisico extends Login {
 
   /**
    * Construtor com todos os atributos da classe.
-   * 
-   * @param usuario para acesso.
-   * @param senha para acesso.
-   * @param nomePessoa string para pessoa fisica.
-   * @param cpf string representando o cpf.
-   * @param dataNascimento string representando a data de nascimento.
-   * @param fotoPerfil string representado foto de perfil.
-   * @param redesSociais string representando lista de links de redes sociais.
-   * @param categoriasAcoes string representando lista de categorias de acoes atendidas pelo
-   *        promotor.
-   * @param descricaoGeral string representando descricao geral do promotor.
-   * @param telefone string representando o numero de contato.
-   * @param endereco representa endereco completo.
-   * @param email representa email de contato.
+   *
+   * @param usuarioConstructor para acesso.
+   * @param senhaConstructor para acesso.
+   * @param nomePessoaConstructor string para pessoa fisica.
+   * @param cpfConstructor string representando o cpf.
+   * @param dataNascimentoConstructor string representando a data de nascimento.
+   * @param fotoPerfilConstructor string representado foto de perfil.
+   * @param redesSociaisConstructor string representando lista de links de redes sociais.
+   * @param categoriasAcoesConstructor string representando lista de categorias de acoes atendidas
+   *        pelo promotor.
+   * @param descricaoGeralConstructor string representando descricao geral do promotor.
+   * @param telefoneConstructor string representando o numero de contato.
+   * @param enderecoConstructor representa endereco completo.
+   * @param emailConstructor representa email de contato.
    */
-  public PromotorFisico(final String usuario, final String senha, final String nomePessoa,
-      final String cpf, final String dataNascimento, final String fotoPerfil,
-      final String redesSociais, final String categoriasAcoes, final String descricaoGeral,
-      final String telefone, final String endereco, final String email) {
-    super(usuario, senha);
-    this.nomePessoa = nomePessoa;
-    this.cpf = cpf;
-    this.dataNascimento = dataNascimento;
-    this.fotoPerfil = fotoPerfil;
-    this.redesSociais = redesSociais;
-    this.categoriasAcoes = categoriasAcoes;
-    this.descricaoGeral = descricaoGeral;
-    this.telefone = telefone;
-    this.endereco = endereco;
-    this.email = email;
+  public PromotorFisico(final String usuarioConstructor, final String senhaConstructor,
+      final String nomePessoaConstructor, final String cpfConstructor,
+      final String dataNascimentoConstructor, final String fotoPerfilConstructor,
+      final String redesSociaisConstructor, final String categoriasAcoesConstructor,
+      final String descricaoGeralConstructor, final String telefoneConstructor,
+      final String enderecoConstructor, final String emailConstructor) {
+    super(usuarioConstructor, senhaConstructor);
+    this.nomePessoa = nomePessoaConstructor;
+    this.cpf = cpfConstructor;
+    this.dataNascimento = dataNascimentoConstructor;
+    this.fotoPerfil = fotoPerfilConstructor;
+    this.redesSociais = redesSociaisConstructor;
+    this.categoriasAcoes = categoriasAcoesConstructor;
+    this.descricaoGeral = descricaoGeralConstructor;
+    this.telefone = telefoneConstructor;
+    this.endereco = enderecoConstructor;
+    this.email = emailConstructor;
   }
 
   /**
@@ -100,10 +102,10 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param nomePessoa the nomePessoa to set
+   * @param nomePessoaSet the nomePessoa to set
    */
-  public void setNomePessoa(final String nomePessoa) {
-    this.nomePessoa = nomePessoa;
+  public void setNomePessoa(final String nomePessoaSet) {
+    this.nomePessoa = nomePessoaSet;
   }
 
   /**
@@ -114,10 +116,10 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param cpf the cpf to set
+   * @param cpfSet the cpf to set
    */
-  public void setCpf(final String cpf) {
-    this.cpf = cpf;
+  public void setCpf(final String cpfSet) {
+    this.cpf = cpfSet;
   }
 
   /**
@@ -128,10 +130,10 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param dataNascimento the dataNascimento to set
+   * @param dataNascimentoSet the dataNascimento to set
    */
-  public void setDataNascimento(final String dataNascimento) {
-    this.dataNascimento = dataNascimento;
+  public void setDataNascimento(final String dataNascimentoSet) {
+    this.dataNascimento = dataNascimentoSet;
   }
 
   /**
@@ -142,10 +144,10 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param fotoPerfil the fotoPerfil to set
+   * @param fotoPerfilSet the fotoPerfil to set
    */
-  public void setFotoPerfil(final String fotoPerfil) {
-    this.fotoPerfil = fotoPerfil;
+  public void setFotoPerfil(final String fotoPerfilSet) {
+    this.fotoPerfil = fotoPerfilSet;
   }
 
   /**
@@ -156,10 +158,10 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param redesSociais the redesSociais to set
+   * @param redesSociaisSet the redesSociais to set
    */
-  public void setRedesSociais(final String redesSociais) {
-    this.redesSociais = redesSociais;
+  public void setRedesSociais(final String redesSociaisSet) {
+    this.redesSociais = redesSociaisSet;
   }
 
   /**
@@ -170,10 +172,10 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param categoriasAcoes the categoriasAcoes to set
+   * @param categoriasAcoesSet the categoriasAcoes to set
    */
-  public void setCategoriasAcoes(final String categoriasAcoes) {
-    this.categoriasAcoes = categoriasAcoes;
+  public void setCategoriasAcoes(final String categoriasAcoesSet) {
+    this.categoriasAcoes = categoriasAcoesSet;
   }
 
   /**
@@ -184,10 +186,10 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param descricaoGeral the descricaoGeral to set
+   * @param descricaoGeralSet the descricaoGeral to set
    */
-  public void setDescricaoGeral(final String descricaoGeral) {
-    this.descricaoGeral = descricaoGeral;
+  public void setDescricaoGeral(final String descricaoGeralSet) {
+    this.descricaoGeral = descricaoGeralSet;
   }
 
   /**
@@ -198,10 +200,10 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param telefone the telefone to set
+   * @param telefoneSet the telefone to set
    */
-  public void setTelefone(final String telefone) {
-    this.telefone = telefone;
+  public void setTelefone(final String telefoneSet) {
+    this.telefone = telefoneSet;
   }
 
   /**
@@ -212,10 +214,10 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param endereco the endereco to set
+   * @param enderecoSet the endereco to set
    */
-  public void setEndereco(final String endereco) {
-    this.endereco = endereco;
+  public void setEndereco(final String enderecoSet) {
+    this.endereco = enderecoSet;
   }
 
   /**
@@ -226,9 +228,9 @@ public class PromotorFisico extends Login {
   }
 
   /**
-   * @param email the email to set
+   * @param emailSet the email to set
    */
-  public void setEmail(final String email) {
+  public void setEmail(final String emailSet) {
     this.email = email;
   }
 
@@ -239,5 +241,18 @@ public class PromotorFisico extends Login {
   public int hashCode() {
     return Objects.hash(nomePessoa, cpf, dataNascimento, fotoPerfil, redesSociais, categoriasAcoes,
         descricaoGeral, telefone, endereco, email);
+  }
+
+  /**
+   * metodo equals.
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (obj instanceof PromotorFisico) {
+      PromotorFisico qualquer = (PromotorFisico) obj;
+      return this.nomePessoa.equals(qualquer.getNomePessoa());
+    } else {
+      return false;
+    }
   }
 }
