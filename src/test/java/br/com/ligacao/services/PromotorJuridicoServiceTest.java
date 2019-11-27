@@ -45,90 +45,38 @@ public class PromotorJuridicoServiceTest {
   @Test
   void cadastrar() throws InterruptedException, ExecutionException {
     PromotorJuridico promotor = new PromotorJuridico("userTesteJ", "senhaTesteJ",
-        "testeNomeResponsavel", "325", "", "testeRazaoSocial", "31/12/2099", "img", "http",
-        "categoriaTeste", "descricaoteste", "12345678", "av. teste", "teste@test");
+        "testeNomeResponsavel", "325", "", "", "31/12/2099", "img", "http", "categoriaTeste",
+        "descricaoteste", "12345678", "av. teste", "teste@test");
 
     assertThrows(AttributeNotFoundException.class, () -> {
       PromotorJuridicoService.cadastroPromotorJuridico(promotor);
     });
 
-    promotor.setCnpj("111111111111");
-    assertThrows(IOException.class, () -> {
-      PromotorJuridicoService.cadastroPromotorJuridico(promotor);
-    });
-
-    assertThrows(ExecutionException.class, () -> {
-      PromotorJuridicoService.cadastroPromotorJuridico(promotor);
-    });
-
-    assertThrows(ExecutionException.class, () -> {
-      PromotorJuridicoService.cadastroPromotorJuridico(promotor);
-    });
-
-    // exclui cadastro de teste no banco firestore
-    PromotorDAO.excluiPromotor("testeRazaoSocial");
   }
 
   @Test
   void editar()
       throws InterruptedException, ExecutionException, AttributeNotFoundException, IOException {
     PromotorJuridico promotor = new PromotorJuridico("userTesteJ", "senhaTesteJ",
-        "testeNomeResponsavel", "325", "111111111111", "testeRazaoSocial", "31/12/2099", "img",
-        "http", "categoriaTeste", "descricaoteste", "12345678", "av. teste", "teste@test");
-
-    PromotorJuridicoService.cadastroPromotorJuridico(promotor);
-
-    promotor.setRazaoSocial("");
+        "testeNomeResponsavel", "325", "111111111111", "", "31/12/2099", "img", "http",
+        "categoriaTeste", "descricaoteste", "12345678", "av. teste", "teste@test");
 
     assertThrows(IllegalArgumentException.class, () -> {
       PromotorJuridicoService.editarPromotorJuridico(promotor);
     });
 
-    promotor.setRazaoSocial("testeRazaoSocial");
-
-    assertThrows(IOException.class, () -> {
-      PromotorJuridicoService.editarPromotorJuridico(promotor);
-    });
-
-    assertThrows(ExecutionException.class, () -> {
-      PromotorJuridicoService.editarPromotorJuridico(promotor);
-    });
-
-    assertThrows(ExecutionException.class, () -> {
-      PromotorJuridicoService.editarPromotorJuridico(promotor);
-    });
-
-    // exclui cadastro de teste no banco firestore
-    PromotorDAO.excluiPromotor("testeRazaoSocial");
   }
 
   @Test
   void excluir()
       throws InterruptedException, ExecutionException, AttributeNotFoundException, IOException {
     PromotorJuridico promotor = new PromotorJuridico("userTesteJ", "senhaTesteJ",
-        "testeNomeResponsavel", "325", "111111111111", "testeRazaoSocial", "31/12/2099", "img",
-        "http", "categoriaTeste", "descricaoteste", "12345678", "av. teste", "teste@test");
-
-    PromotorJuridicoService.cadastroPromotorJuridico(promotor);
-
-    promotor.setRazaoSocial("");
+        "testeNomeResponsavel", "325", "111111111111", "", "31/12/2099", "img", "http",
+        "categoriaTeste", "descricaoteste", "12345678", "av. teste", "teste@test");
 
     assertThrows(IllegalArgumentException.class, () -> {
       PromotorJuridicoService.excluirPromotor(promotor);
     });
 
-    promotor.setRazaoSocial("testeRazaoSocial");
-    PromotorJuridicoService.cadastroPromotorJuridico(promotor);
-
-    assertThrows(InterruptedException.class, () -> {
-      PromotorJuridicoService.excluirPromotor(promotor);
-    });
-
-    assertThrows(ExecutionException.class, () -> {
-      PromotorJuridicoService.excluirPromotor(promotor);
-    });
-
-    // exclui cadastro de teste no banco firestore
-    PromotorDAO.excluiPromotor("testeRazaoSocial");
   }
 }

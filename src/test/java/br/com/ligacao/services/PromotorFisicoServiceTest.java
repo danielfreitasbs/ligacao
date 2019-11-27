@@ -44,23 +44,16 @@ public class PromotorFisicoServiceTest {
   }
 
   @Test
-  void cadastrar() throws InterruptedException, ExecutionException {
+  void cadastrarCorreto() throws InterruptedException, ExecutionException {
     PromotorFisico promotor = new PromotorFisico("userTeste", "senhaTeste", "", "325", "31/12/2099",
         "img", "http", "categoriaTeste", "descricaoTeste", "12341234", "av. teste", "teste@teste");
-    assertThrows(AttributeNotFoundException.class, () -> {
+
+    assertThrows(IllegalArgumentException.class, () -> {
       PromotorFisicoService.cadastroPromotorFisico(promotor);
     });
 
     promotor.setNomePessoa("Daniel");
-    assertThrows(IOException.class, () -> {
-      PromotorFisicoService.cadastroPromotorFisico(promotor);
-    });
-
-    assertThrows(ExecutionException.class, () -> {
-      PromotorFisicoService.cadastroPromotorFisico(promotor);
-    });
-
-    assertThrows(ExecutionException.class, () -> {
+    assertThrows(AttributeNotFoundException.class, () -> {
       PromotorFisicoService.cadastroPromotorFisico(promotor);
     });
 
@@ -69,28 +62,15 @@ public class PromotorFisicoServiceTest {
   }
 
   @Test
-  void editar()
+  void editarSemNome()
       throws AttributeNotFoundException, IOException, InterruptedException, ExecutionException {
     PromotorFisico promotor = new PromotorFisico("userTeste", "senhaTeste", "", "325", "31/12/2099",
         "img", "http", "categoriaTeste", "descricaoTeste", "12341234", "av. teste", "teste@teste");
-    PromotorFisicoService.cadastroPromotorFisico(promotor);
 
     assertThrows(IllegalArgumentException.class, () -> {
       PromotorFisicoService.editarPromotorFisico(promotor);
     });
 
-    promotor.setNomePessoa("Daniel");
-
-    assertThrows(ExecutionException.class, () -> {
-      PromotorFisicoService.editarPromotorFisico(promotor);
-    });
-
-    assertThrows(InterruptedException.class, () -> {
-      PromotorFisicoService.editarPromotorFisico(promotor);
-    });
-
-    // exclui cadastro de teste no banco firestore
-    PromotorDAO.excluiPromotor("Daniel");
   }
 
   @Test
@@ -98,23 +78,10 @@ public class PromotorFisicoServiceTest {
       throws AttributeNotFoundException, IOException, InterruptedException, ExecutionException {
     PromotorFisico promotor = new PromotorFisico("userTeste", "senhaTeste", "", "325", "31/12/2099",
         "img", "http", "categoriaTeste", "descricaoTeste", "12341234", "av. teste", "teste@teste");
-    PromotorFisicoService.cadastroPromotorFisico(promotor);
 
     assertThrows(IllegalArgumentException.class, () -> {
       PromotorFisicoService.excluirPromotor(promotor);
     });
 
-    promotor.setNomePessoa("Daniel");
-
-    assertThrows(InterruptedException.class, () -> {
-      PromotorFisicoService.excluirPromotor(promotor);
-    });
-
-    assertThrows(ExecutionException.class, () -> {
-      PromotorFisicoService.editarPromotorFisico(promotor);
-    });
-
-    // exclui cadastro de teste no banco firestore
-    PromotorDAO.excluiPromotor("Daniel");
   }
 }
