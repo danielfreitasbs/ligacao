@@ -32,7 +32,7 @@ public class PromotorFisicoService {
 
   /**
    * Metodo responsável pela coleta de dados para avaliação de voluntário.
-   * 
+   *
    * @throws InterruptedException problemas em acoes com banco de dados.
    * @throws ExecutionException problemas em acoes com banco de dados.
    */
@@ -122,17 +122,17 @@ public class PromotorFisicoService {
 
   /**
    * Metodo responsável pela execução de regras de negocio para cadastro de promotorFisico.
-   * 
-   * @param promotorFisico instancia de promotor fisico.
+   *
+   * @param promotorFisicoParam instancia de promotor fisico.
    * @throws IOException problema na leitura de input do teclado.
    * @throws InterruptedException problemas em acoes com banco de dados.
    * @throws ExecutionException problemas em acoes com banco de dados.
    * @throws AttributeNotFoundException caso não seja informado o nome do promotor.
    */
-  public static void cadastroPromotorFisico(final PromotorFisico promotorFisico)
+  public static void cadastroPromotorFisico(final PromotorFisico promotorFisicoParam)
       throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
-    if (promotorFisico.getNomePessoa() == "") {
-      PromotorDAO.cadastraPromotorFisico(promotorFisico);
+    if (promotorFisicoParam.getNomePessoa() == "") {
+      PromotorDAO.cadastraPromotorFisico(promotorFisicoParam);
     } else {
       throw new AttributeNotFoundException();
     }
@@ -140,17 +140,17 @@ public class PromotorFisicoService {
 
   /**
    * Método responsável pela execução de regras para edicao de promotorFisico.
-   * 
-   * @param promotorFisico instancia de promotor fisico.
+   *
+   * @param promotorFisicoParam instancia de promotor fisico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    * @throws IOException caso ocorra algum erro de escrita.
    */
-  public static void editarPromotorFisico(final PromotorFisico promotorFisico)
+  public static void editarPromotorFisico(final PromotorFisico promotorFisicoParam)
       throws InterruptedException, ExecutionException, IOException {
-    if (promotorFisico.getNomePessoa() == "") {
-      PromotorDAO.cadastraPromotorFisico(promotorFisico);
-    }else {
+    if (promotorFisicoParam.getNomePessoa() == "") {
+      PromotorDAO.cadastraPromotorFisico(promotorFisicoParam);
+    } else {
       throw new IllegalArgumentException();
     }
   }
@@ -158,15 +158,15 @@ public class PromotorFisicoService {
 
   /**
    * Responsável pela execução de regras da exclusão de promotor.
-   * 
-   * @param promotorFisico instancia de promotor fisico.
+   *
+   * @param promotorFisicoParam instancia de promotor fisico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    */
-  public static void excluirPromotor(final PromotorFisico promotorFisico)
+  public static void excluirPromotor(final PromotorFisico promotorFisicoParam)
       throws InterruptedException, ExecutionException {
-    if (promotorFisico.getNomePessoa() != "") {
-      PromotorDAO.excluiPromotor(promotorFisico.getNomePessoa());
+    if (promotorFisicoParam.getNomePessoa() != "") {
+      PromotorDAO.excluiPromotor(promotorFisicoParam.getNomePessoa());
     } else {
       throw new IllegalArgumentException();
     }
@@ -174,7 +174,7 @@ public class PromotorFisicoService {
 
   /**
    * Metodo responsável pela execução de login de promotor Fisico.
-   * 
+   *
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    * @return instancia de promotor fisico.
@@ -201,7 +201,7 @@ public class PromotorFisicoService {
 
   /**
    * Realiza o login atraves de parametros.
-   * 
+   *
    * @param user usuario do promotor.
    * @param password senha do promotor.
    * @return instancia caso encontre e null caso contrario.

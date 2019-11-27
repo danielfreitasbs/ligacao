@@ -4,7 +4,7 @@ import java.util.Objects;
 
 /**
  * Classe representante da entidade de promotor do tipo pessoa jurídica.
- * 
+ *
  * @author developer
  *
  */
@@ -66,47 +66,50 @@ public class PromotorJuridico extends Login {
 
   /**
    * Metodo construtor utilizando de todos atributos da classe.
-   * 
-   * @param usuario para acesso.
-   * @param senha para acesso.
-   * @param nomePessoaResponsavel nome da pessoa fisica responsavel.
-   * @param cpfResponsavel cpf da pessoa fisica responsavel.
-   * @param cnpj do promotor.
-   * @param razaoSocial do promotor.
-   * @param dataFundacao do cnpj do promotor.
-   * @param fotoPerfil string representando foto.
-   * @param redesSociais string representando lista de links de redes sociais.
-   * @param categoriasAcoes string representando categoria de acoes atendidas pelo promotor.
-   * @param descricaoGeral string representando descricao geral do promotor.
-   * @param telefone string para telefone.
-   * @param endereco string para endereco completo.
-   * @param email de contato do promotor.
+   *
+   * @param usuarioConstructor para acesso.
+   * @param senhaConstructor para acesso.
+   * @param nomePessoaResponsavelConstructor nome da pessoa fisica responsavel.
+   * @param cpfResponsavelConstructor cpf da pessoa fisica responsavel.
+   * @param cnpjConstructor do promotor.
+   * @param razaoSocialConstructor do promotor.
+   * @param dataFundacaoConstructor do cnpj do promotor.
+   * @param fotoPerfilConstructor string representando foto.
+   * @param redesSociaisConstructor string representando lista de links de redes sociais.
+   * @param categoriasAcoesConstructor string representando categoria de acoes atendidas pelo
+   *        promotor.
+   * @param descricaoGeralConstructor string representando descricao geral do promotor.
+   * @param telefoneConstructor string para telefone.
+   * @param enderecoConstructor string para endereco completo.
+   * @param emailConstructor de contato do promotor.
    */
-  public PromotorJuridico(final String usuario, final String senha,
-      final String nomePessoaResponsavel, final String cpfResponsavel, final String cnpj,
-      final String razaoSocial, final String dataFundacao, final String fotoPerfil,
-      final String redesSociais, final String categoriasAcoes, final String descricaoGeral,
-      final String telefone, final String endereco, final String email) {
-    super(usuario, senha);
-    this.nomePessoaResponsavel = nomePessoaResponsavel;
-    this.cpfResponsavel = cpfResponsavel;
-    this.cnpj = cnpj;
-    this.razaoSocial = razaoSocial;
-    this.dataFundacao = dataFundacao;
-    this.fotoPerfil = fotoPerfil;
-    this.redesSociais = redesSociais;
-    this.categoriasAcoes = categoriasAcoes;
-    this.descricaoGeral = descricaoGeral;
-    this.telefone = telefone;
-    this.endereco = endereco;
-    this.email = email;
+  public PromotorJuridico(final String usuarioConstructor, final String senhaConstructor,
+      final String nomePessoaResponsavelConstructor, final String cpfResponsavelConstructor,
+      final String cnpjConstructor, final String razaoSocialConstructor,
+      final String dataFundacaoConstructor, final String fotoPerfilConstructor,
+      final String redesSociaisConstructor, final String categoriasAcoesConstructor,
+      final String descricaoGeralConstructor, final String telefoneConstructor,
+      final String enderecoConstructor, final String emailConstructor) {
+    super(usuarioConstructor, senhaConstructor);
+    this.nomePessoaResponsavel = nomePessoaResponsavelConstructor;
+    this.cpfResponsavel = cpfResponsavelConstructor;
+    this.cnpj = cnpjConstructor;
+    this.razaoSocial = razaoSocialConstructor;
+    this.dataFundacao = dataFundacaoConstructor;
+    this.fotoPerfil = fotoPerfilConstructor;
+    this.redesSociais = redesSociaisConstructor;
+    this.categoriasAcoes = categoriasAcoesConstructor;
+    this.descricaoGeral = descricaoGeralConstructor;
+    this.telefone = telefoneConstructor;
+    this.endereco = enderecoConstructor;
+    this.email = emailConstructor;
   }
 
   /**
    * construtor default.
    */
   public PromotorJuridico() {
-    
+
   }
 
   /**
@@ -117,10 +120,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param nomePessoaResponsavel the nomePessoaResponsavel to set
+   * @param nomePessoaResponsavelSet the nomePessoaResponsavel to set
    */
-  public void setNomePessoaResponsavel(final String nomePessoaResponsavel) {
-    this.nomePessoaResponsavel = nomePessoaResponsavel;
+  public void setNomePessoaResponsavel(final String nomePessoaResponsavelSet) {
+    this.nomePessoaResponsavel = nomePessoaResponsavelSet;
   }
 
   /**
@@ -131,10 +134,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param cpfResponsavel the cpfResponsavel to set
+   * @param cpfResponsavelSet the cpfResponsavel to set
    */
-  public void setCpfResponsavel(final String cpfResponsavel) {
-    this.cpfResponsavel = cpfResponsavel;
+  public void setCpfResponsavel(final String cpfResponsavelSet) {
+    this.cpfResponsavel = cpfResponsavelSet;
   }
 
   /**
@@ -145,10 +148,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param cnpj the cnpj to set
+   * @param cnpjSet the cnpj to set
    */
-  public void setCnpj(final String cnpj) {
-    this.cnpj = cnpj;
+  public void setCnpj(final String cnpjSet) {
+    this.cnpj = cnpjSet;
   }
 
   /**
@@ -159,10 +162,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param razaoSocial the razaoSocial to set
+   * @param razaoSocialSet the razaoSocial to set
    */
-  public void setRazaoSocial(final String razaoSocial) {
-    this.razaoSocial = razaoSocial;
+  public void setRazaoSocial(final String razaoSocialSet) {
+    this.razaoSocial = razaoSocialSet;
   }
 
   /**
@@ -173,10 +176,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param dataFundacao the dataFundacao to set
+   * @param dataFundacaoSet the dataFundacao to set
    */
-  public void setDataFundacao(final String dataFundacao) {
-    this.dataFundacao = dataFundacao;
+  public void setDataFundacao(final String dataFundacaoSet) {
+    this.dataFundacao = dataFundacaoSet;
   }
 
   /**
@@ -187,10 +190,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param fotoPerfil the fotoPerfil to set
+   * @param fotoPerfilSet the fotoPerfil to set
    */
-  public void setFotoPerfil(final String fotoPerfil) {
-    this.fotoPerfil = fotoPerfil;
+  public void setFotoPerfil(final String fotoPerfilSet) {
+    this.fotoPerfil = fotoPerfilSet;
   }
 
   /**
@@ -201,10 +204,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param redesSociais the redesSociais to set
+   * @param redesSociaisSet the redesSociais to set
    */
-  public void setRedesSociais(final String redesSociais) {
-    this.redesSociais = redesSociais;
+  public void setRedesSociais(final String redesSociaisSet) {
+    this.redesSociais = redesSociaisSet;
   }
 
   /**
@@ -215,10 +218,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param categoriasAcoes the categoriasAcoes to set
+   * @param categoriasAcoesSet the categoriasAcoes to set
    */
-  public void setCategoriasAcoes(final String categoriasAcoes) {
-    this.categoriasAcoes = categoriasAcoes;
+  public void setCategoriasAcoes(final String categoriasAcoesSet) {
+    this.categoriasAcoes = categoriasAcoesSet;
   }
 
   /**
@@ -229,10 +232,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param descricaoGeral the descricaoGeral to set
+   * @param descricaoGeralSet the descricaoGeral to set
    */
-  public void setDescricaoGeral(final String descricaoGeral) {
-    this.descricaoGeral = descricaoGeral;
+  public void setDescricaoGeral(final String descricaoGeralSet) {
+    this.descricaoGeral = descricaoGeralSet;
   }
 
   /**
@@ -243,10 +246,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param telefone the telefone to set
+   * @param telefoneSet the telefone to set
    */
-  public void setTelefone(final String telefone) {
-    this.telefone = telefone;
+  public void setTelefone(final String telefoneSet) {
+    this.telefone = telefoneSet;
   }
 
   /**
@@ -257,10 +260,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param endereco the endereco to set
+   * @param enderecoSet the endereco to set
    */
-  public void setEndereco(final String endereco) {
-    this.endereco = endereco;
+  public void setEndereco(final String enderecoSet) {
+    this.endereco = enderecoSet;
   }
 
   /**
@@ -271,10 +274,10 @@ public class PromotorJuridico extends Login {
   }
 
   /**
-   * @param email the email to set
+   * @param emailSet the email to set
    */
-  public void setEmail(final String email) {
-    this.email = email;
+  public void setEmail(final String emailSet) {
+    this.email = emailSet;
   }
 
   /**
@@ -299,5 +302,18 @@ public class PromotorJuridico extends Login {
     return Objects.hash(nomePessoaResponsavel, cpfResponsavel, cnpj, razaoSocial, dataFundacao,
         fotoPerfil, redesSociais, categoriasAcoes, descricaoGeral, telefone, endereco, email,
         tipoPessoa);
+  }
+
+  /**
+   * metodo equals.
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (obj instanceof PromotorFisico) {
+      PromotorJuridico qualquer = (PromotorJuridico) obj;
+      return this.razaoSocial.equals(qualquer.getRazaoSocial());
+    } else {
+      return false;
+    }
   }
 }

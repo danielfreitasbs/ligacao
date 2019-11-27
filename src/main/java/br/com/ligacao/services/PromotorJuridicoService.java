@@ -9,7 +9,7 @@ import br.com.ligacao.persistence.model.PromotorJuridico;
 
 /**
  * Classe responsável pela execução de regra de negocio para promotor juridico.
- * 
+ *
  * @author danielfreitasbs.
  *
  */
@@ -22,24 +22,24 @@ public class PromotorJuridicoService {
 
   /**
    * Metodo responsável pela edição de promotorJuridico.
-   * 
-   * @param promotor instancia de promotor juridico.
+   *
+   * @param promotorParam instancia de promotor juridico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    * @throws IOException caso ocorra algum erro no uso do banco de dados.
    */
-  public static void editarPromotorJuridico(final PromotorJuridico promotor)
+  public static void editarPromotorJuridico(final PromotorJuridico promotorParam)
       throws InterruptedException, ExecutionException, IOException {
-    if (promotor.getRazaoSocial() == "") {
-      PromotorDAO.cadastraPromotorJuridico(promotor);
-    }else {
+    if (promotorParam.getRazaoSocial() == "") {
+      PromotorDAO.cadastraPromotorJuridico(promotorParam);
+    } else {
       throw new IllegalArgumentException();
     }
   }
 
   /**
    * Metodo responsável pelo cadastro de promotor Juridico.
-   * 
+   *
    * @param promotorJuridico instancia de promotor juridico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
@@ -57,23 +57,23 @@ public class PromotorJuridicoService {
 
   /**
    * Exclusão de promotor juridico.
-   * 
+   *
    * @param promotorJuridico instancia de promotor juridico.
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    */
   public static void excluirPromotor(final PromotorJuridico promotorJuridico)
       throws InterruptedException, ExecutionException {
-    if(promotorJuridico.getRazaoSocial() != "") {
+    if (promotorJuridico.getRazaoSocial() != "") {
       PromotorDAO.excluiPromotor(promotorJuridico.getRazaoSocial());
-    }else {
+    } else {
       throw new IllegalArgumentException();
     }
   }
 
   /**
    * Metodo responsável pela execução de login para promotorJuridico.
-   * 
+   *
    * @throws ExecutionException erro ao realizar ação no banco de dados.
    * @throws InterruptedException erro ao realizar ação no banco de dados.
    * @return instancia de promotor juridico.
@@ -101,7 +101,7 @@ public class PromotorJuridicoService {
 
   /**
    * Realiza o login atraves de parametros.
-   * 
+   *
    * @param user usuario do promotor.
    * @param password senha do promotor.
    * @return instancia caso encontre e null caso contrario.
