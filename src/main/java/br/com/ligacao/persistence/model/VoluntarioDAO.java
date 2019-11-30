@@ -39,7 +39,11 @@ public class VoluntarioDAO {
         String emailVoluntario = voluntario.getEmail();
         String usuario = voluntario.getUsuario();
         String senha = voluntario.getSenha();
-
+        String imagem = voluntario.getImagem();
+        String redeSocial = voluntario.getRedeSocial();
+        String endereco = voluntario.getEndereco();
+        String areaDeAtuacao = voluntario.getAreaDeAtuacao();
+        String categoriaInteresse = voluntario.getCategoriaInteresse();
         Firestore db = Connection.db;
 
         DocumentReference referenciaVoluntario = db.collection("voluntario").document(nomeVoluntario);
@@ -48,6 +52,12 @@ public class VoluntarioDAO {
         Map<String, Object> voluntarios = new HashMap<>();
         voluntarios.put("nome", nomeVoluntario);
         voluntarios.put("email", emailVoluntario);
+        voluntarios.put("imagem", imagem);
+        voluntarios.put("email", redeSocial);
+        voluntarios.put("endereco", endereco);
+        voluntarios.put("areaDeAtuacao", areaDeAtuacao);
+        voluntarios.put("categoriaInteresse", categoriaInteresse);
+        
         //asynchronously write data
         ApiFuture<com.google.cloud.firestore.WriteResult> resultVoluntario = referenciaVoluntario.set(voluntarios);
         // ...
