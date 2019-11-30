@@ -17,7 +17,7 @@ public class VoluntarioREF {
      * Método construtor da classe.
      * @param referencia path da referência.
      */
-    public VoluntarioREF(DocumentReference referencia) {
+    public VoluntarioREF(final DocumentReference referencia) {
         this.referencia = referencia;
     }
 

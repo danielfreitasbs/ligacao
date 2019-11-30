@@ -57,7 +57,7 @@ public class VoluntarioDAO {
         voluntarios.put("endereco", endereco);
         voluntarios.put("areaDeAtuacao", areaDeAtuacao);
         voluntarios.put("categoriaInteresse", categoriaInteresse);
-        
+
         //asynchronously write data
         ApiFuture<com.google.cloud.firestore.WriteResult> resultVoluntario = referenciaVoluntario.set(voluntarios);
         // ...
