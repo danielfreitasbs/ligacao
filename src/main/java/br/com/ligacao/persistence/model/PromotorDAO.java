@@ -168,12 +168,16 @@ public class PromotorDAO {
 
         Firestore db = Connection.db;
 
-        DocumentReference referenciaAcao = db.collection("promotor de acao").document(nomePromotor);
+        DocumentReference referenciaPromotor = db.collection("promotor de acao").document(nomePromotor);
+        DocumentReference referenciaLogin = db.collection("promotor de acao").document(nomePromotor).
+                collection("promotor de acao").document("dados");
 
      // asynchronously delete a document
-        ApiFuture<WriteResult> writeResult = referenciaAcao.delete();
+        ApiFuture<WriteResult> writeResult = referenciaPromotor.delete();
+        ApiFuture<WriteResult> writeResult2 = referenciaLogin.delete();
         // ...
         System.out.println("Update time : " + writeResult.get().getUpdateTime());
+        System.out.println("Update time : " + writeResult2.get().getUpdateTime());
     }
 
     /**
