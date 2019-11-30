@@ -210,4 +210,131 @@ public class VoluntarioDAO {
         System.out.println("Update time : " + writeResult.get().getUpdateTime());
         System.out.println("Update time : " + writeResult2.get().getUpdateTime());
     }
+
+    /**
+     * Método responsável por consultar voluntários cadastrados.
+     *
+     * @return Retorna uma lista de objetos Promotor.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static List<Voluntario> consultaVoluntarios()
+            throws InterruptedException, ExecutionException {
+
+        Firestore db = Connection.db;
+
+        CollectionReference referenciaPromotores = db.collection("voluntario");
+
+      //asynchronously retrieve multiple documents
+        ApiFuture<QuerySnapshot> querySnapshot = referenciaPromotores.get();
+        // future.get() blocks on response
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+        List<Voluntario> voluntarios = new ArrayList<Voluntario>();
+        for (DocumentSnapshot document : documents) {
+          //System.out.println(document.getId() + " adicionado");
+          voluntarios.add(document.toObject(Voluntario.class));
+        }
+        return voluntarios;
+    }
+
+    /**
+     * Realiza as busca dos dados do Voluntario através de um usuario e senha
+     * informado por parametro.
+     *
+     * @param user     nome de usuario cadastrado no perfil de voluntario.
+     * @param password senha cadastrado no perfil de voluntario.
+     *
+     * @return caso seja encontrado o perfil de Voluntario com os parametros
+     *             informados irá retornar uma instancia da classe com os atributos
+     *             preenchidos. Caso contrario, deverá retornar NULL.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static Voluntario login(final String user, final String password)
+            throws InterruptedException, ExecutionException {
+        List<Voluntario> voluntarios = new ArrayList<Voluntario>();
+
+        voluntarios = consultaVoluntarios();
+
+        for (Voluntario voluntario : voluntarios) {
+            if (consultaUsuario(voluntario.getNome()).equals(user)
+                    && consultaSenha(voluntario.getNome()).equals(password)) {
+                    return voluntario;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Método responsável por consultar nome de usuário
+     * do login de um voluntario.
+     *
+     * @param nomeVoluntario Nome do voluntario.
+     *
+     * @return Retorna uma String com o nome de usuário.
+     * @throws ExecutionException exceção de execução
+     * @throws InterruptedException exceção de interrupção
+     */
+    public static String consultaUsuario(final String nomeVoluntario)
+     throws InterruptedException, ExecutionException {
+        Firestore db = Connection.db;
+
+        DocumentReference docRef = db.collection("voluntario").document(nomeVoluntario)
+                                        .collection("login").document("dados");
+        // asynchronously retrieve the document
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        // ...
+
+        // future.get() blocks on response
+        String document = null;
+        try {
+            document = future.get().getString("usuario");
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if (document != null) {
+            return document;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Método responsável por consultar senha
+     * do login de um voluntario.
+     *
+     * @param nomeVoluntario Nome do voluntario.
+     *
+     * @return Retorna uma String com a senha de usuário.
+     */
+    public static String consultaSenha(final String nomeVoluntario) {
+        Firestore db = Connection.db;
+
+        DocumentReference docRef = db.collection("voluntario").document(nomeVoluntario)
+                                        .collection("login").document("dados");
+        // asynchronously retrieve the document
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        // ...
+
+        // future.get() blocks on response
+        String document = null;
+        try {
+            document = future.get().getString("senha");
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        if (document != null) {
+            return document;
+        } else {
+            return null;
+        }
+    }
 }
