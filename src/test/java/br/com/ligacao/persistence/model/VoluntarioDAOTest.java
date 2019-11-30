@@ -52,6 +52,16 @@ class VoluntarioDAOTest {
         List<Voluntario> voluntariosTeste = VoluntarioDAO.consultaVoluntarios("nomeTeste", "nomeAcaoTeste");
         assertEquals(voluntariosTeste.get(0).getNome(), "nomeVoluntarioTeste");
         assertEquals(voluntariosTeste.get(1).getNome(), "nomeVoluntarioTeste2");
+        
+        //test consulta de login de promotor fisico cadastrado
+        Voluntario voluntarioTesteLogin = VoluntarioDAO.login("usuarioTest", "senhaTeste");
+        assertEquals(voluntarioTesteLogin.getNome(), "nomeVoluntarioTeste");
+        //Senha incorreta
+        assertEquals(PromotorDAO.loginPromotorFisico("usuarioTest", "SenhaIncorreta"), null);
+        assertEquals(PromotorDAO.loginPromotorFisico("usuarioTest", null), null);
+        //Usuario incorreto
+        assertEquals(PromotorDAO.loginPromotorFisico("userIncorreto", "senhaTeste"), null);
+        assertEquals(PromotorDAO.loginPromotorFisico(null, "senhaTeste"), null);
 
         //exclui voluntario de uma acao
         VoluntarioDAO.excluiVoluntario("nomeTeste", "nomeAcaoTeste", "nomeVoluntarioTeste");
