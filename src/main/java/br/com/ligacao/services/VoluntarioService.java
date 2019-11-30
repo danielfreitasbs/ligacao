@@ -63,8 +63,15 @@ public final class VoluntarioService {
 
     /**
      * Edita um voluntário já existente.
+     *
+     * @throws ExecutionException   Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
+     * @throws InterruptedException Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
+     * @throws IOException          Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
      */
-    public static void editarVoluntario() {
+    public static void editarVoluntario() throws IOException, InterruptedException, ExecutionException {
         // voluntario = login();
 
         if (voluntario == null) {
@@ -72,6 +79,7 @@ public final class VoluntarioService {
             return;
         } else {
             voluntario = FormulariosSolicitacao.formDadosAlteracaoVoluntario(voluntario);
+            VoluntarioDAO.cadastraVoluntario(voluntario);
             System.out.println("\n ---- Alteração de Cadastro Finalizada ---- \n");
         }
     }
