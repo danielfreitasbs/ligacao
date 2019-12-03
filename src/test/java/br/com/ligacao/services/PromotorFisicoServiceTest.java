@@ -48,14 +48,12 @@ public class PromotorFisicoServiceTest {
     PromotorFisico promotor = new PromotorFisico("userTeste", "senhaTeste", "", "325", "31/12/2099",
         "img", "http", "categoriaTeste", "descricaoTeste", "12341234", "av. teste", "teste@teste");
 
-    assertThrows(IllegalArgumentException.class, () -> {
+    assertThrows(AttributeNotFoundException.class, () -> {
       PromotorFisicoService.cadastroPromotorFisico(promotor);
     });
 
     promotor.setNomePessoa("Daniel");
-    assertThrows(AttributeNotFoundException.class, () -> {
-      PromotorFisicoService.cadastroPromotorFisico(promotor);
-    });
+    
 
     // exclui cadastro de teste no banco firestore
     PromotorDAO.excluiPromotor("Daniel");

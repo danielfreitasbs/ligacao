@@ -1,0 +1,13 @@
+br\com\ligacao\services\PromotorFisicoServiceTest.class
+br\com\ligacao\client\apps\PromotorAppTest.class
+br\com\ligacao\client\apps\AcaoAppTest.class
+br\com\ligacao\services\VoluntarioServiceTest.class
+br\com\ligacao\MainTest.class
+br\com\ligacao\persistence\model\AcaoDAOTest.class
+br\com\ligacao\persistence\model\PromotorDAOtest.class
+br\com\ligacao\client\apps\InscreverAppTest.class
+br\com\ligacao\services\AcaoServiceTest.class
+br\com\ligacao\persistence\model\VoluntarioDAOTest.class
+br\com\ligacao\services\InscreverServiceTest.class
+br\com\ligacao\client\apps\VoluntarioAppTest.class
+br\com\ligacao\services\PromotorJuridicoServiceTest.class

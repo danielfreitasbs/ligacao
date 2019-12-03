@@ -58,10 +58,4 @@ public class AcaoAppTest {
         assertThrows(NoSuchElementException.class, AcaoApp::simuladorInterface);
     }
 
-    @Test
-    public void interfaceOpcao3() {
-        provideInput("3");
-        assertThrows(NoSuchElementException.class, AcaoApp::simuladorInterface);
-    }
-
 }
