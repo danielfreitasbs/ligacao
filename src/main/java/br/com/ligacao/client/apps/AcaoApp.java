@@ -36,11 +36,15 @@ public final class AcaoApp {
             throws InterruptedException, ExecutionException, IOException, AttributeNotFoundException {
         scanner = new Scanner(System.in, "UTF-8");
         System.out.println("----- Acoes -----\n" + "0 - Cadastrar Ação.\n" + "1 - Editar Ação\n"
-                + "2 - Excluir Ação - \n" + "3 - Voltar ao menu principal");
+                + "2 - Excluir Ação\n" + "3 - Sair do Sistema");
 
         int opcao = scanner.nextInt();
-        escolherOpcao(opcao);
-        Main.main(new String[0]);
+        while(opcao >= 0 && opcao <3){
+            escolherOpcao(opcao);
+            System.out.println("----- Acoes -----\n" + "0 - Cadastrar Ação\n" + "1 - Editar Ação\n"
+                    + "2 - Excluir Ação\n" + "3 - Sair do Sistema");
+            opcao = scanner.nextInt();
+        }
     }
 
     /**
@@ -64,12 +68,8 @@ public final class AcaoApp {
             case 2:
                 AcaoService.excluir();
                 break;
-            case 3:
-                Main.main(new String[0]);
-                break;
             default:
                 Main.main(new String[0]);
-                System.exit(0);
         }
     }
 

@@ -5,10 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
-import br.com.ligacao.persistence.model.Acao;
-import br.com.ligacao.persistence.model.AcaoDAO;
-import br.com.ligacao.persistence.model.PromotorFisico;
-import br.com.ligacao.persistence.model.PromotorJuridico;
+import br.com.ligacao.persistence.model.*;
 
 /**
  * Classe responsavel por oferecer serviços relacionados a acoes.
@@ -34,17 +31,17 @@ public final class AcaoService {
     /**
      * Promotor fisico.
      */
-    private static PromotorJuridico promotorJuridico = new PromotorJuridico();
+    private static PromotorJuridico promotorJuridico;
 
     /**
      * Promotor juridico.
      */
-    private static PromotorFisico promotorFisico = new PromotorFisico();
+    private static PromotorFisico promotorFisico;
 
     /**
      * Scanner para entrada de dados pelo usuario.
      */
-    private static Scanner scanner = new Scanner(System.in, "UTF-8");
+    private static Scanner scanner;
 
     /**
      * Cadastrar nova acao de um promotor existente.
@@ -53,10 +50,10 @@ public final class AcaoService {
      * @throws InterruptedException se houver problema ao acessar o banco de dados
      */
     public static void cadastrar() throws ExecutionException, InterruptedException {
+        scanner = new Scanner(System.in, "UTF-8");
         if (login()) {
             System.out.println("----- Cadastrar Ação -----");
 
-            scanner.nextLine();
             System.out.println("Nome da ação: ");
             acao.setNomeAcao(scanner.nextLine());
 
@@ -76,7 +73,7 @@ public final class AcaoService {
             acao.setHoraFim(scanner.nextLine());
 
             System.out.println("0 - Confirmar o cadastro da acao\n"
-                    + "1 - Cancelar.\n");
+                    + "1 - Cancelar.");
             int opcaoConfirmar = scanner.nextInt();
 
             if (opcaoConfirmar == 0) {
@@ -87,11 +84,11 @@ public final class AcaoService {
                     AcaoDAO.cadastraAcao(nomePromotor, acao);
 
                 } catch (IOException e) {
-                    System.out.println("Erro ao cadastrar Acao\n");
+                    System.out.println("Erro ao cadastrar Acao!");
                 }
-                System.out.println("Acão cadastrada com sucesso!\n");
+                System.out.println("Acão cadastrada com sucesso!");
             } else {
-                System.out.println("Cadastro da Ação cancelado!\n");
+                System.out.println("Cadastro da Ação cancelado!");
             }
         }
     }
@@ -103,6 +100,8 @@ public final class AcaoService {
      * @throws InterruptedException se houver problema ao acessar o banco de dados
      */
     public static void editar() throws ExecutionException, InterruptedException {
+        scanner = new Scanner(System.in, "UTF-8");
+
         if (login()) {
             System.out.println("----- Editar Ação -----");
 
@@ -115,7 +114,7 @@ public final class AcaoService {
             } else {
                 System.out.println("Esse promotor possui as seguintes ações:");
                 acoes.forEach(item -> {
-                    System.out.println(item.getNomeAcao());
+                    System.out.println(" -> " + item.getNomeAcao());
                 });
 
                 System.out.println("Nome da ação a ser editada:");
@@ -134,7 +133,7 @@ public final class AcaoService {
                                 + "3 - Hora de início\n"
                                 + "4 - Hora de fim\n"
                                 + "5 - Nome da ação\n"
-                                + "6 - Cancelar\n");
+                                + "6 - Sair");
                         opcao = scanner.nextInt();
 
                         switch (opcao) {
@@ -143,38 +142,48 @@ public final class AcaoService {
                                         + acao.getCategoriaAcao()
                                         + "\nModificar para:");
                                 scanner.nextLine();
-                                String modificado = scanner.nextLine();
-                                acao.setCategoriaAcao(modificado);
+                                String categoria = scanner.nextLine();
+                                acao.setCategoriaAcao(categoria);
                                 break;
                             case 1:
                                 System.out.println("Data de realização atual: "
                                         + acao.getDataRealizacao()
                                         + "\nModificar para:");
-                                acao.setDataRealizacao(scanner.nextLine());
+                                scanner.nextLine();
+                                String data = scanner.nextLine();
+                                acao.setDataRealizacao(data);
                                 break;
                             case 2:
                                 System.out.println("Descrição atual: "
                                         + acao.getDescricao()
                                         + "\nModificar para:");
-                                acao.setDescricao(scanner.nextLine());
+                                scanner.nextLine();
+                                String descricao = scanner.nextLine();
+                                acao.setDescricao(descricao);
                                 break;
                             case 3:
                                 System.out.println("Hora de início atual: "
                                         + acao.getHoraInicio()
                                         + "\nModificar para:");
-                                acao.setHoraInicio(scanner.nextLine());
+                                scanner.nextLine();
+                                String horaInicio = scanner.nextLine();
+                                acao.setHoraInicio(horaInicio);
                                 break;
                             case 4:
                                 System.out.println("Hora de fim atual: "
                                         + acao.getHoraFim()
                                         + "\nModificar para:");
-                                acao.setHoraFim(scanner.nextLine());
+                                scanner.nextLine();
+                                String horaFim = scanner.nextLine();
+                                acao.setHoraFim(horaFim);
                                 break;
                             case 5:
                                 System.out.println("Nome da Ação atual: "
                                         + acao.getNomeAcao()
                                         + "\nModificar para:");
-                                acao.setNomeAcao(scanner.nextLine());
+                                scanner.nextLine();
+                                String nome = scanner.nextLine();
+                                acao.setNomeAcao(nome);
                                 break;
                             default:
                                 break;
@@ -199,6 +208,8 @@ public final class AcaoService {
      * @throws InterruptedException se houver problema ao acessar o banco de dados
      */
     public static void excluir() throws ExecutionException, InterruptedException {
+        Scanner scannerExcluir = new Scanner(System.in, "UTF-8");
+
         if (login()) {
             System.out.println("----- Excluir Ação -----");
 
@@ -211,17 +222,24 @@ public final class AcaoService {
                 System.out.println("Esse promotor não possui ações cadastradas.");
             } else {
                 System.out.println("Esse promotor possui as seguintes ações:");
-                acoes.forEach(item -> System.out.println(item.getNomeAcao()));
+                acoes.forEach(item -> System.out.println(" -> " + item.getNomeAcao()));
 
-                System.out.println("Nome da Ação a ser excluída:");
-                String nomeAcao = scanner.nextLine();
+                System.out.println("\nNome da Ação a ser excluída:");
+                String nomeAcao = scannerExcluir.nextLine();
                 acao = AcaoDAO.consultaAcao(nomePromotor, nomeAcao);
 
                 if (acao == null) {
-                    System.out.println("Essa Ação não está listada");
+                    System.out.println("Essa Ação não existe!");
                 } else {
-                    AcaoDAO.excluiAcao(nomeAcao, nomePromotor);
+                    try{
+                        AcaoDAO.excluiAcao(nomePromotor,nomeAcao);
+                    } catch (InterruptedException | ExecutionException e) {
+                        e.printStackTrace();
+                        System.out.println("Erro ao excluir ação!");
+                    }
+                    System.out.println("Ação excluída com sucesso!");
                 }
+                scannerExcluir.close();
             }
         }
     }
@@ -233,29 +251,45 @@ public final class AcaoService {
      * usuário ou senha forem inválidos
      */
     private static boolean login() {
+        scanner = new Scanner(System.in, "UTF-8");
         TIPO_PROMOTOR = selecionaTipoPromotor();
+        System.out.println("Nome do usuário:");
+        scanner.nextLine();
+        String username = scanner.nextLine();
+
+        System.out.println("Senha do usuário:");
+        String senha = scanner.nextLine();
 
         if (TIPO_PROMOTOR == 0) {
             try {
-                promotorFisico = PromotorFisicoService.login();
-            } catch (InterruptedException | ExecutionException e) {
-                System.out.println("Erro ao logar no sistema!\n");
+                promotorFisico = new PromotorFisico();
+                promotorFisico = PromotorDAO.loginPromotorFisico(username,
+                        senha);
+                if (promotorFisico != null) {
+                    System.out.println("Usuario logado no sistema!");
+                    return true;
+                } else {
+                    System.out.println("Senha e/ou usuario incorretos!");
+                }
+            } catch (InterruptedException | ExecutionException | NullPointerException e) {
+                System.out.println("Erro ao logar no sistema!");
             }
         } else {
             try {
-                promotorJuridico = PromotorJuridicoService.login();
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
+                promotorJuridico = new PromotorJuridico();
+                promotorJuridico = PromotorDAO.loginPromotorJuridico(username
+                        ,senha);
+                if (promotorJuridico != null) {
+                    System.out.println("Usuario logado no sistema!");
+                    return true;
+                } else {
+                    System.out.println("Senha e/ou usuario incorretos!");
+                }
+            } catch (InterruptedException | ExecutionException | NullPointerException e) {
+                System.out.println("Erro ao logar no sistema!");
             }
         }
-
-        boolean isLogado = promotorFisico != null || promotorJuridico != null;
-        if (isLogado) {
-            System.out.println("Usuario logado no sistema!\n");
-        } else {
-            System.out.println("Senha e/ou usuario incorretos!\n");
-        }
-        return isLogado;
+        return false;
     }
 
     /**
@@ -265,9 +299,12 @@ public final class AcaoService {
      * for jurídico
      */
     private static int selecionaTipoPromotor() {
+        scanner = new Scanner(System.in, "UTF-8");
+
         System.out.println("Selecione o tipo de pessoa: \n"
                 + "0 - Pessoa Física\n1 - Pessoa Juridica");
-        return scanner.nextInt();
+        int tipoPromotor = scanner.nextInt();
+        return tipoPromotor;
     }
 
 }
