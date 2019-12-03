@@ -9,7 +9,7 @@ Projeto para a disciplina de Domínios de Software - 2019/02 - do curso de Engen
 Utilizamos os seguintes [comandos maven](comandos-maven.md) para fazer testes, gerar documentação, análise de dependência e análise estática.  
 
 O relatório da documentação (javadocs) encontra-se [aqui](target/site/apidocs/).  
-O relatório da cobertura dos testes encontra-se [aqui](target/site/jacoco/index.html).  
+O relatório da cobertura dos testes encontra-se [aqui](target/site/jacoco/).  
 O relatório de análise estática encontra-se [aqui](target/site/checkstyle.html).  
 Para gerar relatório de spotbugs e dependency-check utilizar [comandos](comandos-maven.md).  
 
