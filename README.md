@@ -391,7 +391,7 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 
 ## Diagrama de classes
 
-![Diagrama de classes](docs/diagrama-de-classes.pdf)
+![Diagrama de classes](docs/diagrama-de-classes.png)
 
 ## Programação das entregas dos requisitos
 
