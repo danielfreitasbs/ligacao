@@ -58,8 +58,7 @@ public class PromotorApp {
       throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
     sb = new StringBuilder();
     sb.append("Qual ação deseja executar?\n").append("0 - Cadastrar Promotor\n")
-        .append("1 - Editar Perfil de Promotor\n").append("2 - Excluir Perfil de Promotor\n")
-        .append("3 - Avaliar Voluntário\n");
+        .append("1 - Editar Perfil de Promotor\n").append("2 - Excluir Perfil de Promotor\n");
     System.out.println(sb.toString());
     int opcao = scanner.nextInt();
 
@@ -73,8 +72,6 @@ public class PromotorApp {
       case 2:
         promotorExcluir();
         break;
-      case 3:
-        avaliarVoluntario();
       default:
         break;
     }
