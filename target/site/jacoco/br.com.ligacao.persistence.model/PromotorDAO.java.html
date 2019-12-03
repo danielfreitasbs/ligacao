@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PromotorDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java.br.com.ligacao:ligacao</a> &gt; <a href="index.source.html" class="el_package">br.com.ligacao.persistence.model</a> &gt; <span class="el_source">PromotorDAO.java</span></div><h1>PromotorDAO.java</h1><pre class="source lang-java linenums">package br.com.ligacao.persistence.model;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.Query;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
+
+import br.com.ligacao.persistence.connection.Connection;
+
+/**
+ * Classe responsável por gerenciar os dados de promotores de ação no banco Firestore.
+ */
+<span class="nc" id="L25">public class PromotorDAO {</span>
+
+    /**
+     * Método responsável por cadastrar ou atualizar um novo
+     * promotor fisico de ação no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     *
+     * @param promotor Objeto promotor de ação.
+     * @throws IOException exceção de entrada e saída
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static void cadastraPromotorFisico(final PromotorFisico promotor)
+            throws IOException, InterruptedException, ExecutionException {
+
+<span class="fc" id="L41">        String nomePessoa = promotor.getNomePessoa();</span>
+<span class="fc" id="L42">        String cpf = promotor.getCpf();</span>
+<span class="fc" id="L43">        String dataNascimento = promotor.getDataNascimento();</span>
+<span class="fc" id="L44">        String fotoPerfil = promotor.getFotoPerfil();</span>
+<span class="fc" id="L45">        String redesSociais = promotor.getRedesSociais();</span>
+<span class="fc" id="L46">        String categoriasAcoes = promotor.getCategoriasAcoes();</span>
+<span class="fc" id="L47">        String telefone = promotor.getTelefone();</span>
+<span class="fc" id="L48">        String descricaoGeral = promotor.getDescricaoGeral();</span>
+<span class="fc" id="L49">        String endereco = promotor.getEndereco();</span>
+<span class="fc" id="L50">        String email = promotor.getEmail();</span>
+
+<span class="fc" id="L52">        String usuario = promotor.getUsuario();</span>
+<span class="fc" id="L53">        String senha = promotor.getSenha();</span>
+
+<span class="fc" id="L55">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L57">        DocumentReference referenciaPromotor = db.collection(&quot;promotor de acao&quot;).document(nomePessoa);</span>
+        // Add document data using a hashmap
+<span class="fc" id="L59">        Map&lt;String, Object&gt; promotorAcao = new HashMap&lt;String, Object&gt;();</span>
+<span class="fc" id="L60">        promotorAcao.put(&quot;tipoPessoa&quot;, &quot;fisica&quot;);</span>
+<span class="fc" id="L61">        promotorAcao.put(&quot;nomePessoa&quot;, nomePessoa);</span>
+<span class="fc" id="L62">        promotorAcao.put(&quot;cpf&quot;, cpf);</span>
+<span class="fc" id="L63">        promotorAcao.put(&quot;dataNascimento&quot;, dataNascimento);</span>
+<span class="fc" id="L64">        promotorAcao.put(&quot;fotoPerfil&quot;, fotoPerfil);</span>
+<span class="fc" id="L65">        promotorAcao.put(&quot;redesSociais&quot;, redesSociais);</span>
+<span class="fc" id="L66">        promotorAcao.put(&quot;categoriasAcoes&quot;, categoriasAcoes);</span>
+<span class="fc" id="L67">        promotorAcao.put(&quot;telefone&quot;, telefone);</span>
+<span class="fc" id="L68">        promotorAcao.put(&quot;descricaoGeral&quot;, descricaoGeral);</span>
+<span class="fc" id="L69">        promotorAcao.put(&quot;endereco&quot;, endereco);</span>
+<span class="fc" id="L70">        promotorAcao.put(&quot;email&quot;, email);</span>
+        //asynchronously write data
+<span class="fc" id="L72">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultPromotor = referenciaPromotor.set(promotorAcao);</span>
+     // ...
+        // result.get() blocks on response
+<span class="fc" id="L75">        System.out.println(&quot;Update time : &quot; + resultPromotor.get().getUpdateTime());</span>
+
+<span class="fc" id="L77">        DocumentReference referenciaLogin = db.collection(&quot;promotor de acao&quot;).document(nomePessoa)</span>
+<span class="fc" id="L78">                .collection(&quot;login&quot;).document(&quot;dados&quot;);</span>
+
+        // Add document data using a hashmap
+<span class="fc" id="L81">        Map&lt;String, Object&gt; login = new HashMap&lt;String, Object&gt;();</span>
+<span class="fc" id="L82">        login.put(&quot;usuario&quot;, usuario);</span>
+<span class="fc" id="L83">        login.put(&quot;senha&quot;, senha);</span>
+
+<span class="fc" id="L85">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultLogin = referenciaLogin.set(login);</span>
+        // ...
+           // result.get() blocks on response
+<span class="fc" id="L88">           System.out.println(&quot;Update time : &quot; + resultLogin.get().getUpdateTime());</span>
+<span class="fc" id="L89">    }</span>
+
+    /**
+     * Método responsável por cadastrar ou atualizar um novo
+     * promotor fisico de ação no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     *
+     * @param promotor Objeto promotor de ação.
+     * @throws IOException exceção de entrada e saída
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static void cadastraPromotorJuridico(final PromotorJuridico promotor)
+            throws IOException, InterruptedException, ExecutionException {
+
+<span class="nc" id="L105">        String nomePessoaResponsavel = promotor.getNomePessoaResponsavel();</span>
+<span class="nc" id="L106">        String cpfResponsavel = promotor.getCpfResponsavel();</span>
+<span class="nc" id="L107">        String cnpj = promotor.getCnpj();</span>
+<span class="nc" id="L108">        String razaoSocial = promotor.getRazaoSocial();</span>
+<span class="nc" id="L109">        String fotoPerfil = promotor.getFotoPerfil();</span>
+<span class="nc" id="L110">        String dataFundacao = promotor.getDataFundacao();</span>
+<span class="nc" id="L111">        String redesSociais = promotor.getRedesSociais();</span>
+<span class="nc" id="L112">        String categoriasAcoes = promotor.getCategoriasAcoes();</span>
+<span class="nc" id="L113">        String telefone = promotor.getTelefone();</span>
+<span class="nc" id="L114">        String descricaoGeral = promotor.getDescricaoGeral();</span>
+<span class="nc" id="L115">        String endereco = promotor.getEndereco();</span>
+<span class="nc" id="L116">        String email = promotor.getEmail();</span>
+
+<span class="nc" id="L118">        String usuario = promotor.getUsuario();</span>
+<span class="nc" id="L119">        String senha = promotor.getSenha();</span>
+
+<span class="nc" id="L121">        Firestore db = Connection.db;</span>
+
+<span class="nc" id="L123">        DocumentReference referenciaPromotor = db.collection(&quot;promotor de acao&quot;).document(razaoSocial);</span>
+        // Add document data using a hashmap
+<span class="nc" id="L125">        Map&lt;String, Object&gt; promotorAcao = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc" id="L126">        promotorAcao.put(&quot;tipoPessoa&quot;, &quot;juridica&quot;);</span>
+<span class="nc" id="L127">        promotorAcao.put(&quot;nomePessoaResponsavel&quot;, nomePessoaResponsavel);</span>
+<span class="nc" id="L128">        promotorAcao.put(&quot;cpfResponsavel&quot;, cpfResponsavel);</span>
+<span class="nc" id="L129">        promotorAcao.put(&quot;cnpj&quot;, cnpj);</span>
+<span class="nc" id="L130">        promotorAcao.put(&quot;razaoSocial&quot;, razaoSocial);</span>
+<span class="nc" id="L131">        promotorAcao.put(&quot;fotoPerfil&quot;, fotoPerfil);</span>
+<span class="nc" id="L132">        promotorAcao.put(&quot;dataFundacao&quot;, dataFundacao);</span>
+<span class="nc" id="L133">        promotorAcao.put(&quot;redesSociais&quot;, redesSociais);</span>
+<span class="nc" id="L134">        promotorAcao.put(&quot;categoriasAcoes&quot;, categoriasAcoes);</span>
+<span class="nc" id="L135">        promotorAcao.put(&quot;telefone&quot;, telefone);</span>
+<span class="nc" id="L136">        promotorAcao.put(&quot;descricaoGeral&quot;, descricaoGeral);</span>
+<span class="nc" id="L137">        promotorAcao.put(&quot;endereco&quot;, endereco);</span>
+<span class="nc" id="L138">        promotorAcao.put(&quot;email&quot;, email);</span>
+        //asynchronously write data
+<span class="nc" id="L140">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultPromotor = referenciaPromotor.set(promotorAcao);</span>
+     // ...
+        // result.get() blocks on response
+<span class="nc" id="L143">        System.out.println(&quot;Update time : &quot; + resultPromotor.get().getUpdateTime());</span>
+
+<span class="nc" id="L145">        DocumentReference referenciaLogin = db.collection(&quot;promotor de acao&quot;).document(razaoSocial)</span>
+<span class="nc" id="L146">                .collection(&quot;login&quot;).document(&quot;dados&quot;);</span>
+
+        // Add document data using a hashmap
+<span class="nc" id="L149">        Map&lt;String, Object&gt; login = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc" id="L150">        login.put(&quot;usuario&quot;, usuario);</span>
+<span class="nc" id="L151">        login.put(&quot;senha&quot;, senha);</span>
+
+<span class="nc" id="L153">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultLogin = referenciaLogin.set(login);</span>
+        // ...
+           // result.get() blocks on response
+<span class="nc" id="L156">           System.out.println(&quot;Update time : &quot; + resultLogin.get().getUpdateTime());</span>
+<span class="nc" id="L157">    }</span>
+
+    /**
+     * Método responsável por excluir um promotor de ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static void excluiPromotor(final String nomePromotor)
+        throws InterruptedException, ExecutionException {
+
+<span class="fc" id="L169">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L171">        DocumentReference referenciaPromotor = db.collection(&quot;promotor de acao&quot;).document(nomePromotor);</span>
+<span class="fc" id="L172">        DocumentReference referenciaLogin = db.collection(&quot;promotor de acao&quot;).document(nomePromotor).</span>
+<span class="fc" id="L173">                collection(&quot;promotor de acao&quot;).document(&quot;dados&quot;);</span>
+
+     // asynchronously delete a document
+<span class="fc" id="L176">        ApiFuture&lt;WriteResult&gt; writeResult = referenciaPromotor.delete();</span>
+<span class="fc" id="L177">        ApiFuture&lt;WriteResult&gt; writeResult2 = referenciaLogin.delete();</span>
+        // ...
+<span class="fc" id="L179">        System.out.println(&quot;Update time : &quot; + writeResult.get().getUpdateTime());</span>
+<span class="fc" id="L180">        System.out.println(&quot;Update time : &quot; + writeResult2.get().getUpdateTime());</span>
+<span class="fc" id="L181">    }</span>
+
+    /**
+     * Método responsável por consultar se um dado
+     * promotor é pessoa Física ou Juridica.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     *
+     * @return Retorna o tipo de pessoa do promotor.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static String consultaTipoPromotor(final String nomePromotor)
+        throws InterruptedException, ExecutionException {
+<span class="nc" id="L195">        Firestore db = Connection.db;</span>
+
+<span class="nc" id="L197">        DocumentReference docRef = db.collection(&quot;promotor de acao&quot;).document(nomePromotor);</span>
+        // asynchronously retrieve the document
+<span class="nc" id="L199">        ApiFuture&lt;DocumentSnapshot&gt; future = docRef.get();</span>
+        // ...
+
+<span class="nc" id="L202">        String tipoPessoa = future.get().getString(&quot;tipoPessoa&quot;);</span>
+
+<span class="nc" id="L204">        return tipoPessoa;</span>
+
+    }
+
+    /**
+     * Método responsável por consultar dados cadastrados
+     * de um promotor físico de ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     *
+     * @return Retorna uma classe PromotorFisico com os dados consultados.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static PromotorFisico retornaPromotorFisico(final String nomePromotor)
+        throws InterruptedException, ExecutionException {
+<span class="nc" id="L220">        Firestore db = Connection.db;</span>
+
+<span class="nc" id="L222">        DocumentReference docRef = db.collection(&quot;promotor de acao&quot;).document(nomePromotor);</span>
+        // asynchronously retrieve the document
+<span class="nc" id="L224">        ApiFuture&lt;DocumentSnapshot&gt; future = docRef.get();</span>
+        // ...
+<span class="nc" id="L226">        DocumentSnapshot document1 = future.get();</span>
+
+<span class="nc" id="L228">        PromotorFisico promotor = null;</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">        if (document1.exists()) {</span>
+          // convert document to POJO
+<span class="nc" id="L231">          promotor = document1.toObject(PromotorFisico.class);</span>
+<span class="nc" id="L232">          System.out.println(promotor);</span>
+        } else {
+<span class="nc" id="L234">          System.out.println(&quot;No such document!&quot;);</span>
+        }
+<span class="nc" id="L236">        return promotor;</span>
+    }
+
+    /**
+     * Método responsável por consultar dados cadastrados
+     * de um promotor jurídico de ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     *
+     * @return Retorna uma classe PromotorJuridico com os dados consultados.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static PromotorJuridico retornaPromotorJuridico(final String nomePromotor)
+        throws InterruptedException, ExecutionException {
+<span class="nc" id="L251">        Firestore db = Connection.db;</span>
+
+<span class="nc" id="L253">        DocumentReference docRef = db.collection(&quot;promotor de acao&quot;).document(nomePromotor);</span>
+        // asynchronously retrieve the document
+<span class="nc" id="L255">        ApiFuture&lt;DocumentSnapshot&gt; future = docRef.get();</span>
+        // ...
+<span class="nc" id="L257">        DocumentSnapshot document1 = future.get();</span>
+
+<span class="nc" id="L259">        PromotorJuridico promotor = null;</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">        if (document1.exists()) {</span>
+          // convert document to POJO
+<span class="nc" id="L262">          promotor = document1.toObject(PromotorJuridico.class);</span>
+<span class="nc" id="L263">          System.out.println(promotor);</span>
+        } else {
+<span class="nc" id="L265">          System.out.println(&quot;No such document!&quot;);</span>
+        }
+<span class="nc" id="L267">        return promotor;</span>
+    }
+
+    /**
+     * Realiza as busca dos dados do PromotorFisico através de um usuario e senha
+     * informado por parametro.
+     *
+     * @param user     nome de usuario cadastrado no perfil de promotor fisico.
+     * @param password senha cadastrado no perfil de promotor fisico.
+     *
+     * @return caso seja encontrado o perfil de Promotor fisico com os parametros
+     *             informados irá retornar uma instancia da classe com os atributos
+     *             preenchidos. Caso contrario, deverá retornar NULL.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static PromotorFisico loginPromotorFisico(final String user, final String password)
+            throws InterruptedException, ExecutionException {
+<span class="fc" id="L285">        List&lt;PromotorFisico&gt; promotores = new ArrayList&lt;PromotorFisico&gt;();</span>
+
+<span class="fc" id="L287">        promotores = consultaPromotoresFisicos();</span>
+
+<span class="fc bfc" id="L289" title="All 2 branches covered.">        for (PromotorFisico promotor : promotores) {</span>
+<span class="pc bpc" id="L290" title="1 of 2 branches missed.">            if (consultaUsuario(promotor.getNomePessoa()).equals(user)</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">                    &amp;&amp; consultaSenha(promotor.getNomePessoa()).equals(password)) {</span>
+<span class="nc" id="L292">                    return promotor;</span>
+            }
+<span class="fc" id="L294">        }</span>
+<span class="fc" id="L295">        return null;</span>
+    }
+
+    /**
+     * Realiza as busca dos dados do PromotorJuridico através de um usuario e senha
+     * informado por parametro.
+     *
+     * @param user     nome de usuario cadastrado no perfil de promotor juridico.
+     * @param password senha cadastrado no perfil de promotor juridico.
+     *
+     * @return caso seja encontrado o perfil de Promotor Juridico com os parametros
+     *             informados irá retornar uma instancia da classe com os atributos
+     *             preenchidos. Caso contrario, deverá retornar NULL.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static PromotorJuridico loginPromotorJuridico(final String user, final String password)
+            throws InterruptedException, ExecutionException {
+<span class="nc" id="L313">        List&lt;PromotorJuridico&gt; promotores = new ArrayList&lt;PromotorJuridico&gt;();</span>
+
+<span class="nc" id="L315">        promotores = consultaPromotoresJuridicos();</span>
+
+<span class="nc bnc" id="L317" title="All 2 branches missed.">        for (PromotorJuridico promotor : promotores) {</span>
+<span class="nc bnc" id="L318" title="All 2 branches missed.">            if (consultaUsuario(promotor.getRazaoSocial()).equals(user)</span>
+<span class="nc bnc" id="L319" title="All 2 branches missed.">                    &amp;&amp; consultaSenha(promotor.getRazaoSocial()).equals(password)) {</span>
+<span class="nc" id="L320">                    return promotor;</span>
+            }
+<span class="nc" id="L322">        }</span>
+<span class="nc" id="L323">        return null;</span>
+    }
+
+    /**
+     * Método responsável por consultar nome de usuário
+     * do login de um promotor de ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     *
+     * @return Retorna uma String com o nome de usuário.
+     * @throws ExecutionException exceção de execução
+     * @throws InterruptedException exceção de interrupção
+     */
+    public static String consultaUsuario(final String nomePromotor)
+     throws InterruptedException, ExecutionException {
+<span class="fc" id="L338">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L340">        DocumentReference docRef = db.collection(&quot;promotor de acao&quot;).document(nomePromotor)</span>
+<span class="fc" id="L341">                                        .collection(&quot;login&quot;).document(&quot;dados&quot;);</span>
+        // asynchronously retrieve the document
+<span class="fc" id="L343">        ApiFuture&lt;DocumentSnapshot&gt; future = docRef.get();</span>
+        // ...
+
+        // future.get() blocks on response
+<span class="fc" id="L347">        String document = null;</span>
+        try {
+<span class="fc" id="L349">            document = future.get().getString(&quot;usuario&quot;);</span>
+<span class="nc" id="L350">        } catch (InterruptedException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L352">            e.printStackTrace();</span>
+<span class="nc" id="L353">        } catch (ExecutionException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L355">            e.printStackTrace();</span>
+<span class="pc" id="L356">        }</span>
+<span class="pc bpc" id="L357" title="1 of 2 branches missed.">        if (document != null) {</span>
+<span class="fc" id="L358">            return document;</span>
+        } else {
+<span class="nc" id="L360">            return null;</span>
+        }
+    }
+
+    /**
+     * Método responsável por consultar senha
+     * do login de um promotor de ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     *
+     * @return Retorna uma String com a senha de usuário.
+     */
+    public static String consultaSenha(final String nomePromotor) {
+<span class="nc" id="L373">        Firestore db = Connection.db;</span>
+
+<span class="nc" id="L375">        DocumentReference docRef = db.collection(&quot;promotor de acao&quot;).document(nomePromotor)</span>
+<span class="nc" id="L376">                                        .collection(&quot;login&quot;).document(&quot;dados&quot;);</span>
+        // asynchronously retrieve the document
+<span class="nc" id="L378">        ApiFuture&lt;DocumentSnapshot&gt; future = docRef.get();</span>
+        // ...
+
+        // future.get() blocks on response
+<span class="nc" id="L382">        String document = null;</span>
+        try {
+<span class="nc" id="L384">            document = future.get().getString(&quot;senha&quot;);</span>
+<span class="nc" id="L385">        } catch (InterruptedException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L387">            e.printStackTrace();</span>
+<span class="nc" id="L388">        } catch (ExecutionException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L390">            e.printStackTrace();</span>
+<span class="nc" id="L391">        }</span>
+<span class="nc bnc" id="L392" title="All 2 branches missed.">        if (document != null) {</span>
+<span class="nc" id="L393">            return document;</span>
+        } else {
+<span class="nc" id="L395">            return null;</span>
+        }
+    }
+
+    /**
+     * Método responsável por alterar senha
+     * do login de um promotor de ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     * @param senha Senha do usuário do promotor da ação.
+     * @param usuario Nome de usuario.
+     * @throws IOException exceção de entrada e saída
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static void alteraSenha(final String nomePromotor, final String usuario, final String senha)
+     throws IOException, InterruptedException, ExecutionException {
+
+<span class="nc" id="L413">        Firestore db = Connection.db;</span>
+
+<span class="nc" id="L415">       DocumentReference referenciaLogin = db.collection(&quot;promotor de acao&quot;).document(nomePromotor)</span>
+<span class="nc" id="L416">                .collection(&quot;login&quot;).document(&quot;dados&quot;);</span>
+
+        // Add document data using a hashmap
+<span class="nc" id="L419">        Map&lt;String, Object&gt; loginMap = new HashMap&lt;String, Object&gt;();</span>
+<span class="nc" id="L420">        loginMap.put(&quot;usuario&quot;, usuario);</span>
+<span class="nc" id="L421">        loginMap.put(&quot;senha&quot;, senha);</span>
+
+<span class="nc" id="L423">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultLogin = referenciaLogin.set(loginMap);</span>
+        // ...
+           // result.get() blocks on response
+<span class="nc" id="L426">           System.out.println(&quot;Update time : &quot; + resultLogin.get().getUpdateTime());</span>
+<span class="nc" id="L427">    }</span>
+
+    /**
+     * Método responsável por consultar promotores cadastrados
+     * em uma ação.
+     *
+     * @return Retorna uma lista de objetos Promotor.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static List&lt;PromotorFisico&gt; consultaPromotoresFisicos()
+            throws InterruptedException, ExecutionException {
+
+<span class="fc" id="L440">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L442">        CollectionReference referenciaPromotores = db.collection(&quot;promotor de acao&quot;);</span>
+
+     // Create a query against the collection.
+<span class="fc" id="L445">        Query query = referenciaPromotores.whereEqualTo(&quot;tipoPessoa&quot;, &quot;fisica&quot;);</span>
+
+      //asynchronously retrieve multiple documents
+<span class="fc" id="L448">        ApiFuture&lt;QuerySnapshot&gt; querySnapshot = query.get();</span>
+        // future.get() blocks on response
+<span class="fc" id="L450">        List&lt;QueryDocumentSnapshot&gt; documents = querySnapshot.get().getDocuments();</span>
+<span class="fc" id="L451">        List&lt;PromotorFisico&gt; promotores = new ArrayList&lt;PromotorFisico&gt;();</span>
+<span class="fc bfc" id="L452" title="All 2 branches covered.">        for (DocumentSnapshot document : documents) {</span>
+          //System.out.println(document.getId() + &quot; adicionado&quot;);
+<span class="fc" id="L454">          promotores.add(document.toObject(PromotorFisico.class));</span>
+<span class="fc" id="L455">        }</span>
+<span class="fc" id="L456">        return promotores;</span>
+    }
+
+    /**
+     * Método responsável por consultar promotores cadastrados
+     * em uma ação.
+     *
+     * @return Retorna uma lista de objetos Promotor.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static List&lt;PromotorJuridico&gt; consultaPromotoresJuridicos()
+            throws InterruptedException, ExecutionException {
+
+<span class="fc" id="L470">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L472">        CollectionReference referenciaPromotores = db.collection(&quot;promotor de acao&quot;);</span>
+
+     // Create a query against the collection.
+<span class="fc" id="L475">        Query query = referenciaPromotores.whereEqualTo(&quot;tipoPessoa&quot;, &quot;juridica&quot;);</span>
+
+      //asynchronously retrieve multiple documents
+<span class="fc" id="L478">        ApiFuture&lt;QuerySnapshot&gt; querySnapshot = query.get();</span>
+        // future.get() blocks on response
+<span class="fc" id="L480">        List&lt;QueryDocumentSnapshot&gt; documents = querySnapshot.get().getDocuments();</span>
+<span class="fc" id="L481">        List&lt;PromotorJuridico&gt; promotores = new ArrayList&lt;PromotorJuridico&gt;();</span>
+<span class="fc bfc" id="L482" title="All 2 branches covered.">        for (DocumentSnapshot document : documents) {</span>
+          //System.out.println(document.getId() + &quot; adicionado&quot;);
+<span class="fc" id="L484">          promotores.add(document.toObject(PromotorJuridico.class));</span>
+<span class="fc" id="L485">        }</span>
+<span class="fc" id="L486">        return promotores;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

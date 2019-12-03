@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AcaoDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java.br.com.ligacao:ligacao</a> &gt; <a href="index.source.html" class="el_package">br.com.ligacao.persistence.model</a> &gt; <span class="el_source">AcaoDAO.java</span></div><h1>AcaoDAO.java</h1><pre class="source lang-java linenums">package br.com.ligacao.persistence.model;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
+
+import br.com.ligacao.persistence.connection.Connection;
+
+/**
+ * Classe responsável por gerenciar os dados de ações no banco Firestore.
+ */
+<span class="nc" id="L24">public class AcaoDAO {</span>
+
+    /**
+     * Método responsável por cadastrar ou atualizar uma nova
+     * ação de um promotor de ação no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     *
+     * @param nomePromotor Objeto promotor de ação.
+     * @param acao Objeto ação.
+     *
+     * @throws IOException exceção de entrada e saída
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static void cadastraAcao(final String nomePromotor, final Acao acao)
+            throws IOException, InterruptedException, ExecutionException {
+
+<span class="fc" id="L42">        String nomeAcao = acao.getNomeAcao();</span>
+<span class="fc" id="L43">        String categoriaAcao = acao.getCategoriaAcao();</span>
+<span class="fc" id="L44">        String dataRealizacao = acao.getDataRealizacao();</span>
+<span class="fc" id="L45">        String descricao = acao.getDescricao();</span>
+<span class="fc" id="L46">        String horaInicio = acao.getHoraInicio();</span>
+<span class="fc" id="L47">        String horaFim = acao.getHoraFim();</span>
+
+<span class="fc" id="L49">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L51">        DocumentReference referenciaAcao = db.collection(&quot;promotor de acao&quot;).document(nomePromotor)</span>
+<span class="fc" id="L52">                                               .collection(&quot;acoes&quot;).document(nomeAcao);</span>
+
+        // Add document data using a hashmap
+<span class="fc" id="L55">        Map&lt;String, Object&gt; cadastroAcao = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L56">        cadastroAcao.put(&quot;nomeAcao&quot;, nomeAcao);</span>
+<span class="fc" id="L57">        cadastroAcao.put(&quot;categoriaAcao&quot;, categoriaAcao);</span>
+<span class="fc" id="L58">        cadastroAcao.put(&quot;dataRealizacao&quot;, dataRealizacao);</span>
+<span class="fc" id="L59">        cadastroAcao.put(&quot;descricao&quot;, descricao);</span>
+<span class="fc" id="L60">        cadastroAcao.put(&quot;horaInicio&quot;, horaInicio);</span>
+<span class="fc" id="L61">        cadastroAcao.put(&quot;horaFim&quot;, horaFim);</span>
+        //asynchronously write data
+<span class="fc" id="L63">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultAcao = referenciaAcao.set(cadastroAcao);</span>
+        // ...
+        // result.get() blocks on response
+<span class="fc" id="L66">        System.out.println(&quot;Update time : &quot; + resultAcao.get().getUpdateTime());</span>
+
+<span class="fc" id="L68">    }</span>
+
+    /**
+     * Método responsável por consultar ações cadastradas
+     * em um promotor de ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     *
+     * @return Retorna uma lista de objetos Acao.
+     *
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static List&lt;Acao&gt; consultaAcoes(final String nomePromotor)
+            throws InterruptedException, ExecutionException {
+
+<span class="fc" id="L84">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L86">        CollectionReference referenciaAcoes = db.collection(&quot;promotor de acao&quot;).document(nomePromotor)</span>
+<span class="fc" id="L87">                .collection(&quot;acoes&quot;);</span>
+
+      //asynchronously retrieve multiple documents
+<span class="fc" id="L90">        ApiFuture&lt;QuerySnapshot&gt; future = referenciaAcoes.get();</span>
+        // future.get() blocks on response
+<span class="fc" id="L92">        List&lt;QueryDocumentSnapshot&gt; documents = future.get().getDocuments();</span>
+<span class="fc" id="L93">        List&lt;Acao&gt; acoes = new ArrayList&lt;Acao&gt;();</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        for (DocumentSnapshot document : documents) {</span>
+          //System.out.println(document.getId() + &quot; adicionado&quot;);
+<span class="fc" id="L96">          acoes.add(document.toObject(Acao.class));</span>
+<span class="fc" id="L97">        }</span>
+<span class="fc" id="L98">        return acoes;</span>
+    }
+
+    /**
+     * Método responsável por excluir uma ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação a ser excluída.
+     *
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static void excluiAcao(final String nomePromotor,
+            final String nomeAcao) throws InterruptedException, ExecutionException {
+
+<span class="fc" id="L113">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L115">        DocumentReference referenciaAcao = db.collection(&quot;promotor de acao&quot;).document(nomePromotor)</span>
+<span class="fc" id="L116">                .collection(&quot;acoes&quot;).document(nomeAcao);</span>
+
+     // asynchronously delete a document
+<span class="fc" id="L119">        ApiFuture&lt;WriteResult&gt; writeResult = referenciaAcao.delete();</span>
+        // ...
+<span class="fc" id="L121">        System.out.println(&quot;Update time : &quot; + writeResult.get().getUpdateTime());</span>
+<span class="fc" id="L122">    }</span>
+
+    /**
+     * Método responsável por consultar dados cadastrados
+     * de uma ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação.
+     *
+     * @return Retorna uma classe Acao com os dados consultados.
+     *
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static Acao consultaAcao(final String nomePromotor, final String nomeAcao)
+    throws InterruptedException, ExecutionException {
+<span class="fc" id="L138">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L140">        DocumentReference docRef = db.collection(&quot;promotor de acao&quot;).document(nomePromotor)</span>
+<span class="fc" id="L141">                                    .collection(&quot;acoes&quot;).document(nomeAcao);</span>
+        // asynchronously retrieve the document
+<span class="fc" id="L143">        ApiFuture&lt;DocumentSnapshot&gt; future = docRef.get();</span>
+        // ...
+
+<span class="fc" id="L146">        DocumentSnapshot document1 = future.get();</span>
+
+<span class="fc" id="L148">        Acao acao = null;</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">        if (document1.exists()) {</span>
+          // convert document to POJO
+<span class="fc" id="L151">          acao = document1.toObject(Acao.class);</span>
+        }
+
+        // future.get() blocks on response
+<span class="fc" id="L155">        DocumentSnapshot document = null;</span>
+        try {
+<span class="fc" id="L157">            document = future.get();</span>
+<span class="nc" id="L158">        } catch (InterruptedException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L160">            e.printStackTrace();</span>
+<span class="nc" id="L161">        } catch (ExecutionException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L163">            e.printStackTrace();</span>
+<span class="nc" id="L164">        } catch (NullPointerException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L166">            e.printStackTrace();</span>
+<span class="pc" id="L167">        }</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">        if (!document.exists()) {</span>
+<span class="fc" id="L169">            return null;</span>
+        }
+
+<span class="fc" id="L172">        return acao;</span>
+    }
+
+    /**
+     * Método responsável por consultar todas as ações existentes.
+     *
+     * @return Retorna uma list de Acao com todas as ações.
+     *
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static List&lt;Acao&gt; consultaTodasAcoes()
+            throws InterruptedException, ExecutionException {
+
+<span class="fc" id="L186">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L188">        List&lt;Acao&gt; acoes = new ArrayList&lt;Acao&gt;();</span>
+
+<span class="fc" id="L190">        List&lt;PromotorFisico&gt; promotoresF = new ArrayList&lt;PromotorFisico&gt;();</span>
+<span class="fc" id="L191">        promotoresF = PromotorDAO.consultaPromotoresFisicos();</span>
+
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        for (PromotorFisico documentoPromotor : promotoresF) {</span>
+
+<span class="fc" id="L195">            CollectionReference referenciaAcoes = db.collection(&quot;promotor de acao&quot;)</span>
+<span class="fc" id="L196">            .document(documentoPromotor.getNomePessoa())</span>
+<span class="fc" id="L197">                    .collection(&quot;acoes&quot;);</span>
+
+          //asynchronously retrieve multiple documents
+<span class="fc" id="L200">            ApiFuture&lt;QuerySnapshot&gt; future = referenciaAcoes.get();</span>
+            // future.get() blocks on response
+<span class="fc" id="L202">            List&lt;QueryDocumentSnapshot&gt; documents = future.get().getDocuments();</span>
+<span class="fc bfc" id="L203" title="All 2 branches covered.">            for (DocumentSnapshot document : documents) {</span>
+              //System.out.println(document.getId() + &quot; adicionado&quot;);
+<span class="fc" id="L205">              acoes.add(document.toObject(Acao.class));</span>
+<span class="fc" id="L206">            }</span>
+<span class="fc" id="L207">        }</span>
+
+<span class="fc" id="L209">        List&lt;PromotorJuridico&gt; promotoresJ = new ArrayList&lt;PromotorJuridico&gt;();</span>
+<span class="fc" id="L210">        promotoresJ = PromotorDAO.consultaPromotoresJuridicos();</span>
+
+<span class="fc bfc" id="L212" title="All 2 branches covered.">        for (PromotorJuridico documentoPromotor : promotoresJ) {</span>
+
+<span class="fc" id="L214">            CollectionReference referenciaAcoes = db.collection(&quot;promotor de acao&quot;)</span>
+<span class="fc" id="L215">            .document(documentoPromotor.getRazaoSocial())</span>
+<span class="fc" id="L216">                    .collection(&quot;acoes&quot;);</span>
+
+          //asynchronously retrieve multiple documents
+<span class="fc" id="L219">            ApiFuture&lt;QuerySnapshot&gt; future = referenciaAcoes.get();</span>
+            // future.get() blocks on response
+<span class="fc" id="L221">            List&lt;QueryDocumentSnapshot&gt; documents = future.get().getDocuments();</span>
+<span class="pc bpc" id="L222" title="1 of 2 branches missed.">            for (DocumentSnapshot document : documents) {</span>
+              //System.out.println(document.getId() + &quot; adicionado&quot;);
+<span class="nc" id="L224">              acoes.add(document.toObject(Acao.class));</span>
+<span class="nc" id="L225">            }</span>
+<span class="fc" id="L226">        }</span>
+<span class="fc" id="L227">        return acoes;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

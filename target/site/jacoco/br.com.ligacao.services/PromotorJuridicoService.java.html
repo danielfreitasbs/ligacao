@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PromotorJuridicoService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java.br.com.ligacao:ligacao</a> &gt; <a href="index.source.html" class="el_package">br.com.ligacao.services</a> &gt; <span class="el_source">PromotorJuridicoService.java</span></div><h1>PromotorJuridicoService.java</h1><pre class="source lang-java linenums">package br.com.ligacao.services;
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+import javax.management.AttributeNotFoundException;
+import br.com.ligacao.persistence.model.PromotorDAO;
+import br.com.ligacao.persistence.model.PromotorJuridico;
+
+/**
+ * Classe responsável pela execução de regra de negocio para promotor juridico.
+ *
+ * @author danielfreitasbs.
+ *
+ */
+<span class="nc" id="L16">public class PromotorJuridicoService {</span>
+
+  /**
+   * Scanner para leitura de input do teclado.
+   */
+  private static Scanner scanner;
+
+  /**
+   * Metodo responsável pela edição de promotorJuridico.
+   *
+   * @param promotorParam instancia de promotor juridico.
+   * @throws ExecutionException erro ao realizar ação no banco de dados.
+   * @throws InterruptedException erro ao realizar ação no banco de dados.
+   * @throws IOException caso ocorra algum erro no uso do banco de dados.
+   */
+  public static void editarPromotorJuridico(final PromotorJuridico promotorParam)
+      throws InterruptedException, ExecutionException, IOException {
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">    if (promotorParam.getRazaoSocial() != &quot;&quot;) {</span>
+<span class="nc" id="L34">      PromotorDAO.cadastraPromotorJuridico(promotorParam);</span>
+    } else {
+<span class="fc" id="L36">      throw new IllegalArgumentException();</span>
+    }
+<span class="nc" id="L38">  }</span>
+
+  /**
+   * Metodo responsável pelo cadastro de promotor Juridico.
+   *
+   * @param promotorJuridico instancia de promotor juridico.
+   * @throws ExecutionException erro ao realizar ação no banco de dados.
+   * @throws InterruptedException erro ao realizar ação no banco de dados.
+   * @throws IOException caso ocorra erro na leitura de inputs do teclado.
+   * @throws AttributeNotFoundException caso não seja informado o atributo cnpj do promotor.
+   */
+  public static void cadastroPromotorJuridico(final PromotorJuridico promotorJuridico)
+      throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">    if (promotorJuridico.getCnpj() != &quot;&quot;) {</span>
+<span class="nc" id="L52">      PromotorDAO.cadastraPromotorJuridico(promotorJuridico);</span>
+    } else {
+<span class="fc" id="L54">      throw new AttributeNotFoundException();</span>
+    }
+<span class="nc" id="L56">  }</span>
+
+  /**
+   * Exclusão de promotor juridico.
+   *
+   * @param promotorJuridico instancia de promotor juridico.
+   * @throws ExecutionException erro ao realizar ação no banco de dados.
+   * @throws InterruptedException erro ao realizar ação no banco de dados.
+   */
+  public static void excluirPromotor(final PromotorJuridico promotorJuridico)
+      throws InterruptedException, ExecutionException {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">    if (promotorJuridico.getRazaoSocial() != &quot;&quot;) {</span>
+<span class="nc" id="L68">      PromotorDAO.excluiPromotor(promotorJuridico.getRazaoSocial());</span>
+    } else {
+<span class="fc" id="L70">      throw new IllegalArgumentException();</span>
+    }
+<span class="nc" id="L72">  }</span>
+
+  /**
+   * Metodo responsável pela execução de login para promotorJuridico.
+   *
+   * @throws ExecutionException erro ao realizar ação no banco de dados.
+   * @throws InterruptedException erro ao realizar ação no banco de dados.
+   * @return instancia de promotor juridico.
+   */
+  static PromotorJuridico login() throws InterruptedException, ExecutionException {
+<span class="nc" id="L82">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L83">    scanner = new Scanner(System.in);</span>
+<span class="nc" id="L84">    PromotorJuridico promotorJuridico = new PromotorJuridico();</span>
+
+<span class="nc" id="L86">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L87">    sb.append(&quot;Informe o nome de usuário: \n&quot;);</span>
+<span class="nc" id="L88">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L90">    String user = scanner.nextLine();</span>
+
+<span class="nc" id="L92">    sb = new StringBuilder();</span>
+<span class="nc" id="L93">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L94">    sb.append(&quot;Informe a senha: \n&quot;);</span>
+<span class="nc" id="L95">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L97">    String password = scanner.nextLine();</span>
+
+<span class="nc" id="L99">    return PromotorDAO.loginPromotorJuridico(user, password);</span>
+  }
+
+  /**
+   * Realiza o login atraves de parametros.
+   *
+   * @param user usuario do promotor.
+   * @param password senha do promotor.
+   * @return instancia caso encontre e null caso contrario.
+   * @throws InterruptedException caso ocorra algum erro no uso do banco de dados.
+   * @throws ExecutionException caso ocorra algum erro no uso do banco de dados.
+   */
+  public static PromotorJuridico login(final String user, final String password)
+      throws InterruptedException, ExecutionException {
+<span class="nc bnc" id="L113" title="All 4 branches missed.">    if (user != &quot;&quot; &amp;&amp; password != &quot;&quot;) {</span>
+<span class="nc" id="L114">      return PromotorDAO.loginPromotorJuridico(user, password);</span>
+    } else {
+<span class="nc" id="L116">      return null;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

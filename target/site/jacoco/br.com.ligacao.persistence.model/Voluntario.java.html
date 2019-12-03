@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Voluntario.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java.br.com.ligacao:ligacao</a> &gt; <a href="index.source.html" class="el_package">br.com.ligacao.persistence.model</a> &gt; <span class="el_source">Voluntario.java</span></div><h1>Voluntario.java</h1><pre class="source lang-java linenums">package br.com.ligacao.persistence.model;
+
+/**
+ * Classe representante da entidade de voluntario.
+ *
+ * @author developer
+ *
+ */
+public class Voluntario extends Login {
+
+    /**
+     * Nome do Voluntário.
+     */
+    private String nome;
+    /**
+     * E-mail do Voluntário.
+     */
+    private String email;
+    /**
+     * Imagem do Voluntário.
+     */
+    private String imagem;
+    /**
+     * Rede(s) Social(is) do Voluntário.
+     */
+    private String redeSocial;
+    /**
+     * Endereço do Voluntário.
+     */
+    private String endereco;
+    /**
+     * Profissão/Área de Atuação do Voluntário.
+     */
+    private String areaDeAtuacao;
+    /**
+     * Categorias de ações que o Voluntário tem interesse.
+     */
+    private String categoriaInteresse;
+
+    /**
+     * Construtor public para instanciar voluntário sem atributos.
+     */
+<span class="fc" id="L43">    public Voluntario() {</span>
+
+<span class="fc" id="L45">    }</span>
+
+    /**
+     * Construtor com todos os atributos de voluntário.
+     *
+     * @param usuario            Usuário necessário para login.
+     * @param senha              Senha necessária para login.
+     * @param nomeVoluntario     Nome do voluntário.
+     * @param emailVoluntario    Email do voluntário.
+     * @param imagem             Imagem do voluntário.
+     * @param redeSocial         Rede(s) social(is) do voluntário.
+     * @param endereco           Endereço do voluntário.
+     * @param areaDeAtuacao      Profissão/Área de atuação do voluntário.
+     * @param categoriaInteresse Categorias de ações que o voluntário tem interesse.
+     */
+    public Voluntario(final String usuario, final String senha, final String nomeVoluntario,
+            final String emailVoluntario, final String imagem, final String redeSocial, final String endereco,
+            final String areaDeAtuacao, final String categoriaInteresse) {
+<span class="fc" id="L63">        super(usuario, senha);</span>
+<span class="fc" id="L64">        this.nome = nomeVoluntario;</span>
+<span class="fc" id="L65">        this.email = emailVoluntario;</span>
+<span class="fc" id="L66">        this.imagem = imagem;</span>
+<span class="fc" id="L67">        this.redeSocial = redeSocial;</span>
+<span class="fc" id="L68">        this.endereco = endereco;</span>
+<span class="fc" id="L69">        this.areaDeAtuacao = areaDeAtuacao;</span>
+<span class="fc" id="L70">        this.categoriaInteresse = categoriaInteresse;</span>
+<span class="fc" id="L71">    }</span>
+
+    /**
+     * Retorna nome do Voluntário.
+     *
+     * @return Nome do Voluntário.
+     */
+    public String getNome() {
+<span class="fc" id="L79">        return nome;</span>
+    }
+
+    /**
+     * Define nome do Voluntário.
+     *
+     * @param nomeVoluntario Nome definido.
+     */
+    public void setNome(final String nomeVoluntario) {
+<span class="fc" id="L88">        this.nome = nomeVoluntario;</span>
+<span class="fc" id="L89">    }</span>
+
+    /**
+     * Retorna e-mail do Voluntário.
+     *
+     * @return E-mail do Voluntário.
+     */
+    public String getEmail() {
+<span class="fc" id="L97">        return email;</span>
+    }
+
+    /**
+     * Define e-mail do Voluntário.
+     *
+     * @param emailVoluntario E-mail definido.
+     */
+    public void setEmail(final String emailVoluntario) {
+<span class="fc" id="L106">        this.email = emailVoluntario;</span>
+<span class="fc" id="L107">    }</span>
+
+    /**
+     * Retorna imagem do Voluntário.
+     *
+     * @return Imagem do Voluntário.
+     */
+    public String getImagem() {
+<span class="fc" id="L115">        return imagem;</span>
+    }
+
+    /**
+     * Define imagem do Voluntário.
+     *
+     * @param imagemVoluntario Imagem definida.
+     */
+    public void setImagem(final String imagemVoluntario) {
+<span class="fc" id="L124">        this.imagem = imagemVoluntario;</span>
+<span class="fc" id="L125">    }</span>
+
+    /**
+     * Retorna rede(s) social(is) do Voluntário.
+     *
+     * @return Rede(s) Social(is) do Voluntário.
+     */
+    public String getRedeSocial() {
+<span class="fc" id="L133">        return redeSocial;</span>
+    }
+
+    /**
+     * Define rede(s) social(is) do Voluntário.
+     *
+     * @param redeSocialVoluntario Rede(s) social(is) definidas.
+     */
+    public void setRedeSocial(final String redeSocialVoluntario) {
+<span class="nc" id="L142">        this.redeSocial = redeSocialVoluntario;</span>
+<span class="nc" id="L143">    }</span>
+
+    /**
+     * Retorna endereço do Voluntário.
+     *
+     * @return Endereço do Voluntário.
+     */
+    public String getEndereco() {
+<span class="fc" id="L151">        return endereco;</span>
+    }
+
+    /**
+     * Define endereço do Voluntário.
+     *
+     * @param enderecoVoluntario Endereço definido.
+     */
+    public void setEndereco(final String enderecoVoluntario) {
+<span class="fc" id="L160">        this.endereco = enderecoVoluntario;</span>
+<span class="fc" id="L161">    }</span>
+
+    /**
+     * Retorna profissão/área de atuação do Voluntário.
+     *
+     * @return Profissão/área de atuação do Voluntário.
+     */
+    public String getAreaDeAtuacao() {
+<span class="fc" id="L169">        return areaDeAtuacao;</span>
+    }
+
+    /**
+     * Define profissão/área de atuação do Voluntário.
+     *
+     * @param areaDeAtuacaoVoluntario Profissãoqárea de atuação definina.
+     */
+    public void setAreaDeAtuacao(final String areaDeAtuacaoVoluntario) {
+<span class="fc" id="L178">        this.areaDeAtuacao = areaDeAtuacaoVoluntario;</span>
+<span class="fc" id="L179">    }</span>
+
+    /**
+     * Retorna categorias de ação que o voluntário tem interesse.
+     *
+     * @return Categorias de ação que o voluntário tem interesse.
+     */
+    public String getCategoriaInteresse() {
+<span class="fc" id="L187">        return categoriaInteresse;</span>
+    }
+
+    /**
+     * Define categorias de ação que o voluntário tem interesse.
+     *
+     * @param categoriaInteresseVoluntario Categorias de ação que o voluntário tem interesse
+     *                           definidas.
+     */
+    public void setCategoriaInteresse(final String categoriaInteresseVoluntario) {
+<span class="fc" id="L197">        this.categoriaInteresse = categoriaInteresseVoluntario;</span>
+<span class="fc" id="L198">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

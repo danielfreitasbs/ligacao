@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: br.com.ligacao.persistence.model.VoluntarioDAOTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.063 s - in br.com.ligacao.persistence.model.VoluntarioDAOTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.469 s - in br.com.ligacao.persistence.model.VoluntarioDAOTest

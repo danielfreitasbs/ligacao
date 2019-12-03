@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FormulariosSolicitacao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java.br.com.ligacao:ligacao</a> &gt; <a href="index.source.html" class="el_package">br.com.ligacao.client.forms</a> &gt; <span class="el_source">FormulariosSolicitacao.java</span></div><h1>FormulariosSolicitacao.java</h1><pre class="source lang-java linenums">package br.com.ligacao.client.forms;
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.management.AttributeNotFoundException;
+import br.com.ligacao.persistence.model.PromotorFisico;
+import br.com.ligacao.persistence.model.PromotorJuridico;
+import br.com.ligacao.persistence.model.Voluntario;
+import br.com.ligacao.services.PromotorFisicoService;
+import br.com.ligacao.services.PromotorJuridicoService;
+
+/**
+ * Esta é uma classe utilitaria, usada para representação dos atributos de um formulário de
+ * cadastro.
+ *
+ * @author danielfreitasbs
+ *
+ */
+<span class="nc" id="L22">public final class FormulariosSolicitacao {</span>
+
+  /**
+   * Scanner para entrada de dados pelo usuário.
+   */
+<span class="fc" id="L27">  private static Scanner input = new Scanner(System.in);</span>
+
+  /**
+   * Realiza a construção de uma String, que representa a solicitação dos dados para cadastro de um
+   * Promotor do tipo pessoa física.
+   * 
+   * @throws ExecutionException caso ocorra algum problema no uso do banco de dados.
+   * @throws InterruptedException caso ocorra algum problema no uso do banco de dados.
+   * @throws IOException caso ocorra erro na leitura de atributos do teclado.
+   * @throws AttributeNotFoundException caso não seja informado o nome do promotor.
+   */
+  public static void solCadPromotorFisico()
+      throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
+
+<span class="nc" id="L41">    PromotorFisico promotorFisico = new PromotorFisico();</span>
+
+<span class="nc" id="L43">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L44">    sb.append(&quot;----- Cadastro de Promotor do tipo Pessoa Física -----\n&quot;)</span>
+<span class="nc" id="L45">        .append(&quot;Nome da Pessoa: \n&quot;);</span>
+<span class="nc" id="L46">    System.out.println(sb.toString());</span>
+<span class="nc" id="L47">    promotorFisico.setNomePessoa(input.nextLine());</span>
+
+<span class="nc" id="L49">    sb = new StringBuilder();</span>
+<span class="nc" id="L50">    sb.append(&quot;\nCPF do Responsável: \n&quot;);</span>
+<span class="nc" id="L51">    System.out.println(sb.toString());</span>
+<span class="nc" id="L52">    promotorFisico.setCpf(input.nextLine());</span>
+
+<span class="nc" id="L54">    sb = new StringBuilder();</span>
+<span class="nc" id="L55">    sb.append(&quot;\nData de Nascimento: \n&quot;);</span>
+<span class="nc" id="L56">    System.out.println(sb.toString());</span>
+<span class="nc" id="L57">    promotorFisico.setDataNascimento(input.nextLine());</span>
+<span class="nc" id="L58">    promotorFisico.setFotoPerfil(&quot;&quot;);</span>
+
+<span class="nc" id="L60">    sb = new StringBuilder();</span>
+<span class="nc" id="L61">    sb.append(&quot;\nCategorias de Ações: \n&quot;);</span>
+<span class="nc" id="L62">    System.out.println(sb.toString());</span>
+<span class="nc" id="L63">    promotorFisico.setCategoriasAcoes(input.nextLine());</span>
+
+<span class="nc" id="L65">    sb = new StringBuilder();</span>
+<span class="nc" id="L66">    sb.append(&quot;\nDescricao Geral: \n&quot;);</span>
+<span class="nc" id="L67">    System.out.println(sb.toString());</span>
+<span class="nc" id="L68">    promotorFisico.setDescricaoGeral(input.nextLine());</span>
+
+<span class="nc" id="L70">    sb = new StringBuilder();</span>
+<span class="nc" id="L71">    sb.append(&quot;\nTelefone: \n&quot;);</span>
+<span class="nc" id="L72">    System.out.println(sb.toString());</span>
+<span class="nc" id="L73">    promotorFisico.setTelefone(input.nextLine());</span>
+
+<span class="nc" id="L75">    sb = new StringBuilder();</span>
+<span class="nc" id="L76">    sb.append(&quot;\nEndereco: \n&quot;);</span>
+<span class="nc" id="L77">    System.out.println(sb.toString());</span>
+<span class="nc" id="L78">    promotorFisico.setEndereco(input.nextLine());</span>
+
+<span class="nc" id="L80">    sb = new StringBuilder();</span>
+<span class="nc" id="L81">    sb.append(&quot;\nEmail: \n&quot;);</span>
+<span class="nc" id="L82">    System.out.println(sb.toString());</span>
+<span class="nc" id="L83">    promotorFisico.setEmail(input.nextLine());</span>
+
+<span class="nc" id="L85">    sb = new StringBuilder();</span>
+<span class="nc" id="L86">    sb.append(&quot;\n----- Informacoes de Acesso -----\n&quot;).append(&quot;\nLogin: \n&quot;);</span>
+<span class="nc" id="L87">    System.out.println(sb.toString());</span>
+<span class="nc" id="L88">    promotorFisico.setUsuario(input.nextLine());</span>
+
+<span class="nc" id="L90">    sb = new StringBuilder();</span>
+<span class="nc" id="L91">    sb.append(&quot;\nSenha: \n&quot;);</span>
+<span class="nc" id="L92">    System.out.println(sb.toString());</span>
+<span class="nc" id="L93">    promotorFisico.setSenha(input.nextLine());</span>
+
+<span class="nc" id="L95">    sb.append(&quot;\nPara confirmar o cadastro digite 0, para cancelar digite 1: \n&quot;);</span>
+<span class="nc" id="L96">    System.out.println(sb.toString());</span>
+<span class="nc" id="L97">    int opcao = input.nextInt();</span>
+
+<span class="nc bnc" id="L99" title="All 2 branches missed.">    if (opcao == 0) {</span>
+<span class="nc" id="L100">      input.close();</span>
+<span class="nc" id="L101">      PromotorFisicoService.cadastroPromotorFisico(promotorFisico);</span>
+    } else {
+<span class="nc" id="L103">      input.close();</span>
+<span class="nc" id="L104">      System.exit(0);</span>
+    }
+<span class="nc" id="L106">  }</span>
+
+  /**
+   * Metodo responsável por simular a interface de um formulário com o usuário Promotor.
+   * 
+   * @throws ExecutionException em caso de erro no uso de banco de dados.
+   * @throws InterruptedException em caso de erro no uso de banco de dados.
+   * @throws IOException caso ocorra erro na leitura do input pelo teclado.
+   * @throws AttributeNotFoundException caso nao seja informado o atributo cnpj.
+   */
+  public static void solCadPromotorJuridico()
+      throws AttributeNotFoundException, IOException, InterruptedException, ExecutionException {
+<span class="nc" id="L118">    PromotorJuridico promotorJuridico = new PromotorJuridico();</span>
+
+<span class="nc" id="L120">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L121">    sb.append(&quot;----- Cadastro de Promotor do tipo Pessoa Física -----\n&quot;)</span>
+<span class="nc" id="L122">        .append(&quot;Nome da Pessoa Física Responsável: \n&quot;);</span>
+<span class="nc" id="L123">    System.out.println(sb.toString());</span>
+<span class="nc" id="L124">    promotorJuridico.setCpfResponsavel(input.nextLine());</span>
+
+<span class="nc" id="L126">    sb = new StringBuilder();</span>
+<span class="nc" id="L127">    sb.append(&quot;\nCPF da Pessoa Física Responsável: \n&quot;);</span>
+<span class="nc" id="L128">    System.out.println(sb.toString());</span>
+<span class="nc" id="L129">    promotorJuridico.setCpfResponsavel(input.nextLine());</span>
+
+<span class="nc" id="L131">    sb = new StringBuilder();</span>
+<span class="nc" id="L132">    sb.append(&quot;\nCNPJ: \n&quot;);</span>
+<span class="nc" id="L133">    System.out.println(sb.toString());</span>
+<span class="nc" id="L134">    promotorJuridico.setCnpj(input.nextLine());</span>
+<span class="nc" id="L135">    promotorJuridico.setFotoPerfil(&quot;&quot;);</span>
+
+<span class="nc" id="L137">    sb = new StringBuilder();</span>
+<span class="nc" id="L138">    sb.append(&quot;\nRazao Social: \n&quot;);</span>
+<span class="nc" id="L139">    System.out.println(sb.toString());</span>
+<span class="nc" id="L140">    promotorJuridico.setRazaoSocial(input.nextLine());</span>
+
+<span class="nc" id="L142">    sb = new StringBuilder();</span>
+<span class="nc" id="L143">    sb.append(&quot;\nData de Fundação: \n&quot;);</span>
+<span class="nc" id="L144">    System.out.println(sb.toString());</span>
+<span class="nc" id="L145">    promotorJuridico.setDataFundacao(input.nextLine());</span>
+
+<span class="nc" id="L147">    sb = new StringBuilder();</span>
+<span class="nc" id="L148">    sb.append(&quot;\nRedes Sociais: \n&quot;);</span>
+<span class="nc" id="L149">    System.out.println(sb.toString());</span>
+<span class="nc" id="L150">    promotorJuridico.setRedesSociais(input.nextLine());</span>
+
+<span class="nc" id="L152">    sb = new StringBuilder();</span>
+<span class="nc" id="L153">    sb.append(&quot;\nCategorias de Ações: \n&quot;);</span>
+<span class="nc" id="L154">    System.out.println(sb.toString());</span>
+<span class="nc" id="L155">    promotorJuridico.setCategoriasAcoes(input.nextLine());</span>
+
+<span class="nc" id="L157">    sb = new StringBuilder();</span>
+<span class="nc" id="L158">    sb.append(&quot;\nDescricao Geral: \n&quot;);</span>
+<span class="nc" id="L159">    System.out.println(sb.toString());</span>
+<span class="nc" id="L160">    promotorJuridico.setDescricaoGeral(input.nextLine());</span>
+
+<span class="nc" id="L162">    sb = new StringBuilder();</span>
+<span class="nc" id="L163">    sb.append(&quot;\nTelefone: \n&quot;);</span>
+<span class="nc" id="L164">    System.out.println(sb.toString());</span>
+<span class="nc" id="L165">    promotorJuridico.setTelefone(input.nextLine());</span>
+
+<span class="nc" id="L167">    sb = new StringBuilder();</span>
+<span class="nc" id="L168">    sb.append(&quot;\nEndereco: \n&quot;);</span>
+<span class="nc" id="L169">    System.out.println(sb.toString());</span>
+<span class="nc" id="L170">    promotorJuridico.setEndereco(input.nextLine());</span>
+
+<span class="nc" id="L172">    sb = new StringBuilder();</span>
+<span class="nc" id="L173">    sb.append(&quot;\nEmail: \n&quot;);</span>
+<span class="nc" id="L174">    System.out.println(sb.toString());</span>
+<span class="nc" id="L175">    promotorJuridico.setEmail(input.nextLine());</span>
+
+<span class="nc" id="L177">    sb = new StringBuilder();</span>
+<span class="nc" id="L178">    sb.append(&quot;\n----- Informacoes de Acesso -----\n&quot;).append(&quot;\nUsuario: \n&quot;);</span>
+<span class="nc" id="L179">    System.out.println(sb.toString());</span>
+<span class="nc" id="L180">    promotorJuridico.setUsuario(input.nextLine());</span>
+
+<span class="nc" id="L182">    sb = new StringBuilder();</span>
+<span class="nc" id="L183">    sb.append(&quot;\nSenha: \n&quot;);</span>
+<span class="nc" id="L184">    System.out.println(sb.toString());</span>
+<span class="nc" id="L185">    promotorJuridico.setSenha(input.nextLine());</span>
+
+<span class="nc" id="L187">    sb = new StringBuilder();</span>
+<span class="nc" id="L188">    sb.append(&quot;\nPara confirmar o cadastro digite 0, para cancelar digite 1: \n&quot;);</span>
+<span class="nc" id="L189">    System.out.println(sb.toString());</span>
+<span class="nc" id="L190">    int opcao = input.nextInt();</span>
+
+<span class="nc bnc" id="L192" title="All 2 branches missed.">    if (opcao == 0) {</span>
+<span class="nc" id="L193">      input.close();</span>
+<span class="nc" id="L194">      PromotorJuridicoService.cadastroPromotorJuridico(promotorJuridico);</span>
+<span class="nc" id="L195">      System.out.println(&quot;Promotor cadastrado com sucesso.&quot;);</span>
+<span class="nc" id="L196">      System.exit(0);</span>
+    } else {
+<span class="nc" id="L198">      input.close();</span>
+<span class="nc" id="L199">      System.exit(0);</span>
+    }
+<span class="nc" id="L201">  }</span>
+
+  /**
+   * Metodo responsável por simular a interface de um formulário com o usuário Promotor.
+   * 
+   * @throws ExecutionException caso ocorra algum erro no uso do banco de dados.
+   * @throws InterruptedException caso ocorra algum erro no uso do banco de dados.
+   * @throws IOException caso ocorra algum erro no uso do banco de dados.
+   */
+  public static void formDadosAlteracao()
+      throws InterruptedException, ExecutionException, IOException {
+
+<span class="nc" id="L213">    StringBuilder sb = new StringBuilder();</span>
+
+<span class="nc" id="L215">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L216">    sb.append(&quot;Informe o nome de usuário: \n&quot;);</span>
+<span class="nc" id="L217">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L219">    String user = input.nextLine();</span>
+
+<span class="nc" id="L221">    sb = new StringBuilder();</span>
+<span class="nc" id="L222">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L223">    sb.append(&quot;Informe a senha: \n&quot;);</span>
+<span class="nc" id="L224">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L226">    String password = input.nextLine();</span>
+
+<span class="nc" id="L228">    PromotorFisico promotor = new PromotorFisico();</span>
+<span class="nc" id="L229">    promotor = PromotorFisicoService.login(user, password);</span>
+
+<span class="nc bnc" id="L231" title="All 2 branches missed.">    if (promotor == null) {</span>
+<span class="nc" id="L232">      System.out.println(&quot;\nUsuário não encontrado ou Usuario/Senha incorreto.\n&quot;);</span>
+<span class="nc" id="L233">      return;</span>
+    } else {
+<span class="nc" id="L235">      sb = new StringBuilder();</span>
+<span class="nc" id="L236">      sb.append(&quot;\n-----  Perfil de Promotor Pessoa Física -----\n&quot;).append(&quot;Nome da Pessoa: &quot;)</span>
+<span class="nc" id="L237">          .append(promotor.getNomePessoa()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L238">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L239">      System.out.println(sb.toString());</span>
+<span class="nc" id="L240">      int option = input.nextInt();</span>
+<span class="nc" id="L241">      sb = new StringBuilder();</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">      promotor.setNomePessoa(option == 1 ? promotor.getNomePessoa() : lerTeclado());</span>
+
+<span class="nc" id="L244">      sb = new StringBuilder();</span>
+<span class="nc" id="L245">      sb.append(&quot;\nCPF do Responsável: &quot;).append(promotor.getCpf()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L246">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L247">      System.out.println(sb.toString());</span>
+<span class="nc" id="L248">      option = input.nextInt();</span>
+<span class="nc" id="L249">      sb = new StringBuilder();</span>
+<span class="nc bnc" id="L250" title="All 2 branches missed.">      promotor.setCpf(option == 1 ? promotor.getCpf() : lerTeclado());</span>
+
+<span class="nc" id="L252">      sb = new StringBuilder();</span>
+<span class="nc" id="L253">      sb.append(&quot;\nData de Nascimento (DDMMYYYY): &quot;).append(promotor.getDataNascimento())</span>
+<span class="nc" id="L254">          .append(&quot;\n&quot;).append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L255">      System.out.println(sb.toString());</span>
+<span class="nc" id="L256">      option = input.nextInt();</span>
+<span class="nc" id="L257">      sb = new StringBuilder();</span>
+<span class="nc bnc" id="L258" title="All 2 branches missed.">      promotor.setDataNascimento(option == 1 ? promotor.getDataNascimento() : lerTeclado());</span>
+<span class="nc" id="L259">      promotor.setFotoPerfil(&quot;&quot;);</span>
+
+<span class="nc" id="L261">      sb = new StringBuilder();</span>
+<span class="nc" id="L262">      sb.append(&quot;\nCategorias de Ações: &quot;).append(promotor.getCategoriasAcoes()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L263">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L264">      System.out.println(sb.toString());</span>
+<span class="nc" id="L265">      option = input.nextInt();</span>
+<span class="nc" id="L266">      sb = new StringBuilder();</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">      promotor.setCategoriasAcoes(option == 1 ? promotor.getDataNascimento() : lerTeclado());</span>
+
+<span class="nc" id="L269">      sb = new StringBuilder();</span>
+<span class="nc" id="L270">      sb.append(&quot;\nDescricao Geral: &quot;).append(promotor.getDescricaoGeral()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L271">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L272">      System.out.println(sb.toString());</span>
+<span class="nc" id="L273">      sb = new StringBuilder();</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">      promotor.setDescricaoGeral(option == 1 ? promotor.getDescricaoGeral() : lerTeclado());</span>
+
+<span class="nc" id="L276">      sb = new StringBuilder();</span>
+<span class="nc" id="L277">      sb.append(&quot;\nTelefone: &quot;).append(promotor.getTelefone()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L278">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L279">      System.out.println(sb.toString());</span>
+<span class="nc" id="L280">      sb = new StringBuilder();</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">      promotor.setTelefone(option == 1 ? promotor.getTelefone() : lerTeclado());</span>
+
+<span class="nc" id="L283">      sb = new StringBuilder();</span>
+<span class="nc" id="L284">      sb.append(&quot;\nEndereco: &quot;).append(promotor.getEndereco()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L285">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L286">      System.out.println(sb.toString());</span>
+<span class="nc" id="L287">      sb = new StringBuilder();</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">      promotor.setEndereco(option == 1 ? promotor.getCpf() : lerTeclado());</span>
+
+<span class="nc" id="L290">      sb = new StringBuilder();</span>
+<span class="nc" id="L291">      sb.append(&quot;\nEmail: &quot;).append(promotor.getEmail()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L292">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L293">      System.out.println(sb.toString());</span>
+<span class="nc" id="L294">      sb = new StringBuilder();</span>
+<span class="nc bnc" id="L295" title="All 2 branches missed.">      promotor.setEmail(option == 1 ? promotor.getCpf() : lerTeclado());</span>
+
+<span class="nc" id="L297">      PromotorFisicoService.editarPromotorFisico(promotor);</span>
+
+<span class="nc" id="L299">      System.out.println(&quot;\n ---- Alteração de Cadastro Finalizada ---- \n&quot;);</span>
+    }
+
+<span class="nc" id="L302">  }</span>
+
+  /**
+   * Metodo responsável por simular a interface de um formulário com o usuário Promotor.
+   * 
+   * @throws IOException caso ocorra algum erro no uso do banco de dados.
+   * @throws ExecutionException caso ocorra algum erro no uso do banco de dados.
+   * @throws InterruptedException caso ocorra algum erro no uso do banco de dados.
+   */
+  public static void formDadosAlteracaoPJ()
+      throws InterruptedException, ExecutionException, IOException {
+
+<span class="nc" id="L314">    StringBuilder sb = new StringBuilder();</span>
+
+<span class="nc" id="L316">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L317">    sb.append(&quot;Informe o nome de usuário: \n&quot;);</span>
+<span class="nc" id="L318">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L320">    String user = input.nextLine();</span>
+
+<span class="nc" id="L322">    sb = new StringBuilder();</span>
+<span class="nc" id="L323">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L324">    sb.append(&quot;Informe a senha: \n&quot;);</span>
+<span class="nc" id="L325">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L327">    String password = input.nextLine();</span>
+
+<span class="nc" id="L329">    PromotorJuridico promotor = new PromotorJuridico();</span>
+<span class="nc" id="L330">    promotor = PromotorJuridicoService.login(user, password);</span>
+
+<span class="nc bnc" id="L332" title="All 2 branches missed.">    if (promotor == null) {</span>
+<span class="nc" id="L333">      sb = new StringBuilder();</span>
+<span class="nc" id="L334">      sb.append(&quot;\nUsuário não encontrado ou Usuario/Senha incorreto.\n&quot;);</span>
+<span class="nc" id="L335">      System.out.println(sb.toString());</span>
+<span class="nc" id="L336">      return;</span>
+    } else {
+
+<span class="nc" id="L339">      sb.append(&quot;-----  Perfil de Promotor Pessoa Jurídica -----\n&quot;)</span>
+<span class="nc" id="L340">          .append(&quot;Nome da Pessoa Fisica Responsável: &quot;).append(promotor.getNomePessoaResponsavel())</span>
+<span class="nc" id="L341">          .append(&quot;\n&quot;).append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L342">      System.out.println(sb.toString());</span>
+<span class="nc" id="L343">      int option = input.nextInt();</span>
+<span class="nc" id="L344">      promotor.setNomePessoaResponsavel(</span>
+<span class="nc bnc" id="L345" title="All 2 branches missed.">          option == 1 ? promotor.getNomePessoaResponsavel() : lerTeclado());</span>
+
+<span class="nc" id="L347">      sb = new StringBuilder();</span>
+<span class="nc" id="L348">      sb.append(&quot;\nCPF do Responsável: &quot;).append(promotor.getCpfResponsavel()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L349">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L350">      System.out.println(sb.toString());</span>
+<span class="nc" id="L351">      option = input.nextInt();</span>
+<span class="nc bnc" id="L352" title="All 2 branches missed.">      promotor.setCpfResponsavel(option == 1 ? promotor.getCpfResponsavel() : lerTeclado());</span>
+
+<span class="nc" id="L354">      sb = new StringBuilder();</span>
+<span class="nc" id="L355">      sb.append(&quot;\nCNPJ: &quot;).append(promotor.getCnpj()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L356">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L357">      System.out.println(sb.toString());</span>
+<span class="nc" id="L358">      option = input.nextInt();</span>
+<span class="nc bnc" id="L359" title="All 2 branches missed.">      promotor.setCnpj(option == 1 ? promotor.getCnpj() : lerTeclado());</span>
+
+<span class="nc" id="L361">      sb = new StringBuilder();</span>
+<span class="nc" id="L362">      sb.append(&quot;\nRazão Social: &quot;).append(promotor.getRazaoSocial()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L363">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L364">      System.out.println(sb.toString());</span>
+<span class="nc" id="L365">      option = input.nextInt();</span>
+<span class="nc bnc" id="L366" title="All 2 branches missed.">      promotor.setRazaoSocial(option == 1 ? promotor.getRazaoSocial() : lerTeclado());</span>
+
+<span class="nc" id="L368">      sb = new StringBuilder();</span>
+<span class="nc" id="L369">      sb.append(&quot;\nData de Fundacao: &quot;).append(promotor.getDataFundacao()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L370">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L371">      System.out.println(sb.toString());</span>
+<span class="nc" id="L372">      option = input.nextInt();</span>
+<span class="nc bnc" id="L373" title="All 2 branches missed.">      promotor.setDataFundacao(option == 1 ? promotor.getDataFundacao() : lerTeclado());</span>
+
+<span class="nc" id="L375">      sb = new StringBuilder();</span>
+<span class="nc" id="L376">      sb.append(&quot;\nFoto de Perfil: &quot;).append(promotor.getFotoPerfil()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L377">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L378">      System.out.println(sb.toString());</span>
+<span class="nc" id="L379">      option = input.nextInt();</span>
+<span class="nc bnc" id="L380" title="All 2 branches missed.">      promotor.setFotoPerfil(option == 1 ? promotor.getFotoPerfil() : lerTeclado());</span>
+
+<span class="nc" id="L382">      sb = new StringBuilder();</span>
+<span class="nc" id="L383">      sb.append(&quot;\nRede Social: &quot;).append(promotor.getRedesSociais()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L384">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L385">      System.out.println(sb.toString());</span>
+<span class="nc" id="L386">      option = input.nextInt();</span>
+<span class="nc bnc" id="L387" title="All 2 branches missed.">      promotor.setRedesSociais(option == 1 ? promotor.getRedesSociais() : lerTeclado());</span>
+
+<span class="nc" id="L389">      sb = new StringBuilder();</span>
+<span class="nc" id="L390">      sb.append(&quot;\nCategoria de Acoes: &quot;).append(promotor.getCategoriasAcoes()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L391">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L392">      System.out.println(sb.toString());</span>
+<span class="nc" id="L393">      option = input.nextInt();</span>
+<span class="nc bnc" id="L394" title="All 2 branches missed.">      promotor.setCategoriasAcoes(option == 1 ? promotor.getCategoriasAcoes() : lerTeclado());</span>
+
+<span class="nc" id="L396">      sb = new StringBuilder();</span>
+<span class="nc" id="L397">      sb.append(&quot;\nDescricao Geral: &quot;).append(promotor.getDescricaoGeral()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L398">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L399">      System.out.println(sb.toString());</span>
+<span class="nc" id="L400">      option = input.nextInt();</span>
+<span class="nc bnc" id="L401" title="All 2 branches missed.">      promotor.setDescricaoGeral(option == 1 ? promotor.getDescricaoGeral() : lerTeclado());</span>
+
+<span class="nc" id="L403">      sb = new StringBuilder();</span>
+<span class="nc" id="L404">      sb.append(&quot;\nTelefone: &quot;).append(promotor.getTelefone()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L405">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L406">      System.out.println(sb.toString());</span>
+<span class="nc" id="L407">      option = input.nextInt();</span>
+<span class="nc bnc" id="L408" title="All 2 branches missed.">      promotor.setTelefone(option == 1 ? promotor.getTelefone() : lerTeclado());</span>
+
+<span class="nc" id="L410">      sb = new StringBuilder();</span>
+<span class="nc" id="L411">      sb.append(&quot;\nEndereco: &quot;).append(promotor.getEndereco()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L412">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L413">      System.out.println(sb.toString());</span>
+<span class="nc" id="L414">      option = input.nextInt();</span>
+<span class="nc bnc" id="L415" title="All 2 branches missed.">      promotor.setEndereco(option == 1 ? promotor.getEndereco() : lerTeclado());</span>
+
+<span class="nc" id="L417">      sb = new StringBuilder();</span>
+<span class="nc" id="L418">      sb.append(&quot;\nEmail: &quot;).append(promotor.getEmail()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L419">          .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L420">      System.out.println(sb.toString());</span>
+<span class="nc" id="L421">      option = input.nextInt();</span>
+<span class="nc bnc" id="L422" title="All 2 branches missed.">      promotor.setEmail(option == 1 ? promotor.getEmail() : lerTeclado());</span>
+
+<span class="nc" id="L424">      PromotorJuridicoService.editarPromotorJuridico(promotor);</span>
+
+<span class="nc" id="L426">      System.out.println(&quot;\n ---- Alteração de Cadastro Finalizada ---- \n&quot;);</span>
+    }
+
+<span class="nc" id="L429">  }</span>
+
+  public static void solExclusaoPromotorFisico() throws InterruptedException, ExecutionException {
+<span class="nc" id="L432">    StringBuilder sb = new StringBuilder();</span>
+
+<span class="nc" id="L434">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L435">    sb.append(&quot;Informe o nome de usuário: \n&quot;);</span>
+<span class="nc" id="L436">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L438">    String user = input.nextLine();</span>
+
+<span class="nc" id="L440">    sb = new StringBuilder();</span>
+<span class="nc" id="L441">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L442">    sb.append(&quot;Informe a senha: \n&quot;);</span>
+<span class="nc" id="L443">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L445">    String password = input.nextLine();</span>
+
+<span class="nc" id="L447">    PromotorFisico promotor = new PromotorFisico();</span>
+<span class="nc" id="L448">    promotor = PromotorFisicoService.login(user, password);</span>
+
+<span class="nc bnc" id="L450" title="All 2 branches missed.">    if (promotor == null) {</span>
+<span class="nc" id="L451">      System.out.println(&quot;\nUsuário não encontrado ou Usuario/Senha incorreto.\n&quot;);</span>
+<span class="nc" id="L452">      return;</span>
+    } else {
+<span class="nc" id="L454">      sb = new StringBuilder();</span>
+<span class="nc" id="L455">      sb.append(&quot;Tem certeza que deseja excluir o perfil de &quot; + promotor.getNomePessoa()</span>
+          + &quot; junto de todos seus dados?\n&quot;)
+<span class="nc" id="L457">          .append(&quot;\nPara confirmar a ação digite 0, para cancelar digite 1: \n&quot;);</span>
+<span class="nc" id="L458">      System.out.println(sb.toString());</span>
+<span class="nc" id="L459">      int option = input.nextInt();</span>
+
+<span class="nc bnc" id="L461" title="All 3 branches missed.">      switch (option) {</span>
+        case 0:
+<span class="nc" id="L463">          PromotorFisicoService.excluirPromotor(promotor);</span>
+<span class="nc" id="L464">          System.out.println(&quot;\nExclusão de perfil do Promotor Fisico &quot; + promotor.getNomePessoa()</span>
+              + &quot; executada com sucesso.&quot;);
+<span class="nc" id="L466">          return;</span>
+        case 1:
+<span class="nc" id="L468">          System.out.println(&quot;\nExclusão de perfil do Promotor Fisico &quot; + promotor.getNomePessoa()</span>
+              + &quot; cancelada.&quot;);
+<span class="nc" id="L470">          return;</span>
+        default:
+<span class="nc" id="L472">          System.out.println(&quot;ERRO&quot;);</span>
+          break;
+      }
+
+    }
+
+<span class="nc" id="L478">  }</span>
+
+  public static void solExclusaoPromotorJuridico() throws InterruptedException, ExecutionException {
+<span class="nc" id="L481">    StringBuilder sb = new StringBuilder();</span>
+
+<span class="nc" id="L483">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L484">    sb.append(&quot;Informe o nome de usuário: \n&quot;);</span>
+<span class="nc" id="L485">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L487">    String user = input.nextLine();</span>
+
+<span class="nc" id="L489">    sb = new StringBuilder();</span>
+<span class="nc" id="L490">    sb.append(&quot;\n ---- Acesso ao Sistema ---- \n&quot;);</span>
+<span class="nc" id="L491">    sb.append(&quot;Informe a senha: \n&quot;);</span>
+<span class="nc" id="L492">    System.out.println(sb.toString());</span>
+
+<span class="nc" id="L494">    String password = input.nextLine();</span>
+
+<span class="nc" id="L496">    PromotorJuridico promotor = new PromotorJuridico();</span>
+<span class="nc" id="L497">    promotor = PromotorJuridicoService.login(user, password);</span>
+
+<span class="nc bnc" id="L499" title="All 2 branches missed.">    if (promotor == null) {</span>
+<span class="nc" id="L500">      System.out.println(&quot;\nUsuário não encontrado ou Usuario/Senha incorreto.\n&quot;);</span>
+<span class="nc" id="L501">      return;</span>
+    } else {
+<span class="nc" id="L503">      sb = new StringBuilder();</span>
+<span class="nc" id="L504">      sb.append(&quot;Tem certeza que deseja excluir o perfil de &quot; + promotor.getRazaoSocial()</span>
+          + &quot; junto de todos seus dados?\n&quot;)
+<span class="nc" id="L506">          .append(&quot;\nPara confirmar a ação digite 0, para cancelar digite 1: \n&quot;);</span>
+<span class="nc" id="L507">      System.out.println(sb.toString());</span>
+<span class="nc" id="L508">      int option = input.nextInt();</span>
+
+<span class="nc bnc" id="L510" title="All 3 branches missed.">      switch (option) {</span>
+        case 0:
+<span class="nc" id="L512">          PromotorJuridicoService.excluirPromotor(promotor);</span>
+<span class="nc" id="L513">          System.out.println(&quot;\nExclusão de perfil do Promotor Juridico &quot;</span>
+<span class="nc" id="L514">              + promotor.getRazaoSocial() + &quot; executada com sucesso.&quot;);</span>
+<span class="nc" id="L515">          return;</span>
+        case 1:
+<span class="nc" id="L517">          System.out.println(&quot;\nExclusão de perfil do Promotor Juridico&quot; + promotor.getRazaoSocial()</span>
+              + &quot; cancelada.&quot;);
+<span class="nc" id="L519">          return;</span>
+        default:
+<span class="nc" id="L521">          System.out.println(&quot;ERRO&quot;);</span>
+          break;
+      }
+
+
+    }
+
+<span class="nc" id="L528">  }</span>
+
+  /**
+   * Realiza a construção de uma String, que representa a solicitação dos dados para cadastro de um
+   * voluntário.
+   *
+   * @return Instância de Voluntário;
+   */
+  public static Voluntario solCadVoluntario() {
+
+<span class="fc" id="L538">    Voluntario voluntario = new Voluntario();</span>
+
+<span class="fc" id="L540">    StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L541">    sb.append(&quot;----- Cadastro de Voluntário -----\n&quot;).append(&quot;Nome da Pessoa: \n&quot;);</span>
+<span class="fc" id="L542">    System.out.println(sb.toString());</span>
+<span class="nc" id="L543">    voluntario.setNome(input.nextLine());</span>
+
+<span class="nc" id="L545">    sb = new StringBuilder();</span>
+<span class="nc" id="L546">    sb.append(&quot;\nEmail: \n&quot;);</span>
+<span class="nc" id="L547">    System.out.println(sb.toString());</span>
+<span class="nc" id="L548">    String emailValido = input.nextLine();</span>
+
+<span class="nc bnc" id="L550" title="All 2 branches missed.">    while (!isValidEmailAddress(emailValido)) {</span>
+<span class="nc" id="L551">      System.out.println(&quot;\nEmail inválido. Digite um email válido: \n&quot;);</span>
+<span class="nc" id="L552">      emailValido = input.nextLine();</span>
+    }
+<span class="nc" id="L554">    voluntario.setEmail(emailValido);</span>
+
+<span class="nc" id="L556">    sb = new StringBuilder();</span>
+<span class="nc" id="L557">    sb.append(&quot;\nEndereco: \n&quot;);</span>
+<span class="nc" id="L558">    System.out.println(sb.toString());</span>
+<span class="nc" id="L559">    voluntario.setEndereco(input.nextLine());</span>
+
+<span class="nc" id="L561">    sb = new StringBuilder();</span>
+<span class="nc" id="L562">    sb.append(&quot;\nFormação/Profissão: \n&quot;);</span>
+<span class="nc" id="L563">    System.out.println(sb.toString());</span>
+<span class="nc" id="L564">    voluntario.setAreaDeAtuacao(input.nextLine());</span>
+
+<span class="nc" id="L566">    sb = new StringBuilder();</span>
+<span class="nc" id="L567">    sb.append(&quot;\nCategorias de Ações de interesse: \n&quot;);</span>
+<span class="nc" id="L568">    System.out.println(sb.toString());</span>
+<span class="nc" id="L569">    voluntario.setCategoriaInteresse(input.nextLine());</span>
+
+<span class="nc" id="L571">    sb = new StringBuilder();</span>
+<span class="nc" id="L572">    sb.append(&quot;\n----- Informacoes de Acesso -----\n&quot;).append(&quot;\nLogin: \n&quot;);</span>
+<span class="nc" id="L573">    System.out.println(sb.toString());</span>
+<span class="nc" id="L574">    voluntario.setUsuario(input.nextLine());</span>
+
+<span class="nc" id="L576">    sb = new StringBuilder();</span>
+<span class="nc" id="L577">    sb.append(&quot;\nSenha: \n&quot;);</span>
+<span class="nc" id="L578">    System.out.println(sb.toString());</span>
+<span class="nc" id="L579">    voluntario.setSenha(input.nextLine());</span>
+
+<span class="nc" id="L581">    return voluntario;</span>
+  }
+
+  /**
+   * Realiza a construção de uma String, que representa a solicitação dos dados para edição de um
+   * voluntário.
+   *
+   * @param voluntario Voluntário a ser editado.
+   * @return Voluntário com dados alterados.
+   */
+  public static Voluntario formDadosAlteracaoVoluntario(final Voluntario voluntario) {
+
+<span class="nc" id="L593">    StringBuilder sb = new StringBuilder();</span>
+
+<span class="nc" id="L595">    sb.append(&quot;-----  Perfil de Voluntário -----\n&quot;).append(&quot;Nome da Pessoa: &quot;)</span>
+<span class="nc" id="L596">        .append(voluntario.getNome()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L597">        .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L598">    System.out.println(sb.toString());</span>
+<span class="nc" id="L599">    int option = input.nextInt();</span>
+<span class="nc bnc" id="L600" title="All 2 branches missed.">    voluntario.setNome(option == 1 ? voluntario.getNome() : lerTeclado());</span>
+
+<span class="nc" id="L602">    sb = new StringBuilder();</span>
+<span class="nc" id="L603">    sb.append(&quot;\nEmail: &quot;).append(voluntario.getEmail()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L604">        .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L605">    System.out.println(sb.toString());</span>
+<span class="nc bnc" id="L606" title="All 2 branches missed.">    voluntario.setEmail(option == 1 ? voluntario.getEmail() : lerTeclado());</span>
+
+<span class="nc" id="L608">    sb = new StringBuilder();</span>
+<span class="nc" id="L609">    sb.append(&quot;\nEndereco: &quot;).append(voluntario.getEndereco()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L610">        .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L611">    System.out.println(sb.toString());</span>
+<span class="nc bnc" id="L612" title="All 2 branches missed.">    voluntario.setEndereco(option == 1 ? voluntario.getEndereco() : lerTeclado());</span>
+
+<span class="nc" id="L614">    sb = new StringBuilder();</span>
+<span class="nc" id="L615">    sb.append(&quot;\nFormação/Profissão: &quot;).append(voluntario.getAreaDeAtuacao()).append(&quot;\n&quot;)</span>
+<span class="nc" id="L616">        .append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L617">    System.out.println(sb.toString());</span>
+<span class="nc" id="L618">    option = input.nextInt();</span>
+<span class="nc bnc" id="L619" title="All 2 branches missed.">    voluntario.setAreaDeAtuacao(option == 1 ? voluntario.getAreaDeAtuacao() : lerTeclado());</span>
+
+<span class="nc" id="L621">    sb = new StringBuilder();</span>
+<span class="nc" id="L622">    sb.append(&quot;\nCategorias de Ações de interesse: &quot;).append(voluntario.getCategoriaInteresse())</span>
+<span class="nc" id="L623">        .append(&quot;\n&quot;).append(&quot;0 - para alterar este dado \n1 - para não alterar&quot;);</span>
+<span class="nc" id="L624">    System.out.println(sb.toString());</span>
+<span class="nc" id="L625">    option = input.nextInt();</span>
+<span class="nc" id="L626">    voluntario</span>
+<span class="nc bnc" id="L627" title="All 2 branches missed.">        .setCategoriaInteresse(option == 1 ? voluntario.getCategoriaInteresse() : lerTeclado());</span>
+
+<span class="nc" id="L629">    return voluntario;</span>
+
+  }
+
+  /**
+   * Metodo responsável pela leitura de entradas do teclado.
+   *
+   * @return string representando a linha de input.
+   */
+  static String lerTeclado() {
+<span class="nc" id="L639">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L640">    sb.append(&quot;\n Informe o valor do campo: \n&quot;);</span>
+<span class="nc" id="L641">    System.out.println(sb.toString());</span>
+<span class="nc" id="L642">    return input.nextLine();</span>
+  }
+
+  /**
+   * Método que valida endereço de email.
+   *
+   * @param email String contendo endereço de email a ser validado.
+   *
+   * @return {@code true} se endereço de email é valido e {@code false} caso não seja.
+   */
+  public static boolean isValidEmailAddress(final String email) {
+<span class="nc" id="L653">    boolean result = true;</span>
+    try {
+<span class="nc" id="L655">      InternetAddress emailAddr = new InternetAddress(email);</span>
+<span class="nc" id="L656">      emailAddr.validate();</span>
+<span class="nc" id="L657">    } catch (AddressException ex) {</span>
+<span class="nc" id="L658">      result = false;</span>
+<span class="nc" id="L659">    }</span>
+<span class="nc" id="L660">    return result;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VoluntarioDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java.br.com.ligacao:ligacao</a> &gt; <a href="index.source.html" class="el_package">br.com.ligacao.persistence.model</a> &gt; <span class="el_source">VoluntarioDAO.java</span></div><h1>VoluntarioDAO.java</h1><pre class="source lang-java linenums">package br.com.ligacao.persistence.model;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
+
+import br.com.ligacao.persistence.connection.Connection;
+
+/**
+ * Classe responsável por gerenciar os dados de voluntários no banco Firestore.
+ */
+<span class="nc" id="L24">public class VoluntarioDAO {</span>
+
+    /**
+     * Método responsável por cadastrar ou atualizar voluntários.
+     *
+     * @param voluntario Objeto voluntario.
+     * @return uma referencia do voluntário cadastrado.
+     * @throws IOException exceção de entrada e saída
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static DocumentReference cadastraVoluntario(final Voluntario voluntario)
+                    throws IOException, InterruptedException, ExecutionException {
+
+<span class="fc" id="L38">        String nomeVoluntario = voluntario.getNome();</span>
+<span class="fc" id="L39">        String emailVoluntario = voluntario.getEmail();</span>
+<span class="fc" id="L40">        String usuario = voluntario.getUsuario();</span>
+<span class="fc" id="L41">        String senha = voluntario.getSenha();</span>
+<span class="fc" id="L42">        String imagem = voluntario.getImagem();</span>
+<span class="fc" id="L43">        String redeSocial = voluntario.getRedeSocial();</span>
+<span class="fc" id="L44">        String endereco = voluntario.getEndereco();</span>
+<span class="fc" id="L45">        String areaDeAtuacao = voluntario.getAreaDeAtuacao();</span>
+<span class="fc" id="L46">        String categoriaInteresse = voluntario.getCategoriaInteresse();</span>
+<span class="fc" id="L47">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L49">        DocumentReference referenciaVoluntario = db.collection(&quot;voluntario&quot;).document(nomeVoluntario);</span>
+
+        // Add document data using a hashmap
+<span class="fc" id="L52">        Map&lt;String, Object&gt; voluntarios = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L53">        voluntarios.put(&quot;nome&quot;, nomeVoluntario);</span>
+<span class="fc" id="L54">        voluntarios.put(&quot;email&quot;, emailVoluntario);</span>
+<span class="fc" id="L55">        voluntarios.put(&quot;imagem&quot;, imagem);</span>
+<span class="fc" id="L56">        voluntarios.put(&quot;email&quot;, redeSocial);</span>
+<span class="fc" id="L57">        voluntarios.put(&quot;endereco&quot;, endereco);</span>
+<span class="fc" id="L58">        voluntarios.put(&quot;areaDeAtuacao&quot;, areaDeAtuacao);</span>
+<span class="fc" id="L59">        voluntarios.put(&quot;categoriaInteresse&quot;, categoriaInteresse);</span>
+
+        //asynchronously write data
+<span class="fc" id="L62">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultVoluntario = referenciaVoluntario.set(voluntarios);</span>
+        // ...
+        // result.get() blocks on response
+<span class="fc" id="L65">        System.out.println(&quot;Update time : &quot; + resultVoluntario.get().getUpdateTime());</span>
+
+     // Add document data using a hashmap
+<span class="fc" id="L68">        Map&lt;String, Object&gt; login = new HashMap&lt;String, Object&gt;();</span>
+<span class="fc" id="L69">        login.put(&quot;usuario&quot;, usuario);</span>
+<span class="fc" id="L70">        login.put(&quot;senha&quot;, senha);</span>
+
+<span class="fc" id="L72">        DocumentReference referenciaLogin = db.collection(&quot;voluntario&quot;).document(nomeVoluntario)</span>
+<span class="fc" id="L73">                .collection(&quot;login&quot;).document(&quot;dados&quot;);</span>
+
+<span class="fc" id="L75">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultLogin = referenciaLogin.set(login);</span>
+        // ...
+           // result.get() blocks on response
+<span class="fc" id="L78">           System.out.println(&quot;Update time : &quot; + resultLogin.get().getUpdateTime());</span>
+
+<span class="fc" id="L80">        return referenciaVoluntario;</span>
+
+    }
+
+    /**
+     * Método responsável por cadastrar ou atualizar voluntários
+     * em ações cadastradas no banco de dados Firebase.
+     * Caso o registro não exista, um novo documento será criado,
+     * caso já exista, as informações enviadas serão atualizadas.
+     * Caso o voluntario não tenha cadastro, um novo cadastro será
+     * criado automaticamente.
+     *
+     * @param promotor String com o nome do promotor de ação.
+     * @param acao String com o nome do Objeto ação.
+     * @param voluntario Objeto voluntario.
+     * @throws IOException exceção de entrada e saída
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static void cadastraVoluntarioEmAcao(final String promotor, final String acao, final Voluntario voluntario)
+                    throws IOException, InterruptedException, ExecutionException {
+
+<span class="fc" id="L102">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L104">        DocumentReference referenciaVoluntario = cadastraVoluntario(voluntario);</span>
+
+<span class="fc" id="L106">        DocumentReference referenciaVoluntarioAcao = db.collection(&quot;promotor de acao&quot;).document(promotor)</span>
+<span class="fc" id="L107">                                               .collection(&quot;acoes&quot;).document(acao)</span>
+<span class="fc" id="L108">                                               .collection(&quot;voluntarios&quot;).document(voluntario.getNome());</span>
+
+<span class="fc" id="L110">        DocumentReference referenciaAcaoVoluntario = db.collection(&quot;voluntario&quot;).document(voluntario.getNome()).</span>
+<span class="fc" id="L111">                                                collection(&quot;acoes&quot;).document(acao);</span>
+
+        // Add document data using a hashmap
+<span class="fc" id="L114">        Map&lt;String, Object&gt; voluntarios = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L115">        voluntarios.put(&quot;referencia&quot;, referenciaVoluntario);</span>
+        //asynchronously write data
+<span class="fc" id="L117">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultVoluntario = referenciaVoluntarioAcao.set(voluntarios);</span>
+        // ...
+        // result.get() blocks on response
+<span class="fc" id="L120">        System.out.println(&quot;Update time : &quot; + resultVoluntario.get().getUpdateTime());</span>
+
+     // Add document data using a hashmap
+<span class="fc" id="L123">        Map&lt;String, Object&gt; acaoReg = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L124">        acaoReg.put(acao, referenciaVoluntarioAcao);</span>
+        //asynchronously write data
+<span class="fc" id="L126">        ApiFuture&lt;com.google.cloud.firestore.WriteResult&gt; resultAcaoVoluntario = referenciaAcaoVoluntario.set(acaoReg);</span>
+        // ...
+        // result.get() blocks on response
+<span class="fc" id="L129">        System.out.println(&quot;Update time : &quot; + resultAcaoVoluntario.get().getUpdateTime());</span>
+
+<span class="fc" id="L131">    }</span>
+
+    /**
+     * Método responsável por consultar voluntarios cadastrados
+     * em uma ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação.
+     *
+     * @return Retorna uma lista de objetos Voluntario.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static List&lt;Voluntario&gt; consultaVoluntarios(final String nomePromotor,
+            final String nomeAcao) throws InterruptedException, ExecutionException {
+
+<span class="fc" id="L147">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L149">        CollectionReference referenciaVoluntarios = db.collection(&quot;promotor de acao&quot;).document(nomePromotor)</span>
+<span class="fc" id="L150">                .collection(&quot;acoes&quot;).document(nomeAcao)</span>
+<span class="fc" id="L151">                .collection(&quot;voluntarios&quot;);</span>
+
+      //asynchronously retrieve multiple documents
+<span class="fc" id="L154">        ApiFuture&lt;QuerySnapshot&gt; future = referenciaVoluntarios.get();</span>
+        // future.get() blocks on response
+<span class="fc" id="L156">        List&lt;QueryDocumentSnapshot&gt; documents = future.get().getDocuments();</span>
+<span class="fc" id="L157">        List&lt;Voluntario&gt; voluntarios = new ArrayList&lt;Voluntario&gt;();</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">        for (DocumentSnapshot document : documents) {</span>
+         // System.out.println(document.getId() + &quot; consultado&quot;);
+<span class="fc" id="L160">            DocumentReference ref = (consultaReferenciaVoluntario(</span>
+<span class="fc" id="L161">                    referenciaVoluntarios.document(document.getId()))</span>
+                    );
+<span class="fc" id="L163">            ApiFuture&lt;DocumentSnapshot&gt; future2 = ref.get();</span>
+<span class="fc" id="L164">            DocumentSnapshot document1 = future2.get();</span>
+
+<span class="fc" id="L166">          voluntarios.add(document1.toObject(Voluntario.class));</span>
+<span class="fc" id="L167">        }</span>
+<span class="fc" id="L168">        return voluntarios;</span>
+    }
+
+    /**
+     * Método responsável por consultar a referência para
+     * o cadastro de voluntarios cadastrados no banco.
+     *
+     * @param ponteiro referência de documento para um voluntário de uma ação.
+     *
+     * @return Retorna uma lista de objetos Voluntario.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static DocumentReference consultaReferenciaVoluntario(
+            final DocumentReference ponteiro) throws InterruptedException, ExecutionException {
+<span class="fc" id="L183">        ApiFuture&lt;DocumentSnapshot&gt; future = ponteiro.get();</span>
+
+<span class="fc" id="L185">        DocumentSnapshot document1 = future.get();</span>
+
+<span class="fc" id="L187">        VoluntarioREF ref = document1.toObject(VoluntarioREF.class);</span>
+<span class="fc" id="L188">        DocumentReference path = ref.getReferencia();</span>
+<span class="fc" id="L189">        return path;</span>
+
+    }
+
+    /**
+     * Método responsável por excluir um voluntário de uma ação.
+     *
+     * @param nomePromotor Nome do promotor da ação.
+     * @param nomeAcao Nome da ação.
+     * @param voluntario Voluntario a ser excluído
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static void excluiVoluntario(final String nomePromotor,
+        final String nomeAcao, final String voluntario)
+        throws InterruptedException, ExecutionException {
+
+<span class="fc" id="L206">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L208">        DocumentReference referenciaAcaoVoluntario = db.collection(&quot;promotor de acao&quot;).document(nomePromotor)</span>
+<span class="fc" id="L209">                .collection(&quot;acoes&quot;).document(nomeAcao)</span>
+<span class="fc" id="L210">                .collection(&quot;voluntarios&quot;).document(voluntario);</span>
+
+<span class="fc" id="L212">        DocumentReference referenciaVoluntarioAcao = db.collection(&quot;voluntario&quot;).document(voluntario)</span>
+<span class="fc" id="L213">                .collection(&quot;acoes&quot;).document(nomeAcao);</span>
+
+     // asynchronously delete a document
+<span class="fc" id="L216">        ApiFuture&lt;WriteResult&gt; writeResult = referenciaAcaoVoluntario.delete();</span>
+     // asynchronously delete a document
+<span class="fc" id="L218">        ApiFuture&lt;WriteResult&gt; writeResult2 = referenciaVoluntarioAcao.delete();</span>
+        // ...
+<span class="fc" id="L220">        System.out.println(&quot;Update time : &quot; + writeResult.get().getUpdateTime());</span>
+<span class="fc" id="L221">        System.out.println(&quot;Update time : &quot; + writeResult2.get().getUpdateTime());</span>
+<span class="fc" id="L222">    }</span>
+
+    /**
+     * Método responsável por consultar voluntários cadastrados.
+     *
+     * @return Retorna uma lista de objetos Promotor.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static List&lt;Voluntario&gt; consultaVoluntarios()
+            throws InterruptedException, ExecutionException {
+
+<span class="fc" id="L234">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L236">        CollectionReference referenciaPromotores = db.collection(&quot;voluntario&quot;);</span>
+
+      //asynchronously retrieve multiple documents
+<span class="fc" id="L239">        ApiFuture&lt;QuerySnapshot&gt; querySnapshot = referenciaPromotores.get();</span>
+        // future.get() blocks on response
+<span class="fc" id="L241">        List&lt;QueryDocumentSnapshot&gt; documents = querySnapshot.get().getDocuments();</span>
+<span class="fc" id="L242">        List&lt;Voluntario&gt; voluntarios = new ArrayList&lt;Voluntario&gt;();</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">        for (DocumentSnapshot document : documents) {</span>
+          //System.out.println(document.getId() + &quot; adicionado&quot;);
+<span class="fc" id="L245">          voluntarios.add(document.toObject(Voluntario.class));</span>
+<span class="fc" id="L246">        }</span>
+<span class="fc" id="L247">        return voluntarios;</span>
+    }
+
+    /**
+     * Realiza as busca dos dados do Voluntario através de um usuario e senha
+     * informado por parametro.
+     *
+     * @param user     nome de usuario cadastrado no perfil de voluntario.
+     * @param password senha cadastrado no perfil de voluntario.
+     *
+     * @return caso seja encontrado o perfil de Voluntario com os parametros
+     *             informados irá retornar uma instancia da classe com os atributos
+     *             preenchidos. Caso contrario, deverá retornar NULL.
+     * @throws InterruptedException exceção de interrupção
+     * @throws ExecutionException exceção de execução
+     */
+    public static Voluntario login(final String user, final String password)
+            throws InterruptedException, ExecutionException {
+<span class="fc" id="L265">        List&lt;Voluntario&gt; voluntarios = new ArrayList&lt;Voluntario&gt;();</span>
+
+<span class="fc" id="L267">        voluntarios = consultaVoluntarios();</span>
+
+<span class="pc bpc" id="L269" title="1 of 2 branches missed.">        for (Voluntario voluntario : voluntarios) {</span>
+<span class="pc bpc" id="L270" title="1 of 2 branches missed.">            if (consultaUsuario(voluntario.getNome()).equals(user)</span>
+<span class="pc bpc" id="L271" title="1 of 2 branches missed.">                    &amp;&amp; consultaSenha(voluntario.getNome()).equals(password)) {</span>
+<span class="fc" id="L272">                    return voluntario;</span>
+            }
+<span class="nc" id="L274">        }</span>
+<span class="nc" id="L275">        return null;</span>
+    }
+
+    /**
+     * Método responsável por consultar nome de usuário
+     * do login de um voluntario.
+     *
+     * @param nomeVoluntario Nome do voluntario.
+     *
+     * @return Retorna uma String com o nome de usuário.
+     * @throws ExecutionException exceção de execução
+     * @throws InterruptedException exceção de interrupção
+     */
+    public static String consultaUsuario(final String nomeVoluntario)
+     throws InterruptedException, ExecutionException {
+<span class="fc" id="L290">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L292">        DocumentReference docRef = db.collection(&quot;voluntario&quot;).document(nomeVoluntario)</span>
+<span class="fc" id="L293">                                        .collection(&quot;login&quot;).document(&quot;dados&quot;);</span>
+        // asynchronously retrieve the document
+<span class="fc" id="L295">        ApiFuture&lt;DocumentSnapshot&gt; future = docRef.get();</span>
+        // ...
+
+        // future.get() blocks on response
+<span class="fc" id="L299">        String document = null;</span>
+        try {
+<span class="fc" id="L301">            document = future.get().getString(&quot;usuario&quot;);</span>
+<span class="nc" id="L302">        } catch (InterruptedException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L304">            e.printStackTrace();</span>
+<span class="nc" id="L305">        } catch (ExecutionException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L307">            e.printStackTrace();</span>
+<span class="pc" id="L308">        }</span>
+<span class="pc bpc" id="L309" title="1 of 2 branches missed.">        if (document != null) {</span>
+<span class="fc" id="L310">            return document;</span>
+        } else {
+<span class="nc" id="L312">            return null;</span>
+        }
+    }
+
+    /**
+     * Método responsável por consultar senha
+     * do login de um voluntario.
+     *
+     * @param nomeVoluntario Nome do voluntario.
+     *
+     * @return Retorna uma String com a senha de usuário.
+     */
+    public static String consultaSenha(final String nomeVoluntario) {
+<span class="fc" id="L325">        Firestore db = Connection.db;</span>
+
+<span class="fc" id="L327">        DocumentReference docRef = db.collection(&quot;voluntario&quot;).document(nomeVoluntario)</span>
+<span class="fc" id="L328">                                        .collection(&quot;login&quot;).document(&quot;dados&quot;);</span>
+        // asynchronously retrieve the document
+<span class="fc" id="L330">        ApiFuture&lt;DocumentSnapshot&gt; future = docRef.get();</span>
+        // ...
+
+        // future.get() blocks on response
+<span class="fc" id="L334">        String document = null;</span>
+        try {
+<span class="fc" id="L336">            document = future.get().getString(&quot;senha&quot;);</span>
+<span class="nc" id="L337">        } catch (InterruptedException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L339">            e.printStackTrace();</span>
+<span class="nc" id="L340">        } catch (ExecutionException e) {</span>
+            // TODO Auto-generated catch block
+<span class="nc" id="L342">            e.printStackTrace();</span>
+<span class="pc" id="L343">        }</span>
+<span class="pc bpc" id="L344" title="1 of 2 branches missed.">        if (document != null) {</span>
+<span class="fc" id="L345">            return document;</span>
+        } else {
+<span class="nc" id="L347">            return null;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

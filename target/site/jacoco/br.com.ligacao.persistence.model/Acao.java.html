@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Acao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java.br.com.ligacao:ligacao</a> &gt; <a href="index.source.html" class="el_package">br.com.ligacao.persistence.model</a> &gt; <span class="el_source">Acao.java</span></div><h1>Acao.java</h1><pre class="source lang-java linenums">package br.com.ligacao.persistence.model;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+public class Acao {
+
+    /**
+     * Atributo representando nome do promotor.
+     */
+    private String nomePromotor;
+
+    /**
+     * Atributo representando nome da ação.
+     */
+    private String nomeAcao;
+
+    /**
+     * Atributo com categoria da ação.
+     */
+    private String categoriaAcao;
+
+    /**
+     * Atributo da data de realização da ação.
+     */
+    private String dataRealizacao;
+
+    /**
+     * Atributo que descreve ação.
+     */
+    private String descricao;
+
+    /**
+     * Atributo de hora de início da ação.
+     */
+    private String horaInicio;
+
+    /**
+     * Atributo de hora de fim da ação.
+     */
+    private String horaFim;
+
+    /**
+     * Atributo com emails dos voluntários.
+     */
+<span class="fc" id="L46">    private ArrayList&lt;String&gt; emails = new ArrayList&lt;String&gt;();</span>
+
+    /**
+     * Construtuor de ação.
+     */
+<span class="fc" id="L51">    public Acao() {</span>
+
+<span class="fc" id="L53">    }</span>
+
+    /**
+     * Construtor com todos os atributos da classe ação.
+     *
+     * @param nomePromotor   o nome do promotor da ação
+     * @param nomeAcao       o nome da ação
+     * @param categoriaAcao  a categoria da ação
+     * @param dataRealizacao a data de realiação da ação
+     * @param descricao      a descrição da ação
+     * @param horaInicio     a hora de inicio da ação
+     * @param horaFim        a hora de fim da ação
+     */
+    public Acao(final String nomePromotor, final String nomeAcao,
+                final String categoriaAcao,
+                final String dataRealizacao, final String descricao,
+                final String horaInicio,
+                final String horaFim) {
+<span class="fc" id="L71">        super();</span>
+<span class="fc" id="L72">        this.nomePromotor = nomePromotor;</span>
+<span class="fc" id="L73">        this.nomeAcao = nomeAcao;</span>
+<span class="fc" id="L74">        this.categoriaAcao = categoriaAcao;</span>
+<span class="fc" id="L75">        this.dataRealizacao = dataRealizacao;</span>
+<span class="fc" id="L76">        this.descricao = descricao;</span>
+<span class="fc" id="L77">        this.horaInicio = horaInicio;</span>
+<span class="fc" id="L78">        this.horaFim = horaFim;</span>
+<span class="fc" id="L79">    }</span>
+
+    /**
+     * Método para obter o nome do promotor.
+     *
+     * @return o nome do promotor
+     */
+    public String getNomePromotor() {
+<span class="fc" id="L87">        return nomePromotor;</span>
+    }
+
+    /**
+     * Set o nome do promotor.
+     *
+     * @param nomePromotor nome do promotor
+     */
+    public void setNomePromotor(final String nomePromotor) {
+<span class="fc" id="L96">        this.nomePromotor = nomePromotor;</span>
+<span class="fc" id="L97">    }</span>
+
+    /**
+     * Obtém o nome da ação.
+     *
+     * @return o nome da ação
+     */
+    public String getNomeAcao() {
+<span class="fc" id="L105">        return nomeAcao;</span>
+    }
+
+    /**
+     * Set o nome da ação.
+     *
+     * @param nomeAcao o nome da ação
+     */
+    public void setNomeAcao(final String nomeAcao) {
+<span class="fc" id="L114">        this.nomeAcao = nomeAcao;</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * Obtém a categoria da ação.
+     *
+     * @return a categoria da ação
+     */
+    public String getCategoriaAcao() {
+<span class="fc" id="L123">        return categoriaAcao;</span>
+    }
+
+    /**
+     * Set a categoria da ação.
+     *
+     * @param categoriaAcao a categoria da ação
+     */
+    public void setCategoriaAcao(final String categoriaAcao) {
+<span class="fc" id="L132">        this.categoriaAcao = categoriaAcao;</span>
+<span class="fc" id="L133">    }</span>
+
+    /**
+     * Obtém a data de realiação da ação.
+     *
+     * @return a data de realização
+     */
+    public String getDataRealizacao() {
+<span class="fc" id="L141">        return dataRealizacao;</span>
+    }
+
+    /**
+     * Set a data de realização da ação.
+     *
+     * @param dataRealizacao a data de realização
+     */
+    public void setDataRealizacao(final String dataRealizacao) {
+<span class="fc" id="L150">        this.dataRealizacao = dataRealizacao;</span>
+<span class="fc" id="L151">    }</span>
+
+    /**
+     * Obtém a descrição da da ação.
+     *
+     * @return a descritação da ação
+     */
+    public String getDescricao() {
+<span class="fc" id="L159">        return descricao;</span>
+    }
+
+    /**
+     * Set a descrição da ação.
+     *
+     * @param descricao a descrição da ação
+     */
+    public void setDescricao(final String descricao) {
+<span class="fc" id="L168">        this.descricao = descricao;</span>
+<span class="fc" id="L169">    }</span>
+
+    /**
+     * Obtém a hora de início.
+     *
+     * @return hora de início da ação
+     */
+    public String getHoraInicio() {
+<span class="fc" id="L177">        return horaInicio;</span>
+    }
+
+    /**
+     * Set a hora de início.
+     *
+     * @param horaInicio hora de final da ação
+     */
+    public void setHoraInicio(final String horaInicio) {
+<span class="fc" id="L186">        this.horaInicio = horaInicio;</span>
+<span class="fc" id="L187">    }</span>
+
+    /**
+     * Obtém hora de fim da ação.
+     *
+     * @return hora de fim da ação
+     */
+    public String getHoraFim() {
+<span class="fc" id="L195">        return horaFim;</span>
+    }
+
+    /**
+     * Set hora de fim da ação.
+     *
+     * @param horaFim hora de fim da ação
+     */
+    public void setHoraFim(final String horaFim) {
+<span class="fc" id="L204">        this.horaFim = horaFim;</span>
+<span class="fc" id="L205">    }</span>
+
+    /**
+     * Obtém os e-mails dos voluntário.
+     *
+     * @return array com emails dos voluntários
+     */
+    public ArrayList&lt;String&gt; getEmails() {
+<span class="nc" id="L213">        return emails;</span>
+    }
+
+    /**
+     * Set emails.
+     *
+     * @param emails emails dos voluntarios
+     */
+    public void setEmails(final ArrayList&lt;String&gt; emails) {
+<span class="nc" id="L222">        this.emails = emails;</span>
+<span class="nc" id="L223">    }</span>
+
+    /**
+     * Hashcode.
+     *
+     * @return o objeto hash
+     */
+    @Override
+    public int hashCode() {
+<span class="nc" id="L232">        return Objects.hash(nomePromotor,</span>
+                nomeAcao,
+                categoriaAcao,
+                dataRealizacao,
+                descricao,
+                horaInicio,
+                horaFim,
+                emails);
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
