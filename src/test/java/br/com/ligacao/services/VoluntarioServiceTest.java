@@ -47,7 +47,7 @@ public class VoluntarioServiceTest {
 
     @Test
     void editar() {
-        provideInput("1");
+        provideInput("0");
         assertThrows(NoSuchElementException.class, () -> {
             VoluntarioService.editarVoluntario();
         });
