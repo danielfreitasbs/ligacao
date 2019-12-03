@@ -184,7 +184,7 @@ public class PromotorApp {
     sb.append(cabecalho);
     sb.append("Selecione o tipo de pessoa: \n");
     sb.append("0 - Pessoa Física \n1 - Pessoa Juridica");
-
+    System.out.println(sb.toString());
     int option = scanner.nextInt();
     return option;
   }

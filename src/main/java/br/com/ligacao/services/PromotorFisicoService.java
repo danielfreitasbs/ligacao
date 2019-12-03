@@ -131,7 +131,7 @@ public class PromotorFisicoService {
    */
   public static void cadastroPromotorFisico(final PromotorFisico promotorFisicoParam)
       throws IOException, InterruptedException, ExecutionException, AttributeNotFoundException {
-    if (promotorFisicoParam.getNomePessoa() == "") {
+    if (promotorFisicoParam.getNomePessoa() != "") {
       PromotorDAO.cadastraPromotorFisico(promotorFisicoParam);
     } else {
       throw new AttributeNotFoundException();
@@ -148,7 +148,7 @@ public class PromotorFisicoService {
    */
   public static void editarPromotorFisico(final PromotorFisico promotorFisicoParam)
       throws InterruptedException, ExecutionException, IOException {
-    if (promotorFisicoParam.getNomePessoa() == "") {
+    if (promotorFisicoParam.getNomePessoa() != "") {
       PromotorDAO.cadastraPromotorFisico(promotorFisicoParam);
     } else {
       throw new IllegalArgumentException();

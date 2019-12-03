@@ -30,7 +30,7 @@ public class PromotorJuridicoService {
    */
   public static void editarPromotorJuridico(final PromotorJuridico promotorParam)
       throws InterruptedException, ExecutionException, IOException {
-    if (promotorParam.getRazaoSocial() == "") {
+    if (promotorParam.getRazaoSocial() != "") {
       PromotorDAO.cadastraPromotorJuridico(promotorParam);
     } else {
       throw new IllegalArgumentException();
