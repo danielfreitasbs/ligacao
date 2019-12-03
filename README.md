@@ -130,6 +130,12 @@ O promotor de ações deverá criar um perfil no sistema (cadastro) para poder p
 
 Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo quando quiserem. Poderão também pesquisar por ações de acordo com características (tipo de ação, data de realização, local) e se inscrever. Também poderão avaliar os promotores de ação após participarem de alguma ação.
 
+Na primeira iteração, considerando o ator Promotor, foram implementados os casos de uso: cadastrar ação, editar ação, criar perfil e editar perfil. Para o ator Voluntário foram implementados: inscrever em ação.
+
+Na segunda iteração, foram implementados os casos de uso - ator Promotor: excluir ação, excluir perfil. E para o ator Voluntário: criar perfil e editar perfil.
+
+Os casos de uso que não foram implementados ainda incluem: avaliar ação (ator Voluntário) e avaliar voluntário (ator Promotor).
+
 ![Diagrama de casos de uso](docs/diagrama-casos-de-uso.png)
 
 ## Casos de uso detalhados
@@ -403,7 +409,6 @@ Os voluntários poderão criar um perfil no sistema e editá-lo e excluí-lo qua
 | RF10 | Criar perfil (Promotor) | #1 | Resultados da entrevista | 02/11/2019
 | RF12 | Editar perfil (Promotor)| #1 | Resultados da entrevista | 02/11/2019
 | RF03 | Excluir ação (Promotor)| #2 | Resultados da entrevista | 26/11/2019
-| RF06 | Avaliar voluntários (Promotor)| #2 | Resultados da entrevista | 26/11/2019
 | RF13 | Excluir perfil (Promotor)| #2 | Resultados da entrevista | 26/11/2019
 | RF14 | Criar perfil (Voluntário)| #2 | Resultados da entrevista | 26/11/2019
-| RF17 | Editar perfil (Voluntário)| #2 | Resultados da entrevista | 26/11/2019
+| RF17 | Editar perfil (Voluntário)| #3 | Resultados da entrevista | 03/12/2019
