@@ -1,8 +1,7 @@
 package br.com.ligacao.services;
 
 import java.io.IOException;
-// Comentado para retirar bug do spotbugs
-//import java.util.Scanner;
+import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 import br.com.ligacao.persistence.model.Acao;
@@ -31,8 +30,8 @@ public final class InscreverService {
     /**
      * Scanner para entrada de dados pelo usuario.
      */
-    // Comentado para retirar bug do spotbugs
-    //private static Scanner scanner;
+
+    private static Scanner scanner;
 
     /**
      * Cadastra um voluntário em uma ação.
@@ -47,7 +46,7 @@ public final class InscreverService {
      *                              banco de dados.
      */
     public static void inscreverEmAcao(final Acao acao) throws IOException, InterruptedException, ExecutionException {
-        // voluntario = login();
+        voluntario = login();
 
         if (voluntario == null) {
             System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
@@ -62,22 +61,30 @@ public final class InscreverService {
      * Realiza login de um voluntário.
      *
      * @return Voluntário caso exista e null caso não exista.
+     *
+     * @throws ExecutionException   Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
+     * @throws InterruptedException Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
      */
-    /*
-     * static Voluntario login() { StringBuilder sb = new StringBuilder(); scanner =
-     * new Scanner(System.in);
-     *
-     * sb.append("\n ---- Acesso ao Sistema ---- \n");
-     * sb.append("Informe o nome de usuário: \n");
-     * System.out.println(sb.toString());
-     *
-     * String user = scanner.nextLine();
-     *
-     * sb = new StringBuilder(); sb.append("\n ---- Acesso ao Sistema ---- \n");
-     * sb.append("Informe a senha: \n"); System.out.println(sb.toString());
-     *
-     * String password = scanner.nextLine();
-     *
-     * return VoluntarioDAO.loginVoluntario(user, password); }
-     */
+
+    static Voluntario login() throws InterruptedException, ExecutionException {
+        StringBuilder sb = new StringBuilder();
+        scanner = new Scanner(System.in, "UTF-8");
+
+        sb.append("\n ---- Acesso ao Sistema ---- \n");
+        sb.append("Informe o nome de usuário: \n");
+        System.out.println(sb.toString());
+
+        String user = scanner.nextLine();
+
+        sb = new StringBuilder();
+        sb.append("\n ---- Acesso ao Sistema ---- \n");
+        sb.append("Informe a senha: \n");
+        System.out.println(sb.toString());
+
+        String password = scanner.nextLine();
+
+        return VoluntarioDAO.login(user, password);
+    }
 }

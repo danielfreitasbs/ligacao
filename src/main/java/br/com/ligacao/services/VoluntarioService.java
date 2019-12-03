@@ -72,7 +72,7 @@ public final class VoluntarioService {
      *                              banco de dados.
      */
     public static void editarVoluntario() throws IOException, InterruptedException, ExecutionException {
-        // voluntario = login();
+        voluntario = login();
 
         if (voluntario == null) {
             System.out.println("\nUsuário não encontrado ou Usuario/Senha incorreto.\n");
@@ -88,23 +88,30 @@ public final class VoluntarioService {
      * Realiza login de um voluntário.
      *
      * @return Voluntário caso exista e null caso não exista.
-     */
-    /*
-     * static Voluntario login() { StringBuilder sb = new StringBuilder(); scanner =
-     * new Scanner(System.in);
      *
-     * sb.append("\n ---- Acesso ao Sistema ---- \n");
-     * sb.append("Informe o nome de usuário: \n");
-     * System.out.println(sb.toString());
-     *
-     * String user = scanner.nextLine();
-     *
-     * sb = new StringBuilder(); sb.append("\n ---- Acesso ao Sistema ---- \n");
-     * sb.append("Informe a senha: \n"); System.out.println(sb.toString());
-     *
-     * String password = scanner.nextLine();
-     *
-     * return VoluntarioDAO.loginVoluntario(user, password); }
+     * @throws ExecutionException   Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
+     * @throws InterruptedException Se houver problema na Main ou ao utilizar o
+     *                              banco de dados.
      */
 
+    static Voluntario login() throws InterruptedException, ExecutionException {
+        StringBuilder sb = new StringBuilder();
+        scanner = new Scanner(System.in);
+
+        sb.append("\n ---- Acesso ao Sistema ---- \n");
+        sb.append("Informe o nome de usuário: \n");
+        System.out.println(sb.toString());
+
+        String user = scanner.nextLine();
+
+        sb = new StringBuilder();
+        sb.append("\n ---- Acesso ao Sistema ---- \n");
+        sb.append("Informe a senha: \n");
+        System.out.println(sb.toString());
+
+        String password = scanner.nextLine();
+
+        return VoluntarioDAO.login(user, password);
+    }
 }
